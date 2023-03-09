@@ -2,25 +2,25 @@
 
 <!-- Title -->
 
-<img src="public/assets/images/next.webp" alt="logo" width="200" height="auto" />
-<h1>Next Personal Starter</h1>
+<img src="public/assets/images/readme.webp" alt="logo" width="200" height="auto" />
+<h1>Personal Portfolio</h1>
 
 <!-- Badges -->
 
 <p>
     <a href="">
-        <img src="https://img.shields.io/github/last-commit/czhangy/next-personal-starter" alt="last update" />
+        <img src="https://img.shields.io/github/last-commit/czhangy/Personal-Portfolio" alt="last update" />
     </a>
-    <a href="https://github.com/czhangy/next-personal-starter/stargazers">
-        <img src="https://img.shields.io/github/stars/czhangy/next-personal-starter" alt="stars" />
+    <a href="https://github.com/czhangy/Personal-Portfolio/stargazers">
+        <img src="https://img.shields.io/github/stars/czhangy/Personal-Portfolio" alt="stars" />
     </a>
-    <a href="https://github.com/czhangy/next-personal-starter/issues/">
-        <img src="https://img.shields.io/github/issues/czhangy/next-personal-starter" alt="open issues" />
+    <a href="https://github.com/czhangy/Personal-Portfolio/issues/">
+        <img src="https://img.shields.io/github/issues/czhangy/Personal-Portfolio" alt="open issues" />
 </p>
 <h4>
-    <a href="https://github.com/czhangy/next-personal-starter">Documentation</a>
+    <a href="https://github.com/czhangy/Personal-Portfolio">Documentation</a>
     <span> · </span>
-    <a href="https://github.com/czhangy/next-personal-starter/issues">Report Bug</a>
+    <a href="https://github.com/czhangy/Personal-Portfolio/issues">Report Bug</a>
 </h4>
 
 </div>
@@ -32,14 +32,6 @@
 # Table of Contents
 
 -   [About the Project](#about-the-project)
-    -   [Summary](#summary)
-    -   [Tech Stack](#tech-stack)
-    -   [Features](#features)
-    -   [Environment Variables](#environment-variables)
--   [Getting Started](#getting-started)
-    -   [Prerequisites](#prerequisites)
-    -   [Run Locally](#run-locally)
--   [Roadmap](#roadmap)
 -   [License](#license)
 -   [Contact](#contact)
 -   [Acknowledgements](#acknowledgements)
@@ -48,37 +40,9 @@
 
 ## About the Project
 
-<!-- Summary -->
+This is my personal portfolio, which I'm using as a platform to introduce myself. This project is currently under development.
 
-### Summary
-
-This is my personal starter for TypeScript/Next.js applications. As of now, it comes pre-setup with a README template, `src` folder, path aliasing, SASS support, Prettier config, Jest/Testing Library, Husky pre-commit hooks, and Prisma config, although other technologies may be added in the future.
-
-<!-- Getting Started -->
-
-## Getting Started
-
-<!-- Prerequisites -->
-
-### Prerequisites
-
-This project uses NPM as a package manager
-
-<!-- Run Locally -->
-
-### Run Locally
-
-Create a Next app with this starter
-
-```bash
-npx create-next-app [project-name] -e https://github.com/czhangy/next-personal-starter
-```
-
-Start the application
-
-```bash
-npm run dev
-```
+The most up-to-date version of my portfolio is currently deployed [here]https://czhangy.io.
 
 ## License
 
