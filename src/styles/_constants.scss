@@ -1,3 +1,23 @@
 // Fonts
 $main-font: Inter, sans-serif;
 $header-font: Staatliches, sans-serif;
+
+// Font sizes
+$header-size: 2rem;
+
+// Dark theme
+$dark: black;
+$dark-accent: grey;
+$dark-text: white;
+$dark-hover: lightgrey;
+
+// Light theme
+$light: white;
+$light-accent: lightgrey;
+$light-text: black;
+$light-hover: grey;
+
+// Dimensions
+$max-width: 1360px;
+$navbar-height: 60px;
+$page-padding: 2rem;

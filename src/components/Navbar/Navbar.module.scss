@@ -1,0 +1,30 @@
+@use "@/styles/constants";
+
+.navbar {
+    background: var(--theme-accent);
+    display: flex;
+    height: constants.$navbar-height;
+    justify-content: center;
+    width: 100%;
+
+    .navbar-container {
+        align-items: center;
+        display: flex;
+        max-width: constants.$max-width;
+        padding: 0 constants.$page-padding;
+        width: 100%;
+
+        .name {
+            font-family: constants.$header-font;
+            font-size: constants.$header-size;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+// Sticky hover
+@media (hover: hover) {
+    .name:hover {
+        color: var(--theme-hover);
+    }
+}

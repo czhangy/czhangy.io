@@ -4,15 +4,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Staatliches&display=swap");
 
 #app {
-    color: white;
+    color: var(--theme-text);
     overflow-x: hidden;
 }
 
 body,
 body[data-theme="dark"] {
+    --theme-main: #{constants.$dark};
+    --theme-accent: #{constants.$dark-accent};
+    --theme-text: #{constants.$dark-text};
+    --theme-hover: #{constants.$dark-hover};
 }
 
 body[data-theme="light"] {
+    --theme-main: #{constants.$light};
+    --theme-accent: #{constants.$light-accent};
+    --theme-text: #{constants.$light-text};
+    --theme-hover: #{constants.$light-hover};
 }
 
 ::-webkit-scrollbar {
@@ -28,8 +36,9 @@ body[data-theme="light"] {
 
 html,
 body {
-    padding: 0;
+    background: var(--theme-main);
     margin: 0;
+    padding: 0;
 }
 
 a {
@@ -53,15 +62,6 @@ button {
     background: none;
     border: none;
     cursor: pointer;
-}
-
-input,
-textarea {
-    border: none;
-
-    &:focus {
-        outline: none;
-    }
 }
 
 h1,
