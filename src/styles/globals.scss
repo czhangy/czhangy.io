@@ -11,14 +11,12 @@
 body,
 body[data-theme="dark"] {
     --theme-main: #{constants.$dark};
-    --theme-accent: #{constants.$dark-accent};
     --theme-text: #{constants.$dark-text};
     --theme-hover: #{constants.$dark-hover};
 }
 
 body[data-theme="light"] {
     --theme-main: #{constants.$light};
-    --theme-accent: #{constants.$light-accent};
     --theme-text: #{constants.$light-text};
     --theme-hover: #{constants.$light-hover};
 }
@@ -78,4 +76,11 @@ ul {
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+.bg {
+    background: black;
+    opacity: constants.$transparent;
+    position: absolute;
+    z-index: constants.$z-bg;
 }
