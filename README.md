@@ -32,6 +32,8 @@
 # Table of Contents
 
 -   [About the Project](#about-the-project)
+    -   [Summary](#summary)
+    -   [Tech Stack](#tech-stack)
 -   [License](#license)
 -   [Contact](#contact)
 -   [Acknowledgements](#acknowledgements)
@@ -40,9 +42,34 @@
 
 ## About the Project
 
+<!-- Summary -->
+
+### Summary
+
 This is my personal portfolio, which I'm using as a platform to introduce myself. This project is currently under development.
 
-The most up-to-date version of my portfolio is currently deployed [here]https://czhangy.io.
+The most up-to-date version of my portfolio is currently deployed [here](https://czhangy.io).
+
+### Tech Stack
+
+<!-- Shields.io Badges: https://github.com/Ileriayo/markdown-badges -->
+
+<details>
+    <summary>Client</summary>
+    <br />
+    <a href="https://www.typescriptlang.org/">
+        <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+    </a>
+    <a href="https://nextjs.org/">
+        <img src="https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white" alt="NextJS" />
+    </a>
+    <a href="https://reactjs.org/">
+        <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="ReactJS" />
+    </a>
+    <a href="https://sass-lang.com/">
+        <img src="https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white" alt="SASS" />
+    </a>
+</details>
 
 ## License
 
