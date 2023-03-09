@@ -9,7 +9,7 @@ const Home: NextPage = () => {
     return (
         <div id={styles.home}>
             <Head>
-                <title>Charles Zhang's Portfolio</title>
+                <title>Charles Zhang&apos;s Portfolio</title>
             </Head>
         </div>
     );
