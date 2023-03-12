@@ -6,7 +6,9 @@
     display: flex;
     height: constants.$navbar-height;
     justify-content: center;
+    position: relative;
     width: 100%;
+    z-index: 1;
 
     .navbar-container {
         align-items: center;
