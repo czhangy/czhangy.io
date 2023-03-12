@@ -1,9 +1,11 @@
 @use "@/styles/constants";
 
 .footer {
+    --icon-size: 32px;
+
     align-items: center;
     background: var(--theme-accent);
-    box-shadow: constants.$shadow;
+    box-shadow: var(--theme-shadow);
     display: flex;
     padding: 2rem 0;
     position: relative;
@@ -24,8 +26,6 @@
         }
 
         .footer-links {
-            --icon-size: 32px;
-
             display: flex;
             justify-content: space-around;
             width: calc(9 * var(--icon-size));
@@ -49,7 +49,7 @@
 
 // Desktop view
 @media screen and (min-width: constants.$tablet) {
-    .footer > .footer-container > .footer-links {
+    .footer {
         --icon-size: 40px;
     }
 }

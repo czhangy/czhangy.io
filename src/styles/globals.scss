@@ -16,6 +16,7 @@ body[data-theme="dark"] {
     --theme-hover: #{constants.$dark-hover};
     --theme-svg: #{constants.$dark-svg};
     --theme-svg-hover: #{constants.$dark-svg-hover};
+    --theme-shadow: #{constants.$dark-shadow};
 }
 
 body[data-theme="light"] {
@@ -25,6 +26,7 @@ body[data-theme="light"] {
     --theme-hover: #{constants.$light-hover};
     --theme-svg: #{constants.$light-svg};
     --theme-svg-hover: #{constants.$light-svg-hover};
+    --theme-shadow: #{constants.$light-shadow};
 }
 
 ::-webkit-scrollbar {

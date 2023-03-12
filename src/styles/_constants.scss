@@ -14,16 +14,18 @@ $dark-svg: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg)
     brightness(103%) contrast(103%);
 $dark-svg-hover: invert(18%) sepia(97%) saturate(2803%) hue-rotate(225deg)
     brightness(94%) contrast(96%);
+$dark-shadow: 0 0 5px 3px #111;
 
 // Light theme
 $light: #e9e9dc;
-$light-accent: #b8b8ae;
+$light-accent: #ffffe1;
 $light-text: black;
-$light-hover: #bdab5d;
+$light-hover: #ebd619;
 $light-svg: invert(0%) sepia(2%) saturate(8%) hue-rotate(0deg) brightness(95%)
     contrast(102%);
-$light-svg-hover: invert(73%) sepia(38%) saturate(465%) hue-rotate(11deg)
-    brightness(87%) contrast(89%);
+$light-svg-hover: invert(95%) sepia(57%) saturate(6855%) hue-rotate(342deg)
+    brightness(96%) contrast(92%);
+$light-shadow: 0 0 5px 3px #555;
 
 // Dimensions
 $max-width: 1360px;
@@ -35,5 +37,4 @@ $tablet: 768px;
 $z-bg: -1;
 
 // Misc.
-$shadow: 0 0 8px 2px #111;
 $transparent: 0.2;

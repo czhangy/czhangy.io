@@ -2,7 +2,7 @@
 
 .navbar {
     background: var(--theme-accent);
-    box-shadow: constants.$shadow;
+    box-shadow: var(--theme-shadow);
     display: flex;
     height: constants.$navbar-height;
     justify-content: center;
