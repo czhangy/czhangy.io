@@ -7,7 +7,7 @@
     border-radius: 5px;
     display: flex;
     justify-content: center;
-    transition: transform 0.4s ease;
+    transition: transform 0.4s, box-shadow 0.4s;
 
     .icon-container {
         height: var(--icon-size);
@@ -76,6 +76,7 @@
 // Sticky hover
 @media (hover: hover) {
     .social-card:hover {
+        box-shadow: var(--theme-shadow);
         transform: scale(1.05);
     }
 }
