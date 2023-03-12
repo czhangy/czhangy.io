@@ -7,35 +7,23 @@
     background: var(--theme-accent);
     box-shadow: var(--theme-shadow);
     display: flex;
+    justify-content: center;
     padding: 2rem 0;
     position: relative;
     width: 100%;
 
     .footer-container {
-        align-items: center;
+        align-items: flex-end;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        max-width: constants.$max-width;
         width: 100%;
 
-        .footer-text {
-            font-family: constants.$header-font;
-            font-size: constants.$header-size;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: space-around;
-            width: calc(9 * var(--icon-size));
-
-            .footer-icon {
-                filter: var(--theme-svg);
-                height: var(--icon-size);
-                position: relative;
-                width: var(--icon-size);
-            }
+        .copyright {
+            font-family: constants.$main-font;
+            font-size: 1rem;
+            font-weight: bold;
         }
     }
 }

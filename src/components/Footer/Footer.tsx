@@ -2,10 +2,16 @@
 import styles from "./Footer.module.scss";
 
 const Footer: React.FC = () => {
+    const year = new Date().getFullYear();
+
     return (
-        <div className={styles.footer}>
-            <div className={styles["footer-container"]}></div>
-        </div>
+        <footer className={styles.footer}>
+            <div className={styles["footer-container"]}>
+                <small className={styles.copyright}>
+                    &copy; Copyright {year}, Charles Zhang
+                </small>
+            </div>
+        </footer>
     );
 };
 
