@@ -7,21 +7,33 @@ $header-size: 2rem;
 
 // Dark theme
 $dark: #222;
+$dark-accent: #302d2d;
 $dark-text: white;
-$dark-hover: rgb(29, 73, 218);
+$dark-hover: #1d49da;
+$dark-svg: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg)
+    brightness(103%) contrast(103%);
+$dark-svg-hover: invert(18%) sepia(97%) saturate(2803%) hue-rotate(225deg)
+    brightness(94%) contrast(96%);
 
 // Light theme
 $light: #e9e9dc;
+$light-accent: #b8b8ae;
 $light-text: black;
-$light-hover: rgb(189, 171, 93);
+$light-hover: #bdab5d;
+$light-svg: invert(0%) sepia(2%) saturate(8%) hue-rotate(0deg) brightness(95%)
+    contrast(102%);
+$light-svg-hover: invert(73%) sepia(38%) saturate(465%) hue-rotate(11deg)
+    brightness(87%) contrast(89%);
 
 // Dimensions
 $max-width: 1360px;
 $navbar-height: 60px;
 $page-padding: 2rem;
+$tablet: 768px;
 
 // Z-index
 $z-bg: -1;
 
 // Misc.
-$transparent: 0.1;
+$shadow: 0 0 8px 2px #111;
+$transparent: 0.2;

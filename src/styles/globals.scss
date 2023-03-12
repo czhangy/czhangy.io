@@ -11,14 +11,20 @@
 body,
 body[data-theme="dark"] {
     --theme-main: #{constants.$dark};
+    --theme-accent: #{constants.$dark-accent};
     --theme-text: #{constants.$dark-text};
     --theme-hover: #{constants.$dark-hover};
+    --theme-svg: #{constants.$dark-svg};
+    --theme-svg-hover: #{constants.$dark-svg-hover};
 }
 
 body[data-theme="light"] {
     --theme-main: #{constants.$light};
+    --theme-accent: #{constants.$light-accent};
     --theme-text: #{constants.$light-text};
     --theme-hover: #{constants.$light-hover};
+    --theme-svg: #{constants.$light-svg};
+    --theme-svg-hover: #{constants.$light-svg-hover};
 }
 
 ::-webkit-scrollbar {
@@ -82,5 +88,6 @@ ul {
     background: black;
     opacity: constants.$transparent;
     position: absolute;
+    top: 0;
     z-index: constants.$z-bg;
 }
