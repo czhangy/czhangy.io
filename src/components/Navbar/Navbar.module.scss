@@ -1,15 +1,17 @@
 @use "@/styles/constants";
 
 .navbar {
+    background: var(--theme-accent);
+    box-shadow: var(--theme-shadow);
     display: flex;
     height: constants.$navbar-height;
     justify-content: center;
-    position: relative;
     width: 100%;
 
     .navbar-container {
         align-items: center;
         display: flex;
+        justify-content: center;
         max-width: constants.$max-width;
         padding: 0 constants.$page-padding;
         width: 100%;
@@ -22,15 +24,16 @@
     }
 }
 
-.navbar-bg {
-    height: constants.$navbar-height;
-    top: 0;
-    width: 100%;
-}
-
 // Sticky hover
 @media (hover: hover) {
     .name:hover {
         color: var(--theme-hover);
+    }
+}
+
+// Desktop display
+@media screen and (min-width: constants.$tablet) {
+    .navbar > .navbar-container {
+        justify-content: flex-start;
     }
 }

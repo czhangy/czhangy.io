@@ -1,0 +1,55 @@
+@use "@/styles/constants";
+
+.footer {
+    --icon-size: 32px;
+
+    align-items: center;
+    background: var(--theme-accent);
+    box-shadow: var(--theme-shadow);
+    display: flex;
+    padding: 2rem 0;
+    position: relative;
+    width: 100%;
+
+    .footer-container {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+
+        .footer-text {
+            font-family: constants.$header-font;
+            font-size: constants.$header-size;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: space-around;
+            width: calc(9 * var(--icon-size));
+
+            .footer-icon {
+                filter: var(--theme-svg);
+                height: var(--icon-size);
+                position: relative;
+                width: var(--icon-size);
+            }
+        }
+    }
+}
+
+// Sticky hover
+@media (hover: hover) {
+    .footer > .footer-container > .footer-links > .footer-icon:hover {
+        filter: var(--theme-svg-hover);
+    }
+}
+
+// Desktop view
+@media screen and (min-width: constants.$tablet) {
+    .footer {
+        --icon-size: 40px;
+    }
+}

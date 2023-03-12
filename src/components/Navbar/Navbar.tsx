@@ -15,7 +15,6 @@ const Navbar: React.FC = () => {
                     </Link>
                 </div>
             </div>
-            <div className={`${styles["navbar-bg"]} bg`} />
         </>
     );
 };

@@ -6,6 +6,7 @@ import type { AppProps } from "next/app";
 import { useEffect } from "react";
 // Nav components
 import Navbar from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer/Footer";
 
 function App({ Component, pageProps }: AppProps) {
     // Check user preferences for theme
@@ -39,6 +40,7 @@ function App({ Component, pageProps }: AppProps) {
         <div id="app">
             <Navbar />
             <Component {...pageProps} />
+            <Footer />
         </div>
     );
 }
