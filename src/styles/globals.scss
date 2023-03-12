@@ -29,17 +29,6 @@ body[data-theme="light"] {
     --theme-shadow: #{constants.$light-shadow};
 }
 
-::-webkit-scrollbar {
-}
-
-::-webkit-scrollbar-track {
-}
-
-::-webkit-scrollbar-thumb {
-    &:hover {
-    }
-}
-
 html,
 body {
     background: var(--theme-main);
