@@ -9,18 +9,18 @@ type Props = {
     alt: string;
 };
 
-const SocialCard: React.FC<Props> = ({ social, link, alt }) => {
+const SocialCard: React.FC<Props> = (props) => {
     return (
         <a
-            href={link}
+            href={props.link}
             target="_blank"
             rel="noreferrer"
-            className={`${styles["social-card"]} ${styles[social]}`}
+            className={`${styles["social-card"]} ${styles[props.social]}`}
         >
             <div className={styles["icon-container"]}>
                 <Image
-                    src={`/assets/icons/${social}.svg`}
-                    alt={alt}
+                    src={`/assets/icons/${props.social}.svg`}
+                    alt={props.alt}
                     layout="fill"
                     objectFit="contain"
                 />

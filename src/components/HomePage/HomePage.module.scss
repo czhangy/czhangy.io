@@ -15,6 +15,9 @@
         gap: 1rem;
         grid-template-columns: repeat(4, 75px);
         grid-template-rows: repeat(7, var(--row-size));
+        transform: translateY(constants.$fade-up);
+        transition: opacity constants.$transition-time,
+            transform constants.$transition-time;
 
         .nav-card-container {
             grid-column-start: 1;

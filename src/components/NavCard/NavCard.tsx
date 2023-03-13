@@ -7,19 +7,20 @@ type Props = {
     bgUrl: string;
     title: string;
     flipped: boolean;
+    onNav: () => void;
 };
 
-const NavCard: React.FC<Props> = ({ bgUrl, title, flipped }) => {
+const NavCard: React.FC<Props> = (props) => {
     return (
-        <button className={styles["nav-card"]}>
-            <Image src={bgUrl} alt="" layout="fill" objectFit="cover" />
+        <button className={styles["nav-card"]} onClick={props.onNav}>
+            <Image src={props.bgUrl} alt="" layout="fill" objectFit="cover" />
             <div
                 className={`${styles["card-title"]} ${
-                    flipped ? styles["left-title"] : styles["right-title"]
+                    props.flipped ? styles["left-title"] : styles["right-title"]
                 }`}
             >
                 <div className={styles["title-bg"]} />
-                <h2 className={styles.title}>{title}</h2>
+                <h2 className={styles.title}>{props.title}</h2>
             </div>
         </button>
     );
