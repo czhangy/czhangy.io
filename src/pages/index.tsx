@@ -4,8 +4,10 @@ import type { NextPage } from "next";
 import Head from "next/head";
 // React
 import { useState } from "react";
-// Page component
+// Page components
+import PageWrapper from "@/components/PageWrapper/PageWrapper";
 import HomePage from "@/components/HomePage/HomePage";
+import AboutPage from "@/components/AboutPage/AboutPage";
 
 const Home: NextPage = () => {
     // Page state
@@ -21,6 +23,7 @@ const Home: NextPage = () => {
         if (currentPage === "home") {
             return (
                 <HomePage onNav={(newPage: string) => changePage(newPage)} />
+                // <AboutPage />
             );
         } else return "";
     };
@@ -30,7 +33,7 @@ const Home: NextPage = () => {
             <Head>
                 <title>Charles Zhang&apos;s Portfolio</title>
             </Head>
-            {loadPage()}
+            <PageWrapper>{loadPage()}</PageWrapper>
         </div>
     );
 };

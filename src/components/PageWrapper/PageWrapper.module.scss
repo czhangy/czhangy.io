@@ -1,0 +1,13 @@
+@use "@/styles/constants";
+
+.page-wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - #{constants.$navbar-height});
+
+    .page-container {
+        padding: constants.$page-padding;
+        max-width: constants.$max-width;
+    }
+}
