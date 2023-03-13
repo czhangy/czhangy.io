@@ -26,13 +26,6 @@
     }
 }
 
-// Sticky hover
-@media (hover: hover) {
-    .name:hover {
-        color: var(--theme-hover);
-    }
-}
-
 // Tablet display
 @media screen and (min-width: constants.$tablet) {
     .navbar > .navbar-container {

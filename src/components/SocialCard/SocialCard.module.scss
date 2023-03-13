@@ -7,7 +7,8 @@
     border-radius: 5px;
     display: flex;
     justify-content: center;
-    transition: transform 0.4s, box-shadow 0.4s;
+    transition: transform constants.$transition-time,
+        box-shadow constants.$transition-time;
 
     .icon-container {
         height: var(--icon-size);

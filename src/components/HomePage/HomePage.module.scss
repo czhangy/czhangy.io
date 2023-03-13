@@ -16,8 +16,7 @@
         grid-template-columns: repeat(4, 75px);
         grid-template-rows: repeat(7, var(--row-size));
 
-        .nav-card {
-            background: blue;
+        .nav-card-container {
             grid-column-start: 1;
             grid-column-end: 5;
             grid-row-end: span 2;
@@ -33,7 +32,7 @@
         .home-grid {
             grid-template-columns: repeat(6, calc(2 * var(--row-size)));
 
-            .nav-card {
+            .nav-card-container {
                 grid-column-start: 3;
                 grid-column-end: 7;
                 grid-row-end: span 3;
