@@ -1,5 +1,59 @@
 @use "@/styles/constants";
 
 .home-page {
-    height: calc(100vh - #{constants.$navbar-height});
+    --row-size: 75px;
+
+    align-items: center;
+    background: var(--theme-main);
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - #{constants.$navbar-height});
+    padding: constants.$page-padding;
+
+    .home-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(4, 75px);
+        grid-template-rows: repeat(7, var(--row-size));
+        transform: translateY(constants.$fade-up);
+        transition: opacity constants.$transition-time,
+            transform constants.$transition-time;
+
+        .nav-card-container {
+            grid-column-start: 1;
+            grid-column-end: 5;
+            grid-row-end: span 2;
+        }
+    }
+}
+
+// Tablet display
+@media screen and (min-width: constants.$tablet) {
+    .home-page {
+        --row-size: 50px;
+
+        .home-grid {
+            grid-template-columns: repeat(6, calc(2 * var(--row-size)));
+
+            .nav-card-container {
+                grid-column-start: 3;
+                grid-column-end: 7;
+                grid-row-end: span 3;
+            }
+
+            .about {
+                grid-column-start: 1;
+                grid-column-end: 3;
+                grid-row-start: 1;
+                grid-row-end: 8;
+            }
+        }
+    }
+}
+
+// Desktop display
+@media screen and (min-width: constants.$desktop) {
+    .home-page {
+        --row-size: 75px;
+    }
 }

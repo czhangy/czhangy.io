@@ -31,7 +31,7 @@ body[data-theme="light"] {
 
 html,
 body {
-    background: var(--theme-main);
+    background: var(--theme-accent);
     margin: 0;
     padding: 0;
 }
@@ -75,10 +75,12 @@ ul {
     margin: 0;
 }
 
-.bg {
-    background: black;
-    opacity: constants.$transparent;
-    position: absolute;
-    top: 0;
-    z-index: constants.$z-bg;
+.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.show {
+    opacity: 1;
+    transform: translate(0, 0) !important;
 }

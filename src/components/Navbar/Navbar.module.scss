@@ -6,7 +6,9 @@
     display: flex;
     height: constants.$navbar-height;
     justify-content: center;
+    position: relative;
     width: 100%;
+    z-index: 1;
 
     .navbar-container {
         align-items: center;
@@ -24,14 +26,7 @@
     }
 }
 
-// Sticky hover
-@media (hover: hover) {
-    .name:hover {
-        color: var(--theme-hover);
-    }
-}
-
-// Desktop display
+// Tablet display
 @media screen and (min-width: constants.$tablet) {
     .navbar > .navbar-container {
         justify-content: flex-start;
