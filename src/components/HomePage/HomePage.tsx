@@ -7,18 +7,31 @@ import NavCard from "@/components/NavCard/NavCard";
 import SocialCard from "@/components/SocialCard/SocialCard";
 
 type Props = {
-    onAbout: () => void;
-    onProjects: () => void;
-    onExperience: () => void;
-    isHidden: boolean;
+    onNav: (newPage: string) => void;
 };
 
 const HomePage: React.FC<Props> = (props) => {
+    // Page state
+    const [isHidden, setIsHidden] = useState<boolean>(true);
+
+    // Trigger fade out and nav
+    const handleNav = (newPage: string) => {
+        // Fade out
+        setIsHidden(true);
+        // Navigate to new page
+        props.onNav(newPage);
+    };
+
+    // Trigger fade in on load
+    useEffect(() => {
+        setIsHidden(false);
+    }, []);
+
     return (
         <div className={styles["home-page"]}>
             <div
                 className={`${styles["home-grid"]} ${
-                    props.isHidden ? "hide" : "show"
+                    isHidden ? "hide" : "show"
                 }`}
             >
                 <div
@@ -28,7 +41,7 @@ const HomePage: React.FC<Props> = (props) => {
                         bgUrl="/assets/images/home/about_me.webp"
                         title="About Me"
                         flipped={true}
-                        onNav={props.onAbout}
+                        onNav={() => handleNav("about")}
                     />
                 </div>
                 <div className={styles["nav-card-container"]}>
@@ -36,7 +49,7 @@ const HomePage: React.FC<Props> = (props) => {
                         bgUrl="/assets/images/home/projects.webp"
                         title="My Projects"
                         flipped={false}
-                        onNav={props.onProjects}
+                        onNav={() => handleNav("projects")}
                     />
                 </div>
                 <div className={styles["nav-card-container"]}>
@@ -44,7 +57,7 @@ const HomePage: React.FC<Props> = (props) => {
                         bgUrl="/assets/images/home/experience.webp"
                         title="My Experience"
                         flipped={false}
-                        onNav={props.onExperience}
+                        onNav={() => handleNav("experience")}
                     />
                 </div>
                 <SocialCard

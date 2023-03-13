@@ -11,17 +11,26 @@ const Home: NextPage = () => {
     // Page state
     const [currentPage, setCurrentPage] = useState<string>("home");
 
+    // Page navigation controller
+    const changePage = (newPage: string) => {
+        setTimeout(() => setCurrentPage(newPage), 1200);
+    };
+
+    // Page loader
+    const loadPage = () => {
+        if (currentPage === "home") {
+            return (
+                <HomePage onNav={(newPage: string) => changePage(newPage)} />
+            );
+        } else return "";
+    };
+
     return (
         <div>
             <Head>
                 <title>Charles Zhang&apos;s Portfolio</title>
             </Head>
-            <HomePage
-                onAbout={() => setCurrentPage("about")}
-                onProjects={() => setCurrentPage("projects")}
-                onExperience={() => setCurrentPage("experience")}
-                isHidden={currentPage !== "home"}
-            />
+            {loadPage()}
         </div>
     );
 };
