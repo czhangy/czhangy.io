@@ -1,17 +1,17 @@
 @use "@/styles/constants";
 
 .page-wrapper {
+    --y-padding: constants.$page-padding;
+
     align-items: center;
     display: flex;
     justify-content: center;
     min-height: calc(100vh - #{constants.$navbar-height});
-    opacity: 0;
-    transform: translateY(-30px);
     transition: opacity constants.$transition-time,
         transform constants.$transition-time;
 
     .page-container {
-        padding: constants.$page-padding;
+        padding: var(--y-padding) constants.$page-padding;
         max-width: constants.$max-width;
     }
 }
@@ -19,9 +19,17 @@
 .hide {
     opacity: 0;
     pointer-events: none;
+    transform: translateY(-30px);
 }
 
 .show {
     opacity: 1;
     transform: translate(0, 0);
+}
+
+// Desktop view
+@media screen and (min-width: constants.$desktop) {
+    .page-wrapper {
+        --y-padding: 5rem;
+    }
 }
