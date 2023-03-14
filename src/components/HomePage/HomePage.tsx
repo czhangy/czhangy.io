@@ -4,38 +4,27 @@ import styles from "./HomePage.module.scss";
 import NavCard from "@/components/NavCard/NavCard";
 import SocialCard from "@/components/SocialCard/SocialCard";
 
-type Props = {
-    onNav: (newPage: string) => void;
-};
-
-const HomePage: React.FC<Props> = (props) => {
+const HomePage: React.FC = () => {
     return (
         <div className={styles["home-page"]}>
             <div className={styles["home-grid"]}>
                 <div
                     className={`${styles["nav-card-container"]} ${styles["main-card"]}`}
                 >
-                    <NavCard
-                        bgUrl="/assets/images/home/about_me.webp"
-                        title="About Me"
-                        flipped={true}
-                        onNav={() => props.onNav("about")}
-                    />
+                    <NavCard flipped={true} title="About Me" url="about" />
                 </div>
                 <div className={styles["nav-card-container"]}>
                     <NavCard
-                        bgUrl="/assets/images/home/projects.webp"
-                        title="My Projects"
                         flipped={false}
-                        onNav={() => props.onNav("projects")}
+                        title="My Projects"
+                        url="projects"
                     />
                 </div>
                 <div className={styles["nav-card-container"]}>
                     <NavCard
-                        bgUrl="/assets/images/home/experience.webp"
                         title="My Experience"
                         flipped={false}
-                        onNav={() => props.onNav("experience")}
+                        url="experience"
                     />
                 </div>
                 <SocialCard

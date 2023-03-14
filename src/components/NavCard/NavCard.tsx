@@ -4,16 +4,20 @@ import styles from "./NavCard.module.scss";
 import Image from "next/image";
 
 type Props = {
-    bgUrl: string;
-    title: string;
     flipped: boolean;
-    onNav: () => void;
+    title: string;
+    url: string;
 };
 
 const NavCard: React.FC<Props> = (props) => {
     return (
-        <button className={styles["nav-card"]} onClick={props.onNav}>
-            <Image src={props.bgUrl} alt="" layout="fill" objectFit="cover" />
+        <a href={`/${props.url}`} className={styles["nav-card"]}>
+            <Image
+                src={`/assets/images/home/${props.url}.webp`}
+                alt=""
+                layout="fill"
+                objectFit="cover"
+            />
             <div
                 className={`${styles["card-title"]} ${
                     props.flipped ? styles["left-title"] : styles["right-title"]
@@ -22,7 +26,7 @@ const NavCard: React.FC<Props> = (props) => {
                 <div className={styles["title-bg"]} />
                 <h2 className={styles.title}>{props.title}</h2>
             </div>
-        </button>
+        </a>
     );
 };
 

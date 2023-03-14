@@ -1,7 +1,8 @@
 @use "@/styles/constants";
 
 .page-wrapper {
-    --y-padding: constants.$page-padding;
+    --back-button-size: 2rem;
+    --y-padding: 4rem;
 
     align-items: center;
     display: flex;
@@ -11,8 +12,8 @@
         transform constants.$transition-time;
 
     .page-container {
-        padding: var(--y-padding) constants.$page-padding;
         max-width: constants.$max-width;
+        padding: var(--y-padding) constants.$page-padding;
     }
 }
 
@@ -25,11 +26,4 @@
 .show {
     opacity: 1;
     transform: translate(0, 0);
-}
-
-// Desktop view
-@media screen and (min-width: constants.$desktop) {
-    .page-wrapper {
-        --y-padding: 5rem;
-    }
 }
