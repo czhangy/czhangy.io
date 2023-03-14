@@ -1,6 +1,8 @@
 @use "@/styles/constants";
 
 .navbar {
+    --page-nav-margin: 0.75rem;
+
     background: var(--theme-accent);
     box-shadow: var(--theme-shadow);
     display: flex;
@@ -13,29 +15,64 @@
     .navbar-container {
         align-items: center;
         display: flex;
+        font-family: constants.$header-font;
         justify-content: center;
         max-width: constants.$max-width;
         padding: 0 constants.$page-padding;
         width: 100%;
 
-        .name {
-            font-family: constants.$header-font;
-            font-size: constants.$header-size;
-            letter-spacing: 1px;
+        .main-nav {
+            display: none;
+
+            .name {
+                font-size: constants.$header-size;
+                letter-spacing: 1px;
+            }
+        }
+
+        .page-nav {
+            align-items: center;
+            display: flex;
+
+            .v-bar {
+                background: var(--theme-text);
+                height: 1.5rem;
+                margin: 0 var(--page-nav-margin);
+                width: 2px;
+            }
         }
     }
 }
 
 // Sticky hover
 @media (hover: hover) {
-    .navbar > .navbar-container .name:hover {
-        color: var(--theme-hover);
+    .navbar > .navbar-container {
+        .name:hover {
+            color: var(--theme-hover);
+        }
+
+        .page-nav .nav-link:hover {
+            color: var(--theme-hover);
+        }
     }
 }
 
 // Tablet display
 @media screen and (min-width: constants.$tablet) {
-    .navbar > .navbar-container {
-        justify-content: flex-start;
+    .navbar {
+        --page-nav-margin: 0.75rem;
+
+        .navbar-container {
+            justify-content: space-between;
+
+            .main-nav {
+                display: block;
+            }
+
+            .page-nav .home-link,
+            .home-v-bar {
+                display: none;
+            }
+        }
     }
 }
