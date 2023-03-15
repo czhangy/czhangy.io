@@ -1,0 +1,29 @@
+@use "@/styles/constants";
+
+.page-wrapper {
+    --back-button-size: 2rem;
+    --y-padding: 4rem;
+
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - #{constants.$navbar-height});
+    transition: opacity constants.$transition-time,
+        transform constants.$transition-time;
+
+    .page-container {
+        max-width: constants.$max-width;
+        padding: var(--y-padding) constants.$page-padding;
+    }
+}
+
+.hide {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-30px);
+}
+
+.show {
+    opacity: 1;
+    transform: translate(0, 0);
+}

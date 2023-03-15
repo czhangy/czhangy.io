@@ -5,6 +5,7 @@
 
 #app {
     color: var(--theme-text);
+    font-family: constants.$main-font;
     overflow-x: hidden;
 }
 
@@ -73,14 +74,4 @@ ul {
     list-style: none;
     padding: 0;
     margin: 0;
-}
-
-.hide {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.show {
-    opacity: 1;
-    transform: translate(0, 0) !important;
 }

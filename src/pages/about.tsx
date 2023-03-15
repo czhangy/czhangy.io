@@ -4,19 +4,19 @@ import type { NextPage } from "next";
 import Head from "next/head";
 // Page components
 import PageWrapper from "@/components/PageWrapper/PageWrapper";
-import HomePage from "@/components/HomePage/HomePage";
+import AboutPage from "@/components/AboutPage/AboutPage";
 
-const Home: NextPage = () => {
+const About: NextPage = () => {
     return (
         <div>
             <Head>
-                <title>Charles Zhang&apos;s Portfolio</title>
+                <title>Charles Zhang | About Me</title>
             </Head>
             <PageWrapper>
-                <HomePage />
+                <AboutPage />
             </PageWrapper>
         </div>
     );
 };
 
-export default Home;
+export default About;
