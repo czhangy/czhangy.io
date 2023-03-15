@@ -40,6 +40,10 @@
                 margin: 0 var(--page-nav-margin);
                 width: 2px;
             }
+
+            .nav-link {
+                font-size: var(--page-nav-size);
+            }
         }
     }
 }
@@ -60,7 +64,8 @@
 // Tablet display
 @media screen and (min-width: constants.$tablet) {
     .navbar {
-        --page-nav-margin: 0.75rem;
+        --page-nav-margin: 1rem;
+        --page-nav-size: 1.25rem;
 
         .navbar-container {
             justify-content: space-between;

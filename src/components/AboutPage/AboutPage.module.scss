@@ -41,6 +41,7 @@
 // Tablet view
 @media screen and (min-width: constants.$tablet) {
     .about-page {
+        --body-size: 1.2rem;
         --section-margin: 3rem;
         --text-spacing: 1px;
     }
