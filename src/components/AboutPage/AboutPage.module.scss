@@ -60,5 +60,16 @@
         .right-align {
             text-align: right;
         }
+
+        .about-content {
+            .about-text {
+                margin-right: 1rem;
+            }
+
+            .right-align {
+                margin-left: 1rem;
+                margin-right: 0;
+            }
+        }
     }
 }

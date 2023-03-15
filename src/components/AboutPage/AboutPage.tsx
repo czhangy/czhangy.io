@@ -9,19 +9,18 @@ const AboutPage: React.FC = () => {
             <h2 className={styles["about-header"]}>My Story</h2>
             <div className={styles["about-content"]}>
                 <p className={styles["about-text"]}>
-                    Hi there, my name is Charles Zhang! I grew up in Manhattan
-                    Beach, a town in the South Bay area of Los Angeles County in
-                    California. As a kid, I developed an inclination towards
-                    STEM, participating in activities like Science Olympiad,
-                    Math Club, and CyberPatriot, while also becoming an Eagle
-                    Scout somewhere along the way. At the same time, I picked up
-                    a strong passion for video games and became invested in
-                    their potential to do good in the world. All of this
-                    together led to me pursue computer science as a career,
-                    where I&apos;ve continued to focus on using my skills to the
-                    benefit of the communities around me. As the most recent
-                    step on this journey, I&apos;m studying at UCLA, and will be
-                    graduating next spring with a B.S. in Computer Science.
+                    Hi there, my name is Charles Zhang! I was born and raised in
+                    the LA area of California and am currently a senior studying
+                    computer science at UCLA. I was practically raised on video
+                    games and the countless hours I&apos;ve poured into them are
+                    what sparked my interest in CS in the first place, and have
+                    played a massive role in shaping who I am today. I&apos;ve
+                    been lucky enough to live a fairly drama-free life, so here
+                    are fun facts about me to fill space: I played one year of
+                    JV tennis in high school, I am the self-proclaimed least
+                    competent Eagle Scout in the world, my greatest fear is
+                    heights, I don&apos;t know how to ride a bike, I think
+                    I&apos;m a very funny person, my girlfriend does not.
                 </p>
                 <div className={styles["about-img"]}>
                     <Image
@@ -49,34 +48,31 @@ const AboutPage: React.FC = () => {
                 <p
                     className={`${styles["about-text"]} ${styles["right-align"]}`}
                 >
-                    Most of my experience has come from working in full-stack
-                    development for small organizations or personal projects.
-                    This time has allowed me to help raise awareness for social
-                    issues, improve the student experience at UCLA, and support
-                    my online communities with games and tools. Most recently,
-                    I&apos;ve been working as an intern with the Auto Refinance
-                    team at Capital One, using web development and machine
-                    learning to develop and optimize a loan-processing platform.
-                    With each new experience or project I undertake, I hope to
-                    continue growing as a developer and learning how tech can
-                    make the world a better place.
+                    A lot of my early experience has come from working on
+                    full-stack development for small organizations or personal
+                    projects. This time has allowed me to help raise awareness
+                    for social issues, improve the student experience at UCLA,
+                    and give back to online communities. This past summer, I
+                    interned with Capital One&apos;s Auto Refinance team, where
+                    I used web development and machine learning to develop and
+                    optimize a loan-processing platform. This upcoming summer
+                    (assuming I don&apos;t get laid off), I&apos;ll be joining
+                    Amazon in San Diego as a Software Development Engineer. If
+                    for some reason you want more details on my work, check out
+                    the projects and experience pages!
                 </p>
             </div>
             <h2 className={styles["about-header"]}>My Interests</h2>
             <div className={styles["about-content"]}>
                 <p className={styles["about-text"]}>
                     Outside of work and school I&apos;m, shockingly, still a
-                    nerd. As I&apos;ve mentioned, I have a strong passion for
-                    video games and have a special place in my heart for the
-                    Pokémon, Diablo, and Borderlands franchises, though
-                    I&apos;ve poured hours into plenty of other titles. When
-                    it&apos;s basketball season, I also enjoy feeding my
+                    massive nerd. As I&apos;ve mentioned, I have a strong
+                    passion for video games and have a special place in my heart
+                    for the Pokémon, Diablo, and Call of Duty franchises, but
+                    I&apos;ve spent plenty of hours across all sorts of games.
+                    When it&apos;s basketball season, I also enjoy feeding my
                     obsession for the NBA, and am a huge Warriors fan (not a
-                    bandwagon, I swear) and analytics nerd. Apart from that, I
-                    spend the rest of my free time playing tennis and dabbling
-                    in magic/sleight of hand and creative writing, although no
-                    one will ever see any of that if I have anything to say
-                    about it.
+                    bandwagon, I swear) and analytics nerd.
                 </p>
                 <div className={styles["about-img"]}>
                     <Image
