@@ -1,13 +1,14 @@
 // Stylesheet
 import styles from "./ProjectsPage.module.scss";
-// React
-import { useState } from "react";
+// Component
+import ProjectsMenu from "@/components/ProjectsMenu/ProjectsMenu";
 
 const ProjectsPage: React.FC = () => {
-    // Page state
-    const [currentProject, setCurrentProject] = useState<string>("");
-
-    return <div className={styles["projects-page"]}>ProjectsPage</div>;
+    return (
+        <div className={styles["projects-page"]}>
+            <ProjectsMenu />
+        </div>
+    );
 };
 
 export default ProjectsPage;
