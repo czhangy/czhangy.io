@@ -42,6 +42,7 @@ const ProjectCard: React.FC<Props> = ({ project }: Props) => {
                         <a
                             href={project.git}
                             target="_blank"
+                            rel="noreferrer"
                             className={styles["icon-container"]}
                         >
                             <Image
@@ -58,6 +59,7 @@ const ProjectCard: React.FC<Props> = ({ project }: Props) => {
                         <a
                             href={project.link}
                             target="_blank"
+                            rel="noreferrer"
                             className={styles["icon-container"]}
                         >
                             <Image

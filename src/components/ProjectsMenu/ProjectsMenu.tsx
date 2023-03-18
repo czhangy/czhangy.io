@@ -12,8 +12,8 @@ const ProjectsMenu: React.FC = () => {
         <ul className={styles["projects-menu"]}>
             {projects.map((project: Project, i: number) => {
                 return (
-                    <li className={styles["project-menu-card"]}>
-                        <ProjectCard project={project} key={i} />
+                    <li className={styles["project-menu-card"]} key={i}>
+                        <ProjectCard project={project} />
                     </li>
                 );
             })}
