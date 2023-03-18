@@ -1,7 +1,7 @@
 @use "@/styles/constants";
 
 // Google Fonts
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Staatliches&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Staatliches&display=swap");
 
 #app {
     color: var(--theme-text);
@@ -60,6 +60,7 @@ button {
     color: inherit;
     cursor: pointer;
     font-family: inherit;
+    padding: 0;
 }
 
 h1,

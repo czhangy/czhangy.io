@@ -1,18 +1,83 @@
 @use "@/styles/constants";
 
 .project-card {
+    --arrow-size: 24px;
+    --body-size: 1.2rem;
+    --border: 2px solid var(--theme-text);
+    --link-size: 40px;
     --title-size: 1.75rem;
+    --v-padding: 1.5rem;
 
-    border-bottom: 2px solid var(--theme-text);
-    transition: height 0.2s;
+    border-bottom: var(--border);
+    max-height: calc(var(--title-size) + 2 * var(--v-padding));
+    overflow: hidden;
+    position: relative;
+    transition: max-height constants.$transition-time;
     width: 100%;
 
     .project-name {
         font-family: constants.$header-font;
         font-size: var(--title-size);
+        line-height: var(--title-size);
+        padding: var(--v-padding) 0;
+    }
+
+    .project-info {
+        background: var(--theme-accent);
+        box-shadow: inset var(--theme-shadow);
+        padding: var(--v-padding);
+        width: 100%;
+
+        .project-text {
+            font-size: var(--body-size);
+            line-height: var(--body-size);
+
+            .project-category,
+            .project-timeline {
+                margin-bottom: 1rem;
+            }
+        }
+
+        .project-links {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+
+            .icon-container {
+                filter: var(--theme-svg);
+                height: var(--link-size);
+                margin: 0 2rem;
+                position: relative;
+                width: var(--link-size);
+            }
+        }
+    }
+
+    .arrow {
+        filter: var(--theme-svg);
+        height: var(--arrow-size);
+        position: absolute;
+        right: var(--v-padding);
+        top: var(--v-padding);
+        transition: transform constants.$transition-time;
+        width: var(--arrow-size);
     }
 }
 
 .expanded {
-    height: 400px;
+    max-height: calc(
+        var(--title-size) + 4 * var(--v-padding) + 4px + 2 * var(--body-size) +
+            2rem + var(--link-size)
+    );
+
+    .arrow {
+        transform: rotate(180deg);
+    }
+}
+
+// Sticky hover
+@media (hover: hover) {
+    .project-card > .project-info > .project-links > .icon-container:hover {
+        filter: var(--theme-svg-hover);
+    }
 }

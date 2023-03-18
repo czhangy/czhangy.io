@@ -1,1 +1,14 @@
 @use "@/styles/constants";
+
+.projects-menu {
+    border-top: 2px solid var(--theme-text);
+    height: 60vh;
+    overflow-y: scroll;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.projects-menu::-webkit-scrollbar {
+    display: none;
+}
