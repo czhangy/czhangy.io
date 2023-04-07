@@ -7,13 +7,17 @@ import ProjectCard from "@/components/ProjectCard/ProjectCard";
 // Static data
 import projects from "@/static/projects";
 
-const ProjectsMenu: React.FC = () => {
+type Props = {
+    onSelect: (project: string) => void;
+};
+
+const ProjectsMenu: React.FC<Props> = ({ onSelect }) => {
     return (
         <ul className={styles["projects-menu"]}>
             {projects.map((project: Project, i: number) => {
                 return (
                     <li className={styles["project-menu-card"]} key={i}>
-                        <ProjectCard project={project} />
+                        <ProjectCard onClick={onSelect} project={project} />
                     </li>
                 );
             })}

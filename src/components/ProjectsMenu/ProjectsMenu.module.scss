@@ -1,8 +1,11 @@
 @use "@/styles/constants";
 
 .projects-menu {
+    --menu-width: 400px;
+
     border-top: 2px solid var(--theme-text);
     height: 60vh;
+    width: var(--menu-width);
     overflow-y: scroll;
 
     -ms-overflow-style: none;
@@ -11,4 +14,18 @@
 
 .projects-menu::-webkit-scrollbar {
     display: none;
+}
+
+// Tablet view
+@media screen and (min-width: constants.$tablet) {
+    .projects-menu {
+        --menu-width: 300px;
+    }
+}
+
+// Desktop view
+@media screen and (min-width: constants.$desktop) {
+    .projects-menu {
+        --menu-width: 500px;
+    }
 }

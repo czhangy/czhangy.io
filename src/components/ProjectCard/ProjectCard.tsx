@@ -8,15 +8,17 @@ import Project from "@/models/Project";
 import { useState } from "react";
 
 type Props = {
+    onClick: (project: string) => void;
     project: Project;
 };
 
-const ProjectCard: React.FC<Props> = ({ project }: Props) => {
+const ProjectCard: React.FC<Props> = ({ onClick, project }: Props) => {
     // Component state
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
     // Toggle component state
     const toggleExpand = () => {
+        onClick(isExpanded ? "" : project.slug);
         setIsExpanded(!isExpanded);
     };
 

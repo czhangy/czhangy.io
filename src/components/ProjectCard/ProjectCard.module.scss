@@ -77,6 +77,16 @@
 
 // Sticky hover
 @media (hover: hover) {
+    .project-card:hover {
+        .project-name {
+            color: var(--theme-hover);
+        }
+
+        .arrow {
+            filter: var(--theme-svg-hover);
+        }
+    }
+
     .project-card > .project-info > .project-links > .icon-container:hover {
         filter: var(--theme-svg-hover);
     }

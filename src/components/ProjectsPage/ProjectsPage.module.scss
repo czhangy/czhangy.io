@@ -1,5 +1,37 @@
 @use "@/styles/constants";
 
 .projects-page {
+    --img-size: 0;
+
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
     width: 100%;
+
+    .project-img {
+        border-radius: 10px;
+        display: none;
+        height: var(--img-size);
+        overflow: hidden;
+        position: relative;
+        width: var(--img-size);
+    }
+}
+
+// Tablet view
+@media screen and (min-width: constants.$tablet) {
+    .projects-page {
+        --img-size: 400px;
+
+        .project-img {
+            display: block;
+        }
+    }
+}
+
+// Desktop view
+@media screen and (min-width: constants.$desktop) {
+    .projects-page {
+        --img-size: 480px;
+    }
 }
