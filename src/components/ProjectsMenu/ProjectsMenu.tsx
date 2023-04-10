@@ -16,7 +16,7 @@ const ProjectsMenu: React.FC<Props> = ({ onSelect }) => {
         <ul className={styles["projects-menu"]}>
             {projects.map((project: Project, i: number) => {
                 return (
-                    <li className={styles["project-menu-card"]} key={i}>
+                    <li className={styles["projects-menu-card"]} key={i}>
                         <ProjectCard onClick={onSelect} project={project} />
                     </li>
                 );

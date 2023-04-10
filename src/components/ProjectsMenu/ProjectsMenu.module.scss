@@ -1,9 +1,11 @@
 @use "@/styles/constants";
 
 .projects-menu {
+    --border: 2px solid var(--theme-text);
     --menu-width: 400px;
 
-    border-top: 2px solid var(--theme-text);
+    border-top: var(--border);
+    border-bottom: var(--border);
     height: 60vh;
     width: var(--menu-width);
     overflow-y: scroll;
