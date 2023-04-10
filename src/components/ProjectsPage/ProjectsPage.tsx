@@ -13,18 +13,14 @@ const ProjectsPage: React.FC = () => {
 
     return (
         <div className={styles["projects-page"]}>
-            {currentProject !== "" ? (
-                <div className={styles["project-img"]}>
-                    <Image
-                        src={`/assets/images/home/about.webp`}
-                        alt=""
-                        layout="fill"
-                        objectFit="cover"
-                    />
-                </div>
-            ) : (
-                ""
-            )}
+            <div className={styles["project-img"]}>
+                <Image
+                    src={`/assets/images/projects/default.jpg`}
+                    alt=""
+                    layout="fill"
+                    objectFit="cover"
+                />
+            </div>
             <ProjectsMenu onSelect={setCurrentProject} />
         </div>
     );
