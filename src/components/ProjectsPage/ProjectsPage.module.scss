@@ -2,19 +2,62 @@
 
 .projects-page {
     --img-size: 0;
+    --link-size: 40px;
 
     align-items: center;
     display: flex;
     justify-content: space-around;
     width: 100%;
 
-    .project-img {
-        border-radius: 10px;
+    .project-info {
+        align-items: center;
         display: none;
-        height: var(--img-size);
-        overflow: hidden;
-        position: relative;
-        width: var(--img-size);
+        flex-direction: column;
+
+        .project-img {
+            border-radius: 10px;
+            height: var(--img-size);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            position: relative;
+            width: var(--img-size);
+        }
+
+        .project-desc {
+            display: flex;
+            font-size: 1.2rem;
+            justify-content: space-between;
+            width: 100%;
+
+            .project-links {
+                align-items: center;
+                display: flex;
+                justify-content: flex-end;
+
+                .icon-container {
+                    filter: var(--theme-svg);
+                    height: var(--link-size);
+                    margin-left: 1rem;
+                    position: relative;
+                    width: var(--link-size);
+
+                    &:last-child {
+                        margin-left: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Sticky hover
+@media (hover: hover) {
+    .projects-page
+        > .project-info
+        > .project-desc
+        > .project-links
+        > .icon-container:hover {
+        filter: var(--theme-svg-hover);
     }
 }
 
@@ -23,8 +66,8 @@
     .projects-page {
         --img-size: 400px;
 
-        .project-img {
-            display: block;
+        .project-info {
+            display: flex;
         }
     }
 }

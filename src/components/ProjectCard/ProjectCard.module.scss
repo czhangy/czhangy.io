@@ -24,7 +24,7 @@
     .project-info {
         background: var(--theme-accent);
         box-shadow: inset var(--theme-shadow);
-        padding: var(--v-padding);
+        padding: var(--v-padding) 5rem;
         width: 100%;
 
         .project-text {
@@ -88,5 +88,22 @@
 
     .project-card > .project-info > .project-links > .icon-container:hover {
         filter: var(--theme-svg-hover);
+    }
+}
+
+// Tablet view
+@media (min-width: constants.$tablet) {
+    .project-card {
+        .project-info {
+            display: none;
+        }
+
+        .arrow {
+            display: none;
+        }
+    }
+
+    .expanded {
+        color: var(--theme-hover);
     }
 }

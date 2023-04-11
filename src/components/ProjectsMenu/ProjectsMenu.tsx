@@ -10,12 +10,12 @@ import ProjectCard from "@/components/ProjectCard/ProjectCard";
 import projects from "@/static/projects";
 
 type Props = {
-    onSelect: (project: string) => void;
+    onSelect: (project: Project | null) => void;
 };
 
 const ProjectsMenu: React.FC<Props> = ({ onSelect }) => {
     // Menu state
-    const [selected, setSelected] = useState<string>("default");
+    const [selected, setSelected] = useState<Project | null>(null);
 
     // Update image on project page
     useEffect(() => {
@@ -30,7 +30,10 @@ const ProjectsMenu: React.FC<Props> = ({ onSelect }) => {
                         <ProjectCard
                             onClick={setSelected}
                             project={project}
-                            expanded={project.slug === selected}
+                            expanded={
+                                selected !== null &&
+                                project.slug === selected.slug
+                            }
                         />
                     </li>
                 );

@@ -6,7 +6,7 @@ import Image from "next/image";
 import Project from "@/models/Project";
 
 type Props = {
-    onClick: (project: string) => void;
+    onClick: (project: Project | null) => void;
     project: Project;
     expanded: boolean;
 };
@@ -14,7 +14,7 @@ type Props = {
 const ProjectCard: React.FC<Props> = (props: Props) => {
     // Toggle component state
     const toggleExpand = () => {
-        props.onClick(props.expanded ? "default" : props.project.slug);
+        props.onClick(props.expanded ? null : props.project);
     };
 
     return (
