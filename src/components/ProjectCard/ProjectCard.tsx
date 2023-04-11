@@ -4,45 +4,40 @@ import styles from "./ProjectCard.module.scss";
 import Image from "next/image";
 // TS
 import Project from "@/models/Project";
-// React
-import { useState } from "react";
 
 type Props = {
     onClick: (project: string) => void;
     project: Project;
+    expanded: boolean;
 };
 
-const ProjectCard: React.FC<Props> = ({ onClick, project }: Props) => {
-    // Component state
-    const [isExpanded, setIsExpanded] = useState<boolean>(false);
-
+const ProjectCard: React.FC<Props> = (props: Props) => {
     // Toggle component state
     const toggleExpand = () => {
-        onClick(isExpanded ? "" : project.slug);
-        setIsExpanded(!isExpanded);
+        props.onClick(props.expanded ? "default" : props.project.slug);
     };
 
     return (
         <button
             onClick={toggleExpand}
             className={`${styles["project-card"]} ${
-                isExpanded ? styles.expanded : ""
+                props.expanded ? styles.expanded : ""
             }`}
         >
-            <h3 className={styles["project-name"]}>{project.name}</h3>
+            <h3 className={styles["project-name"]}>{props.project.name}</h3>
             <div className={styles["project-info"]}>
                 <div className={styles["project-text"]}>
                     <p className={styles["project-category"]}>
-                        {project.category}
+                        {props.project.category}
                     </p>
                     <p className={styles["project-timeline"]}>
-                        {project.startDate} – {project.endDate}
+                        {props.project.startDate} – {props.project.endDate}
                     </p>
                 </div>
                 <div className={styles["project-links"]}>
-                    {project.git ? (
+                    {props.project.git ? (
                         <a
-                            href={project.git}
+                            href={props.project.git}
                             target="_blank"
                             rel="noreferrer"
                             className={styles["icon-container"]}
@@ -57,9 +52,9 @@ const ProjectCard: React.FC<Props> = ({ onClick, project }: Props) => {
                     ) : (
                         ""
                     )}
-                    {project.link ? (
+                    {props.project.link ? (
                         <a
-                            href={project.link}
+                            href={props.project.link}
                             target="_blank"
                             rel="noreferrer"
                             className={styles["icon-container"]}

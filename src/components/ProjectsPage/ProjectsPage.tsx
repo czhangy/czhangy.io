@@ -9,7 +9,7 @@ import ProjectsMenu from "@/components/ProjectsMenu/ProjectsMenu";
 
 const ProjectsPage: React.FC = () => {
     // Menu state
-    const [currentProject, setCurrentProject] = useState<string>("default");
+    const [currentProject, setCurrentProject] = useState<string>("");
 
     return (
         <div className={styles["projects-page"]}>
