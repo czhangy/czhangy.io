@@ -1,0 +1,47 @@
+@use "@/styles/constants";
+
+.experience-card {
+    --body-font: 0.8rem;
+    --card-padding: 1rem;
+    --header-font: 1.5rem;
+    --inner-margin: 1rem;
+    --img-size: 60px;
+
+    background: var(--theme-accent);
+    border-radius: 5px;
+    padding: var(--card-padding);
+    .card-header {
+        align-items: center;
+        display: flex;
+
+        .card-img {
+            height: var(--img-size);
+            margin-right: var(--inner-margin);
+            position: relative;
+            width: var(--img-size);
+        }
+
+        .header-text {
+            .company {
+                font-family: constants.$header-font;
+                font-size: var(--header-font);
+                letter-spacing: 1px;
+            }
+
+            .title,
+            .time {
+                font-size: var(--body-font);
+            }
+        }
+    }
+
+    .card-desc {
+        list-style-type: circle;
+        margin-top: var(--inner-margin);
+        margin-left: 1rem;
+
+        .desc-line {
+            font-size: var(--body-font);
+        }
+    }
+}

@@ -1,0 +1,15 @@
+@use "@/styles/constants";
+
+.experience-page {
+    width: 100%;
+
+    .timeline {
+        .timeline-el {
+            margin-bottom: 1rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
