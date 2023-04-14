@@ -14,6 +14,7 @@
     .icon-container {
         height: var(--icon-size);
         position: relative;
+        transition: transform constants.$transition-time;
         width: var(--icon-size);
     }
 }
@@ -80,6 +81,10 @@
     .social-card:hover {
         box-shadow: var(--theme-shadow);
         transform: scale(1.05);
+
+        .icon-container {
+            transform: rotate(10deg);
+        }
     }
 }
 
