@@ -47,6 +47,7 @@
 
         .desc-line {
             font-size: var(--body-font);
+            letter-spacing: 1px;
             margin-bottom: calc(var(--inner-margin) / 2);
 
             &:last-child {
