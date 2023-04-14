@@ -8,7 +8,6 @@ import { useState } from "react";
 import Project from "@/models/Project";
 // Component
 import ProjectsMenu from "@/components/ProjectsMenu/ProjectsMenu";
-import projects from "@/static/projects";
 
 const ProjectsPage: React.FC = () => {
     // Menu state
