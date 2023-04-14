@@ -24,6 +24,8 @@ const ProjectsPage: React.FC = () => {
                         alt=""
                         layout="fill"
                         objectFit="cover"
+                        placeholder="blur"
+                        blurDataURL="/assets/images/projects/default.webp"
                     />
                 </div>
                 {currentProject ? (
