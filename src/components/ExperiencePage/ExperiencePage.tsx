@@ -26,6 +26,7 @@ const ExperiencePage: React.FC = () => {
                                         ? styles["right-time"]
                                         : styles["left-time"]
                                 }`}
+                                key={i}
                             >{`${e.startDate} ${
                                 e.endDate.length > 0 ? `- ${e.endDate}` : ""
                             }`}</p>
