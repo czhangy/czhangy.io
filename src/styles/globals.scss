@@ -10,6 +10,17 @@
     overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+    background: transparent;
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--theme-text);
+    border-radius: 4px;
+    border: 2px solid var(--theme-main);
+}
+
 body,
 body[data-theme="dark"] {
     --theme-main: #{constants.$dark};
@@ -33,7 +44,7 @@ body[data-theme="light"] {
 
 html,
 body {
-    background: var(--theme-accent);
+    background: var(--theme-main);
     margin: 0;
     padding: 0;
 }
