@@ -1,11 +1,12 @@
 @use "@/styles/constants";
 
 .home-page {
-    --row-size: 75px;
+    --gap: 0.5rem;
+    --row-size: 70px;
 
     .home-grid {
         display: grid;
-        gap: 1rem;
+        gap: var(--gap);
         grid-template-columns: repeat(4, 75px);
         grid-template-rows: repeat(7, var(--row-size));
 
@@ -20,6 +21,7 @@
 // Tablet display
 @media screen and (min-width: constants.$tablet) {
     .home-page {
+        --gap: 1rem;
         --row-size: 50px;
 
         .home-grid {
