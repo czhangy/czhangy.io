@@ -1,10 +1,11 @@
 @use "@/styles/constants";
 
 .social-card {
+    -border-rad: 0;
     --icon-size: 40px;
 
     align-items: center;
-    border-radius: 5px;
+    border-radius: var(--border-rad);
     display: flex;
     justify-content: center;
     transition: transform constants.$transition-time,
@@ -85,6 +86,7 @@
 // Tablet layout
 @media screen and (min-width: constants.$tablet) {
     .social-card {
+        --border-rad: 5px;
         --icon-size: 32px;
     }
 }

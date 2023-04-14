@@ -1,7 +1,7 @@
 @use "@/styles/constants";
 
 .nav-card {
-    --border-rad: 10px;
+    --border-rad: 0;
     --title-opacity: 0.5;
 
     border-radius: var(--border-rad);
@@ -43,6 +43,8 @@
 // Tablet view
 @media screen and (min-width: constants.$tablet) {
     .nav-card {
+        --border-rad: 10px;
+
         .card-title {
             width: auto;
         }
