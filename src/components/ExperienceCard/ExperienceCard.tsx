@@ -34,7 +34,11 @@ const ExperienceCard: React.FC<Props> = ({ experience }) => {
             {experience.desc.length > 0 ? (
                 <ul className={styles["card-desc"]}>
                     {experience.desc.map((d: string, i: number) => {
-                        return <li className={styles["desc-line"]}>{d}</li>;
+                        return (
+                            <li className={styles["desc-line"]} key={i}>
+                                {d}
+                            </li>
+                        );
                     })}
                 </ul>
             ) : (

@@ -18,6 +18,7 @@ const ExperiencePage: React.FC = () => {
                             className={`${styles["timeline-el"]} ${
                                 i % 2 === 0 ? styles.right : styles.left
                             }`}
+                            key={i}
                         >
                             <ExperienceCard experience={e} />
                             <p
@@ -26,7 +27,6 @@ const ExperiencePage: React.FC = () => {
                                         ? styles["right-time"]
                                         : styles["left-time"]
                                 }`}
-                                key={i}
                             >{`${e.startDate} ${
                                 e.endDate.length > 0 ? `- ${e.endDate}` : ""
                             }`}</p>
