@@ -10,6 +10,7 @@
     background: var(--theme-accent);
     border-radius: 5px;
     padding: var(--card-padding);
+
     .card-header {
         align-items: center;
         display: flex;
@@ -28,6 +29,10 @@
                 letter-spacing: 1px;
             }
 
+            .title {
+                font-weight: bold;
+            }
+
             .title,
             .time {
                 font-size: var(--body-font);
@@ -42,6 +47,34 @@
 
         .desc-line {
             font-size: var(--body-font);
+            margin-bottom: calc(var(--inner-margin) / 2);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+// Tablet view
+@media screen and (min-width: constants.$tablet) {
+    .experience-card {
+        --body-font: 1rem;
+        --header-font: 1.75rem;
+    }
+}
+
+// Desktop view
+@media screen and (min-width: constants.$tablet) {
+    .experience-card {
+        --body-font: 1.2rem;
+        --card-padding: 2rem;
+        --header-font: 2rem;
+        --inner-margin: 1.5rem;
+        --img-size: 80px;
+
+        .card-header > .header-text > .time {
+            display: none;
         }
     }
 }
