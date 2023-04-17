@@ -6,16 +6,39 @@ import Image from "next/image";
 import { useState } from "react";
 // TS
 import Project from "@/models/Project";
-// Component
+// Components
+import ProjectDoor from "@/components/ProjectDoor/ProjectDoor";
 import ProjectsMenu from "@/components/ProjectsMenu/ProjectsMenu";
 
 const ProjectsPage: React.FC = () => {
+    // Door state
+    const [doorOpen, setDoorOpen] = useState<boolean>(false);
     // Menu state
     const [currentProject, setCurrentProject] = useState<Project | null>(null);
+
+    const selectProject = (project: Project | null) => {
+        if (doorOpen) {
+            setDoorOpen(false);
+            // Wait for doors to close before changing project contents
+            setTimeout(() => {
+                setCurrentProject(project);
+            }, 500);
+            // Wait for contents to update/image to load
+            setTimeout(() => {
+                if (project) setDoorOpen(true);
+            }, 800);
+        } else if (project) {
+            setCurrentProject(project);
+            setTimeout(() => {
+                setDoorOpen(true);
+            }, 400);
+        }
+    };
 
     return (
         <div className={styles["projects-page"]}>
             <div className={styles["project-info"]}>
+                <ProjectDoor open={doorOpen} />
                 <div className={styles["project-img"]}>
                     <Image
                         src={`/assets/images/projects/${
@@ -28,53 +51,52 @@ const ProjectsPage: React.FC = () => {
                         blurDataURL="/assets/images/projects/default.webp"
                     />
                 </div>
-                {currentProject ? (
-                    <div className={styles["project-desc"]}>
-                        <p className={styles["project-text"]}>
-                            {currentProject.category}
-                        </p>
-                        <div className={styles["project-links"]}>
-                            {currentProject.git ? (
-                                <a
-                                    href={currentProject.git}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className={styles["icon-container"]}
-                                >
-                                    <Image
-                                        src="/assets/icons/git.svg"
-                                        alt="Git Repo"
-                                        layout="fill"
-                                        objectFit="contain"
-                                    />
-                                </a>
-                            ) : (
-                                ""
-                            )}
-                            {currentProject.link ? (
-                                <a
-                                    href={currentProject.link}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className={styles["icon-container"]}
-                                >
-                                    <Image
-                                        src="/assets/icons/link.svg"
-                                        alt="Site Link"
-                                        layout="fill"
-                                        objectFit="contain"
-                                    />
-                                </a>
-                            ) : (
-                                ""
-                            )}
-                        </div>
+
+                <div className={styles["project-desc"]}>
+                    <p className={styles["project-text"]}>
+                        {currentProject
+                            ? currentProject.category
+                            : "Placeholder"}
+                    </p>
+                    <div className={styles["project-links"]}>
+                        {currentProject?.git ? (
+                            <a
+                                href={currentProject.git}
+                                target="_blank"
+                                rel="noreferrer"
+                                className={styles["icon-container"]}
+                            >
+                                <Image
+                                    src="/assets/icons/git.svg"
+                                    alt="Git Repo"
+                                    layout="fill"
+                                    objectFit="contain"
+                                />
+                            </a>
+                        ) : (
+                            ""
+                        )}
+                        {currentProject?.link ? (
+                            <a
+                                href={currentProject.link}
+                                target="_blank"
+                                rel="noreferrer"
+                                className={styles["icon-container"]}
+                            >
+                                <Image
+                                    src="/assets/icons/link.svg"
+                                    alt="Site Link"
+                                    layout="fill"
+                                    objectFit="contain"
+                                />
+                            </a>
+                        ) : (
+                            ""
+                        )}
                     </div>
-                ) : (
-                    ""
-                )}
+                </div>
             </div>
-            <ProjectsMenu onSelect={setCurrentProject} />
+            <ProjectsMenu onSelect={selectProject} />
         </div>
     );
 };

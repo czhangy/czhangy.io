@@ -18,6 +18,10 @@
     display: none;
 }
 
+.disabled {
+    pointer-events: none;
+}
+
 // Tablet view
 @media screen and (min-width: constants.$tablet) {
     .projects-menu {
