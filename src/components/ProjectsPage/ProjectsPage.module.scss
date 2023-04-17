@@ -9,47 +9,52 @@
     justify-content: space-around;
     width: 100%;
 
-    .project-info {
-        align-items: center;
-        background: blue;
+    .project-info-container {
+        background: var(--theme-accent);
+        border-radius: 10px;
+        box-shadow: var(--theme-shadow) inset;
         display: none;
-        flex-direction: column;
-        height: 550px;
+        height: 575px;
         overflow-y: scroll;
-        padding: 0 2rem;
         position: relative;
 
-        .project-img {
-            border-radius: 10px;
-            height: var(--img-size);
-            margin-bottom: 2rem;
-            margin-top: 2rem;
-            overflow: hidden;
-            position: relative;
-            width: var(--img-size);
-        }
-
-        .project-desc {
-            display: flex;
-            font-size: 1.2rem;
-            justify-content: space-between;
+        .project-info {
+            align-items: center;
+            flex-direction: column;
+            padding: 2rem;
             width: 100%;
 
-            .project-links {
-                align-items: center;
+            .project-img {
+                border-radius: 10px;
+                height: var(--img-size);
+                margin-bottom: 2rem;
+                overflow: hidden;
+                position: relative;
+                width: var(--img-size);
+            }
+
+            .project-desc {
                 display: flex;
-                height: var(--link-size);
-                justify-content: flex-end;
+                font-size: 1.2rem;
+                justify-content: space-between;
+                width: 100%;
 
-                .icon-container {
-                    filter: var(--theme-svg);
+                .project-links {
+                    align-items: center;
+                    display: flex;
                     height: var(--link-size);
-                    margin-left: 1rem;
-                    position: relative;
-                    width: var(--link-size);
+                    justify-content: flex-end;
 
-                    &:last-child {
-                        margin-left: none;
+                    .icon-container {
+                        filter: var(--theme-svg);
+                        height: var(--link-size);
+                        margin-left: 1rem;
+                        position: relative;
+                        width: var(--link-size);
+
+                        &:last-child {
+                            margin-left: none;
+                        }
                     }
                 }
             }
@@ -57,7 +62,7 @@
     }
 
     ::-webkit-scrollbar {
-        display: none;
+        width: 0;
     }
 }
 
@@ -77,8 +82,8 @@
     .projects-page {
         --img-size: 360px;
 
-        .project-info {
-            display: flex;
+        .project-info-container {
+            display: block;
         }
     }
 }

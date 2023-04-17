@@ -37,62 +37,63 @@ const ProjectsPage: React.FC = () => {
 
     return (
         <div className={styles["projects-page"]}>
-            <div className={styles["project-info"]}>
+            <div className={styles["project-info-container"]}>
                 <ProjectDoor open={doorOpen} />
-                <div className={styles["project-img"]}>
-                    <Image
-                        src={`/assets/images/projects/${
-                            currentProject ? currentProject.slug : "default"
-                        }.webp`}
-                        alt=""
-                        layout="fill"
-                        objectFit="cover"
-                        placeholder="blur"
-                        blurDataURL="/assets/images/projects/default.webp"
-                    />
-                </div>
-
-                <div className={styles["project-desc"]}>
-                    <p className={styles["project-text"]}>
-                        {currentProject
-                            ? currentProject.category
-                            : "Placeholder"}
-                    </p>
-                    <div className={styles["project-links"]}>
-                        {currentProject?.git ? (
-                            <a
-                                href={currentProject.git}
-                                target="_blank"
-                                rel="noreferrer"
-                                className={styles["icon-container"]}
-                            >
-                                <Image
-                                    src="/assets/icons/git.svg"
-                                    alt="Git Repo"
-                                    layout="fill"
-                                    objectFit="contain"
-                                />
-                            </a>
-                        ) : (
-                            ""
-                        )}
-                        {currentProject?.link ? (
-                            <a
-                                href={currentProject.link}
-                                target="_blank"
-                                rel="noreferrer"
-                                className={styles["icon-container"]}
-                            >
-                                <Image
-                                    src="/assets/icons/link.svg"
-                                    alt="Site Link"
-                                    layout="fill"
-                                    objectFit="contain"
-                                />
-                            </a>
-                        ) : (
-                            ""
-                        )}
+                <div className={styles["project-info"]}>
+                    <div className={styles["project-img"]}>
+                        <Image
+                            src={`/assets/images/projects/${
+                                currentProject ? currentProject.slug : "default"
+                            }.webp`}
+                            alt=""
+                            layout="fill"
+                            objectFit="cover"
+                            placeholder="blur"
+                            blurDataURL="/assets/images/projects/default.webp"
+                        />
+                    </div>
+                    <div className={styles["project-desc"]}>
+                        <p className={styles["project-text"]}>
+                            {currentProject
+                                ? currentProject.category
+                                : "Placeholder"}
+                        </p>
+                        <div className={styles["project-links"]}>
+                            {currentProject?.git ? (
+                                <a
+                                    href={currentProject.git}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className={styles["icon-container"]}
+                                >
+                                    <Image
+                                        src="/assets/icons/git.svg"
+                                        alt="Git Repo"
+                                        layout="fill"
+                                        objectFit="contain"
+                                    />
+                                </a>
+                            ) : (
+                                ""
+                            )}
+                            {currentProject?.link ? (
+                                <a
+                                    href={currentProject.link}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className={styles["icon-container"]}
+                                >
+                                    <Image
+                                        src="/assets/icons/link.svg"
+                                        alt="Site Link"
+                                        layout="fill"
+                                        objectFit="contain"
+                                    />
+                                </a>
+                            ) : (
+                                ""
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
