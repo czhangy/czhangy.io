@@ -1,47 +1,40 @@
 @use "@/styles/constants";
 
 .project-door {
+    align-items: center;
+    background: var(--theme-accent);
+    display: flex;
     height: 100%;
     overflow: hidden;
     position: absolute;
-    width: 100%;
+    transition: transform constants.$transition-time;
+    width: 50%;
     z-index: 9;
 
-    .door {
-        align-items: center;
-        background: var(--theme-accent);
-        display: flex;
-        height: 100%;
-        overflow: hidden;
+    .decal {
+        font-family: constants.$header-font;
+        font-size: 10rem;
         position: absolute;
-        transition: transform constants.$transition-time;
-        width: 50%;
-
-        .decal {
-            font-family: constants.$header-font;
-            font-size: 10rem;
-            position: absolute;
-        }
     }
+}
 
-    .left {
-        transform: translateX(-100%);
+.left {
+    transform: translateX(-100%);
 
-        .decal {
-            right: -24px;
-        }
+    .decal {
+        right: -24px;
     }
+}
 
-    .right {
-        right: 0;
-        transform: translateX(100%);
+.right {
+    right: 0;
+    transform: translateX(100%);
 
-        .decal {
-            left: -24px;
-        }
+    .decal {
+        left: -24px;
     }
+}
 
-    .closed {
-        transform: translateX(0);
-    }
+.closed {
+    transform: translateX(0);
 }

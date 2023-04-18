@@ -2,26 +2,19 @@
 import styles from "./ProjectDoor.module.scss";
 
 type Props = {
+    content: string;
     open: boolean;
+    side: string;
 };
 
-const ProjectDoor: React.FC<Props> = ({ open }) => {
+const ProjectDoor: React.FC<Props> = ({ content, open, side }) => {
     return (
-        <div className={styles["project-door"]}>
-            <div
-                className={`${styles.door} ${styles.left} ${
-                    open ? "" : styles.closed
-                }`}
-            >
-                <span className={styles.decal}>&lt;/</span>
-            </div>
-            <div
-                className={`${styles.door} ${styles.right} ${
-                    open ? "" : styles.closed
-                }`}
-            >
-                <span className={styles.decal}>/&gt;</span>
-            </div>
+        <div
+            className={`${styles["project-door"]} ${styles[side]} ${
+                open ? "" : styles.closed
+            }`}
+        >
+            <span className={styles.decal}>{content}</span>
         </div>
     );
 };

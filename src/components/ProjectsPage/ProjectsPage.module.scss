@@ -12,68 +12,19 @@
     .project-info-container {
         background: var(--theme-accent);
         border-radius: 10px;
-        box-shadow: var(--theme-shadow) inset;
         display: none;
-        height: 575px;
+        height: 565px;
+        overflow-x: hidden;
         overflow-y: scroll;
         position: relative;
-
-        .project-info {
-            align-items: center;
-            flex-direction: column;
-            padding: 2rem;
-            width: 100%;
-
-            .project-img {
-                border-radius: 10px;
-                height: var(--img-size);
-                margin-bottom: 2rem;
-                overflow: hidden;
-                position: relative;
-                width: var(--img-size);
-            }
-
-            .project-desc {
-                display: flex;
-                font-size: 1.2rem;
-                justify-content: space-between;
-                width: 100%;
-
-                .project-links {
-                    align-items: center;
-                    display: flex;
-                    height: var(--link-size);
-                    justify-content: flex-end;
-
-                    .icon-container {
-                        filter: var(--theme-svg);
-                        height: var(--link-size);
-                        margin-left: 1rem;
-                        position: relative;
-                        width: var(--link-size);
-
-                        &:last-child {
-                            margin-left: none;
-                        }
-                    }
-                }
-            }
-        }
     }
 
     ::-webkit-scrollbar {
         width: 0;
     }
-}
 
-// Sticky hover
-@media (hover: hover) {
-    .projects-page
-        > .project-info
-        > .project-desc
-        > .project-links
-        > .icon-container:hover {
-        filter: var(--theme-svg-hover);
+    .disabled {
+        overflow: hidden;
     }
 }
 
