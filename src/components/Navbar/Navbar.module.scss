@@ -33,15 +33,15 @@
             align-items: center;
             display: flex;
 
+            .nav-item .nav-link {
+                font-size: var(--page-nav-size);
+            }
+
             .v-bar {
                 background: var(--theme-text);
                 height: 1.5rem;
                 margin: 0 var(--page-nav-margin);
                 width: 2px;
-            }
-
-            .nav-link {
-                font-size: var(--page-nav-size);
             }
         }
     }
@@ -54,7 +54,7 @@
             color: var(--theme-hover);
         }
 
-        .page-nav .nav-link:hover {
+        .page-nav > .nav-item .nav-link:hover {
             color: var(--theme-hover);
         }
     }
@@ -73,7 +73,7 @@
                 display: block;
             }
 
-            .page-nav .home-link,
+            .page-nav > .home-link,
             .home-v-bar {
                 display: none;
             }
