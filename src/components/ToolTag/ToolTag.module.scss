@@ -1,0 +1,73 @@
+@use "@/styles/constants";
+
+.tool-tag {
+    --tag-accent: white;
+    --tag-color: var(--theme-main);
+
+    background: var(--tag-color);
+    border: 2px solid var(--tag-accent);
+    border-radius: 2px;
+    padding: 0.4rem 1rem;
+
+    .tag-text {
+        color: var(--tag-accent);
+        font-family: constants.$header-font;
+        letter-spacing: 1px;
+    }
+}
+
+.express-js {
+    --tag-color: black;
+}
+
+.firebase {
+    --tag-color: #ffa611;
+}
+
+.jest {
+    --tag-color: #98425b;
+}
+
+.mongodb {
+    --tag-color: #4db33d;
+}
+
+.next-js {
+    --tag-color: black;
+}
+
+.node-js {
+    --tag-color: #68a063;
+}
+
+.postgres {
+    --tag-color: #0064a5;
+}
+
+.prisma {
+    --tag-color: #0c354b;
+}
+
+.react {
+    --tag-color: #61dbfb;
+}
+
+.sass {
+    --tag-color: #c69;
+}
+
+.testing-library {
+    --tag-color: #e33332;
+}
+
+.typescript {
+    --tag-color: #007acc;
+}
+
+.unity {
+    --tag-color: black;
+}
+
+.vue {
+    --tag-color: #41b883;
+}

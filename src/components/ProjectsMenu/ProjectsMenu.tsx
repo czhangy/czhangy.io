@@ -16,6 +16,13 @@ type Props = {
 const ProjectsMenu: React.FC<Props> = ({ onSelect }) => {
     // Menu state
     const [selected, setSelected] = useState<Project | null>(null);
+    const [disabled, setDisabled] = useState<boolean>(false);
+
+    const selectProject = (project: Project | null) => {
+        setDisabled(true);
+        setSelected(project);
+        setTimeout(() => setDisabled(false), 800);
+    };
 
     // Update image on project page
     useEffect(() => {
@@ -23,12 +30,16 @@ const ProjectsMenu: React.FC<Props> = ({ onSelect }) => {
     }, [selected]);
 
     return (
-        <ul className={styles["projects-menu"]}>
+        <ul
+            className={`${styles["projects-menu"]} ${
+                disabled ? styles.disabled : ""
+            }`}
+        >
             {projects.map((project: Project, i: number) => {
                 return (
                     <li className={styles["projects-menu-card"]} key={i}>
                         <ProjectCard
-                            onClick={setSelected}
+                            onClick={selectProject}
                             project={project}
                             expanded={
                                 selected !== null &&
