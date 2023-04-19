@@ -6,34 +6,38 @@
     --section-margin: 2rem;
     --text-spacing: 0;
 
-    .about-header {
-        font-family: constants.$header-font;
-        font-size: constants.$header-size;
-        letter-spacing: var(--text-spacing);
-        text-align: center;
-        width: 100%;
-    }
-
-    .about-content {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
+    .about-section {
         margin-bottom: var(--section-margin);
 
         &:last-child {
             margin-bottom: 0;
         }
 
-        .about-img {
-            height: var(--img-size);
-            position: relative;
-            width: var(--img-size);
+        .section-header {
+            font-family: constants.$header-font;
+            font-size: constants.$header-size;
+            letter-spacing: var(--text-spacing);
+            margin-bottom: 1rem;
+            text-align: center;
+            width: 100%;
         }
 
-        .about-text {
-            font-size: var(--body-size);
-            letter-spacing: var(--text-spacing);
-            width: calc(100% - var(--img-size));
+        .section-content {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+
+            .section-img {
+                height: var(--img-size);
+                position: relative;
+                width: var(--img-size);
+            }
+
+            .section-text {
+                font-size: var(--body-size);
+                letter-spacing: var(--text-spacing);
+                width: calc(100% - var(--img-size));
+            }
         }
     }
 }
@@ -54,22 +58,25 @@
         --img-size: 17rem;
         --section-margin: 5rem;
 
-        .about-header {
-            text-align: left;
+        .about-section {
+            .section-header {
+                text-align: left;
+            }
+
+            .section-content > .section-text {
+                margin-right: 1rem;
+            }
         }
 
         .right-align {
-            text-align: right;
-        }
-
-        .about-content {
-            .about-text {
-                margin-right: 1rem;
+            .section-header {
+                text-align: right;
             }
 
-            .right-align {
+            .section-content > .section-text {
                 margin-left: 1rem;
                 margin-right: 0;
+                text-align: right;
             }
         }
     }

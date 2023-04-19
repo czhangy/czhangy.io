@@ -14,33 +14,35 @@ const Navbar: React.FC = () => {
                         </a>
                     </Link>
                 </div>
-                <div className={styles["page-nav"]}>
-                    <Link href="/">
-                        <a className={styles["home-link"]}>
-                            <h2 className={styles["nav-link"]}>Home</h2>
-                        </a>
-                    </Link>
+                <ul className={styles["page-nav"]}>
+                    <li
+                        className={`${styles["nav-item"]} ${styles["home-link"]}`}
+                    >
+                        <Link href="/">
+                            <a className={styles["nav-link"]}>Home</a>
+                        </Link>
+                    </li>
                     <span
                         className={`${styles["v-bar"]} ${styles["home-v-bar"]}`}
                     />
-                    <Link href="/about">
-                        <a>
-                            <h2 className={styles["nav-link"]}>About</h2>
-                        </a>
-                    </Link>
+                    <li className={styles["nav-item"]}>
+                        <Link href="/about">
+                            <a className={styles["nav-link"]}>About</a>
+                        </Link>
+                    </li>
                     <span className={styles["v-bar"]} />
-                    <Link href="/projects">
-                        <a>
-                            <h2 className={styles["nav-link"]}>Projects</h2>
-                        </a>
-                    </Link>
+                    <li className={styles["nav-item"]}>
+                        <Link href="/projects">
+                            <a className={styles["nav-link"]}>Projects</a>
+                        </Link>
+                    </li>
                     <span className={styles["v-bar"]} />
-                    <Link href="/experience">
-                        <a>
-                            <h2 className={styles["nav-link"]}>Experience</h2>
-                        </a>
-                    </Link>
-                </div>
+                    <li className={styles["nav-item"]}>
+                        <Link href="/experience">
+                            <a className={styles["nav-link"]}>Experience</a>
+                        </Link>
+                    </li>
+                </ul>
             </div>
         </header>
     );
