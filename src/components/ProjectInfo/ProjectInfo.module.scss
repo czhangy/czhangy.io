@@ -1,10 +1,12 @@
 @use "@/styles/constants";
 
 .project-info {
+    --link-size: 40px;
+
     align-items: center;
     flex-direction: column;
-    overflow-y: scroll;
     padding: 2rem;
+    padding-right: 2.5rem;
     width: 100%;
 
     .project-img {
@@ -53,6 +55,13 @@
 
             .project-text {
                 font-size: 1.1rem;
+            }
+
+            .tool-list {
+                align-items: center;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
             }
         }
 

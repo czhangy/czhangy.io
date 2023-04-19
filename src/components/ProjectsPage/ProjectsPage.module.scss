@@ -2,7 +2,6 @@
 
 .projects-page {
     --img-size: 0;
-    --link-size: 40px;
 
     align-items: center;
     display: flex;
@@ -17,10 +16,7 @@
         overflow-x: hidden;
         overflow-y: scroll;
         position: relative;
-    }
-
-    ::-webkit-scrollbar {
-        width: 0;
+        width: calc(var(--img-size) + 4.5rem);
     }
 
     .disabled {

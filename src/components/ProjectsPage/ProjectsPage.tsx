@@ -46,7 +46,7 @@ const ProjectsPage: React.FC = () => {
             >
                 <ProjectDoor content="</" open={doorOpen} side="left" />
                 <ProjectDoor content="/>" open={doorOpen} side="right" />
-                <ProjectInfo currentProject={currentProject} />
+                {currentProject ? <ProjectInfo project={currentProject} /> : ""}
             </div>
             <ProjectsMenu onSelect={selectProject} />
         </div>

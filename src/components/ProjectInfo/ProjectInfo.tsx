@@ -4,19 +4,20 @@ import styles from "./ProjectInfo.module.scss";
 import Image from "next/image";
 // TS
 import Project from "@/models/Project";
+import Tool from "@/models/Tool";
+// Component
+import ToolTag from "@/components/ToolTag/ToolTag";
 
 type Props = {
-    currentProject: Project | null;
+    project: Project;
 };
 
-const ProjectInfo: React.FC<Props> = ({ currentProject }) => {
+const ProjectInfo: React.FC<Props> = ({ project }) => {
     return (
         <div className={styles["project-info"]}>
             <div className={styles["project-img"]}>
                 <Image
-                    src={`/assets/images/projects/${
-                        currentProject ? currentProject.slug : "default"
-                    }.webp`}
+                    src={`/assets/images/projects/${project.slug}.webp`}
                     alt=""
                     layout="fill"
                     objectFit="cover"
@@ -29,14 +30,12 @@ const ProjectInfo: React.FC<Props> = ({ currentProject }) => {
                     className={`${styles["project-section"]} ${styles["top-section"]}`}
                 >
                     <h4 className={styles["section-header"]}>
-                        {currentProject
-                            ? currentProject.category
-                            : "Placeholder"}
+                        {project.category}
                     </h4>
                     <div className={styles["project-links"]}>
-                        {currentProject?.git ? (
+                        {project.git ? (
                             <a
-                                href={currentProject.git}
+                                href={project.git}
                                 target="_blank"
                                 rel="noreferrer"
                                 className={styles["icon-container"]}
@@ -51,9 +50,9 @@ const ProjectInfo: React.FC<Props> = ({ currentProject }) => {
                         ) : (
                             ""
                         )}
-                        {currentProject?.link ? (
+                        {project.link ? (
                             <a
-                                href={currentProject.link}
+                                href={project.link}
                                 target="_blank"
                                 rel="noreferrer"
                                 className={styles["icon-container"]}
@@ -72,10 +71,20 @@ const ProjectInfo: React.FC<Props> = ({ currentProject }) => {
                 </section>
                 <section className={styles["project-section"]}>
                     <h4 className={styles["section-header"]}>Summary</h4>
+                    <p className={styles["section-text"]}>{project.summary}</p>
                 </section>
-                <section className={styles["project-section"]}>
-                    <h4 className={styles["section-header"]}>Tools</h4>
-                </section>
+                {project.tools.length > 0 ? (
+                    <section className={styles["project-section"]}>
+                        <h4 className={styles["section-header"]}>Tools</h4>
+                        <ul className={styles["tool-list"]}>
+                            {project.tools.map((tool: Tool, i: number) => {
+                                return <ToolTag tool={tool} key={i} />;
+                            })}
+                        </ul>
+                    </section>
+                ) : (
+                    ""
+                )}
             </div>
         </div>
     );
