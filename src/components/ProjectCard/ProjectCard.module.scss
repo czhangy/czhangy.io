@@ -12,6 +12,7 @@
     .project-name {
         font-family: constants.$header-font;
         font-size: var(--title-size);
+        letter-spacing: 1px;
         line-height: var(--title-size);
         padding: var(--v-padding) 0;
     }
