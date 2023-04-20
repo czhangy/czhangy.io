@@ -5,8 +5,8 @@
 
     align-items: center;
     flex-direction: column;
-    padding: 2rem;
-    padding-right: 2.5rem;
+    padding: var(--padding);
+    padding-right: calc(var(--padding));
     width: 100%;
 
     .project-img {
@@ -71,7 +71,7 @@
             justify-content: space-between;
 
             .section-header {
-                margin-bottom: 0rem;
+                margin-bottom: 0;
             }
         }
     }

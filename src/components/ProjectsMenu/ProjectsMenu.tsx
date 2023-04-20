@@ -3,7 +3,7 @@ import styles from "./ProjectsMenu.module.scss";
 // TS
 import Project from "@/models/Project";
 // React
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // Component
 import ProjectCard from "@/components/ProjectCard/ProjectCard";
 // Static data
@@ -15,19 +15,13 @@ type Props = {
 
 const ProjectsMenu: React.FC<Props> = ({ onSelect }) => {
     // Menu state
-    const [selected, setSelected] = useState<Project | null>(null);
     const [disabled, setDisabled] = useState<boolean>(false);
 
     const selectProject = (project: Project | null) => {
         setDisabled(true);
-        setSelected(project);
+        onSelect(project);
         setTimeout(() => setDisabled(false), 800);
     };
-
-    // Update image on project page
-    useEffect(() => {
-        onSelect(selected);
-    }, [selected]);
 
     return (
         <ul
@@ -41,10 +35,6 @@ const ProjectsMenu: React.FC<Props> = ({ onSelect }) => {
                         <ProjectCard
                             onClick={selectProject}
                             project={project}
-                            expanded={
-                                selected !== null &&
-                                project.slug === selected.slug
-                            }
                         />
                     </li>
                 );

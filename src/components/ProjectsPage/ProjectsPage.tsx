@@ -8,6 +8,7 @@ import Project from "@/models/Project";
 import ProjectDoor from "@/components/ProjectDoor/ProjectDoor";
 import ProjectInfo from "@/components/ProjectInfo/ProjectInfo";
 import ProjectsMenu from "@/components/ProjectsMenu/ProjectsMenu";
+import ProjectModel from "@/components/ProjectModal/ProjectModal";
 
 const ProjectsPage: React.FC = () => {
     // Door state
@@ -16,28 +17,49 @@ const ProjectsPage: React.FC = () => {
     const [currentProject, setCurrentProject] = useState<Project | null>(null);
 
     const selectProject = (project: Project | null) => {
+        const DOOR_CLOSE_DELAY = 500;
+        const CONTENT_UPDATE_DELAY = 800;
         // Reset container
         document.getElementById("scroll-container")?.scrollTo(0, 0);
         if (doorOpen) {
             setDoorOpen(false);
-            // Wait for doors to close before changing project contents
-            setTimeout(() => {
-                setCurrentProject(project);
-            }, 500);
-            // Wait for contents to update/image to load
-            setTimeout(() => {
-                if (project) setDoorOpen(true);
-            }, 800);
+            if (project && project !== currentProject) {
+                // Wait for doors to close before changing project contents
+                setTimeout(() => {
+                    setCurrentProject(project);
+                }, DOOR_CLOSE_DELAY);
+                // Wait for contents to update/image to load
+                setTimeout(() => {
+                    setDoorOpen(true);
+                }, CONTENT_UPDATE_DELAY);
+            } else {
+                setTimeout(() => {
+                    setCurrentProject(null);
+                }, DOOR_CLOSE_DELAY);
+            }
         } else if (project) {
             setCurrentProject(project);
             setTimeout(() => {
                 setDoorOpen(true);
-            }, 400);
+            }, DOOR_CLOSE_DELAY);
         }
+    };
+
+    const deselectProject = () => {
+        setDoorOpen(false);
+        setCurrentProject(null);
     };
 
     return (
         <div className={styles["projects-page"]}>
+            {currentProject ? (
+                <ProjectModel
+                    onClose={deselectProject}
+                    project={currentProject}
+                />
+            ) : (
+                ""
+            )}
             <div
                 id="scroll-container"
                 className={`${styles["project-info-container"]} ${
