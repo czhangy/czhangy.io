@@ -21,7 +21,7 @@
         justify-content: center;
         height: 100%;
         max-width: constants.$max-width;
-        padding: var(--y-padding) constants.$page-padding;
+        padding: constants.$page-padding;
         width: 100%;
     }
 }

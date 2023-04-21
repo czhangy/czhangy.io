@@ -15,9 +15,9 @@
 
         .section-header {
             font-family: constants.$header-font;
-            font-size: constants.$header-size;
+            font-size: 1.7rem;
             letter-spacing: var(--text-spacing);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             text-align: center;
             width: 100%;
         }
@@ -60,6 +60,8 @@
 
         .about-section {
             .section-header {
+                font-size: 2rem;
+                margin-bottom: 1rem;
                 text-align: left;
             }
 

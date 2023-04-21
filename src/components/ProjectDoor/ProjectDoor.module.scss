@@ -2,7 +2,7 @@
 
 .project-door {
     align-items: center;
-    background: var(--theme-accent);
+    background: var(--theme-main);
     display: flex;
     height: 100%;
     overflow: hidden;
@@ -19,7 +19,7 @@
 }
 
 .left {
-    transform: translateX(-100%);
+    transform: translateX(-110%);
 
     .decal {
         right: -24px;
@@ -28,7 +28,7 @@
 
 .right {
     right: 0;
-    transform: translateX(100%);
+    transform: translateX(110%);
 
     .decal {
         left: -24px;

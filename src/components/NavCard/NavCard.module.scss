@@ -64,6 +64,6 @@
 // Desktop view
 @media screen and (min-width: constants.$desktop) {
     .nav-card > .card-title > .title {
-        font-size: constants.$header-size;
+        font-size: 2rem;
     }
 }
