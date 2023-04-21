@@ -40,5 +40,6 @@
         --y-padding: 4rem;
 
         align-items: center;
+        min-height: calc(100vh - #{constants.$navbar-height});
     }
 }
