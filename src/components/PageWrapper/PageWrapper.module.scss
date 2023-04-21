@@ -4,7 +4,6 @@
     --back-button-size: 2rem;
     --y-padding: 2rem;
 
-    align-items: center;
     animation-duration: 0.3s;
     animation-name: load;
     display: flex;
@@ -42,5 +41,7 @@
 @media screen and (min-width: constants.$tablet) {
     .page-wrapper {
         --y-padding: 4rem;
+
+        align-items: center;
     }
 }
