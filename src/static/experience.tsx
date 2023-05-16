@@ -6,7 +6,7 @@ const experience: Experience[] = [
         company: "Amazon",
         slug: "amazon",
         title: "Software Development Engineer",
-        startDate: "Aug 2023",
+        startDate: "Feb 2024",
         endDate: "",
         desc: [],
     },

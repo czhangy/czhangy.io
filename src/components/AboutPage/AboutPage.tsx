@@ -57,7 +57,7 @@ const AboutPage: React.FC = () => {
                         This past summer, I interned with Capital One&apos;s
                         Auto Refinance team, where I used web development and
                         machine learning to develop and optimize a
-                        loan-processing platform. This upcoming summer (assuming
+                        loan-processing platform. This upcoming winter (assuming
                         I don&apos;t get laid off), I&apos;ll be joining Amazon
                         in San Diego as a Software Development Engineer. If for
                         some reason you want more details on my work, check out
