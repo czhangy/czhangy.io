@@ -2,14 +2,14 @@
 import Experience from "@/models/Experience";
 
 const experience: Experience[] = [
-    {
-        company: "Amazon",
-        slug: "amazon",
-        title: "Software Development Engineer",
-        startDate: "Feb 2024",
-        endDate: "",
-        desc: [],
-    },
+    // {
+    //     company: "Amazon",
+    //     slug: "amazon",
+    //     title: "Software Development Engineer",
+    //     startDate: "Feb 2024",
+    //     endDate: "",
+    //     desc: [],
+    // },
     {
         company: "Capital One",
         slug: "capital-one",
