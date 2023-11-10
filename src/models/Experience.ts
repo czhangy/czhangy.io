@@ -1,6 +1,6 @@
 export default interface Experience {
     company: string;
-    slug: string;
+    logo: string;
     title: string;
     startDate: string;
     endDate: string;

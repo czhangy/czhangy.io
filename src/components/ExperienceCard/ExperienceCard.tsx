@@ -15,7 +15,7 @@ const ExperienceCard: React.FC<Props> = ({ experience }) => {
             <div className={styles["card-header"]}>
                 <div className={styles["card-img"]}>
                     <Image
-                        src={`/assets/images/experience/${experience.slug}.webp`}
+                        src={`/assets/images/experience/${experience.logo}`}
                         alt={experience.company}
                         layout="fill"
                         objectFit="contain"

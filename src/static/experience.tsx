@@ -2,17 +2,17 @@
 import Experience from "@/models/Experience";
 
 const experience: Experience[] = [
-    // {
-    //     company: "Amazon",
-    //     slug: "amazon",
-    //     title: "Software Development Engineer",
-    //     startDate: "Feb 2024",
-    //     endDate: "",
-    //     desc: [],
-    // },
+    {
+        company: "Stripe",
+        logo: "stripe.svg",
+        title: "Software Engineer",
+        startDate: "Dec 2023",
+        endDate: "",
+        desc: [],
+    },
     {
         company: "Capital One",
-        slug: "capital-one",
+        logo: "capital-one.webp",
         title: "Software Engineering Intern",
         startDate: "Jun 2022",
         endDate: "Aug 2022",
@@ -24,7 +24,7 @@ const experience: Experience[] = [
     },
     {
         company: "Bruinshack",
-        slug: "bruinshack",
+        logo: "bruinshack.webp",
         title: "Front-End Lead",
         startDate: "Nov 2021",
         endDate: "Jun 2022",
@@ -36,7 +36,7 @@ const experience: Experience[] = [
     },
     {
         company: "Bruinshack",
-        slug: "bruinshack",
+        logo: "bruinshack.webp",
         title: "Full-Stack Development Intern",
         startDate: "Feb 2021",
         endDate: "Nov 2021",
@@ -47,7 +47,7 @@ const experience: Experience[] = [
     },
     {
         company: "The Amplification Project",
-        slug: "the-amplification-project",
+        logo: "the-amplification-project.webp",
         title: "Front-End Developer",
         startDate: "May 2021",
         endDate: "Sep 2021",
