@@ -57,10 +57,11 @@ const AboutPage: React.FC = () => {
                         In the summer of 2022, I interned with Capital
                         One&apos;s Auto Refinance team, where I used web
                         development and machine learning to develop and optimize
-                        a loan-processing platform. In December, I&apos;ll be
-                        starting as a SWE at Stripe on the Payments API Features
-                        team. If for some reason you want more details on my
-                        work, check out the projects and experience pages!
+                        a loan-processing platform. I&apos;ve recently begun
+                        work as a SWE at Stripe on the Payments API Features
+                        team in Seattle. If for some reason you want more
+                        details on my work, check out the projects and
+                        experience pages!
                     </p>
                 </div>
             </section>
