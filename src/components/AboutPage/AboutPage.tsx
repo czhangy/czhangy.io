@@ -1,7 +1,9 @@
 // Stylesheet
-import styles from "./AboutPage.module.scss";
+
 // Next
 import Image from "next/image";
+
+import styles from "./AboutPage.module.scss";
 
 const AboutPage: React.FC = () => {
     return (

@@ -1,12 +1,14 @@
 // Stylesheet
-import styles from "./ProjectInfo.module.scss";
+
 // Next
 import Image from "next/image";
+// Component
+import ToolTag from "@/components/ToolTag/ToolTag";
+
+import styles from "./ProjectInfo.module.scss";
 // TS
 import Project from "@/models/Project";
 import Tool from "@/models/Tool";
-// Component
-import ToolTag from "@/components/ToolTag/ToolTag";
 
 type Props = {
     project: Project;

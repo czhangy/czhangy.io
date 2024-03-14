@@ -1,9 +1,11 @@
 // Stylesheet
+
+// Component
+import ProjectInfo from "@/components/ProjectInfo/ProjectInfo";
+
 import styles from "./ProjectModal.module.scss";
 // TS
 import Project from "@/models/Project";
-// Component
-import ProjectInfo from "@/components/ProjectInfo/ProjectInfo";
 
 type Props = {
     onClose: () => void;

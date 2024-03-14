@@ -1,14 +1,16 @@
 // Stylesheet
-import styles from "./ProjectsPage.module.scss";
+
 // React
 import { useState } from "react";
-// TS
-import Project from "@/models/Project";
 // Components
 import ProjectDoor from "@/components/ProjectDoor/ProjectDoor";
 import ProjectInfo from "@/components/ProjectInfo/ProjectInfo";
-import ProjectsMenu from "@/components/ProjectsMenu/ProjectsMenu";
 import ProjectModel from "@/components/ProjectModal/ProjectModal";
+import ProjectsMenu from "@/components/ProjectsMenu/ProjectsMenu";
+
+import styles from "./ProjectsPage.module.scss";
+// TS
+import Project from "@/models/Project";
 
 const ProjectsPage: React.FC = () => {
     // Door state

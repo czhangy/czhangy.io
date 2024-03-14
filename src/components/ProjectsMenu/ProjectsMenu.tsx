@@ -1,11 +1,13 @@
 // Stylesheet
-import styles from "./ProjectsMenu.module.scss";
-// TS
-import Project from "@/models/Project";
+
 // React
 import { useState } from "react";
 // Component
 import ProjectCard from "@/components/ProjectCard/ProjectCard";
+
+import styles from "./ProjectsMenu.module.scss";
+// TS
+import Project from "@/models/Project";
 // Static data
 import projects from "@/static/projects";
 

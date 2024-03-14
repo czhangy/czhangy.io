@@ -1,37 +1,33 @@
-// Stylesheet
 import "@/styles/globals.scss";
-// TS
-import type { AppProps } from "next/app";
-// React
+
 import { useEffect } from "react";
-// Nav components
 import Navbar from "@/components/Navbar/Navbar";
 
+import type { AppProps } from "next/app";
+
 function App({ Component, pageProps }: AppProps) {
-    // Check user preferences for theme
-    const getTheme = () => {
-        if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-            return "light";
-        } else {
-            return "dark";
-        }
-    };
+    const CHANGE_EVENT: string = "change";
+    const DARK: string = "dark";
+    const LIGHT: string = "light";
 
-    // Set site theme to given theme
-    const setTheme = (theme: string) => {
-        document.body.dataset.theme = theme;
-    };
-
-    // Set event listener for dynamic updates
+    // Set event listener for dynamic updates on theme
     useEffect(() => {
+        // Check user's theme
+        const getDefaultTheme: () => MediaQueryList = () =>
+            window.matchMedia(`(prefers-color-scheme: ${LIGHT})`);
+
         const updateTheme = () => {
-            setTheme(getTheme());
+            document.body.dataset.theme = getDefaultTheme().matches
+                ? LIGHT
+                : DARK;
         };
-        let themeQuery = window.matchMedia("(prefers-color-scheme: light)");
-        themeQuery.addEventListener("change", updateTheme);
+
+        const themeQuery: MediaQueryList = getDefaultTheme();
+        themeQuery.addEventListener(CHANGE_EVENT, updateTheme);
         updateTheme();
+
         return () => {
-            document.removeEventListener("change", updateTheme);
+            document.removeEventListener(CHANGE_EVENT, updateTheme);
         };
     }, []);
 

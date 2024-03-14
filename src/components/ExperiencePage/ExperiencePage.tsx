@@ -1,9 +1,11 @@
 // Stylesheet
+
+// Component
+import ExperienceCard from "@/components/ExperienceCard/ExperienceCard";
+
 import styles from "./ExperiencePage.module.scss";
 // TS
 import Experience from "@/models/Experience";
-// Component
-import ExperienceCard from "@/components/ExperienceCard/ExperienceCard";
 // Static data
 import experience from "@/static/experience";
 

@@ -1,7 +1,9 @@
 // Stylesheet
-import styles from "./NavCard.module.scss";
+
 // Next
 import Image from "next/image";
+
+import styles from "./NavCard.module.scss";
 
 type Props = {
     flipped: boolean;

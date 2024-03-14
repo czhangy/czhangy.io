@@ -1,0 +1,84 @@
+#!/bin/bash
+
+status=0
+
+# Style constants
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+RESET='\033[0m'
+
+# Check if in correct directory
+if [ "${PWD##*/}" != "Personal-Portfolio" ]; then
+    echo -e "${RED}Test must be executed in the root directory.${RESET}"
+    status=1
+fi
+
+# Test for successful creation
+mkdir src/components/Test
+./new Test TestFile > /dev/null
+if [ $? -eq 0 ]; then
+    echo -e "${GREEN}[✓] Succeeds with valid inputs${RESET}"
+else
+    echo -e "${RED}[X] Succeeds with valid inputs${RESET}"
+    status=1
+fi
+if cmp -s src/components/Test/TestFile/TestFile.tsx src/tests/new/new_tsx.txt; then
+    echo -e "${GREEN}[✓] Output TSX is correct${RESET}"
+else
+    echo -e "${RED}[X] Output TSX is correct${RESET}"
+    status=1
+fi
+if cmp -s src/components/Test/TestFile/TestFile.module.scss src/tests/new/new_scss.module.txt; then
+    echo -e "${GREEN}[✓] Output SCSS is correct${RESET}"
+else
+    echo -e "${RED}[X] Output SCSS is correct${RESET}"
+    status=1
+fi
+
+# Test for existing component check
+./new Test TestFile > /dev/null
+if [ $? -eq 1 ]; then
+    echo -e "${GREEN}[✓] Fails if the component already exists${RESET}"
+else
+    echo -e "${RED}[X] Fails if the component already exists${RESET}"
+    status=1
+fi
+rm -rf src/components/Test
+
+# Test for nonexistent subdirectory check
+./new Test TestFile > /dev/null
+if [ $? -eq 1 ]; then
+    echo -e "${GREEN}[✓] Fails if the subdirectory doesn't exist${RESET}"
+else
+    echo -e "${RED}[X] Fails if the subdirectory doesn't exist${RESET}"
+    status=1
+fi
+
+# Test for input # check
+./new Test > /dev/null
+if [ $? -eq 1 ]; then
+    echo -e "${GREEN}[✓] Fails if run with too few inputs${RESET}"
+else
+    echo -e "${RED}[X] Fails if run with too few inputs${RESET}"
+    status=1
+fi
+./new Test TestFile ExtraInput > /dev/null
+if [ $? -eq 1 ]; then
+    echo -e "${GREEN}[✓] Fails if run with too many inputs${RESET}"
+else
+    echo -e "${RED}[X] Fails if run with too many inputs${RESET}"
+    status=1
+fi
+
+# Test for directory check
+cd public
+../new Test TestFile > /dev/null
+if [ $? -eq 1 ]; then
+    echo -e "${GREEN}[✓] Fails if run from non-root directory${RESET}"
+else
+    echo -e "${RED}[X] Fails if run from non-root directory${RESET}"
+    status=1
+fi
+cd ..
+
+exit $status

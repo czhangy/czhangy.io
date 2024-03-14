@@ -1,7 +1,9 @@
 // Stylesheet
-import styles from "./ExperienceCard.module.scss";
+
 // Next
 import Image from "next/image";
+
+import styles from "./ExperienceCard.module.scss";
 // TS
 import Experience from "@/models/Experience";
 

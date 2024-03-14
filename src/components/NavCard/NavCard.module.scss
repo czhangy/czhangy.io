@@ -9,7 +9,8 @@
     height: 100%;
     overflow: hidden;
     position: relative;
-    transition: transform constants.$transition-time,
+    transition:
+        transform constants.$transition-time,
         box-shadow constants.$transition-time;
     width: 100%;
 

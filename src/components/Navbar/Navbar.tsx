@@ -1,7 +1,9 @@
 // Stylesheet
-import styles from "./Navbar.module.scss";
+
 // Next
 import Link from "next/link";
+
+import styles from "./Navbar.module.scss";
 
 const Navbar: React.FC = () => {
     return (

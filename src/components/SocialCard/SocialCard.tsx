@@ -1,7 +1,9 @@
 // Stylesheet
-import styles from "./SocialCard.module.scss";
+
 // Next
 import Image from "next/image";
+
+import styles from "./SocialCard.module.scss";
 
 type Props = {
     social: string;

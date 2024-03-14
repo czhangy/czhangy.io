@@ -1,10 +1,8 @@
-// TS
-import type { NextPage } from "next";
-// Next
 import Head from "next/head";
-// Page components
-import PageWrapper from "@/components/PageWrapper/PageWrapper";
 import AboutPage from "@/components/AboutPage/AboutPage";
+import PageWrapper from "@/components/PageWrapper/PageWrapper";
+
+import type { NextPage } from "next";
 
 const About: NextPage = () => {
     return (

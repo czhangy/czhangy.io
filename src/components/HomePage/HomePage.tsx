@@ -1,8 +1,10 @@
 // Stylesheet
-import styles from "./HomePage.module.scss";
+
 // Component
 import NavCard from "@/components/NavCard/NavCard";
 import SocialCard from "@/components/SocialCard/SocialCard";
+
+import styles from "./HomePage.module.scss";
 
 const HomePage: React.FC = () => {
     return (
