@@ -27,6 +27,6 @@ fi
 npx prettier --write . > /dev/null
 
 # Git actions
-git add -A && \
-git commit -m "$1" && \
+git add -A > /dev/null && \
+git commit -m "$1" > /dev/null && \
 git push
