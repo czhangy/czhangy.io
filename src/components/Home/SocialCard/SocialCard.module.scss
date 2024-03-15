@@ -3,20 +3,20 @@
 .social-card {
     -border-rad: 0;
     --icon-size: 40px;
-
-    align-items: center;
-    border-radius: var(--border-rad);
     display: flex;
     justify-content: center;
+
+    align-items: center;
     transition:
         transform constants.$transition-time,
         box-shadow constants.$transition-time;
+    border-radius: var(--border-rad);
 
     .icon-container {
-        height: var(--icon-size);
         position: relative;
         transition: transform constants.$transition-time;
         width: var(--icon-size);
+        height: var(--icon-size);
     }
 }
 
@@ -79,8 +79,8 @@
 
 @media (hover: hover) {
     .social-card:hover {
-        box-shadow: var(--theme-shadow);
         transform: scale(1.05);
+        box-shadow: var(--theme-shadow);
 
         .icon-container {
             transform: rotate(10deg);

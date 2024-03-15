@@ -5,9 +5,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Overpass:wght@700");
 
 #app {
+    overflow-x: hidden;
     color: var(--theme-text);
     font-family: constants.$main-font;
-    overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -16,8 +16,8 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--theme-text);
     border-radius: 4px;
+    background: var(--theme-text);
 
     &:hover {
         background: var(--theme-hover);
@@ -47,8 +47,8 @@ body[data-theme="light"] {
 
 html,
 body {
-    background: var(--theme-main);
     margin: 0;
+    background: var(--theme-main);
     padding: 0;
 }
 
@@ -70,12 +70,12 @@ hr {
 }
 
 button {
-    background: none;
-    border: none;
-    color: inherit;
     cursor: pointer;
-    font-family: inherit;
+    border: none;
+    background: none;
     padding: 0;
+    color: inherit;
+    font-family: inherit;
 }
 
 h1,
@@ -89,7 +89,7 @@ h6 {
 }
 
 ul {
-    list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    list-style: none;
 }

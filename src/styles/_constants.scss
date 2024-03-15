@@ -29,7 +29,7 @@ $light-shadow: 0 3px 5px 1px #777;
 
 // Dimensions
 $max-width: 1360px;
-$navbar-height: 60px;
+$navbar-height: 80px;
 $page-padding: 2rem;
 $tablet: 768px;
 $desktop: 1440px;
@@ -37,3 +37,6 @@ $desktop: 1440px;
 // Misc.
 $transition-time: 0.4s;
 $transparent: 0.2;
+
+// Z-layering
+$navbar-z: 1;

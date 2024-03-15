@@ -14,29 +14,29 @@
         }
 
         .section-header {
-            font-family: constants.$header-font;
-            font-size: 1.7rem;
-            letter-spacing: var(--text-spacing);
             margin-bottom: 0.5rem;
-            text-align: center;
             width: 100%;
+            font-size: 1.7rem;
+            font-family: constants.$header-font;
+            letter-spacing: var(--text-spacing);
+            text-align: center;
         }
 
         .section-content {
-            align-items: center;
             display: flex;
             justify-content: space-between;
+            align-items: center;
 
             .section-img {
-                height: var(--img-size);
                 position: relative;
                 width: var(--img-size);
+                height: var(--img-size);
             }
 
             .section-text {
+                width: calc(100% - var(--img-size));
                 font-size: var(--body-size);
                 letter-spacing: var(--text-spacing);
-                width: calc(100% - var(--img-size));
             }
         }
     }
@@ -58,8 +58,8 @@
 
         .about-section {
             .section-header {
-                font-size: 2rem;
                 margin-bottom: 1rem;
+                font-size: 2rem;
                 text-align: left;
             }
 
@@ -74,8 +74,8 @@
             }
 
             .section-content > .section-text {
-                margin-left: 1rem;
                 margin-right: 0;
+                margin-left: 1rem;
                 text-align: right;
             }
         }

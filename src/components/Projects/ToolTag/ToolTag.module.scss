@@ -3,10 +3,10 @@
 .tool-tag {
     --tag-accent: white;
     --tag-color: var(--theme-main);
-
-    background: var(--tag-color);
     border: 2px solid var(--tag-accent);
     border-radius: 2px;
+
+    background: var(--tag-color);
     padding: 0.4rem 1rem;
 
     .tag-text {

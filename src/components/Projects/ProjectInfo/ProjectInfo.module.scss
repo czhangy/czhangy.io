@@ -2,19 +2,19 @@
 
 .project-info {
     --link-size: 40px;
+    flex-direction: column;
 
     align-items: center;
-    flex-direction: column;
     padding: var(--padding);
     padding-right: calc(var(--padding));
     width: 100%;
 
     .project-img {
+        position: relative;
+        margin-bottom: 2rem;
         border-radius: 10px;
         height: var(--img-size);
-        margin-bottom: 2rem;
         overflow: hidden;
-        position: relative;
     }
 
     .project-desc {
@@ -28,23 +28,23 @@
             }
 
             .section-header {
-                font-size: 1.3rem;
-                font-weight: bold;
                 margin-bottom: 1rem;
+                font-weight: bold;
+                font-size: 1.3rem;
             }
 
             .project-links {
-                align-items: center;
                 display: flex;
-                height: var(--link-size);
                 justify-content: flex-end;
+                align-items: center;
+                height: var(--link-size);
 
                 .icon-container {
-                    filter: var(--theme-svg);
-                    height: var(--link-size);
-                    margin-left: 1rem;
                     position: relative;
+                    filter: var(--theme-svg);
+                    margin-left: 1rem;
                     width: var(--link-size);
+                    height: var(--link-size);
 
                     &:last-child {
                         margin-left: none;
@@ -57,17 +57,17 @@
             }
 
             .tool-list {
-                align-items: center;
                 display: flex;
                 flex-wrap: wrap;
+                align-items: center;
                 gap: 0.5rem;
             }
         }
 
         .top-section {
-            align-items: center;
             display: flex;
             justify-content: space-between;
+            align-items: center;
 
             .section-header {
                 margin-bottom: 0;

@@ -13,10 +13,10 @@
         position: relative;
 
         .timeline-el {
+            margin-top: calc(-2 * var(--border-size));
+            margin-bottom: 1rem;
             border-top: var(--border);
             border-bottom: var(--border);
-            margin-bottom: 1rem;
-            margin-top: calc(-2 * var(--border-size));
             padding: var(--line-padding);
 
             &:first-child {
@@ -29,10 +29,10 @@
 
             .time {
                 display: none;
-                font-family: constants.$header-font;
-                font-size: 2rem;
-                letter-spacing: 1px;
                 position: absolute;
+                font-size: 2rem;
+                font-family: constants.$header-font;
+                letter-spacing: 1px;
             }
 
             .left-time {
@@ -49,37 +49,37 @@
         }
 
         .left {
+            margin-right: calc(20px + var(--border-size));
             border-left: var(--border);
             border-radius: var(--border-rad) 0 0 var(--border-rad);
-            margin-right: calc(20px + var(--border-size));
         }
 
         .right {
+            margin-left: calc(20px + var(--border-size));
             border-right: var(--border);
             border-radius: 0 var(--border-rad) var(--border-rad) 0;
-            margin-left: calc(20px + var(--border-size));
         }
 
         .arrow {
-            border-bottom: 15px solid transparent;
-            border-right: var(--icon-size) solid var(--theme-text);
-            border-top: 15px solid transparent;
             display: none;
-            height: 0;
-            left: 8px;
             position: absolute;
+            left: 8px;
             transform: translateY(-20%);
+            border-top: 15px solid transparent;
+            border-right: var(--icon-size) solid var(--theme-text);
+            border-bottom: 15px solid transparent;
             width: 0;
+            height: 0;
         }
 
         .endpoint {
-            background: var(--theme-text);
-            border-radius: 50%;
-            bottom: -7.5px;
             display: none;
-            height: var(--icon-size);
             position: absolute;
+            bottom: -7.5px;
+            border-radius: 50%;
+            background: var(--theme-text);
             width: var(--icon-size);
+            height: var(--icon-size);
         }
 
         .left-endpoint {

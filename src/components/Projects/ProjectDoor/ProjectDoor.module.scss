@@ -1,20 +1,20 @@
 @use "@/styles/constants";
 
 .project-door {
-    align-items: center;
-    background: var(--theme-main);
     display: flex;
+    position: absolute;
+    align-items: center;
+    z-index: 9;
+    transition: transform constants.$transition-time;
+    background: var(--theme-main);
+    width: 50%;
     height: 100%;
     overflow: hidden;
-    position: absolute;
-    transition: transform constants.$transition-time;
-    width: 50%;
-    z-index: 9;
 
     .decal {
-        font-family: constants.$header-font;
-        font-size: 10rem;
         position: absolute;
+        font-size: 10rem;
+        font-family: constants.$header-font;
     }
 }
 

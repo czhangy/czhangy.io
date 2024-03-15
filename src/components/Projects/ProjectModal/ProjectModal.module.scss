@@ -1,30 +1,30 @@
 @use "@/styles/constants";
 
 .project-modal-bg {
-    animation-name: fadein;
-    animation-duration: 0.4s;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.5);
     display: flex;
-    height: calc(100vh - constants.$navbar-height);
-    justify-content: center;
     position: fixed;
     top: 0;
-    width: 100vw;
+    justify-content: center;
+    align-items: center;
     z-index: 99;
+    animation-duration: 0.4s;
+    animation-name: fadein;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: calc(100vh - constants.$navbar-height);
 
     .project-modal {
-        background: var(--theme-accent);
         border-radius: 20px;
+        background: var(--theme-accent);
+        width: 90%;
         height: 85%;
         overflow-y: scroll;
-        width: 90%;
     }
 }
 
 .closing {
-    animation-name: fadeout;
     animation-duration: 0.4s;
+    animation-name: fadeout;
 }
 
 @keyframes fadein {

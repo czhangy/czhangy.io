@@ -6,14 +6,14 @@
 
     .home-grid {
         display: grid;
-        gap: var(--gap);
-        grid-template-columns: repeat(4, 75px);
         grid-template-rows: repeat(7, var(--row-size));
+        grid-template-columns: repeat(4, 75px);
+        gap: var(--gap);
 
         .nav-card-container {
+            grid-row-end: span 2;
             grid-column-start: 1;
             grid-column-end: 5;
-            grid-row-end: span 2;
         }
     }
 }
@@ -27,16 +27,16 @@
             grid-template-columns: repeat(6, calc(2 * var(--row-size)));
 
             .nav-card-container {
+                grid-row-end: span 3;
                 grid-column-start: 3;
                 grid-column-end: 7;
-                grid-row-end: span 3;
             }
 
             .main-card {
-                grid-column-start: 1;
-                grid-column-end: 3;
                 grid-row-start: 1;
                 grid-row-end: 8;
+                grid-column-start: 1;
+                grid-column-end: 3;
             }
         }
     }

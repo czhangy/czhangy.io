@@ -1,29 +1,29 @@
 @use "@/styles/constants";
 
 .navbar-container {
-    --page-nav-margin: 0.75rem;
-    --page-nav-size: 1.2rem;
+    --title-font-size: 2rem;
+    --title-letter-spacing: 1px;
 
     display: flex;
-    height: constants.$navbar-height;
-    justify-content: center;
     position: relative;
+    justify-content: center;
+    z-index: constants.$navbar-z;
     width: 100%;
-    z-index: 1;
+    height: constants.$navbar-height;
 
     .navbar {
-        align-items: center;
         display: flex;
-        font-family: constants.$header-font;
         justify-content: space-between;
-        max-width: constants.$max-width;
+        align-items: center;
         padding: 0 constants.$page-padding;
         width: 100%;
+        max-width: constants.$max-width;
+        font-family: constants.$header-font;
 
         .main-nav {
             .title {
-                font-size: 2rem;
-                letter-spacing: 1px;
+                font-size: var(--title-font-size);
+                letter-spacing: var(--title-letter-spacing);
             }
         }
     }

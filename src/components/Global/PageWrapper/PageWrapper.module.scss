@@ -3,35 +3,35 @@
 .page-wrapper {
     --back-button-size: 2rem;
     --y-padding: 2rem;
+    display: flex;
+    justify-content: center;
 
     animation-duration: 0.3s;
     animation-name: load;
-    display: flex;
-    justify-content: center;
     transition:
         opacity constants.$transition-time,
         transform constants.$transition-time;
     width: 100%;
 
     .page-container {
-        align-items: center;
         display: flex;
         justify-content: center;
-        max-width: constants.$max-width;
+        align-items: center;
         padding: constants.$page-padding;
         width: 100%;
+        max-width: constants.$max-width;
     }
 }
 
 @keyframes load {
     from {
-        opacity: 0;
         transform: translateY(-30px);
+        opacity: 0;
     }
 
     to {
-        opacity: 1;
         transform: translateY(0);
+        opacity: 1;
     }
 }
 
