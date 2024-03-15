@@ -79,4 +79,4 @@ cat << EOT >> "src/components/$1/$2/$2.module.scss"
 EOT
 
 # Show success message
-echo -e ${BOLD_GREEN}src/components/$1/$2/$2.tsx${GREEN} was created successfully!${RESET}
+echo -e ${BOLD_GREEN}src/components/$1/$2${GREEN} was created successfully!${RESET}

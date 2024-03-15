@@ -1,0 +1,68 @@
+@use "@/styles/constants";
+
+.menu-container {
+    --bar-height: 2px;
+    --bar-spacing: 4px;
+    --bar-width: 28px;
+    --hover-bar-spacing: 5px;
+    --menu-spacing: 0.5rem;
+    --transition-time: 0.2s;
+
+    position: relative;
+
+    .menu-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+
+        .bar {
+            background: var(--theme-text);
+            height: var(--bar-height);
+            margin: var(--bar-spacing) 0;
+            width: var(--bar-width);
+            transition:
+                margin var(--transition-time),
+                transform var(--transition-time);
+        }
+
+        .cross:nth-of-type(1) {
+            transform: translateX(
+                    calc(var(--bar-width) * ((sqrt(2) / 2) - 0.5))
+                )
+                rotate(45deg);
+            transform-origin: top left;
+        }
+
+        .cross:nth-of-type(2) {
+            transition: all 100ms ease-inout;
+            transform-origin: center;
+            width: 0;
+        }
+
+        .cross:nth-of-type(3) {
+            transform: translateX(
+                    calc(var(--bar-width) * ((sqrt(2) / 2) - 0.5))
+                )
+                rotate(-45deg);
+            transform-origin: bottom left;
+        }
+    }
+
+    .menu {
+        position: absolute;
+        height: 200px;
+        width: 200px;
+        background: white;
+        right: 0;
+        top: calc(100% + var(--menu-spacing));
+    }
+}
+
+@media (hover: hover) {
+    .menu-container > .menu-button:hover {
+        .bar {
+            background: var(--theme-hover);
+        }
+    }
+}
