@@ -1,6 +1,7 @@
 import Head from "next/head";
-import AboutPage from "@/components/AboutPage/AboutPage";
-import PageWrapper from "@/components/PageWrapper/PageWrapper";
+
+import AboutPage from "@/components/About/AboutPage/AboutPage";
+import PageWrapper from "@/components/Global/PageWrapper/PageWrapper";
 
 import type { NextPage } from "next";
 

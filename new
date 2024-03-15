@@ -9,9 +9,12 @@ RED='\033[0;31m'
 RESET='\033[0m'
 YELLOW='\033[0;33m'
 
-# Check if correct number of inputs
-if [ "$#" -ne 2 ]; then
-    echo -e "${RED}Usage: ./new <SUBDIRECTORY_NAME> <COMPONENT_NAME>.${RESET}"
+# Flag states
+props=false
+
+# Check if enough inputs
+if [ "$#" -lt 2 ]; then
+    echo -e "${RED}Usage: ./new [-p] <SUBDIRECTORY_NAME> <COMPONENT_NAME>.${RESET}"
     exit 1
 fi
 
@@ -21,9 +24,20 @@ if [ "${PWD##*/}" != "Personal-Portfolio" ]; then
     exit 1
 fi
 
+# Check for flag
+OPTIND=1
+while getopts p opt; do
+    case $opt in
+        p)
+            props=true
+            ;;
+    esac
+done
+shift "$((OPTIND - 1))"
+
 # Check if sub-dir doesn't exist, create it if needed
 if [ ! -d ~/Personal-Portfolio/src/components/$1 ]; then
-    echo -e "${BOLD_RED}src/components/$1.tsx${RED} doesn't exist."
+    echo -e "${BOLD_RED}src/components/$1${RED} doesn't exist."
     exit 1
 # If the sub-directory does exist, make sure the component name is unused
 elif [ -d ~/Personal-Portfolio/src/components/$1/$2 ]; then
@@ -43,6 +57,17 @@ const $2: React.FC = () => {
 
 export default $2;
 EOT
+
+# Add props if needed
+if ${props}; then
+    sed -i '/.module.scss";/a \
+\
+type Props = \{\
+    \
+\}' "src/components/$1/$2/$2.tsx"
+    sed -i 's/React.FC/React.FC<Props>/' "src/components/$1/$2/$2.tsx"
+    sed -i 's/()/(props: Props)/' "src/components/$1/$2/$2.tsx"
+fi
 
 # Create the SCSS file
 cat << EOT >> "src/components/$1/$2/$2.module.scss"

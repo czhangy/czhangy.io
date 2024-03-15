@@ -1,4 +1,3 @@
-// TS
 import Experience from "@/models/Experience";
 
 const experience: Experience[] = [

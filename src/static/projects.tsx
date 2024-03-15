@@ -1,7 +1,5 @@
-// TS
 import Project from "@/models/Project";
-// Static data
-import tools from "@/static//tools";
+import tools from "@/static/tools";
 
 const projects: Project[] = [
     {

@@ -1,0 +1,35 @@
+@use "@/styles/constants";
+
+.projects-menu {
+    --border: 2px solid var(--theme-text);
+    --menu-width: 400px;
+
+    border-top: var(--border);
+    border-bottom: var(--border);
+    height: 100%;
+    width: var(--menu-width);
+    overflow-y: scroll;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.projects-menu::-webkit-scrollbar {
+    display: none;
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .projects-menu {
+        --menu-width: 300px;
+    }
+}
+
+@media screen and (min-width: constants.$desktop) {
+    .projects-menu {
+        --menu-width: 500px;
+    }
+}

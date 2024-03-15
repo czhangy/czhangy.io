@@ -34,6 +34,29 @@ else
     echo -e "${RED}[X] Output SCSS is correct${RESET}"
     status=1
 fi
+rm -rf src/components/Test
+
+# Test for successful creation with -p flag
+mkdir src/components/Test
+./new -p Test TestFile > /dev/null
+if [ $? -eq 0 ]; then
+    echo -e "${GREEN}[✓] Succeeds with valid inputs${RESET}"
+else
+    echo -e "${RED}[X] Succeeds with valid inputs${RESET}"
+    status=1
+fi
+if cmp -s src/components/Test/TestFile/TestFile.tsx src/tests/new/new_tsx_with_props.txt; then
+    echo -e "${GREEN}[✓] Output TSX is correct${RESET}"
+else
+    echo -e "${RED}[X] Output TSX is correct${RESET}"
+    status=1
+fi
+if cmp -s src/components/Test/TestFile/TestFile.module.scss src/tests/new/new_scss.module.txt; then
+    echo -e "${GREEN}[✓] Output SCSS is correct${RESET}"
+else
+    echo -e "${RED}[X] Output SCSS is correct${RESET}"
+    status=1
+fi
 
 # Test for existing component check
 ./new Test TestFile > /dev/null
@@ -60,13 +83,6 @@ if [ $? -eq 1 ]; then
     echo -e "${GREEN}[✓] Fails if run with too few inputs${RESET}"
 else
     echo -e "${RED}[X] Fails if run with too few inputs${RESET}"
-    status=1
-fi
-./new Test TestFile ExtraInput > /dev/null
-if [ $? -eq 1 ]; then
-    echo -e "${GREEN}[✓] Fails if run with too many inputs${RESET}"
-else
-    echo -e "${RED}[X] Fails if run with too many inputs${RESET}"
     status=1
 fi
 

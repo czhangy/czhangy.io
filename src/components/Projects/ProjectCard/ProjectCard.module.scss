@@ -1,0 +1,66 @@
+@use "@/styles/constants";
+
+.project-card {
+    --body-size: 1.2rem;
+    --border: 2px solid var(--theme-text);
+    --link-size: 40px;
+    --title-size: 1.75rem;
+    --v-padding: 1.5rem;
+
+    width: 100%;
+
+    .project-name {
+        font-family: constants.$header-font;
+        font-size: var(--title-size);
+        letter-spacing: 1px;
+        line-height: var(--title-size);
+        padding: var(--v-padding) 0;
+    }
+
+    .project-info {
+        background: var(--theme-accent);
+        box-shadow: inset var(--theme-shadow);
+        padding: var(--v-padding);
+        width: 100%;
+
+        .project-text {
+            font-size: var(--body-size);
+            line-height: var(--body-size);
+
+            .project-category,
+            .project-timeline {
+                margin-bottom: 1rem;
+            }
+        }
+
+        .project-links {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+
+            .icon-container {
+                filter: var(--theme-svg);
+                height: var(--link-size);
+                margin: 0 2rem;
+                position: relative;
+                width: var(--link-size);
+            }
+        }
+    }
+}
+
+@media (hover: hover) {
+    .project-card:hover {
+        .project-name {
+            color: var(--theme-hover);
+        }
+    }
+}
+
+@media (min-width: constants.$tablet) {
+    .project-card {
+        .project-info {
+            display: none;
+        }
+    }
+}

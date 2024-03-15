@@ -6,7 +6,10 @@
     "importOrder": [
         "^react$",
         "^next/(.*)$",
+        "",
         "^@/components/(.*)$",
+        "^@/models/(.*)$",
+        "^@/static/(.*)$",
         "",
         "<TYPES>",
         "",

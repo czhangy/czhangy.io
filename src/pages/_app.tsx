@@ -1,7 +1,8 @@
 import "@/styles/globals.scss";
 
 import { useEffect } from "react";
-import Navbar from "@/components/Navbar/Navbar";
+
+import Navbar from "@/components/Global/Navbar/Navbar";
 
 import type { AppProps } from "next/app";
 

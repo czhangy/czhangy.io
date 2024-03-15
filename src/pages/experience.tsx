@@ -1,10 +1,7 @@
-// TS
-
-// Next
 import Head from "next/head";
-import ExperiencePage from "@/components/ExperiencePage/ExperiencePage";
-// Page components
-import PageWrapper from "@/components/PageWrapper/PageWrapper";
+
+import ExperiencePage from "@/components/Experience/ExperiencePage/ExperiencePage";
+import PageWrapper from "@/components/Global/PageWrapper/PageWrapper";
 
 import type { NextPage } from "next";
 

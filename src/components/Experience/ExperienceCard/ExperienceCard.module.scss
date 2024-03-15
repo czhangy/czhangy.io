@@ -1,0 +1,79 @@
+@use "@/styles/constants";
+
+.experience-card {
+    --body-font: 0.8rem;
+    --card-padding: 1rem;
+    --header-font: 1.5rem;
+    --inner-margin: 1rem;
+    --img-size: 60px;
+
+    background: var(--theme-accent);
+    border-radius: 5px;
+    padding: var(--card-padding);
+
+    .card-header {
+        align-items: center;
+        display: flex;
+
+        .card-img {
+            height: var(--img-size);
+            margin-right: var(--inner-margin);
+            position: relative;
+            width: var(--img-size);
+        }
+
+        .header-text {
+            .company {
+                font-family: constants.$header-font;
+                font-size: var(--header-font);
+                letter-spacing: 1px;
+            }
+
+            .title {
+                font-weight: bold;
+            }
+
+            .title,
+            .time {
+                font-size: var(--body-font);
+            }
+        }
+    }
+
+    .card-desc {
+        list-style-type: circle;
+        margin-top: var(--inner-margin);
+        margin-left: 1rem;
+
+        .desc-line {
+            font-size: var(--body-font);
+            letter-spacing: 1px;
+            margin-bottom: calc(var(--inner-margin) / 2);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .experience-card {
+        --body-font: 1rem;
+        --header-font: 1.75rem;
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .experience-card {
+        --body-font: 1.2rem;
+        --card-padding: 2rem;
+        --header-font: 2rem;
+        --inner-margin: 1.5rem;
+        --img-size: 80px;
+
+        .card-header > .header-text > .time {
+            display: none;
+        }
+    }
+}

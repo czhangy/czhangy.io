@@ -1,4 +1,3 @@
-// TS
 import Tool from "@/models/Tool";
 
 export default interface Project {

@@ -1,0 +1,113 @@
+@use "@/styles/constants";
+
+.experience-page {
+    --border-rad: 40px;
+    --border-size: 0;
+    --border: var(--border-size) solid var(--theme-text);
+    --icon-size: 30px;
+    --line-padding: 0;
+
+    width: 100%;
+
+    .timeline {
+        position: relative;
+
+        .timeline-el {
+            border-top: var(--border);
+            border-bottom: var(--border);
+            margin-bottom: 1rem;
+            margin-top: calc(-2 * var(--border-size));
+            padding: var(--line-padding);
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .time {
+                display: none;
+                font-family: constants.$header-font;
+                font-size: 2rem;
+                letter-spacing: 1px;
+                position: absolute;
+            }
+
+            .left-time {
+                left: 0;
+                transform: rotate(90deg) translateX(-80%) translateY(-150%);
+                transform-origin: top left;
+            }
+
+            .right-time {
+                right: 0;
+                transform: rotate(270deg) translateX(80%) translateY(-150%);
+                transform-origin: top right;
+            }
+        }
+
+        .left {
+            border-left: var(--border);
+            border-radius: var(--border-rad) 0 0 var(--border-rad);
+            margin-right: calc(20px + var(--border-size));
+        }
+
+        .right {
+            border-right: var(--border);
+            border-radius: 0 var(--border-rad) var(--border-rad) 0;
+            margin-left: calc(20px + var(--border-size));
+        }
+
+        .arrow {
+            border-bottom: 15px solid transparent;
+            border-right: var(--icon-size) solid var(--theme-text);
+            border-top: 15px solid transparent;
+            display: none;
+            height: 0;
+            left: 8px;
+            position: absolute;
+            transform: translateY(-20%);
+            width: 0;
+        }
+
+        .endpoint {
+            background: var(--theme-text);
+            border-radius: 50%;
+            bottom: -7.5px;
+            display: none;
+            height: var(--icon-size);
+            position: absolute;
+            width: var(--icon-size);
+        }
+
+        .left-endpoint {
+            left: 12px;
+        }
+
+        .right-endpoint {
+            right: 12px;
+        }
+    }
+}
+
+@media screen and (min-width: constants.$desktop) {
+    .experience-page {
+        --border-size: 1rem;
+        --line-padding: 6rem;
+
+        padding: 4rem 0;
+
+        .timeline {
+            .timeline-el > .time {
+                display: block;
+            }
+
+            .arrow,
+            .endpoint {
+                display: block;
+            }
+        }
+    }
+}
