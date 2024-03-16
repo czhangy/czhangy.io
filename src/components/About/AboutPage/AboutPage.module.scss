@@ -1,33 +1,36 @@
 @use "@/styles/constants";
 
 .about-page {
-    --body-size: constants.$main-size;
+    --body-font-size: constants.$main-size;
+    --header-font-size: 1.75rem;
     --img-size: 0;
-    --section-margin: 2rem;
+    --section-inner-spacing: 2rem;
+    --section-spacing: 2rem;
     --text-spacing: 0;
 
     .about-section {
-        margin-bottom: var(--section-margin);
+        margin-bottom: var(--section-spacing);
 
         &:last-child {
             margin-bottom: 0;
         }
 
         .section-header {
-            margin-bottom: 0.5rem;
             width: 100%;
-            font-size: 1.7rem;
+            font-size: var(--header-font-size);
             font-family: constants.$header-font;
             letter-spacing: var(--text-spacing);
-            text-align: center;
+            text-align: left;
         }
 
         .section-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: var(--section-inner-spacing);
 
             .section-img {
+                display: none;
                 position: relative;
                 width: var(--img-size);
                 height: var(--img-size);
@@ -35,8 +38,7 @@
 
             .section-text {
                 width: calc(100% - var(--img-size));
-                font-size: var(--body-size);
-                letter-spacing: var(--text-spacing);
+                font-size: var(--body-font-size);
             }
         }
     }
@@ -44,40 +46,30 @@
 
 @media screen and (min-width: constants.$tablet) {
     .about-page {
-        --body-size: 1.2rem;
-        --section-margin: 3rem;
-        --text-spacing: 1px;
+        --body-font-size: 1.25rem;
+        --section-spacing: 3rem;
     }
 }
 
 @media screen and (min-width: constants.$desktop) {
     .about-page {
-        --body-size: 1.4rem;
-        --img-size: 17rem;
-        --section-margin: 5rem;
+        --body-font-size: 1.5rem;
+        --header-font-size: 2rem;
+        --img-size: 15rem;
+        --section-spacing: 5rem;
 
         .about-section {
             .section-header {
-                margin-bottom: 1rem;
-                font-size: 2rem;
                 text-align: left;
             }
 
-            .section-content > .section-text {
-                margin-right: 1rem;
+            .section-content > .section-img {
+                display: block;
             }
         }
 
-        .right-align {
-            .section-header {
-                text-align: right;
-            }
-
-            .section-content > .section-text {
-                margin-right: 0;
-                margin-left: 1rem;
-                text-align: right;
-            }
+        .right-align > .section-header {
+            text-align: right;
         }
     }
 }
