@@ -3,6 +3,7 @@
 .page-wrapper {
     --animation-duration: 0.5s;
     --page-offset: -30px;
+    --transition-time: 0.4s;
     --y-padding: 2rem;
 
     display: flex;
@@ -11,8 +12,8 @@
     animation-duration: var(--animation-duration);
     animation-name: load;
     transition:
-        opacity constants.$transition-time,
-        transform constants.$transition-time;
+        opacity var(--transition-time),
+        transform var(--transition-time);
     width: 100%;
 
     .page-container {

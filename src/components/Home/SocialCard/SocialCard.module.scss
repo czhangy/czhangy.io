@@ -1,20 +1,21 @@
 @use "@/styles/constants";
 
 .social-card {
-    -border-rad: 0;
+    --border-rad: 0;
     --icon-size: 40px;
+    --transition-time: 0.4s;
+
     display: flex;
     justify-content: center;
-
     align-items: center;
     transition:
-        transform constants.$transition-time,
-        box-shadow constants.$transition-time;
+        transform var(--transition-time),
+        box-shadow var(--transition-time);
     border-radius: var(--border-rad);
 
     .icon-container {
         position: relative;
-        transition: transform constants.$transition-time;
+        transition: transform var(--transition-time);
         width: var(--icon-size);
         height: var(--icon-size);
     }
