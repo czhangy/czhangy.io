@@ -1,6 +1,5 @@
-import Head from "next/head";
-
 import AboutPage from "@/components/About/AboutPage/AboutPage";
+import Head from "@/components/Global/Head/Head";
 import PageWrapper from "@/components/Global/PageWrapper/PageWrapper";
 
 import type { NextPage } from "next";
@@ -8,9 +7,7 @@ import type { NextPage } from "next";
 const About: NextPage = () => {
     return (
         <div>
-            <Head>
-                <title>Charles Zhang | About Me</title>
-            </Head>
+            <Head page="About" />
             <PageWrapper>
                 <AboutPage />
             </PageWrapper>

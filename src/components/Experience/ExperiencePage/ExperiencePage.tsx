@@ -1,8 +1,8 @@
 import ExperienceCard from "@/components/Experience/ExperienceCard/ExperienceCard";
-import Experience from "@/models/Experience";
-import experience from "@/static/experience";
 
 import styles from "./ExperiencePage.module.scss";
+import Experience from "@/models/Experience";
+import experience from "@/static/experience";
 
 const ExperiencePage: React.FC = () => {
     return (

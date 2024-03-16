@@ -1,16 +1,13 @@
-import Head from "next/head";
-
 import ExperiencePage from "@/components/Experience/ExperiencePage/ExperiencePage";
+import Head from "@/components/Global/Head/Head";
 import PageWrapper from "@/components/Global/PageWrapper/PageWrapper";
 
 import type { NextPage } from "next";
 
-const Projects: NextPage = () => {
+const Experience: NextPage = () => {
     return (
         <div>
-            <Head>
-                <title>Charles Zhang | My Experience</title>
-            </Head>
+            <Head page="Experience" />
             <PageWrapper>
                 <ExperiencePage />
             </PageWrapper>
@@ -18,4 +15,4 @@ const Projects: NextPage = () => {
     );
 };
 
-export default Projects;
+export default Experience;
