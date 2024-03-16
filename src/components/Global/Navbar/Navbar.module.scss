@@ -20,8 +20,8 @@
         max-width: constants.$max-width;
         font-family: constants.$header-font;
 
-        .main-nav {
-            .title {
+        .title {
+            .name {
                 font-size: var(--title-font-size);
                 letter-spacing: var(--title-letter-spacing);
             }
@@ -30,7 +30,7 @@
 }
 
 @media (hover: hover) {
-    .navbar-container > .navbar .title:hover {
+    .navbar-container > .navbar > .title .name:hover {
         color: var(--theme-hover);
     }
 }

@@ -1,12 +1,14 @@
 @use "@/styles/constants";
 
 .page-wrapper {
-    --back-button-size: 2rem;
+    --animation-duration: 0.5s;
+    --page-offset: -30px;
     --y-padding: 2rem;
+
     display: flex;
     justify-content: center;
 
-    animation-duration: 0.3s;
+    animation-duration: var(--animation-duration);
     animation-name: load;
     transition:
         opacity constants.$transition-time,
@@ -23,23 +25,23 @@
     }
 }
 
-@keyframes load {
-    from {
-        transform: translateY(-30px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
 @media screen and (min-width: constants.$tablet) {
     .page-wrapper {
         --y-padding: 4rem;
 
         align-items: center;
         min-height: calc(100vh - #{constants.$navbar-height});
+    }
+}
+
+@keyframes load {
+    from {
+        transform: translateY(var(--page-offset));
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }

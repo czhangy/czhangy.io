@@ -8,10 +8,10 @@ const Navbar: React.FC = () => {
     return (
         <header className={styles["navbar-container"]}>
             <div className={styles.navbar}>
-                <div className={styles["main-nav"]}>
+                <div className={styles.title}>
                     <Link href="/">
                         <a>
-                            <h1 className={styles.title}>CZhang</h1>
+                            <h1 className={styles.name}>CZhang</h1>
                         </a>
                     </Link>
                 </div>

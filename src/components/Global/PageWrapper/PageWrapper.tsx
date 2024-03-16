@@ -6,10 +6,10 @@ type Props = {
     children: ReactNode;
 };
 
-const PageWrapper: React.FC<Props> = ({ children }) => {
+const PageWrapper: React.FC<Props> = (props: Props) => {
     return (
         <div className={styles["page-wrapper"]}>
-            <div className={styles["page-container"]}>{children}</div>
+            <div className={styles["page-container"]}>{props.children}</div>
         </div>
     );
 };
