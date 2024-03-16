@@ -8,22 +8,22 @@ const HomePage: React.FC = () => {
         <div className={styles["home-page"]}>
             <div className={styles["home-grid"]}>
                 <div
-                    className={`${styles["nav-card-container"]} ${styles["main-card"]}`}
+                    className={`${styles["nav-card"]} ${styles["vertical-card"]}`}
                 >
-                    <NavCard flipped={true} title="About Me" url="about" />
+                    <NavCard title="About Me" path="/about" align="left" />
                 </div>
-                <div className={styles["nav-card-container"]}>
+                <div className={styles["nav-card"]}>
                     <NavCard
-                        flipped={false}
                         title="My Projects"
-                        url="projects"
+                        path="/projects"
+                        align="right"
                     />
                 </div>
-                <div className={styles["nav-card-container"]}>
+                <div className={styles["nav-card"]}>
                     <NavCard
                         title="My Experience"
-                        flipped={false}
-                        url="experience"
+                        path="/experience"
+                        align="right"
                     />
                 </div>
                 <SocialCard

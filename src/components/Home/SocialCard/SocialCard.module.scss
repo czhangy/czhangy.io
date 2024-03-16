@@ -1,7 +1,7 @@
 @use "@/styles/constants";
 
 .social-card {
-    --border-rad: 0;
+    --card-border-rad: 5px;
     --icon-size: 40px;
     --transition-time: 0.4s;
 
@@ -11,7 +11,7 @@
     transition:
         transform var(--transition-time),
         box-shadow var(--transition-time);
-    border-radius: var(--border-rad);
+    border-radius: var(--card-border-rad);
 
     .icon-container {
         position: relative;
@@ -78,28 +78,28 @@
     background: #1da1f2;
 }
 
-@media (hover: hover) {
-    .social-card:hover {
-        transform: scale(1.05);
-        box-shadow: var(--theme-shadow);
-
-        .icon-container {
-            transform: rotate(10deg);
-        }
-    }
-}
-
-// Tablet layout
 @media screen and (min-width: constants.$tablet) {
     .social-card {
-        --border-rad: 5px;
         --icon-size: 32px;
     }
 }
 
-// Desktop layout
 @media screen and (min-width: constants.$desktop) {
     .social-card {
         --icon-size: 40px;
+    }
+}
+
+@media (hover: hover) {
+    .social-card:hover {
+        --rotation: 10deg;
+        --scale: 1.05;
+
+        transform: scale(var(--scale));
+        box-shadow: var(--theme-shadow);
+
+        .icon-container {
+            transform: rotate(var(--rotation));
+        }
     }
 }

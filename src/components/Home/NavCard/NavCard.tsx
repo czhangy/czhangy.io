@@ -1,31 +1,44 @@
-import Image from "next/image";
+import Link from "next/link";
+
+import Image from "@/components/Global/Image/Image";
 
 import styles from "./NavCard.module.scss";
 
 type Props = {
-    flipped: boolean;
+    /** The title of the nav card */
     title: string;
-    url: string;
+    /** The path that the nav card links to and pulls its background image from */
+    path: string;
+    /** The side of the nav card the title is on */
+    align: "left" | "right";
 };
 
 const NavCard: React.FC<Props> = (props: Props) => {
+    /**
+     * Gets the src of the background image using the provided path
+     *
+     * @returns {string} The path to the .webp of the background image
+     */
+    const getBackgroundSrc = (): string => {
+        return `/assets/images/home${props.path}.webp`;
+    };
+
+    /**
+     * Gets the classes used to style the card and align the title on the correct side
+     *
+     * @returns {string} The classes needed to style the card title
+     */
+    const getTitleClass = (): string => {
+        return `${styles.title} ${styles[`${props.align}-title`]}`;
+    };
+
     return (
-        <a href={`/${props.url}`} className={styles["nav-card"]}>
-            <Image
-                src={`/assets/images/home/${props.url}.webp`}
-                alt=""
-                layout="fill"
-                objectFit="cover"
-            />
-            <div
-                className={`${styles["card-title"]} ${
-                    props.flipped ? styles["left-title"] : styles["right-title"]
-                }`}
-            >
-                <div className={styles["title-bg"]} />
-                <h2 className={styles.title}>{props.title}</h2>
-            </div>
-        </a>
+        <Link href={props.path}>
+            <a className={styles["nav-card"]}>
+                <Image src={getBackgroundSrc()} alt="" objectFit="cover" />
+                <h2 className={getTitleClass()}>{props.title}</h2>
+            </a>
+        </Link>
     );
 };
 

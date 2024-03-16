@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import Menu from "@/components/Global/Menu/Menu";
 
 import styles from "./Navbar.module.scss";

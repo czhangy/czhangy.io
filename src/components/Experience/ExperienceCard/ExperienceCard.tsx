@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import Experience from "@/models/Experience";
 
 import styles from "./ExperienceCard.module.scss";

@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import ProjectCard from "@/components/Projects/ProjectCard/ProjectCard";
 import Project from "@/models/Project";
 import projects from "@/static/projects";

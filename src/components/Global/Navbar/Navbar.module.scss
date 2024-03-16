@@ -1,8 +1,8 @@
 @use "@/styles/constants";
 
 .navbar-container {
-    --title-font-size: 2rem;
-    --title-letter-spacing: 1px;
+    --font-size: 2rem;
+    --letter-spacing: 1px;
 
     display: flex;
     position: relative;
@@ -20,11 +20,9 @@
         max-width: constants.$max-width;
         font-family: constants.$header-font;
 
-        .title {
-            .name {
-                font-size: var(--title-font-size);
-                letter-spacing: var(--title-letter-spacing);
-            }
+        .title .name {
+            font-size: var(--font-size);
+            letter-spacing: var(--letter-spacing);
         }
     }
 }

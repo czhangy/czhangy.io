@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import styles from "./PageWrapper.module.scss";
 
 type Props = {
+    /** The page component */
     children: ReactNode;
 };
 

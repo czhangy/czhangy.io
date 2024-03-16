@@ -4,7 +4,7 @@
     --bar-height: 2px;
     --bar-spacing: 4px;
     --bar-width: 28px;
-    --border-radius: 4px;
+    --border-rad: 4px;
     --border-width: 2px;
     --hover-bar-spacing: 5px;
     --icon-size: 28px;
@@ -63,7 +63,7 @@
         opacity: 0;
         transition: all var(--transition-time);
         border: var(--border-width) solid var(--theme-text);
-        border-radius: var(--border-radius);
+        border-radius: var(--border-rad);
         background-color: var(--theme-main);
 
         .menu-option {
