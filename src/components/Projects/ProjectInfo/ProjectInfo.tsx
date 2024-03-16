@@ -1,9 +1,9 @@
 import Image from "next/image";
 import ToolTag from "@/components/Projects/ToolTag/ToolTag";
-
-import styles from "./ProjectInfo.module.scss";
 import Project from "@/models/Project";
 import Tool from "@/models/Tool";
+
+import styles from "./ProjectInfo.module.scss";
 
 type Props = {
     project: Project;

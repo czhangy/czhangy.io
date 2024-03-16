@@ -7,25 +7,39 @@ import styles from "./Menu.module.scss";
 const Menu: React.FC = () => {
     const [open, setOpen] = useState<boolean>(false);
 
-    // Delay in ms
+    /** Delay between blur and menu close in ms */
     const DELAY: number = 100;
 
-    // Click handler to make menu closable using same button
-    const handleClick: () => void = () => {
-        if (open) {
-            (
-                document.querySelector("#menu-button") as HTMLButtonElement
-            ).blur();
-        } else {
-            (
-                document.querySelector("#menu-button") as HTMLButtonElement
-            ).focus();
-        }
+    /**
+     * Toggles the state of the menu
+     */
+    const toggleMenu = (): void => {
+        setOpen(!open);
     };
 
-    // Delay close a little to allow nav to fire
-    const handleClose: () => void = () => {
+    /**
+     * Closes the menu after some delay to allow for nav
+     */
+    const handleClose = (): void => {
         setTimeout(() => setOpen(false), DELAY);
+    };
+
+    /**
+     * Gets the correct styling of the menu icon, based on menu state
+     *
+     * @returns {string} the classes needed to style the menu icon in the correct state
+     */
+    const getBarClass = (): string => {
+        return `${styles.bar} ${open ? styles.cross : ""}`;
+    };
+
+    /**
+     * Gets the correct styling of the menu, based on menu state
+     *
+     * @returns {string} the classes needed to style the menu in the correct state
+     */
+    const getMenuClass = (): string => {
+        return `${styles.menu} ${open ? styles.open : styles.closed}`;
     };
 
     return (
@@ -33,16 +47,14 @@ const Menu: React.FC = () => {
             <button
                 id="menu-button"
                 className={styles["menu-button"]}
-                onClick={() => setOpen(!open)}
+                onClick={toggleMenu}
                 onBlur={handleClose}
             >
-                <span className={`${styles.bar} ${open ? styles.cross : ""}`} />
-                <span className={`${styles.bar} ${open ? styles.cross : ""}`} />
-                <span className={`${styles.bar} ${open ? styles.cross : ""}`} />
+                <span className={getBarClass()} />
+                <span className={getBarClass()} />
+                <span className={getBarClass()} />
             </button>
-            <ul
-                className={`${styles.menu} ${open ? styles.open : styles.closed}`}
-            >
+            <ul className={getMenuClass()}>
                 <li className={styles["menu-option"]}>
                     <Link href="/about">
                         <a className={styles["menu-link"]}>

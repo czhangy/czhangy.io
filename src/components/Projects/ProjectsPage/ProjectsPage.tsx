@@ -3,9 +3,9 @@ import ProjectDoor from "@/components/Projects/ProjectDoor/ProjectDoor";
 import ProjectInfo from "@/components/Projects/ProjectInfo/ProjectInfo";
 import ProjectModel from "@/components/Projects/ProjectModal/ProjectModal";
 import ProjectsMenu from "@/components/Projects/ProjectsMenu/ProjectsMenu";
+import Project from "@/models/Project";
 
 import styles from "./ProjectsPage.module.scss";
-import Project from "@/models/Project";
 
 const ProjectsPage: React.FC = () => {
     const [doorOpen, setDoorOpen] = useState<boolean>(false);

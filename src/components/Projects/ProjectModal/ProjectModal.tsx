@@ -1,7 +1,7 @@
 import ProjectInfo from "@/components/Projects/ProjectInfo/ProjectInfo";
+import Project from "@/models/Project";
 
 import styles from "./ProjectModal.module.scss";
-import Project from "@/models/Project";
 
 type Props = {
     onClose: () => void;

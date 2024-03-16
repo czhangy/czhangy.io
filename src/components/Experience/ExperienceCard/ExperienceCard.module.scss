@@ -1,13 +1,17 @@
 @use "@/styles/constants";
 
 .experience-card {
-    --body-font: 0.8rem;
+    --body-font-size: 1rem;
+    --bullet-spacing: 0.5rem;
+    --card-border-radius: 5px;
     --card-padding: 1rem;
-    --header-font: 1.5rem;
-    --inner-margin: 1rem;
-    --img-size: 60px;
-    border-radius: 5px;
+    --company-letter-spacing: 1px;
+    --description-offset: 1rem;
+    --description-spacing: 1rem;
+    --header-font-size: 1.5rem;
+    --logo-size: 60px;
 
+    border-radius: var(--card-border-radius);
     background: var(--theme-accent);
     padding: var(--card-padding);
 
@@ -17,38 +21,33 @@
 
         .card-img {
             position: relative;
-            margin-right: var(--inner-margin);
-            width: var(--img-size);
-            height: var(--img-size);
+            margin-right: var(--description-spacing);
+            width: var(--logo-size);
+            height: var(--logo-size);
         }
 
         .header-text {
             .company {
-                font-size: var(--header-font);
+                font-size: var(--header-font-size);
                 font-family: constants.$header-font;
-                letter-spacing: 1px;
-            }
-
-            .title {
-                font-weight: bold;
+                letter-spacing: var(--company-letter-spacing);
             }
 
             .title,
-            .time {
-                font-size: var(--body-font);
+            .timeframe {
+                font-size: var(--body-font-size);
             }
         }
     }
 
-    .card-desc {
-        margin-top: var(--inner-margin);
-        margin-left: 1rem;
+    .card-description {
+        margin-top: var(--description-spacing);
+        margin-left: var(--description-offset);
         list-style-type: circle;
 
-        .desc-line {
-            margin-bottom: calc(var(--inner-margin) / 2);
-            font-size: var(--body-font);
-            letter-spacing: 1px;
+        .bullet {
+            margin-bottom: var(--bullet-spacing);
+            font-size: var(--body-font-size);
 
             &:last-child {
                 margin-bottom: 0;
@@ -59,20 +58,20 @@
 
 @media screen and (min-width: constants.$tablet) {
     .experience-card {
-        --body-font: 1rem;
-        --header-font: 1.75rem;
+        --header-font-size: 1.75rem;
     }
 }
 
-@media screen and (min-width: constants.$tablet) {
+@media screen and (min-width: constants.$desktop) {
     .experience-card {
-        --body-font: 1.2rem;
+        --body-font-size: 1.25rem;
+        --bullet-spacing: 0.75rem;
         --card-padding: 2rem;
-        --header-font: 2rem;
-        --inner-margin: 1.5rem;
-        --img-size: 80px;
+        --description-spacing: 1.5rem;
+        --header-font-size: 2rem;
+        --logo-size: 80px;
 
-        .card-header > .header-text > .time {
+        .card-header > .header-text > .timeframe {
             display: none;
         }
     }

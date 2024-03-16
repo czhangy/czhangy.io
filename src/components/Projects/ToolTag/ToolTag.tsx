@@ -1,5 +1,6 @@
-import styles from "./ToolTag.module.scss";
 import Tool from "@/models/Tool";
+
+import styles from "./ToolTag.module.scss";
 
 type Props = {
     tool: Tool;

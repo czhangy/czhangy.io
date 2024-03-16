@@ -1,9 +1,9 @@
 import { useState } from "react";
 import ProjectCard from "@/components/Projects/ProjectCard/ProjectCard";
-
-import styles from "./ProjectsMenu.module.scss";
 import Project from "@/models/Project";
 import projects from "@/static/projects";
+
+import styles from "./ProjectsMenu.module.scss";
 
 type Props = {
     onSelect: (project: Project | null) => void;

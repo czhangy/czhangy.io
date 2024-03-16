@@ -1,5 +1,6 @@
-import styles from "./ProjectCard.module.scss";
 import Project from "@/models/Project";
+
+import styles from "./ProjectCard.module.scss";
 
 type Props = {
     onClick: (project: Project | null) => void;
