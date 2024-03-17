@@ -19,23 +19,12 @@
     </a>
 </p>
 <h4>
-    <a href="https://github.com/czhangy/czhangy.io">Documentation</a>
-    <span> · </span>
-    <a href="https://github.com/czhangy/czhangy.io/issues">Report Bug</a>
+    <a href="https://github.com/czhangy/czhangy.io/issues">New Issue</a>
 </h4>
 
 </div>
 
 <br />
-
-<!-- Table of Contents -->
-
-## Table of Contents
-
--   [Tech Stack](#tech-stack)
--   [License](#license)
--   [Contact](#contact)
--   [Acknowledgements](#acknowledgements)
 
 ## Tech Stack
 
@@ -44,7 +33,6 @@
 <details>
     <summary>Client</summary>
     <br />
-    
     <a href="https://reactjs.org/">
         <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="ReactJS" />
     </a>
