@@ -75,7 +75,7 @@ The most up-to-date version of my portfolio is currently deployed [here](https:/
 
 ## Todos
 
--   [ ] Clean up
+-   [x] [Clean up](https://github.com/czhangy/Personal-Portfolio/pull/11)
 -   [ ] Revisit light mode
 -   [ ] Add timeframe to tablet/mobile display on projects page
 -   [ ] Add journals
