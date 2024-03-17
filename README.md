@@ -9,19 +9,19 @@
 
 <p>
     <a href="">
-        <img src="https://img.shields.io/github/last-commit/czhangy/Personal-Portfolio" alt="Last update" />
+        <img src="https://img.shields.io/github/last-commit/czhangy/czhangy.io" alt="Last update" />
     </a>
-    <a href="https://github.com/czhangy/Personal-Portfolio/stargazers">
-        <img src="https://img.shields.io/github/stars/czhangy/Personal-Portfolio" alt="Stars" />
+    <a href="https://github.com/czhangy/czhangy.io/stargazers">
+        <img src="https://img.shields.io/github/stars/czhangy/czhangy.io" alt="Stars" />
     </a>
-    <a href="https://github.com/czhangy/Personal-Portfolio/issues/">
-        <img src="https://img.shields.io/github/issues/czhangy/Personal-Portfolio" alt="Open issues" />
+    <a href="https://github.com/czhangy/czhangy.io/issues/">
+        <img src="https://img.shields.io/github/issues/czhangy/czhangy.io" alt="Open issues" />
     </a>
 </p>
 <h4>
-    <a href="https://github.com/czhangy/Personal-Portfolio">Documentation</a>
+    <a href="https://github.com/czhangy/czhangy.io">Documentation</a>
     <span> · </span>
-    <a href="https://github.com/czhangy/Personal-Portfolio/issues">Report Bug</a>
+    <a href="https://github.com/czhangy/czhangy.io/issues">Report Bug</a>
 </h4>
 
 </div>
