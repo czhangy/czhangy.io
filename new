@@ -19,7 +19,7 @@ if [ "$#" -lt 2 ]; then
 fi
 
 # Check if in correct directory
-if [ "${PWD##*/}" != "Personal-Portfolio" ]; then
+if [ "${PWD##*/}" != "czhangy.io" ]; then
     echo -e "${RED}Script must be executed in the root directory.${RESET}"
     exit 1
 fi
@@ -36,11 +36,11 @@ done
 shift "$((OPTIND - 1))"
 
 # Check if sub-dir doesn't exist, create it if needed
-if [ ! -d ~/Personal-Portfolio/src/components/$1 ]; then
+if [ ! -d ~/czhangy.io/src/components/$1 ]; then
     echo -e "${BOLD_RED}src/components/$1${RED} doesn't exist."
     exit 1
 # If the sub-directory does exist, make sure the component name is unused
-elif [ -d ~/Personal-Portfolio/src/components/$1/$2 ]; then
+elif [ -d ~/czhangy.io/src/components/$1/$2 ]; then
     echo -e "${BOLD_RED}src/components/$1/$2/$2.tsx${RED} already exists."
     exit 1
 fi
