@@ -1,0 +1,11 @@
+import styles from "./TestFile.module.scss";
+
+type Props = {
+    
+}
+
+const TestFile: React.FC<Props> = (props: Props) => {
+    return <div className={styles['test-file']}></div>;
+};
+
+export default TestFile;

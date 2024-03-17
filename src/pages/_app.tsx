@@ -1,37 +1,47 @@
-// Stylesheet
 import "@/styles/globals.scss";
-// TS
-import type { AppProps } from "next/app";
-// React
+
 import { useEffect } from "react";
-// Nav components
-import Navbar from "@/components/Navbar/Navbar";
+
+import Navbar from "@/components/Global/Navbar/Navbar";
+
+import type { AppProps } from "next/app";
 
 function App({ Component, pageProps }: AppProps) {
-    // Check user preferences for theme
-    const getTheme = () => {
-        if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-            return "light";
-        } else {
-            return "dark";
-        }
-    };
+    /** The string constant denoting a change event */
+    const CHANGE_EVENT: string = "change";
+    /** The string constant denoting a dark theme */
+    const DARK: string = "dark";
+    /** The string constant denoting a light theme */
+    const LIGHT: string = "light";
 
-    // Set site theme to given theme
-    const setTheme = (theme: string) => {
-        document.body.dataset.theme = theme;
-    };
-
-    // Set event listener for dynamic updates
     useEffect(() => {
-        const updateTheme = () => {
-            setTheme(getTheme());
+        /**
+         * Gets the default theme from the user's browser settings
+         *
+         * @returns the object that can be listened to for theme changes
+         */
+        const getDefaultTheme = (): MediaQueryList =>
+            window.matchMedia(`(prefers-color-scheme: ${LIGHT})`);
+
+        /**
+         * Updates the site's theme from the user's browser settings
+         */
+        const updateTheme = (): void => {
+            document.body.dataset.theme = getDefaultTheme().matches
+                ? LIGHT
+                : DARK;
         };
-        let themeQuery = window.matchMedia("(prefers-color-scheme: light)");
-        themeQuery.addEventListener("change", updateTheme);
+
+        // Set up event listener for dynamic theme changes
+        const themeQuery: MediaQueryList = getDefaultTheme();
+        themeQuery.addEventListener(CHANGE_EVENT, updateTheme);
+
+        // Grab theme initially
         updateTheme();
+
+        // Clean up event listener
         return () => {
-            document.removeEventListener("change", updateTheme);
+            document.removeEventListener(CHANGE_EVENT, updateTheme);
         };
     }, []);
 

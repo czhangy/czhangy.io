@@ -1,0 +1,125 @@
+@use "@/styles/constants";
+
+.experience-page {
+    --experience-spacing: 1rem;
+
+    width: 100%;
+
+    .timeline > .experience {
+        margin-bottom: var(--experience-spacing);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeframe {
+            display: none;
+        }
+    }
+}
+
+@media screen and (min-width: constants.$desktop) {
+    .experience-page {
+        --arrow-height: 16px;
+        --arrow-length: 28px;
+        --endpoint-size: 32px;
+        --experience-offset: 20px;
+        --experience-spacing: 0;
+        --page-y-padding: 4rem;
+        --timeframe-font-size: 2rem;
+        --timeframe-letter-spacing: 1px;
+        --timeframe-x-offset: 80%;
+        --timeframe-y-offset: -150%;
+        --timeline: var(--timeline-size) solid var(--theme-text);
+        --timeline-radius: 40px;
+        --timeline-size: 1rem;
+        --line-padding: 6rem;
+
+        padding: var(--page-y-padding) 0;
+
+        .timeline {
+            position: relative;
+
+            .experience {
+                margin-top: calc(var(--timeline-size) * -1);
+                border-top: var(--timeline);
+                border-bottom: var(--timeline);
+                padding: var(--line-padding);
+
+                &:first-child {
+                    margin-top: 0;
+                }
+
+                .timeframe {
+                    display: block;
+                    position: absolute;
+                    font-size: var(--timeframe-font-size);
+                    font-family: constants.$header-font;
+                    letter-spacing: var(--timeframe-letter-spacing);
+                }
+            }
+
+            .left {
+                margin-right: calc(
+                    var(--experience-offset) + var(--timeline-size)
+                );
+                border-left: var(--timeline);
+                border-radius: var(--timeline-radius) 0 0 var(--timeline-radius);
+
+                .timeframe {
+                    left: 0;
+                    transform: rotate(90deg)
+                        translateX(calc(var(--timeframe-x-offset) * -1))
+                        translateY(var(--timeframe-y-offset));
+                    transform-origin: top left;
+                }
+            }
+
+            .right {
+                margin-left: calc(
+                    var(--experience-offset) + var(--timeline-size)
+                );
+                border-right: var(--timeline);
+                border-radius: 0 var(--timeline-radius) var(--timeline-radius) 0;
+
+                .timeframe {
+                    right: 0;
+                    transform: rotate(270deg)
+                        translateX(var(--timeframe-x-offset))
+                        translateY(var(--timeframe-y-offset));
+                    transform-origin: top right;
+                }
+            }
+
+            .arrow {
+                position: absolute;
+                top: calc(var(--timeline-size) / -2);
+                left: var(--timeline-size);
+                border-top: var(--arrow-height) solid transparent;
+                border-right: var(--arrow-length) solid var(--theme-text);
+                border-bottom: var(--arrow-height) solid transparent;
+                width: 0;
+                height: 0;
+            }
+
+            .endpoint {
+                position: absolute;
+                bottom: calc(
+                    (var(--endpoint-size) - var(--timeline-size)) / -2
+                );
+                border-radius: 50%;
+                background: var(--theme-text);
+                width: var(--endpoint-size);
+                height: var(--endpoint-size);
+            }
+
+            .left-endpoint {
+                left: var(--timeline-size);
+            }
+
+            .right-endpoint {
+                right: var(--timeline-size);
+            }
+        }
+    }
+}

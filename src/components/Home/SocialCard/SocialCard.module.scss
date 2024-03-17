@@ -1,0 +1,105 @@
+@use "@/styles/constants";
+
+.social-card {
+    --card-border-rad: 5px;
+    --icon-size: 40px;
+    --transition-time: 0.4s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition:
+        transform var(--transition-time),
+        box-shadow var(--transition-time);
+    border-radius: var(--card-border-rad);
+
+    .icon-container {
+        position: relative;
+        transition: transform var(--transition-time);
+        width: var(--icon-size);
+        height: var(--icon-size);
+    }
+}
+
+.github {
+    background: black;
+}
+
+.linkedin {
+    background: #0077b5;
+}
+
+.instagram {
+    background: radial-gradient(
+            circle farthest-corner at 35% 90%,
+            #fec564,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle farthest-corner at 0 140%,
+            #fec564,
+            transparent 50%
+        ),
+        radial-gradient(
+            ellipse farthest-corner at 0 -25%,
+            #5258cf,
+            transparent 50%
+        ),
+        radial-gradient(
+            ellipse farthest-corner at 20% -50%,
+            #5258cf,
+            transparent 50%
+        ),
+        radial-gradient(
+            ellipse farthest-corner at 100% 0,
+            #893dc2,
+            transparent 50%
+        ),
+        radial-gradient(
+            ellipse farthest-corner at 60% -20%,
+            #893dc2,
+            transparent 50%
+        ),
+        radial-gradient(
+            ellipse farthest-corner at 100% 100%,
+            #d9317a,
+            transparent
+        ),
+        linear-gradient(
+            #6559ca,
+            #bc318f 30%,
+            #e33f5f 50%,
+            #f77638 70%,
+            #fec66d 100%
+        );
+}
+
+.twitter {
+    background: #1da1f2;
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .social-card {
+        --icon-size: 32px;
+    }
+}
+
+@media screen and (min-width: constants.$desktop) {
+    .social-card {
+        --icon-size: 40px;
+    }
+}
+
+@media (hover: hover) {
+    .social-card:hover {
+        --rotation: 10deg;
+        --scale: 1.05;
+
+        transform: scale(var(--scale));
+        box-shadow: var(--theme-shadow);
+
+        .icon-container {
+            transform: rotate(var(--rotation));
+        }
+    }
+}

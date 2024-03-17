@@ -1,0 +1,75 @@
+@use "@/styles/constants";
+
+.about-page {
+    --body-font-size: 1rem;
+    --header-font-size: 1.75rem;
+    --img-size: 0;
+    --section-inner-spacing: 2rem;
+    --section-spacing: 2rem;
+    --text-spacing: 0;
+
+    .about-section {
+        margin-bottom: var(--section-spacing);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-header {
+            width: 100%;
+            font-size: var(--header-font-size);
+            font-family: constants.$header-font;
+            letter-spacing: var(--text-spacing);
+            text-align: left;
+        }
+
+        .section-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--section-inner-spacing);
+
+            .section-img {
+                display: none;
+                position: relative;
+                width: var(--img-size);
+                height: var(--img-size);
+            }
+
+            .section-text {
+                width: calc(100% - var(--img-size));
+                font-size: var(--body-font-size);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .about-page {
+        --body-font-size: 1.25rem;
+        --section-spacing: 3rem;
+    }
+}
+
+@media screen and (min-width: constants.$desktop) {
+    .about-page {
+        --body-font-size: 1.5rem;
+        --header-font-size: 2rem;
+        --img-size: 15rem;
+        --section-spacing: 5rem;
+
+        .about-section {
+            .section-header {
+                text-align: left;
+            }
+
+            .section-content > .section-img {
+                display: block;
+            }
+        }
+
+        .right-align > .section-header {
+            text-align: right;
+        }
+    }
+}

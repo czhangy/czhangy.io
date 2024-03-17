@@ -1,0 +1,42 @@
+@use "@/styles/constants";
+
+.project-door {
+    --transition-time: 0.4s;
+
+    display: flex;
+    position: absolute;
+    align-items: center;
+    z-index: 9;
+    transition: transform var(--transition-time);
+    background: var(--theme-main);
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+
+    .decal {
+        position: absolute;
+        font-size: 10rem;
+        font-family: constants.$header-font;
+    }
+}
+
+.left {
+    transform: translateX(-110%);
+
+    .decal {
+        right: -24px;
+    }
+}
+
+.right {
+    right: 0;
+    transform: translateX(110%);
+
+    .decal {
+        left: -24px;
+    }
+}
+
+.closed {
+    transform: translateX(0);
+}

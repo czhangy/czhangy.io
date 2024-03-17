@@ -1,6 +1,32 @@
 #!/bin/bash
-read -p "Commit message: " desc
-npx prettier --write .
-git add -A && \
-git commit -m "$desc" && \
+
+# Style constants
+RED='\033[0;31m'
+RESET='\033[0m'
+
+# Check if correct number of inputs
+if [ "$#" -ne 1 ]; then
+    echo -e "${RED}Usage: ./push <COMMIT_MSG>.${RESET}"
+    exit 1
+fi
+
+# Check if in correct directory
+if [ "${PWD##*/}" != "Personal-Portfolio" ]; then
+    echo -e "${RED}Script must be executed in the root directory.${RESET}"
+    exit 1
+fi
+
+# Check if script test passes
+./src/tests/new/new_test > /dev/null
+if [ $? -eq 1 ]; then
+    echo -e "${RED}Bash script test failed.${RESET}"
+    exit 1
+fi
+
+# Format files
+npx prettier --write . > /dev/null
+
+# Git actions
+git add -A > /dev/null && \
+git commit -m "$1" > /dev/null && \
 git push

@@ -1,0 +1,44 @@
+@use "@/styles/constants";
+
+.projects-page {
+    --container-border-rad: 10px;
+    --container-height: 565px;
+    --container-padding: 2rem;
+    --img-size: 280px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+
+    .scroll-container {
+        display: none;
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .projects-page {
+        --padding: 2rem;
+    }
+}
+
+@media screen and (min-width: constants.$desktop) {
+    .projects-page {
+        --img-size: 440px;
+
+        .scroll-container {
+            display: block;
+            position: relative;
+            border-radius: var(--container-border-rad);
+            background: var(--theme-accent);
+            width: calc(2 * var(--container-padding) + var(--img-size));
+            height: var(--container-height);
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+
+        .disabled {
+            overflow: hidden;
+        }
+    }
+}

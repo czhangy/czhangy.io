@@ -1,0 +1,48 @@
+@use "@/styles/constants";
+
+.page-wrapper {
+    --animation-duration: 0.5s;
+    --page-offset: -30px;
+    --transition-time: 0.4s;
+    --y-padding: 2rem;
+
+    display: flex;
+    justify-content: center;
+
+    animation-duration: var(--animation-duration);
+    animation-name: load;
+    transition:
+        opacity var(--transition-time),
+        transform var(--transition-time);
+    width: 100%;
+
+    .page-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: constants.$page-padding;
+        width: 100%;
+        max-width: constants.$max-width;
+    }
+}
+
+@media screen and (min-width: constants.$mobile) {
+    .page-wrapper {
+        --y-padding: 4rem;
+
+        align-items: center;
+        min-height: calc(100vh - #{constants.$navbar-height});
+    }
+}
+
+@keyframes load {
+    from {
+        transform: translateY(var(--page-offset));
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

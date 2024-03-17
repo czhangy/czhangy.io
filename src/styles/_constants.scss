@@ -1,19 +1,16 @@
 // Fonts
-$main-font: Poppins, sans-serif;
+$main-font: "IBM Plex Sans", sans-serif;
 $header-font: Staatliches, sans-serif;
-
-// Font sizes
-$main-size: 1rem;
 
 // Dark theme
 $dark: #222;
 $dark-accent: #302d2d;
 $dark-text: white;
-$dark-hover: #1d49da;
+$dark-hover: #9055f0;
 $dark-svg: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg)
     brightness(103%) contrast(103%);
-$dark-svg-hover: invert(18%) sepia(97%) saturate(2803%) hue-rotate(225deg)
-    brightness(94%) contrast(96%);
+$dark-svg-hover: invert(39%) sepia(23%) saturate(5385%) hue-rotate(241deg)
+    brightness(95%) contrast(98%);
 $dark-shadow: 0 3px 5px 3px #1b1b1b;
 
 // Light theme
@@ -29,11 +26,12 @@ $light-shadow: 0 3px 5px 1px #777;
 
 // Dimensions
 $max-width: 1360px;
-$navbar-height: 60px;
+$navbar-height: 80px;
 $page-padding: 2rem;
+$mobile: 425px;
 $tablet: 768px;
 $desktop: 1440px;
 
-// Misc.
-$transition-time: 0.4s;
-$transparent: 0.2;
+// Z-layering
+$navbar-z: 1;
+$modal-z: 99;

@@ -1,0 +1,22 @@
+@use "@/styles/constants";
+
+.project-card {
+    --name-font-size: 1.75rem;
+    --name-letter-spacing: 1px;
+    --y-padding: 1.5rem;
+
+    width: 100%;
+
+    .project-name {
+        padding: var(--y-padding) 0;
+        font-size: var(--name-font-size);
+        font-family: constants.$header-font;
+        letter-spacing: var(--name-letter-spacing);
+    }
+}
+
+@media (hover: hover) {
+    .project-card:hover > .project-name {
+        color: var(--theme-hover);
+    }
+}

@@ -1,0 +1,82 @@
+#!/bin/bash
+
+# Style constants
+BOLD_RED='\033[1;31m'
+BOLD_GREEN='\033[1;32m'
+BOLD_YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+RESET='\033[0m'
+YELLOW='\033[0;33m'
+
+# Flag states
+props=false
+
+# Check if enough inputs
+if [ "$#" -lt 2 ]; then
+    echo -e "${RED}Usage: ./new [-p] <SUBDIRECTORY_NAME> <COMPONENT_NAME>.${RESET}"
+    exit 1
+fi
+
+# Check if in correct directory
+if [ "${PWD##*/}" != "Personal-Portfolio" ]; then
+    echo -e "${RED}Script must be executed in the root directory.${RESET}"
+    exit 1
+fi
+
+# Check for flag
+OPTIND=1
+while getopts p opt; do
+    case $opt in
+        p)
+            props=true
+            ;;
+    esac
+done
+shift "$((OPTIND - 1))"
+
+# Check if sub-dir doesn't exist, create it if needed
+if [ ! -d ~/Personal-Portfolio/src/components/$1 ]; then
+    echo -e "${BOLD_RED}src/components/$1${RED} doesn't exist."
+    exit 1
+# If the sub-directory does exist, make sure the component name is unused
+elif [ -d ~/Personal-Portfolio/src/components/$1/$2 ]; then
+    echo -e "${BOLD_RED}src/components/$1/$2/$2.tsx${RED} already exists."
+    exit 1
+fi
+
+mkdir src/components/$1/$2
+
+# Create the TSX file
+cat << EOT >> "src/components/$1/$2/$2.tsx"
+import styles from "./$2.module.scss";
+
+const $2: React.FC = () => {
+    return <div className={styles['$(echo $2 | sed -r 's/([a-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')']}></div>;
+};
+
+export default $2;
+EOT
+
+# Add props if needed
+if ${props}; then
+    sed -i '/.module.scss";/a \
+\
+type Props = \{\
+    \
+\}' "src/components/$1/$2/$2.tsx"
+    sed -i 's/React.FC/React.FC<Props>/' "src/components/$1/$2/$2.tsx"
+    sed -i 's/()/(props: Props)/' "src/components/$1/$2/$2.tsx"
+fi
+
+# Create the SCSS file
+cat << EOT >> "src/components/$1/$2/$2.module.scss"
+@use "@/styles/constants";
+
+.$(echo $2 | sed -r 's/([a-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]') {
+
+}
+EOT
+
+# Show success message
+echo -e ${BOLD_GREEN}src/components/$1/$2${GREEN} was created successfully!${RESET}

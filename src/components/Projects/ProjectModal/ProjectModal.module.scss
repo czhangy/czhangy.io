@@ -1,0 +1,60 @@
+@use "@/styles/constants";
+
+.project-modal-overlay {
+    --animation-time: 0.4s;
+    --modal-border-rad: 20px;
+    --modal-height: 85%;
+    --modal-width: 90%;
+
+    display: flex;
+    position: fixed;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: constants.$modal-z;
+    animation-duration: var(--animation-time);
+    animation-name: fadein;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: calc(100vh - constants.$navbar-height);
+
+    .project-modal {
+        border-radius: var(--modal-border-rad);
+        background: var(--theme-accent);
+        padding: 1rem;
+        width: var(--modal-width);
+        height: var(--modal-height);
+        overflow-y: scroll;
+    }
+}
+
+.closing {
+    animation-duration: var(--animation-time);
+    animation-name: fadeout;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@media screen and (min-width: constants.$desktop) {
+    .project-modal-overlay {
+        display: none;
+    }
+}

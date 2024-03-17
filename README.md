@@ -71,6 +71,19 @@ The most up-to-date version of my portfolio is currently deployed [here](https:/
     </a>
 </details>
 
+<!-- To-Dos -->
+
+## Todos
+
+-   [x] [Clean up](https://github.com/czhangy/Personal-Portfolio/pull/11)
+-   [ ] Revisit light mode
+-   [ ] Add timeframe to tablet/mobile display on projects page
+-   [ ] Add journals
+-   [ ] Connect database to site
+-   [ ] Testing
+-   [ ] Add editing page
+-   [ ] Make About page more programmatic
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
