@@ -7,30 +7,43 @@ import projects from "@/static/projects";
 import styles from "./ProjectsMenu.module.scss";
 
 type Props = {
-    onSelect: (project: Project | null) => void;
+    onSelect: (project: Project) => void;
 };
 
 const ProjectsMenu: React.FC<Props> = (props: Props) => {
     const [disabled, setDisabled] = useState<boolean>(false);
 
-    const selectProject = (project: Project | null) => {
+    /** The amount of time in ms that the menu is disabled to allow for a clean animation */
+    const CLICK_DELAY: number = 800;
+
+    /**
+     * Get the classes needed to style the menu
+     *
+     * @returns {string} The classes needed to style and disable the menu
+     */
+    const getMenuClass = (): string => {
+        return `${styles["projects-menu"]} ${disabled ? styles.disabled : ""}`;
+    };
+
+    /**
+     * Selects a project by disabling the menu temporarily and passing the selection up
+     *
+     * @param {Project} project The Project object that is being selected
+     */
+    const selectProject = (project: Project): void => {
         setDisabled(true);
         props.onSelect(project);
-        setTimeout(() => setDisabled(false), 800);
+        setTimeout(() => setDisabled(false), CLICK_DELAY);
     };
 
     return (
-        <ul
-            className={`${styles["projects-menu"]} ${
-                disabled ? styles.disabled : ""
-            }`}
-        >
-            {projects.map((project: Project, i: number) => {
+        <ul className={getMenuClass()}>
+            {projects.map((project: Project, idx: number) => {
                 return (
-                    <li className={styles["projects-menu-card"]} key={i}>
+                    <li className={styles["projects-menu-card"]} key={idx}>
                         <ProjectCard
-                            onClick={selectProject}
                             project={project}
+                            onClick={selectProject}
                         />
                     </li>
                 );

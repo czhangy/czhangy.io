@@ -1,87 +1,78 @@
 @use "@/styles/constants";
 
 .project-info {
+    --body-font-size: 1rem;
+    --header-font-size: 1.5rem;
+    --header-spacing: 1rem;
+    --img-border-rad: 10px;
+    --link-spacing: 1rem;
     --link-size: 40px;
-    flex-direction: column;
+    --section-spacing: 2rem;
+    --tool-spacing: 0.5rem;
 
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: var(--section-spacing);
     padding: var(--padding);
     padding-right: calc(var(--padding));
     width: 100%;
 
-    .project-img {
-        position: relative;
-        margin-bottom: 2rem;
-        border-radius: 10px;
-        height: var(--img-size);
-        overflow: hidden;
-    }
-
-    .project-desc {
+    .project-section {
         width: 100%;
 
-        .project-section {
-            margin-bottom: 2rem;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-
-            .section-header {
-                margin-bottom: 1rem;
-                font-weight: bold;
-                font-size: 1.3rem;
-            }
-
-            .project-links {
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;
-                height: var(--link-size);
-
-                .icon-container {
-                    position: relative;
-                    filter: var(--theme-svg);
-                    margin-left: 1rem;
-                    width: var(--link-size);
-                    height: var(--link-size);
-
-                    &:last-child {
-                        margin-left: none;
-                    }
-                }
-            }
-
-            .project-text {
-                font-size: 1.1rem;
-            }
-
-            .tool-list {
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                gap: 0.5rem;
-            }
+        .project-img {
+            position: relative;
+            border-radius: var(--img-border-rad);
+            height: var(--img-size);
+            overflow: hidden;
         }
 
-        .top-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .section-header {
+            margin-bottom: var(--header-spacing);
+            font-weight: bold;
+            font-size: var(--header-font-size);
+        }
 
-            .section-header {
-                margin-bottom: 0;
+        .section-body {
+            font-size: var(--body-font-size);
+        }
+
+        .tool-list {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--tool-spacing);
+        }
+    }
+
+    .row-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .section-header {
+            margin-bottom: 0;
+        }
+
+        .project-links {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: var(--link-spacing);
+
+            .icon-container {
+                position: relative;
+                filter: var(--theme-svg);
+                width: var(--link-size);
+                height: var(--link-size);
             }
         }
     }
 }
 
 @media (hover: hover) {
-    .project-info
-        > .project-desc
-        > .project-section
-        > .project-links
-        > .icon-container:hover {
+    .project-info > .row-section > .project-links > .icon-container:hover {
         filter: var(--theme-svg-hover);
     }
 }

@@ -1,66 +1,22 @@
 @use "@/styles/constants";
 
 .project-card {
-    --body-size: 1.2rem;
-    --border: 2px solid var(--theme-text);
-    --link-size: 40px;
-    --title-size: 1.75rem;
-    --v-padding: 1.5rem;
+    --name-font-size: 1.75rem;
+    --name-letter-spacing: 1px;
+    --y-padding: 1.5rem;
 
     width: 100%;
 
     .project-name {
-        padding: var(--v-padding) 0;
-        font-size: var(--title-size);
-        line-height: var(--title-size);
+        padding: var(--y-padding) 0;
+        font-size: var(--name-font-size);
         font-family: constants.$header-font;
-        letter-spacing: 1px;
-    }
-
-    .project-info {
-        box-shadow: inset var(--theme-shadow);
-        background: var(--theme-accent);
-        padding: var(--v-padding);
-        width: 100%;
-
-        .project-text {
-            font-size: var(--body-size);
-            line-height: var(--body-size);
-
-            .project-category,
-            .project-timeline {
-                margin-bottom: 1rem;
-            }
-        }
-
-        .project-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            .icon-container {
-                position: relative;
-                filter: var(--theme-svg);
-                margin: 0 2rem;
-                width: var(--link-size);
-                height: var(--link-size);
-            }
-        }
+        letter-spacing: var(--name-letter-spacing);
     }
 }
 
 @media (hover: hover) {
-    .project-card:hover {
-        .project-name {
-            color: var(--theme-hover);
-        }
-    }
-}
-
-@media (min-width: constants.$tablet) {
-    .project-card {
-        .project-info {
-            display: none;
-        }
+    .project-card:hover > .project-name {
+        color: var(--theme-hover);
     }
 }

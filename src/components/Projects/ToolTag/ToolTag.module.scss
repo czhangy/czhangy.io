@@ -1,18 +1,21 @@
 @use "@/styles/constants";
 
 .tool-tag {
-    --tag-accent: white;
-    --tag-color: var(--theme-main);
-    border: 2px solid var(--tag-accent);
-    border-radius: 2px;
+    --border-rad: 2px;
+    --border-size: 2px;
+    --tag-letter-spacing: 1px;
+    --tag-x-padding: 1rem;
+    --tag-y-padding: 0.5rem;
 
+    border: var(--border-size) solid var(--theme-text);
+    border-radius: var(--border-rad);
     background: var(--tag-color);
-    padding: 0.4rem 1rem;
+    padding: var(--tag-y-padding) var(--tag-x-padding);
 
     .tag-text {
-        color: var(--tag-accent);
+        color: var(--theme-text);
         font-family: constants.$header-font;
-        letter-spacing: 1px;
+        letter-spacing: var(--tag-letter-spacing);
     }
 }
 

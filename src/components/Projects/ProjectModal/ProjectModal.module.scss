@@ -1,29 +1,35 @@
 @use "@/styles/constants";
 
-.project-modal-bg {
+.project-modal-overlay {
+    --animation-time: 0.4s;
+    --modal-border-rad: 20px;
+    --modal-height: 85%;
+    --modal-width: 90%;
+
     display: flex;
     position: fixed;
     top: 0;
     justify-content: center;
     align-items: center;
-    z-index: 99;
-    animation-duration: 0.4s;
+    z-index: constants.$modal-z;
+    animation-duration: var(--animation-time);
     animation-name: fadein;
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     width: 100vw;
     height: calc(100vh - constants.$navbar-height);
 
     .project-modal {
-        border-radius: 20px;
+        border-radius: var(--modal-border-rad);
         background: var(--theme-accent);
-        width: 90%;
-        height: 85%;
+        padding: 1rem;
+        width: var(--modal-width);
+        height: var(--modal-height);
         overflow-y: scroll;
     }
 }
 
 .closing {
-    animation-duration: 0.4s;
+    animation-duration: var(--animation-time);
     animation-name: fadeout;
 }
 
@@ -48,7 +54,7 @@
 }
 
 @media screen and (min-width: constants.$desktop) {
-    .project-modal-bg {
+    .project-modal-overlay {
         display: none;
     }
 }

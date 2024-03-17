@@ -9,7 +9,6 @@
     width: var(--menu-width);
     height: 100%;
     overflow-y: scroll;
-
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -20,12 +19,6 @@
 
 .disabled {
     pointer-events: none;
-}
-
-@media screen and (min-width: constants.$tablet) {
-    .projects-menu {
-        --menu-width: 300px;
-    }
 }
 
 @media screen and (min-width: constants.$desktop) {

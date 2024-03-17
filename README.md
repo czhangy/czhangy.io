@@ -79,7 +79,6 @@ The most up-to-date version of my portfolio is currently deployed [here](https:/
 -   [ ] Revisit light mode
 -   [ ] Add timeframe to tablet/mobile display on projects page
 -   [ ] Add journals
--   [ ] Make projects page vertical
 -   [ ] Connect database to site
 -   [ ] Testing
 -   [ ] Add editing page
