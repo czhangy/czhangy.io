@@ -2,12 +2,12 @@ import Tool from "@/models/Tool";
 
 import styles from "./ToolTag.module.scss";
 
-type Props = {
+export type ToolTagProps = {
     /** The Tool object */
     tool: Tool;
 };
 
-const ToolTag: React.FC<Props> = (props: Props) => {
+const ToolTag: React.FC<ToolTagProps> = (props: ToolTagProps) => {
     return (
         <li className={`${styles["tool-tag"]} ${styles[props.tool.slug]}`}>
             <p className={styles["tag-text"]}>{props.tool.name}</p>

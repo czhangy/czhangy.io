@@ -2,7 +2,7 @@ import Image from "@/components/Global/Image/Image";
 
 import styles from "./SocialCard.module.scss";
 
-type Props = {
+export type SocialCardProps = {
     /** Name of the social */
     social: "github" | "linkedin" | "instagram" | "twitter";
     /** Link to profile on the social */
@@ -11,7 +11,7 @@ type Props = {
     alt: string;
 };
 
-const SocialCard: React.FC<Props> = (props: Props) => {
+const SocialCard: React.FC<SocialCardProps> = (props: SocialCardProps) => {
     /**
      * Get the class corresponding to props.social
      *

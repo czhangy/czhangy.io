@@ -4,7 +4,7 @@ import Image from "@/components/Global/Image/Image";
 
 import styles from "./NavCard.module.scss";
 
-type Props = {
+export type NavCardProps = {
     /** The title of the nav card */
     title: string;
     /** The path that the nav card links to and pulls its background image from */
@@ -13,7 +13,7 @@ type Props = {
     align: "left" | "right";
 };
 
-const NavCard: React.FC<Props> = (props: Props) => {
+const NavCard: React.FC<NavCardProps> = (props: NavCardProps) => {
     /**
      * Gets the src of the background image using the provided path
      *

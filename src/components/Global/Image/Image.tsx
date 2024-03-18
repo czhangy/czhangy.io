@@ -1,6 +1,6 @@
 import NextImage from "next/image";
 
-type Props = {
+export type ImageProps = {
     /** The src of the image */
     src: string;
     /** The alt text of the image */
@@ -9,7 +9,7 @@ type Props = {
     objectFit?: "cover" | "";
 };
 
-const Image: React.FC<Props> = (props: Props) => {
+const Image: React.FC<ImageProps> = (props: ImageProps) => {
     return (
         <NextImage
             src={props.src}

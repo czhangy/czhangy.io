@@ -5,7 +5,17 @@ import mockExperiences from "@/mocks/experiences";
 import ExperienceCard from "./ExperienceCard";
 
 describe("ExperienceCard", () => {
-    it("Renders", () => {
-        render(<ExperienceCard experience={mockExperiences[0]} />);
+    it("Renders correctly with no description", () => {
+        render(
+            <ExperienceCard experience={mockExperiences.emptyDescription[0]} />,
+        );
+    });
+
+    it("Renders with no end date", () => {
+        render(
+            <ExperienceCard
+                experience={mockExperiences.currentExperience[0]}
+            />,
+        );
     });
 });

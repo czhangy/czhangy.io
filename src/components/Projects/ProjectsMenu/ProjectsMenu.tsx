@@ -6,11 +6,13 @@ import projects from "@/static/projects";
 
 import styles from "./ProjectsMenu.module.scss";
 
-type Props = {
+export type ProjectsMenuProps = {
     onSelect: (project: Project) => void;
 };
 
-const ProjectsMenu: React.FC<Props> = (props: Props) => {
+const ProjectsMenu: React.FC<ProjectsMenuProps> = (
+    props: ProjectsMenuProps,
+) => {
     const [disabled, setDisabled] = useState<boolean>(false);
 
     /** The amount of time in ms that the menu is disabled to allow for a clean animation */

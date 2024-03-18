@@ -1,23 +1,47 @@
 import Image from "next/image";
 
 import Experience from "@/models/Experience";
+import { ConditionalJSX } from "@/static/types";
 
 import styles from "./ExperienceCard.module.scss";
 
-type Props = {
+export type ExperienceCardProps = {
     /** The Experience object being represented */
     experience: Experience;
 };
 
-const ExperienceCard: React.FC<Props> = (props: Props) => {
+const ExperienceCard: React.FC<ExperienceCardProps> = (
+    props: ExperienceCardProps,
+) => {
     /**
      * Returns the timeframe in {START_DATE} - {END_DATE} format, stripping out {END_DATE} if none exists
      *
-     * @param {Experience} exp the current Experience object
-     * @returns {string} the formatted timeframe
+     * @param {Experience} exp The Experience object
+     * @returns {string} The formatted timeframe
      * */
     const getTimeframe = (exp: Experience): string => {
         return `${exp.startDate} ${exp.endDate.length > 0 ? `- ${exp.endDate}` : ""}`;
+    };
+
+    /**
+     * Gets the markup for card bullets
+     *
+     * @returns {ConditionalJSX} The JSX needed to render bullets if they exist
+     */
+    const getCardDescription = (): ConditionalJSX => {
+        return props.experience.desc.length > 0 ? (
+            <ul className={styles["card-description"]}>
+                {props.experience.desc.map((bullet: string, idx: number) => {
+                    return (
+                        <li className={styles.bullet} key={idx}>
+                            {bullet}
+                        </li>
+                    );
+                })}
+            </ul>
+        ) : (
+            ""
+        );
     };
 
     return (
@@ -43,21 +67,7 @@ const ExperienceCard: React.FC<Props> = (props: Props) => {
                     </p>
                 </div>
             </div>
-            {props.experience.desc.length > 0 ? (
-                <ul className={styles["card-description"]}>
-                    {props.experience.desc.map(
-                        (description: string, idx: number) => {
-                            return (
-                                <li className={styles.bullet} key={idx}>
-                                    {description}
-                                </li>
-                            );
-                        },
-                    )}
-                </ul>
-            ) : (
-                ""
-            )}
+            {getCardDescription()}
         </div>
     );
 };

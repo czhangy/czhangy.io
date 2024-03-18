@@ -1,11 +1,11 @@
 import NextHead from "next/head";
 
-type Props = {
+export type HeadProps = {
     /** The suffix of the page title */
     page?: string;
 };
 
-const Head: React.FC<Props> = (props: Props) => {
+const Head: React.FC<HeadProps> = (props: HeadProps) => {
     /**
      * Gets the value of the title of the site, based on current page
      *

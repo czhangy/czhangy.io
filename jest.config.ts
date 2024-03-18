@@ -42,7 +42,14 @@ const config: Config = {
     // ],
 
     // An object that configures minimum threshold enforcement for coverage results
-    // coverageThreshold: undefined,
+    // coverageThreshold: {
+    //     global: {
+    //         branches: 95,
+    //         functions: 95,
+    //         lines: 100,
+    //         statements: 100,
+    //     },
+    // },
 
     // A path to a custom dependency extractor
     // dependencyExtractor: undefined,
@@ -137,7 +144,7 @@ const config: Config = {
     // runner: "jest-runner",
 
     // The paths to modules that run some code to configure or set up the testing environment before each test
-    // setupFiles: [],
+    // setupFiles: ["<rootDir>/src/tests/setup-jest.ts"],
 
     // A list of paths to modules that run some code to configure or set up the testing framework before each test
     // setupFilesAfterEnv: [],

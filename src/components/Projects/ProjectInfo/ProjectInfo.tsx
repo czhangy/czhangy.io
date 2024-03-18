@@ -6,12 +6,12 @@ import { ConditionalJSX } from "@/static/types";
 
 import styles from "./ProjectInfo.module.scss";
 
-type Props = {
+export type ProjectInfoProps = {
     /** The project object */
     project: Project;
 };
 
-const ProjectInfo: React.FC<Props> = (props: Props) => {
+const ProjectInfo: React.FC<ProjectInfoProps> = (props: ProjectInfoProps) => {
     /**
      * Gets the src of the project's image
      *

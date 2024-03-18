@@ -3,14 +3,16 @@ import Project from "@/models/Project";
 
 import styles from "./ProjectModal.module.scss";
 
-type Props = {
+export type ProjectModalProps = {
     /** The Project object displayed on the modal */
     project: Project;
     /** The function called when the modal is closed */
     onClose: () => void;
 };
 
-const ProjectModal: React.FC<Props> = (props: Props) => {
+const ProjectModal: React.FC<ProjectModalProps> = (
+    props: ProjectModalProps,
+) => {
     /** The amount of time in ms that is waited before hiding the modal to allow for smoother transition */
     const MODAL_CLOSE_DELAY: number = 350;
     /** The ID of the modal component */
