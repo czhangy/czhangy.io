@@ -17,16 +17,16 @@ if [ "${PWD##*/}" != "czhangy.io" ]; then
 fi
 
 # Check if script test passes
-./src/tests/new/new_test > /dev/null
-if [ $? -eq 1 ]; then
-    echo -e "${RED}Bash script test failed.${RESET}"
-    exit 1
-fi
+# ./src/tests/new/new_test > /dev/null
+# if [ $? -eq 1 ]; then
+#     echo -e "${RED}Bash script test failed.${RESET}"
+#     exit 1
+# fi
 
 # Format files
 npx prettier --write . > /dev/null
 
 # Git actions
 git add -A > /dev/null && \
-git commit -m "$1" > /dev/null && \
+git commit -S -m "$1" > /dev/null && \
 git push

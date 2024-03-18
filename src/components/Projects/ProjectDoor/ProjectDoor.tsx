@@ -1,13 +1,13 @@
 import styles from "./ProjectDoor.module.scss";
 
-type Props = {
+export type ProjectDoorProps = {
     /** The side that the door is on */
     side: "left" | "right";
     /** Whether or not the doors are open */
     open: boolean;
 };
 
-const ProjectDoor: React.FC<Props> = (props: Props) => {
+const ProjectDoor: React.FC<ProjectDoorProps> = (props: ProjectDoorProps) => {
     /**
      * Gets the class of the door component
      *

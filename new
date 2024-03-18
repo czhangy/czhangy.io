@@ -58,15 +58,11 @@ const $2: React.FC = () => {
 export default $2;
 EOT
 
-# Add props if needed
+# Add props to TSX if needed
 if ${props}; then
-    sed -i '/.module.scss";/a \
-\
-type Props = \{\
-    \
-\}' "src/components/$1/$2/$2.tsx"
-    sed -i 's/React.FC/React.FC<Props>/' "src/components/$1/$2/$2.tsx"
-    sed -i 's/()/(props: Props)/' "src/components/$1/$2/$2.tsx"
+    sed -i "2i export type $2Props = {}" "src/components/$1/$2/$2.tsx"
+    sed -i "s/React.FC/React.FC<$2Props>/" "src/components/$1/$2/$2.tsx"
+    sed -i "s/()/(props: $2Props)/" "src/components/$1/$2/$2.tsx"
 fi
 
 # Create the SCSS file
@@ -76,6 +72,26 @@ cat << EOT >> "src/components/$1/$2/$2.module.scss"
 .$(echo $2 | sed -r 's/([a-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]') {
 
 }
+EOT
+
+# Create the test file
+cat << EOT >> "src/components/$1/$2/$2.spec.tsx"
+import "@testing-library/jest-dom";
+import { render } from "@testing-library/react";
+import $2 from "./$2";
+
+describe("$2", () => {
+    /**
+     * Renders the component and assigns local variables
+     */
+    const render$2 = (): void => {
+        render(<$2 />);
+    };
+
+    it("", () => {
+        
+    });
+});
 EOT
 
 # Show success message

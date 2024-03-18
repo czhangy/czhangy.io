@@ -1,6 +1,6 @@
 import Experience from "@/models/Experience";
 
-const experience: Experience[] = [
+const experiences: Experience[] = [
     {
         company: "Stripe",
         logo: "stripe.svg",
@@ -56,4 +56,4 @@ const experience: Experience[] = [
     },
 ];
 
-export default experience;
+export default experiences;
