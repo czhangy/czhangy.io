@@ -22,15 +22,13 @@ const config: Config = {
     collectCoverage: true,
 
     // An array of glob patterns indicating a set of files for which coverage information should be collected
-    // collectCoverageFrom: undefined,
+    collectCoverageFrom: ["src/components/**/*.tsx", "!src/mocks/*.tsx"],
 
     // The directory where Jest should output its coverage files
     coverageDirectory: "coverage",
 
     // An array of regexp pattern strings used to skip coverage collection
-    // coveragePathIgnorePatterns: [
-    //   "\\\\node_modules\\\\"
-    // ],
+    // coveragePathIgnorePatterns: ["<rootDir>/src/mocks"],
 
     // Indicates which provider should be used to instrument code for coverage
     coverageProvider: "v8",
@@ -90,10 +88,15 @@ const config: Config = {
     // ],
 
     // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-    // moduleNameMapper: {},
+    moduleNameMapper: {
+        "@/components/(.*)": "<rootDir>/src/components/$1",
+        "@/mocks/(.*)": "<rootDir>/src/mocks/$1",
+        "@/static/(.*)": "<rootDir>/src/static/$1",
+        "\\.(css|scss)$": "identity-obj-proxy",
+    },
 
     // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
-    // modulePathIgnorePatterns: [],
+    // modulePathIgnorePatterns: ["<rootDir>/src/mocks"],
 
     // Activates notifications for test results
     // notify: false,
@@ -146,7 +149,7 @@ const config: Config = {
     // snapshotSerializers: [],
 
     // The test environment that will be used for testing
-    // testEnvironment: "jest-environment-node",
+    testEnvironment: "jest-environment-jsdom",
 
     // Options that will be passed to the testEnvironment
     // testEnvironmentOptions: {},
@@ -161,9 +164,7 @@ const config: Config = {
     // ],
 
     // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-    // testPathIgnorePatterns: [
-    //   "\\\\node_modules\\\\"
-    // ],
+    // testPathIgnorePatterns: ["<rootDir>/src/mocks"],
 
     // The regexp pattern or array of patterns that Jest uses to detect test files
     // testRegex: [],

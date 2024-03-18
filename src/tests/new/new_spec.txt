@@ -1,0 +1,9 @@
+import { render } from "@testing-library/react";
+
+import TestFile from "./TestFile";
+
+describe("TestFile", () => {
+    it("Renders", () => {
+        render(<TestFile />);
+    });
+});

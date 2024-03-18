@@ -9,11 +9,9 @@
     "importOrder": [
         "^react$",
         "^next/(.*)$",
+        "^@testing-library/(.*)$",
         "",
-        "^@/components/(.*)$",
-        "^@/models/(.*)$",
-        "^@/static/(.*)$",
-        "^@/lib/(.*)$",
+        "^@/(.*)$",
         "",
         "<TYPES>",
         "",

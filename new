@@ -78,5 +78,18 @@ cat << EOT >> "src/components/$1/$2/$2.module.scss"
 }
 EOT
 
+# Create the test file
+cat << EOT >> "src/components/$1/$2/$2.spec.tsx"
+import { render } from "@testing-library/react";
+
+import $2 from "./$2";
+
+describe("$2", () => {
+    it("Renders", () => {
+        render(<$2 />);
+    });
+});
+EOT
+
 # Show success message
 echo -e ${BOLD_GREEN}src/components/$1/$2${GREEN} was created successfully!${RESET}

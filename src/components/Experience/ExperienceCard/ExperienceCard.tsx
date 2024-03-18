@@ -5,6 +5,7 @@ import Experience from "@/models/Experience";
 import styles from "./ExperienceCard.module.scss";
 
 type Props = {
+    /** The Experience object being represented */
     experience: Experience;
 };
 
