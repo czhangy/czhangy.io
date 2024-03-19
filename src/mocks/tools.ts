@@ -1,10 +1,7 @@
 import Tool from "@/models/Tool";
 
-const mockTools: Tool[] = [
-    {
-        name: "Test",
-        slug: "test",
-    },
-];
-
-export default mockTools;
+/** A basic mock tool */
+export const mockTool: Tool = {
+    name: "Test",
+    slug: "test",
+};
