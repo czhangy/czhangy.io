@@ -14,8 +14,10 @@ class NewTest(unittest.TestCase):
     COMPONENT_PATH = 'src/components/Test/TestFile'
     TEST_TSX_PATH = 'src/utils/new/tests/new_tsx.txt'
     TEST_TSX_SINGLE_WORD_PATH = 'src/utils/new/tests/new_tsx_single_word.txt'
+    TEST_TSX_WITH_PROPS_PATH = 'src/utils/new/tests/new_tsx_with_props.txt'
     TEST_SCSS_PATH = 'src/utils/new/tests/new_scss.txt'
     TEST_SPEC_PATH = 'src/utils/new/tests/new_spec.txt'
+    TEST_SPEC_WITH_PROPS_PATH = 'src/utils/new/tests/new_spec_with_props.txt'
 
     def test_validate_directory_pass(self):
         try:
@@ -57,13 +59,20 @@ class NewTest(unittest.TestCase):
 
     def test_create_tsx(self):
         component_name = 'TestFile'
-        create_tsx(self.SUBDIR_PATH, component_name)
+        create_tsx(self.SUBDIR_PATH, component_name, False)
         self.assertTrue(filecmp.cmp(f'{self.SUBDIR_PATH}/{component_name}.tsx', self.TEST_TSX_PATH))
+
 
     def test_create_tsx_single_word(self):
         component_name = 'Test'
-        create_tsx(self.SUBDIR_PATH, component_name)
+        create_tsx(self.SUBDIR_PATH, component_name, False)
         self.assertTrue(filecmp.cmp(f'{self.SUBDIR_PATH}/{component_name}.tsx', self.TEST_TSX_SINGLE_WORD_PATH))
+
+
+    def test_create_tsx_with_props(self):
+        component_name = 'TestFile'
+        create_tsx(self.SUBDIR_PATH, component_name, True)
+        self.assertTrue(filecmp.cmp(f'{self.SUBDIR_PATH}/{component_name}.tsx', self.TEST_TSX_WITH_PROPS_PATH))
 
 
     def test_create_scss(self):
@@ -74,8 +83,14 @@ class NewTest(unittest.TestCase):
 
     def test_create_spec(self):
         component_name = 'TestFile'
-        create_spec(self.SUBDIR_PATH, component_name)
+        create_spec(self.SUBDIR_PATH, component_name, False)
         self.assertTrue(filecmp.cmp(f'{self.SUBDIR_PATH}/{component_name}.spec.tsx', self.TEST_SPEC_PATH))
+
+    
+    def test_create_spec_with_props(self):
+        component_name = 'TestFile'
+        create_spec(self.SUBDIR_PATH, component_name, True)
+        self.assertTrue(filecmp.cmp(f'{self.SUBDIR_PATH}/{component_name}.spec.tsx', self.TEST_SPEC_WITH_PROPS_PATH))
 
 
 if __name__ == '__main__':
