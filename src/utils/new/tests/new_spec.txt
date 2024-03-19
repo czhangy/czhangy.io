@@ -1,0 +1,18 @@
+import "@testing-library/jest-dom";
+
+import { render } from "@testing-library/react";
+
+import TestFile from "./TestFile";
+
+describe("TestFile", () => {
+	/**
+	 * Renders the component
+	 */
+	const renderTestFile = (): void => {
+		render(<TestFile />);
+	};
+
+	it("Renders", () => {
+		renderTestFile();
+	});
+});
