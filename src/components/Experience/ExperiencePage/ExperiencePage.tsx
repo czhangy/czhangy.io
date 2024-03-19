@@ -52,7 +52,10 @@ const ExperiencePage: React.FC<ExperiencePageProps> = (
                     return (
                         <li className={getExperienceClass(idx)} key={idx}>
                             <ExperienceCard experience={exp} />
-                            <p className={styles.timeframe}>
+                            <p
+                                className={styles.timeframe}
+                                data-testid="page-timeframe"
+                            >
                                 {getTimeframe(exp)}
                             </p>
                         </li>

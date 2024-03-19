@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 import AboutPage from "./AboutPage";
 
@@ -14,5 +14,8 @@ describe("AboutPage", () => {
 
     it("Renders", () => {
         renderAboutPage();
+
+        const headings: HTMLHeadingElement[] = screen.getAllByRole("heading");
+        expect(headings.length).toBe(3);
     });
 });
