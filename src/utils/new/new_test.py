@@ -19,6 +19,10 @@ class NewTest(unittest.TestCase):
     TEST_SPEC_PATH = 'src/utils/new/tests/new_spec.txt'
     TEST_SPEC_WITH_PROPS_PATH = 'src/utils/new/tests/new_spec_with_props.txt'
 
+    # Test components
+    COMPONENT_NAME = 'TestFile'
+    SHORT_COMPONENT_NAME = 'Test'
+
     def test_validate_directory_pass(self):
         try:
             validate_directory()
@@ -58,39 +62,45 @@ class NewTest(unittest.TestCase):
 
 
     def test_create_tsx(self):
-        component_name = 'TestFile'
-        create_tsx(self.SUBDIR_PATH, component_name, False)
-        self.assertTrue(filecmp.cmp(f'{self.SUBDIR_PATH}/{component_name}.tsx', self.TEST_TSX_PATH))
+        file_path = f'{self.SUBDIR_PATH}/{self.COMPONENT_NAME}.tsx'
+        create_tsx(self.SUBDIR_PATH, self.COMPONENT_NAME, False)
+        self.assertTrue(filecmp.cmp(file_path, self.TEST_TSX_PATH))
+        os.remove(file_path)
 
 
     def test_create_tsx_single_word(self):
-        component_name = 'Test'
-        create_tsx(self.SUBDIR_PATH, component_name, False)
-        self.assertTrue(filecmp.cmp(f'{self.SUBDIR_PATH}/{component_name}.tsx', self.TEST_TSX_SINGLE_WORD_PATH))
+        file_path = f'{self.SUBDIR_PATH}/{self.SHORT_COMPONENT_NAME}.tsx'
+        create_tsx(self.SUBDIR_PATH, self.SHORT_COMPONENT_NAME, False)
+        self.assertTrue(filecmp.cmp(file_path, self.TEST_TSX_SINGLE_WORD_PATH))
+        os.remove(file_path)
 
 
     def test_create_tsx_with_props(self):
-        component_name = 'TestFile'
-        create_tsx(self.SUBDIR_PATH, component_name, True)
-        self.assertTrue(filecmp.cmp(f'{self.SUBDIR_PATH}/{component_name}.tsx', self.TEST_TSX_WITH_PROPS_PATH))
+        file_path = f'{self.SUBDIR_PATH}/{self.COMPONENT_NAME}.tsx'
+        create_tsx(self.SUBDIR_PATH, self.COMPONENT_NAME, True)
+        self.assertTrue(filecmp.cmp(file_path, self.TEST_TSX_WITH_PROPS_PATH))
+        os.remove(file_path)
 
 
     def test_create_scss(self):
-        component_name = 'TestFile'
-        create_scss(self.SUBDIR_PATH, component_name)
-        self.assertTrue(filecmp.cmp(f'{self.SUBDIR_PATH}/{component_name}.module.scss', self.TEST_SCSS_PATH))
+        file_path = f'{self.SUBDIR_PATH}/{self.COMPONENT_NAME}.module.scss'
+        create_scss(self.SUBDIR_PATH, self.COMPONENT_NAME)
+        self.assertTrue(filecmp.cmp(file_path, self.TEST_SCSS_PATH))
+        os.remove(file_path)
 
 
     def test_create_spec(self):
-        component_name = 'TestFile'
-        create_spec(self.SUBDIR_PATH, component_name, False)
-        self.assertTrue(filecmp.cmp(f'{self.SUBDIR_PATH}/{component_name}.spec.tsx', self.TEST_SPEC_PATH))
+        file_path = f'{self.SUBDIR_PATH}/{self.COMPONENT_NAME}.spec.tsx'
+        create_spec(self.SUBDIR_PATH, self.COMPONENT_NAME, False)
+        self.assertTrue(filecmp.cmp(file_path, self.TEST_SPEC_PATH))
+        os.remove(file_path)
 
     
     def test_create_spec_with_props(self):
-        component_name = 'TestFile'
-        create_spec(self.SUBDIR_PATH, component_name, True)
-        self.assertTrue(filecmp.cmp(f'{self.SUBDIR_PATH}/{component_name}.spec.tsx', self.TEST_SPEC_WITH_PROPS_PATH))
+        file_path = f'{self.SUBDIR_PATH}/{self.COMPONENT_NAME}.spec.tsx'
+        create_spec(self.SUBDIR_PATH, self.COMPONENT_NAME, True)
+        self.assertTrue(filecmp.cmp(file_path, self.TEST_SPEC_WITH_PROPS_PATH))
+        os.remove(file_path)
 
 
 if __name__ == '__main__':
