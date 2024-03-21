@@ -7,8 +7,6 @@ export type SocialCardProps = {
     social: "github" | "linkedin" | "instagram" | "twitter";
     /** Link to profile on the social */
     link: string;
-    /** Alt text for the icon of the social */
-    alt: string;
 };
 
 const SocialCard: React.FC<SocialCardProps> = (props: SocialCardProps) => {
@@ -38,7 +36,7 @@ const SocialCard: React.FC<SocialCardProps> = (props: SocialCardProps) => {
             className={getCardClass()}
         >
             <div className={styles["icon-container"]}>
-                <Image src={getIconSrc()} alt={props.alt} />
+                <Image src={getIconSrc()} alt={props.social} />
             </div>
         </a>
     );

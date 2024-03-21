@@ -26,25 +26,18 @@ const HomePage: React.FC = () => {
                         align="right"
                     />
                 </div>
-                <SocialCard
-                    social="github"
-                    link="https://github.com/czhangy"
-                    alt="GitHub"
-                />
+                <SocialCard social="github" link="https://github.com/czhangy" />
                 <SocialCard
                     social="linkedin"
                     link="https://www.linkedin.com/in/czhangy/"
-                    alt="LinkedIn"
                 />
                 <SocialCard
                     social="instagram"
                     link="https://www.instagram.com/c.zhangg/"
-                    alt="Instagram"
                 />
                 <SocialCard
                     social="twitter"
                     link="https://twitter.com/czhangy_"
-                    alt="Twitter"
                 />
             </div>
         </div>

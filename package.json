@@ -4,12 +4,10 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "build": "next build",
         "start": "next start",
-        "lint": "next lint",
+        "push": "bash src/utils/push",
         "test": "jest",
         "watch": "jest --watch",
-        "prepare": "husky",
         "new": "python3 src/utils/new/new.py",
         "tpy": "python3 src/utils/new/new_test.py",
         "ipy": "pip install -r requirements.txt"
