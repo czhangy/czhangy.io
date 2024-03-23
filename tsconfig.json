@@ -17,11 +17,11 @@
         "baseUrl": "src",
         "paths": {
             "@/components/*": ["components/*"],
-            "@/styles/*": ["styles/*"],
             "@/lib/*": ["lib/*"],
+            "@/mocks/*": ["mocks/*"],
             "@/models/*": ["models/*"],
             "@/static/*": ["static/*"],
-            "@/mocks/*": ["mocks/*"]
+            "@/styles/*": ["styles/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

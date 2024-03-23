@@ -3,16 +3,18 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
+        "db": "npx prisma db push --schema=./src/prisma/schema.prisma && npx prisma studio --schema=./src/prisma/schema.prisma",
         "dev": "next dev",
-        "start": "next start",
-        "push": "bash src/utils/push",
-        "test": "jest",
-        "watch": "jest --watch",
+        "ipy": "pip install -r requirements.txt",
         "new": "python3 src/utils/new/new.py",
+        "push": "bash src/utils/push",
+        "start": "next start",
+        "test": "jest",
         "tpy": "python3 src/utils/new/new_test.py",
-        "ipy": "pip install -r requirements.txt"
+        "watch": "jest --watch"
     },
     "dependencies": {
+        "@prisma/client": "^5.11.0",
         "identity-obj-proxy": "^3.0.0",
         "next": "12.2.0",
         "react": "18.2.0",
@@ -37,6 +39,7 @@
         "jest-environment-jsdom": "^29.7.0",
         "postcss": "^8.4.35",
         "prettier-plugin-css-order": "^2.0.1",
+        "prisma": "^5.11.0",
         "ts-node": "^10.9.2",
         "typescript": "4.7.4"
     }
