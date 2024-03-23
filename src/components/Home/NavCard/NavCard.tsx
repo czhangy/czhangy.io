@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import Image from "@/components/Global/Image/Image";
+import { Side } from "@/static/types";
 
 import styles from "./NavCard.module.scss";
 
@@ -10,7 +11,7 @@ export type NavCardProps = {
     /** The path that the nav card links to and pulls its background image from */
     path: string;
     /** The side of the nav card the title is on */
-    align: "left" | "right";
+    align: Side;
 };
 
 const NavCard: React.FC<NavCardProps> = (props: NavCardProps) => {

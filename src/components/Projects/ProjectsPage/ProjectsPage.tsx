@@ -95,7 +95,11 @@ const ProjectsPage: React.FC = () => {
     return (
         <div className={styles["projects-page"]}>
             {renderProjectModal()}
-            <div id={SCROLL_CONTAINER_ID} className={getContainerClass()}>
+            <div
+                id={SCROLL_CONTAINER_ID}
+                className={getContainerClass()}
+                data-testid="scroll-container"
+            >
                 <ProjectDoor side="left" open={doorOpen} />
                 <ProjectDoor side="right" open={doorOpen} />
                 {renderProjectInfo()}

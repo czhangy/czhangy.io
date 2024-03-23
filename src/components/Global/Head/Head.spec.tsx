@@ -7,6 +7,8 @@ import Head, { HeadProps } from "./Head";
 describe("Head", () => {
     /**
      * Renders the component
+     *
+     * @param {HeadProps} [props] Props to pass to the component
      */
     const renderHead = (props?: HeadProps): void => {
         if (props) {

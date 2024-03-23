@@ -12,10 +12,9 @@ describe("AboutPage", () => {
         render(<AboutPage />);
     };
 
-    it("Renders", () => {
+    it("Renders correctly", () => {
         renderAboutPage();
-
-        const headings: HTMLHeadingElement[] = screen.getAllByRole("heading");
-        expect(headings.length).toBe(3);
+        expect(screen.getAllByRole("heading").length).toBe(3);
+        expect(screen.getAllByRole("img").length).toBe(3);
     });
 });

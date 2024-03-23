@@ -4,8 +4,6 @@ export default interface Project {
     name: string;
     slug: string;
     category: string;
-    startDate: string;
-    endDate: string;
     summary: string;
     tools: Tool[];
     link: string | null;

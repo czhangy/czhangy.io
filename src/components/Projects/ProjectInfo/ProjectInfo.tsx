@@ -30,7 +30,7 @@ const ProjectInfo: React.FC<ProjectInfoProps> = (props: ProjectInfoProps) => {
      */
     const renderExternalLink = (
         type: "git" | "link",
-        alt: string,
+        alt: "Git Repo" | "Site Link",
     ): ConditionalJSX => {
         return props.project[type] ? (
             <a
@@ -67,10 +67,14 @@ const ProjectInfo: React.FC<ProjectInfoProps> = (props: ProjectInfoProps) => {
     };
 
     return (
-        <div className={styles["project-info"]}>
+        <div className={styles["project-info"]} data-testid="project-info">
             <section className={styles["project-section"]}>
                 <div className={styles["project-img"]}>
-                    <Image src={getProjectImg()} alt="" objectFit="cover" />
+                    <Image
+                        src={getProjectImg()}
+                        alt={props.project.name}
+                        objectFit="cover"
+                    />
                 </div>
             </section>
             <section
@@ -86,7 +90,10 @@ const ProjectInfo: React.FC<ProjectInfoProps> = (props: ProjectInfoProps) => {
             </section>
             <section className={styles["project-section"]}>
                 <h5 className={styles["section-header"]}>Summary</h5>
-                <p className={styles["section-body"]}>
+                <p
+                    className={styles["section-body"]}
+                    data-testid="project-summary"
+                >
                     {props.project.summary}
                 </p>
             </section>

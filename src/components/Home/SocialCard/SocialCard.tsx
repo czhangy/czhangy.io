@@ -1,10 +1,11 @@
 import Image from "@/components/Global/Image/Image";
+import { Social } from "@/static/types";
 
 import styles from "./SocialCard.module.scss";
 
 export type SocialCardProps = {
     /** Name of the social */
-    social: "github" | "linkedin" | "instagram" | "twitter";
+    social: Social;
     /** Link to profile on the social */
     link: string;
 };

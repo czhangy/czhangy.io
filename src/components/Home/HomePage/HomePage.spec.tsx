@@ -6,7 +6,7 @@ import HomePage from "./HomePage";
 
 describe("HomePage", () => {
     /**
-     * Renders the component and assigns local variables
+     * Renders the component
      */
     const renderHomePage = (): void => {
         render(<HomePage />);

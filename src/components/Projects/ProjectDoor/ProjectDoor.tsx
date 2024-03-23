@@ -1,8 +1,10 @@
+import { Side } from "@/static/types";
+
 import styles from "./ProjectDoor.module.scss";
 
 export type ProjectDoorProps = {
     /** The side that the door is on */
-    side: "left" | "right";
+    side: Side;
     /** Whether or not the doors are open */
     open: boolean;
 };
@@ -27,7 +29,7 @@ const ProjectDoor: React.FC<ProjectDoorProps> = (props: ProjectDoorProps) => {
     };
 
     return (
-        <div className={getDoorClass()}>
+        <div className={getDoorClass()} data-testid="door">
             <span className={styles.decal}>{getDecal()}</span>
         </div>
     );

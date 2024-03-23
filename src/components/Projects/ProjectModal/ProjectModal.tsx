@@ -31,6 +31,7 @@ const ProjectModal: React.FC<ProjectModalProps> = (
             id={MODAL_ID}
             className={styles["project-modal-overlay"]}
             onClick={closeModal}
+            data-testid="overlay"
         >
             <div className={styles["project-modal"]}>
                 <ProjectInfo project={props.project} />

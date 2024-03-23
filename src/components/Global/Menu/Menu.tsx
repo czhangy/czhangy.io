@@ -43,7 +43,7 @@ const Menu: React.FC = () => {
     };
 
     return (
-        <div className={styles["menu-container"]}>
+        <div className={styles["menu-container"]} data-testid="menu">
             <button
                 id="menu-button"
                 className={styles["menu-button"]}
