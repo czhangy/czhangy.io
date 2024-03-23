@@ -1,14 +1,13 @@
 import Image from "@/components/Global/Image/Image";
+import { Social } from "@/static/types";
 
 import styles from "./SocialCard.module.scss";
 
 export type SocialCardProps = {
     /** Name of the social */
-    social: "github" | "linkedin" | "instagram" | "twitter";
+    social: Social;
     /** Link to profile on the social */
     link: string;
-    /** Alt text for the icon of the social */
-    alt: string;
 };
 
 const SocialCard: React.FC<SocialCardProps> = (props: SocialCardProps) => {
@@ -38,7 +37,7 @@ const SocialCard: React.FC<SocialCardProps> = (props: SocialCardProps) => {
             className={getCardClass()}
         >
             <div className={styles["icon-container"]}>
-                <Image src={getIconSrc()} alt={props.alt} />
+                <Image src={getIconSrc()} alt={props.social} />
             </div>
         </a>
     );

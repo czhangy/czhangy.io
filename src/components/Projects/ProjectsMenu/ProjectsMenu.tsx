@@ -39,7 +39,7 @@ const ProjectsMenu: React.FC<ProjectsMenuProps> = (
     };
 
     return (
-        <ul className={getMenuClass()}>
+        <ul className={getMenuClass()} data-testid="projects-menu">
             {projects.map((project: Project, idx: number) => {
                 return (
                     <li className={styles["projects-menu-card"]} key={idx}>

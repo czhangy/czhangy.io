@@ -1,9 +1,21 @@
-import { render } from "@testing-library/react";
+import "@testing-library/jest-dom";
 
-import Image from "./Image";
+import { render, screen } from "@testing-library/react";
+
+import Image, { ImageProps } from "./Image";
 
 describe("Image", () => {
-    it("Renders", () => {
-        render(<Image src="/assets/images/default.webp" alt="" />);
+    /**
+     * Renders the component
+     *
+     * @param {ImageProps} props Props to pass to the component
+     */
+    const renderImage = (props: ImageProps): void => {
+        render(<Image src={props.src} alt={props.alt} />);
+    };
+
+    it("Renders with the correct attributes", () => {
+        renderImage({ src: "/assets/images/default.webp", alt: "Test" });
+        expect(screen.queryByRole("img")).toHaveAttribute("alt", "Test");
     });
 });

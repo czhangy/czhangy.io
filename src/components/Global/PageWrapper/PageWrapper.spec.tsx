@@ -1,13 +1,21 @@
-import { render } from "@testing-library/react";
+import "@testing-library/jest-dom";
 
-import PageWrapper from "./PageWrapper";
+import { render, screen } from "@testing-library/react";
+
+import PageWrapper, { PageWrapperProps } from "./PageWrapper";
 
 describe("PageWrapper", () => {
-    it("Renders", () => {
-        render(
-            <PageWrapper>
-                <></>
-            </PageWrapper>,
-        );
+    /**
+     * Renders the component
+     *
+     * @param {PageWrapperProps} props Props to pass to the component
+     */
+    const renderPageWrapper = (props: PageWrapperProps): void => {
+        render(<PageWrapper>{props.children}</PageWrapper>);
+    };
+
+    it("Renders correctly", () => {
+        renderPageWrapper({ children: <div data-testid="test"></div> });
+        expect(screen.queryByTestId("test")).toBeInTheDocument;
     });
 });

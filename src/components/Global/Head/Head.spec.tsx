@@ -1,13 +1,28 @@
+import "@testing-library/jest-dom";
+
 import { render } from "@testing-library/react";
 
-import Head from "./Head";
+import Head, { HeadProps } from "./Head";
 
 describe("Head", () => {
+    /**
+     * Renders the component
+     *
+     * @param {HeadProps} [props] Props to pass to the component
+     */
+    const renderHead = (props?: HeadProps): void => {
+        if (props) {
+            render(<Head page={props.page} />);
+        } else {
+            render(<Head />);
+        }
+    };
+
     it("Renders with no page", () => {
-        render(<Head />);
+        renderHead();
     });
 
     it("Renders with a page", () => {
-        render(<Head page="Test" />);
+        renderHead({ page: "Test" });
     });
 });

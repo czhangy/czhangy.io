@@ -62,7 +62,10 @@ const ExperienceCard: React.FC<ExperienceCardProps> = (
                     <strong className={styles.title}>
                         {props.experience.title}
                     </strong>
-                    <p className={styles.timeframe}>
+                    <p
+                        className={styles.timeframe}
+                        data-testid="card-timeframe"
+                    >
                         {getTimeframe(props.experience)}
                     </p>
                 </div>
