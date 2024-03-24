@@ -1,5 +1,5 @@
 import ExperienceCard from "@/components/Experience/ExperienceCard/ExperienceCard";
-import Experience from "@/models/Experience";
+import { Experience } from "@/static/types";
 
 import styles from "./ExperiencePage.module.scss";
 

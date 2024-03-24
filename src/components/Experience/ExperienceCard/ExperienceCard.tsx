@@ -1,7 +1,6 @@
 import Image from "next/image";
 
-import Experience from "@/models/Experience";
-import { ConditionalJSX } from "@/static/types";
+import { ConditionalJSX, Experience } from "@/static/types";
 
 import styles from "./ExperienceCard.module.scss";
 
@@ -29,15 +28,17 @@ const ExperienceCard: React.FC<ExperienceCardProps> = (
      * @returns {ConditionalJSX} The JSX needed to render bullets if they exist
      */
     const getCardDescription = (): ConditionalJSX => {
-        return props.experience.desc.length > 0 ? (
+        return props.experience.description.length > 0 ? (
             <ul className={styles["card-description"]}>
-                {props.experience.desc.map((bullet: string, idx: number) => {
-                    return (
-                        <li className={styles.bullet} key={idx}>
-                            {bullet}
-                        </li>
-                    );
-                })}
+                {props.experience.description.map(
+                    (bullet: string, idx: number) => {
+                        return (
+                            <li className={styles.bullet} key={idx}>
+                                {bullet}
+                            </li>
+                        );
+                    },
+                )}
             </ul>
         ) : (
             ""

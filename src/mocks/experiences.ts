@@ -1,4 +1,4 @@
-import Experience from "@/models/Experience";
+import { Experience } from "@/static/types";
 
 /** A basic mock experience */
 export const mockExperience: Experience = {
@@ -7,7 +7,7 @@ export const mockExperience: Experience = {
     title: "Test Engineer",
     startDate: "Jan 2001",
     endDate: "Dec 2002",
-    desc: ["Did impactful things"],
+    description: ["Did impactful things"],
 };
 
 /** A mock experience with no description */
@@ -17,7 +17,7 @@ export const mockEmptyDescriptionExperience: Experience = {
     title: "None",
     startDate: "Jan 2001",
     endDate: "Dec 2002",
-    desc: [],
+    description: [],
 };
 
 /** A mock experience with no end date */
@@ -27,5 +27,5 @@ export const mockCurrentExperience: Experience = {
     title: "CEO",
     startDate: "March 2024",
     endDate: "",
-    desc: ["Doing impactful things"],
+    description: ["Doing impactful things"],
 };

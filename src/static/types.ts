@@ -11,3 +11,13 @@ export type Social = "github" | "linkedin" | "instagram" | "twitter";
 
 /** Project object definition */
 export type Project = Omit<ProjectModel, "id">;
+
+/** Experience object definition */
+export type Experience = {
+    company: string;
+    logo: string;
+    title: string;
+    startDate: string;
+    endDate: string;
+    description: string[];
+};

@@ -69,7 +69,7 @@ describe("ExperienceCard", () => {
     it("Renders correctly", () => {
         renderExperienceCard({ experience: mockExperience });
         assertCardRenders(mockExperience.company, mockExperience.title);
-        assertDescriptionRenders(mockExperience.desc);
+        assertDescriptionRenders(mockExperience.description);
         assertTimeframeRenders(
             mockExperience.startDate,
             mockExperience.endDate,
@@ -95,7 +95,7 @@ describe("ExperienceCard", () => {
             mockCurrentExperience.company,
             mockCurrentExperience.title,
         );
-        assertDescriptionRenders(mockCurrentExperience.desc);
+        assertDescriptionRenders(mockCurrentExperience.description);
         expect(experienceTimeframe).toHaveTextContent(
             mockCurrentExperience.startDate,
         );
