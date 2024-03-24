@@ -1,11 +1,15 @@
+import { Tool } from "@prisma/client";
+
 import ProjectInfo from "@/components/Projects/ProjectInfo/ProjectInfo";
-import Project from "@/models/Project";
+import { Project } from "@/static/types";
 
 import styles from "./ProjectModal.module.scss";
 
 export type ProjectModalProps = {
     /** The Project object displayed on the modal */
     project: Project;
+    /** The tools objects used by the project */
+    tools: Tool[];
     /** The function called when the modal is closed */
     onClose: () => void;
 };
@@ -34,7 +38,7 @@ const ProjectModal: React.FC<ProjectModalProps> = (
             data-testid="overlay"
         >
             <div className={styles["project-modal"]}>
-                <ProjectInfo project={props.project} />
+                <ProjectInfo project={props.project} tools={props.tools} />
             </div>
         </div>
     );

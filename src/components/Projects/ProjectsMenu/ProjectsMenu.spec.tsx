@@ -2,10 +2,10 @@ import "@testing-library/jest-dom";
 
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
-import Project from "@/models/Project";
-import projects from "@/static/projects";
+import { mockProjects } from "@/mocks/projects";
+import { Project } from "@/static/types";
 
-import ProjectsMenu, { ProjectsMenuProps } from "./ProjectsMenu";
+import ProjectsMenu from "./ProjectsMenu";
 
 describe("ProjectsMenu", () => {
     let menu: HTMLUListElement | null;
@@ -18,36 +18,39 @@ describe("ProjectsMenu", () => {
 
     /**
      * Renders the component and assigns local variables
-     *
-     * @param {ProjectsMenuProps} props Props to pass to the component
      */
-    const renderProjectsMenu = (props: ProjectsMenuProps): void => {
-        render(<ProjectsMenu onSelect={props.onSelect} />);
+    const renderProjectsMenu = (): void => {
+        render(
+            <ProjectsMenu
+                projects={mockProjects}
+                onSelect={mockSelectHandler}
+            />,
+        );
         menu = screen.queryByRole("list");
         buttons = screen.queryAllByRole("button");
     };
 
     it("Renders correctly", () => {
-        renderProjectsMenu({ onSelect: mockSelectHandler });
+        renderProjectsMenu();
         const cards: HTMLLIElement[] = screen.queryAllByRole("listitem");
         expect(menu).not.toHaveClass("disabled");
-        expect(cards.length).toBe(projects.length);
-        expect(buttons.length).toBe(projects.length);
-        projects.forEach((project: Project, idx: number) =>
+        expect(cards.length).toBe(mockProjects.length);
+        expect(buttons.length).toBe(mockProjects.length);
+        mockProjects.forEach((project: Project, idx: number) =>
             expect(cards[idx]).toHaveTextContent(project.name),
         );
     });
 
     it("Calls the select handler on card click", () => {
-        renderProjectsMenu({ onSelect: mockSelectHandler });
-        projects.forEach((project: Project, idx: number) => {
+        renderProjectsMenu();
+        mockProjects.forEach((project: Project, idx: number) => {
             fireEvent.click(buttons[idx]);
             expect(mockSelectHandler).toHaveBeenCalledWith(project);
         });
     });
 
     it("Disables and re-enables on card click", async () => {
-        renderProjectsMenu({ onSelect: mockSelectHandler });
+        renderProjectsMenu();
         fireEvent.click(buttons[0]);
         expect(menu).toHaveClass("disabled");
         await waitFor(() => expect(menu).not.toHaveClass("disabled"));

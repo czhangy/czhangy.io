@@ -47,6 +47,22 @@
     </a>
 </details>
 
+## Dev Environment
+
+The following values must be populated in `.env`:
+
+-   `DATABASE_URL`
+-   `S3_ACCESS_KEY`
+-   `S3_SECRET_KEY`
+-   `S3_REGION`
+-   `S3_BUCKET_NAME`
+
+To initialize the project after cloning, run the following script in the command line:
+
+```
+npm run init
+```
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.

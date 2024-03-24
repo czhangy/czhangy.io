@@ -3,7 +3,7 @@ import Experience from "@/models/Experience";
 const experiences: Experience[] = [
     {
         company: "Stripe",
-        logo: "stripe.svg",
+        logo: "https://czhangyio.s3.us-east-2.amazonaws.com/experiences/stripe.svg",
         title: "Software Engineer",
         startDate: "Dec 2023",
         endDate: "",
@@ -11,7 +11,7 @@ const experiences: Experience[] = [
     },
     {
         company: "Capital One",
-        logo: "capital-one.webp",
+        logo: "https://czhangyio.s3.us-east-2.amazonaws.com/experiences/capital-one.webp",
         title: "Software Engineering Intern",
         startDate: "Jun 2022",
         endDate: "Aug 2022",
@@ -23,7 +23,7 @@ const experiences: Experience[] = [
     },
     {
         company: "Bruinshack",
-        logo: "bruinshack.webp",
+        logo: "https://czhangyio.s3.us-east-2.amazonaws.com/experiences/bruinshack.webp",
         title: "Front-End Lead",
         startDate: "Nov 2021",
         endDate: "Jun 2022",
@@ -35,7 +35,7 @@ const experiences: Experience[] = [
     },
     {
         company: "Bruinshack",
-        logo: "bruinshack.webp",
+        logo: "https://czhangyio.s3.us-east-2.amazonaws.com/experiences/bruinshack.webp",
         title: "Full-Stack Development Intern",
         startDate: "Feb 2021",
         endDate: "Nov 2021",
@@ -46,7 +46,7 @@ const experiences: Experience[] = [
     },
     {
         company: "The Amplification Project",
-        logo: "the-amplification-project.webp",
+        logo: "https://czhangyio.s3.us-east-2.amazonaws.com/experiences/the-amplification-project.webp",
         title: "Front-End Developer",
         startDate: "May 2021",
         endDate: "Sep 2021",

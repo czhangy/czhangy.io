@@ -13,8 +13,32 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+model Experience {
+    id          String    @id @default(auto()) @map("_id") @db.ObjectId
+    company     String
+    logo        String
+    title       String
+    startDate   DateTime
+    endDate     DateTime?
+    description String[]
+}
+
+model Project {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    name      String
+    thumbnail String
+    category  String
+    gitLink   String
+    siteLink  String
+    summary   String
+    toolIDs   String[] @db.ObjectId
+    tools     Tool[]   @relation(fields: [toolIDs], references: [id])
+}
+
 model Tool {
-    id    String @id @default(auto()) @map("_id") @db.ObjectId
-    name  String @unique
-    color String
+    id         String    @id @default(auto()) @map("_id") @db.ObjectId
+    name       String    @unique
+    color      String
+    projectIDs String[]  @db.ObjectId
+    projects   Project[] @relation(fields: [projectIDs], references: [id])
 }

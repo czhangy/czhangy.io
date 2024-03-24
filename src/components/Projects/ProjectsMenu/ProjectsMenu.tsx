@@ -1,12 +1,14 @@
 import { useState } from "react";
 
 import ProjectCard from "@/components/Projects/ProjectCard/ProjectCard";
-import Project from "@/models/Project";
-import projects from "@/static/projects";
+import { Project } from "@/static/types";
 
 import styles from "./ProjectsMenu.module.scss";
 
 export type ProjectsMenuProps = {
+    /** The list of all project objects */
+    projects: Project[];
+    /** The function that is called when a menu option is selected */
     onSelect: (project: Project) => void;
 };
 
@@ -40,7 +42,7 @@ const ProjectsMenu: React.FC<ProjectsMenuProps> = (
 
     return (
         <ul className={getMenuClass()} data-testid="projects-menu">
-            {projects.map((project: Project, idx: number) => {
+            {props.projects.map((project: Project, idx: number) => {
                 return (
                     <li className={styles["projects-menu-card"]} key={idx}>
                         <ProjectCard

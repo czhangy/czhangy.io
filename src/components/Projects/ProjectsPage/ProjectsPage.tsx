@@ -1,15 +1,24 @@
 import { useState } from "react";
+import { Tool } from "@prisma/client";
 
 import ProjectDoor from "@/components/Projects/ProjectDoor/ProjectDoor";
 import ProjectInfo from "@/components/Projects/ProjectInfo/ProjectInfo";
 import ProjectModal from "@/components/Projects/ProjectModal/ProjectModal";
 import ProjectsMenu from "@/components/Projects/ProjectsMenu/ProjectsMenu";
-import Project from "@/models/Project";
-import { ConditionalJSX } from "@/static/types";
+import { ConditionalJSX, Project } from "@/static/types";
 
 import styles from "./ProjectsPage.module.scss";
 
-const ProjectsPage: React.FC = () => {
+type ProjectsPageProps = {
+    /** The list of all project objects */
+    projects: Project[];
+    /** The list of all tools that are used by a project */
+    tools: Tool[];
+};
+
+const ProjectsPage: React.FC<ProjectsPageProps> = (
+    props: ProjectsPageProps,
+) => {
     const [doorOpen, setDoorOpen] = useState<boolean>(false);
     const [currentProject, setCurrentProject] = useState<Project | null>(null);
 
@@ -21,13 +30,26 @@ const ProjectsPage: React.FC = () => {
     const SCROLL_CONTAINER_ID: string = "scroll-container";
 
     /**
+     * Returns the list of tools being used by the current project
+     */
+    const getUsedTools = (): Tool[] => {
+        return props.tools.filter((tool: Tool) =>
+            currentProject!.toolIDs.includes(tool.id),
+        );
+    };
+
+    /**
      * Renders the ProjectModal component when a project is selected
      *
      * @returns {ConditionalJSX} The JSX needed to render the project's modal for tablet/mobile displays
      */
     const renderProjectModal = (): ConditionalJSX => {
         return currentProject ? (
-            <ProjectModal project={currentProject} onClose={unsetProject} />
+            <ProjectModal
+                project={currentProject}
+                tools={getUsedTools()}
+                onClose={unsetProject}
+            />
         ) : (
             ""
         );
@@ -56,7 +78,11 @@ const ProjectsPage: React.FC = () => {
      * @returns {ConditionalJSX} The JSX needed to render the project's info for desktop displays
      */
     const renderProjectInfo = (): ConditionalJSX => {
-        return currentProject ? <ProjectInfo project={currentProject} /> : "";
+        return currentProject ? (
+            <ProjectInfo project={currentProject} tools={getUsedTools()} />
+        ) : (
+            ""
+        );
     };
 
     /**
@@ -104,7 +130,7 @@ const ProjectsPage: React.FC = () => {
                 <ProjectDoor side="right" open={doorOpen} />
                 {renderProjectInfo()}
             </div>
-            <ProjectsMenu onSelect={setProject} />
+            <ProjectsMenu projects={props.projects} onSelect={setProject} />
         </div>
     );
 };

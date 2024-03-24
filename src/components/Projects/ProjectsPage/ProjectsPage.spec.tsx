@@ -2,7 +2,8 @@ import "@testing-library/jest-dom";
 
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
-import projects from "@/static/projects";
+import { mockProjects } from "@/mocks/projects";
+import { mockTools } from "@/mocks/tools";
 
 import ProjectsPage from "./ProjectsPage";
 
@@ -49,7 +50,7 @@ describe("ProjectsPage", () => {
      * Renders the component and assigns local variables
      */
     const renderProjectsPage = (): void => {
-        render(<ProjectsPage />);
+        render(<ProjectsPage projects={mockProjects} tools={mockTools} />);
         Element.prototype.scrollTo = mockScrollTo;
         projectDoors = screen.queryAllByTestId("door");
         projectButtons = screen.queryAllByRole("button");
@@ -66,34 +67,34 @@ describe("ProjectsPage", () => {
 
     it("Renders components correctly when a project is selected", async () => {
         renderProjectsPage();
-        expect(projectButtons[0]).toHaveTextContent(projects[0].name);
+        expect(projectButtons[0]).toHaveTextContent(mockProjects[0].name);
         fireEvent.click(projectButtons[0]);
-        await waitFor(() => assertProjectSet(projects[0].name));
+        await waitFor(() => assertProjectSet(mockProjects[0].name));
     });
 
     it("Renders components correctly when a project is unselected from the menu", async () => {
         renderProjectsPage();
-        expect(projectButtons[0]).toHaveTextContent(projects[0].name);
+        expect(projectButtons[0]).toHaveTextContent(mockProjects[0].name);
         fireEvent.click(projectButtons[0]);
-        await waitFor(() => assertProjectSet(projects[0].name));
+        await waitFor(() => assertProjectSet(mockProjects[0].name));
         fireEvent.click(projectButtons[0]);
         await waitFor(assertProjectUnset);
     });
 
     it("Renders components correctly when a project is unselected from the modal", async () => {
         renderProjectsPage();
-        expect(projectButtons[0]).toHaveTextContent(projects[0].name);
+        expect(projectButtons[0]).toHaveTextContent(mockProjects[0].name);
         fireEvent.click(projectButtons[0]);
-        await waitFor(() => assertProjectSet(projects[0].name));
+        await waitFor(() => assertProjectSet(mockProjects[0].name));
         fireEvent.click(screen.getByTestId("overlay"));
         await waitFor(assertProjectUnset);
     });
 
     it("Renders components correctly when a different project is selected", async () => {
         renderProjectsPage();
-        expect(projectButtons[0]).toHaveTextContent(projects[0].name);
+        expect(projectButtons[0]).toHaveTextContent(mockProjects[0].name);
         fireEvent.click(projectButtons[0]);
-        await waitFor(() => assertProjectSet(projects[0].name));
+        await waitFor(() => assertProjectSet(mockProjects[0].name));
         fireEvent.click(projectButtons[1]);
         await waitFor(() => {
             expect(projectDoors[0]).toHaveClass("closed");
@@ -102,6 +103,6 @@ describe("ProjectsPage", () => {
                 "disabled",
             );
         });
-        await waitFor(() => assertProjectSet(projects[1].name));
+        await waitFor(() => assertProjectSet(mockProjects[1].name));
     });
 });
