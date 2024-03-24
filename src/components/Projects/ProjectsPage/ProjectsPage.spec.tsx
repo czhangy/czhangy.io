@@ -20,7 +20,7 @@ describe("ProjectsPage", () => {
      * Checks to see if the component is in a state where no project is set
      */
     const assertProjectUnset = (): void => {
-        expect(screen.queryByTestId("overlay")).not.toBeInTheDocument();
+        expect(screen.queryByTestId("modal-overlay")).not.toBeInTheDocument();
         expect(screen.queryByTestId("project-info")).not.toBeInTheDocument();
         expect(projectDoors[0]).toHaveClass("closed");
         expect(projectDoors[1]).toHaveClass("closed");
@@ -35,7 +35,7 @@ describe("ProjectsPage", () => {
      * @param {string} projectName The name of the project that is being set
      */
     const assertProjectSet = (projectName: string): void => {
-        expect(screen.queryByTestId("overlay")).toBeInTheDocument();
+        expect(screen.queryByTestId("modal-overlay")).toBeInTheDocument();
         expect(screen.queryAllByTestId("project-info").length).toBe(2);
         expect(projectDoors[0]).not.toHaveClass("closed");
         expect(projectDoors[1]).not.toHaveClass("closed");
@@ -86,7 +86,7 @@ describe("ProjectsPage", () => {
         expect(projectButtons[0]).toHaveTextContent(mockProjects[0].name);
         fireEvent.click(projectButtons[0]);
         await waitFor(() => assertProjectSet(mockProjects[0].name));
-        fireEvent.click(screen.getByTestId("overlay"));
+        fireEvent.click(screen.getByTestId("modal-overlay"));
         await waitFor(assertProjectUnset);
     });
 

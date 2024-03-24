@@ -8,7 +8,7 @@ import { mockTool1 } from "@/mocks/tools";
 import ProjectModal from "./ProjectModal";
 
 describe("ProjectModal", () => {
-    let overlay: HTMLDivElement | null;
+    let modalOverlay: HTMLDivElement | null;
 
     /**
      * A close handler for testing purposes
@@ -26,18 +26,18 @@ describe("ProjectModal", () => {
                 onClose={mockCloseHandler}
             />,
         );
-        overlay = screen.queryByTestId("overlay");
+        modalOverlay = screen.queryByTestId("modal-overlay");
     };
 
     it("Renders correctly", () => {
         renderProjectModal();
-        expect(overlay).not.toHaveClass("closing");
+        expect(modalOverlay).not.toHaveClass("closing");
         expect(screen.queryByTestId("project-info")).toBeInTheDocument();
     });
 
     it("Calls the close handler when the overlay is clicked", async () => {
         renderProjectModal();
-        fireEvent.click(overlay!);
+        fireEvent.click(modalOverlay!);
         await waitFor(() => expect(mockCloseHandler).toHaveBeenCalled());
     });
 });
