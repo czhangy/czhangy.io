@@ -3,8 +3,9 @@ import "@testing-library/jest-dom";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 import { mockProject } from "@/mocks/projects";
+import { mockTool1 } from "@/mocks/tools";
 
-import ProjectModal, { ProjectModalProps } from "./ProjectModal";
+import ProjectModal from "./ProjectModal";
 
 describe("ProjectModal", () => {
     let overlay: HTMLDivElement | null;
@@ -16,24 +17,26 @@ describe("ProjectModal", () => {
 
     /**
      * Renders the component and assigns local variables
-     *
-     * @param {ProjectModalProps} props Props to pass to the component
      */
-    const renderProjectModal = (props: ProjectModalProps): void => {
+    const renderProjectModal = (): void => {
         render(
-            <ProjectModal project={props.project} onClose={props.onClose} />,
+            <ProjectModal
+                project={mockProject}
+                tools={[mockTool1]}
+                onClose={mockCloseHandler}
+            />,
         );
         overlay = screen.queryByTestId("overlay");
     };
 
     it("Renders correctly", () => {
-        renderProjectModal({ project: mockProject, onClose: mockCloseHandler });
+        renderProjectModal();
         expect(overlay).not.toHaveClass("closing");
         expect(screen.queryByTestId("project-info")).toBeInTheDocument();
     });
 
     it("Calls the close handler when the overlay is clicked", async () => {
-        renderProjectModal({ project: mockProject, onClose: mockCloseHandler });
+        renderProjectModal();
         fireEvent.click(overlay!);
         await waitFor(() => expect(mockCloseHandler).toHaveBeenCalled());
     });

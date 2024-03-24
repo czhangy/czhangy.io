@@ -1,26 +1,19 @@
+import { Tool } from "@prisma/client";
+
 import Image from "@/components/Global/Image/Image";
 import ToolTag from "@/components/Projects/ToolTag/ToolTag";
-import Project from "@/models/Project";
-import Tool from "@/models/Tool";
-import { ConditionalJSX } from "@/static/types";
+import { ConditionalJSX, Project } from "@/static/types";
 
 import styles from "./ProjectInfo.module.scss";
 
 export type ProjectInfoProps = {
     /** The project object */
     project: Project;
+    /** The tools objects used by this project */
+    tools: Tool[];
 };
 
 const ProjectInfo: React.FC<ProjectInfoProps> = (props: ProjectInfoProps) => {
-    /**
-     * Gets the src of the project's image
-     *
-     * @returns {string} The path to the project's image
-     */
-    const getProjectImg = (): string => {
-        return `/assets/images/projects/${props.project.slug}.webp`;
-    };
-
     /**
      * Renders an external link for the project
      *
@@ -29,12 +22,12 @@ const ProjectInfo: React.FC<ProjectInfoProps> = (props: ProjectInfoProps) => {
      * @returns {ConditionalJSX} The JSX needed to render the external link
      */
     const renderExternalLink = (
-        type: "git" | "link",
+        type: "git" | "site",
         alt: "Git Repo" | "Site Link",
     ): ConditionalJSX => {
-        return props.project[type] ? (
+        return props.project[`${type}Link`] ? (
             <a
-                href={props.project[type] as string}
+                href={props.project[`${type}Link`]}
                 target="_blank"
                 rel="noreferrer"
                 className={styles["icon-container"]}
@@ -52,11 +45,11 @@ const ProjectInfo: React.FC<ProjectInfoProps> = (props: ProjectInfoProps) => {
      * @returns {ConditionalJSX} The JSX rendering the tools section of the project if it exists
      */
     const renderToolsSection = (): ConditionalJSX => {
-        return props.project.tools.length > 0 ? (
+        return props.tools && props.tools.length > 0 ? (
             <section className={styles["project-section"]}>
                 <h5 className={styles["section-header"]}>Tools</h5>
                 <ul className={styles["tool-list"]}>
-                    {props.project.tools.map((tool: Tool, idx: number) => {
+                    {props.tools.map((tool: Tool, idx: number) => {
                         return <ToolTag tool={tool} key={idx} />;
                     })}
                 </ul>
@@ -71,7 +64,7 @@ const ProjectInfo: React.FC<ProjectInfoProps> = (props: ProjectInfoProps) => {
             <section className={styles["project-section"]}>
                 <div className={styles["project-img"]}>
                     <Image
-                        src={getProjectImg()}
+                        src={props.project.thumbnail}
                         alt={props.project.name}
                         objectFit="cover"
                     />
@@ -85,7 +78,7 @@ const ProjectInfo: React.FC<ProjectInfoProps> = (props: ProjectInfoProps) => {
                 </h5>
                 <div className={styles["project-links"]}>
                     {renderExternalLink("git", "Git Repo")}
-                    {renderExternalLink("link", "Site Link")}
+                    {renderExternalLink("site", "Site Link")}
                 </div>
             </section>
             <section className={styles["project-section"]}>

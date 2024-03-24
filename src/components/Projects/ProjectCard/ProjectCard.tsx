@@ -1,4 +1,4 @@
-import Project from "@/models/Project";
+import { Project } from "@/static/types";
 
 import styles from "./ProjectCard.module.scss";
 

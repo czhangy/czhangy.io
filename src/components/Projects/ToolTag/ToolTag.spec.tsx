@@ -16,10 +16,10 @@ describe("ToolTag", () => {
         render(<ToolTag tool={props.tool} />);
     };
 
-    it("Renders", () => {
+    it("Renders correctly", () => {
         renderToolTag({ tool: mockTool1 });
         const tag: HTMLLIElement | null = screen.queryByRole("listitem");
-        expect(tag).toHaveClass(mockTool1.slug);
+        expect(tag).toHaveStyle({ backgroundColor: mockTool1.color });
         expect(tag).toHaveTextContent(mockTool1.name);
     });
 });

@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 
 import { mockProject } from "@/mocks/projects";
 
-import ProjectCard, { ProjectCardProps } from "./ProjectCard";
+import ProjectCard from "./ProjectCard";
 
 describe("ProjectCard", () => {
     let button: HTMLButtonElement | null;
@@ -16,16 +16,16 @@ describe("ProjectCard", () => {
 
     /**
      * Renders the component and assigns local variables
-     *
-     * @param {ProjectCardProps} props Props to pass to the component
      */
-    const renderProjectCard = (props: ProjectCardProps): void => {
-        render(<ProjectCard project={props.project} onClick={props.onClick} />);
+    const renderProjectCard = (): void => {
+        render(
+            <ProjectCard project={mockProject} onClick={mockClickHandler} />,
+        );
         button = screen.queryByRole("button");
     };
 
     it("Renders correctly", () => {
-        renderProjectCard({ project: mockProject, onClick: mockClickHandler });
+        renderProjectCard();
         expect(button).toBeInTheDocument();
         expect(screen.queryByRole("heading")).toHaveTextContent(
             mockProject.name,
@@ -33,7 +33,7 @@ describe("ProjectCard", () => {
     });
 
     it("Calls the click handler when clicked", () => {
-        renderProjectCard({ project: mockProject, onClick: mockClickHandler });
+        renderProjectCard();
         expect(button).toBeInTheDocument();
         fireEvent.click(button!);
         expect(mockClickHandler).toHaveBeenCalled();

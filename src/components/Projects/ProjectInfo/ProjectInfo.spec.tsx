@@ -10,6 +10,7 @@ import {
     mockNoToolsProject,
     mockProject,
 } from "@/mocks/projects";
+import { mockTool1, mockTool2 } from "@/mocks/tools";
 
 import ProjectInfo, { ProjectInfoProps } from "./ProjectInfo";
 
@@ -59,7 +60,7 @@ describe("ProjectInfo", () => {
      * @param {ProjectInfoProps} props Props to pass to the component
      */
     const renderProjectInfo = (props: ProjectInfoProps): void => {
-        render(<ProjectInfo project={props.project} />);
+        render(<ProjectInfo project={props.project} tools={props.tools} />);
         images = screen.queryAllByRole("img");
         headings = screen.queryAllByRole("heading");
         links = screen.queryAllByRole("link");
@@ -68,7 +69,7 @@ describe("ProjectInfo", () => {
     };
 
     it("Renders correctly", () => {
-        renderProjectInfo({ project: mockProject });
+        renderProjectInfo({ project: mockProject, tools: [mockTool1] });
         expect(images[0]).toHaveAttribute("alt", mockProject.name);
         expect(headings[0]).toHaveTextContent(mockProject.category);
         expect(screen.queryByTestId("project-summary")).toHaveTextContent(
@@ -78,48 +79,59 @@ describe("ProjectInfo", () => {
     });
 
     it("Renders the links section correctly when no links are present", () => {
-        renderProjectInfo({ project: mockNoLinksProject });
+        renderProjectInfo({ project: mockNoLinksProject, tools: [mockTool1] });
         expect(links.length).toBe(0);
         expect(images.length).toBe(1);
     });
 
     it("Renders the links section correctly when the GitHub link isn't present", () => {
-        renderProjectInfo({ project: mockNoGitHubProject });
+        renderProjectInfo({ project: mockNoGitHubProject, tools: [mockTool1] });
         expect(links.length).toBe(1);
         expect(images.length).toBe(2);
-        assertSiteLinkRenders(links[0], images[1], mockNoGitHubProject.link!);
+        assertSiteLinkRenders(
+            links[0],
+            images[1],
+            mockNoGitHubProject.siteLink!,
+        );
     });
 
     it("Renders the links section correctly when the site link isn't present", () => {
-        renderProjectInfo({ project: mockNoLinkProject });
+        renderProjectInfo({ project: mockNoLinkProject, tools: [mockTool1] });
         expect(links.length).toBe(1);
         expect(images.length).toBe(2);
-        assertGitHubLinkRenders(links[0], images[1], mockNoLinkProject.git!);
+        assertGitHubLinkRenders(
+            links[0],
+            images[1],
+            mockNoLinkProject.gitLink!,
+        );
     });
 
     it("Renders the links section correctly when both links are present", () => {
-        renderProjectInfo({ project: mockProject });
+        renderProjectInfo({ project: mockProject, tools: [mockTool1] });
         expect(links.length).toBe(2);
         expect(images.length).toBe(3);
-        assertGitHubLinkRenders(links[0], images[1], mockProject.git!);
-        assertSiteLinkRenders(links[1], images[2], mockProject.link!);
+        assertGitHubLinkRenders(links[0], images[1], mockProject.gitLink!);
+        assertSiteLinkRenders(links[1], images[2], mockProject.siteLink!);
     });
 
     it("Renders the tool section correctly when no tools are present", () => {
-        renderProjectInfo({ project: mockNoToolsProject });
+        renderProjectInfo({ project: mockNoToolsProject, tools: [] });
         expect(headings.length).toBe(2);
         expect(toolsList).not.toBeInTheDocument();
         expect(tools.length).toBe(0);
     });
 
     it("Renders the tool section correctly when 1 tool is present", () => {
-        renderProjectInfo({ project: mockProject });
+        renderProjectInfo({ project: mockProject, tools: [mockTool1] });
         assertToolsSectionRenders();
         expect(tools.length).toBe(1);
     });
 
     it("Renders the tool section correctly when multiple tool is present", () => {
-        renderProjectInfo({ project: mockMultiToolProject });
+        renderProjectInfo({
+            project: mockMultiToolProject,
+            tools: [mockTool1, mockTool2],
+        });
         assertToolsSectionRenders();
         expect(tools.length).toBe(2);
     });
