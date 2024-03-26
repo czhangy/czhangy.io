@@ -73,4 +73,11 @@ describe("Menu", () => {
         fireEvent.click(screen.getAllByRole("listitem")[0]);
         await waitFor(() => assertMenuClosed());
     });
+
+    it("Closes menu on scroll", async () => {
+        renderMenu();
+        fireEvent.click(button!);
+        fireEvent.scroll(window);
+        await waitFor(() => assertMenuClosed());
+    });
 });

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,6 +20,13 @@ const Menu: React.FC = () => {
     };
 
     /**
+     * Closes the menu without any delay
+     */
+    const closeMenu = (): void => {
+        setOpen(false);
+    };
+
+    /**
      * Toggles the state of the menu
      */
     const toggleMenu = (): void => {
@@ -30,7 +37,7 @@ const Menu: React.FC = () => {
      * Closes the menu after some delay to allow for nav
      */
     const handleClose = (): void => {
-        setTimeout(() => setOpen(false), DELAY);
+        setTimeout(closeMenu, DELAY);
     };
 
     /**
@@ -51,11 +58,19 @@ const Menu: React.FC = () => {
         return `${styles.menu} ${open ? styles.open : styles.closed}`;
     };
 
+    useEffect(() => {
+        window.addEventListener("scroll", closeMenu);
+
+        return () => {
+            window.removeEventListener("scroll", closeMenu);
+        };
+    }, []);
+
     return (
         <>
             <div
                 className={getOverlayClass()}
-                onClick={() => setOpen(false)}
+                onClick={closeMenu}
                 data-testid="menu-overlay"
             />
             <div className={styles["menu-container"]} data-testid="menu">
