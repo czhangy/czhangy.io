@@ -7,7 +7,7 @@ import {
     mockEmptyDescriptionExperience,
     mockExperience,
 } from "@/mocks/experiences";
-import { QueriedHTMLElement } from "@/static/types";
+import { QueriedHTMLElement, QueriedHTMLElements } from "@/static/types";
 
 import ExperienceCard, { ExperienceCardProps } from "./ExperienceCard";
 
@@ -33,7 +33,7 @@ describe("ExperienceCard", () => {
      * @param {string[]} description The array of bullet points describing the experience
      */
     const assertDescriptionRenders = (description: string[]): void => {
-        const bullets: HTMLElement[] = screen.queryAllByRole("listitem");
+        const bullets: QueriedHTMLElements = screen.queryAllByRole("listitem");
         expect(experienceDescription).toBeInTheDocument();
         expect(bullets.length).toBe(description.length);
         bullets.forEach((bullet: HTMLElement, idx: number) =>

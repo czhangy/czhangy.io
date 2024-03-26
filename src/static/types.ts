@@ -6,6 +6,9 @@ export type ConditionalJSX = JSX.Element | "";
 /** HTML element that has been selected by a queryBy... method */
 export type QueriedHTMLElement = HTMLElement | null;
 
+/** HTML elements that have been selected by a queryAllBy... method */
+export type QueriedHTMLElements = HTMLElement[];
+
 /** Left/right side */
 export type Side = "left" | "right";
 

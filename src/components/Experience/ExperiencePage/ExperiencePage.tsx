@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 import ExperienceCard from "@/components/Experience/ExperienceCard/ExperienceCard";
 import { Experience } from "@/static/types";
 
@@ -11,6 +13,27 @@ export type ExperiencePageProps = {
 const ExperiencePage: React.FC<ExperiencePageProps> = (
     props: ExperiencePageProps,
 ) => {
+    /**
+     * Renders the experience at a given timeline index
+     *
+     * @returns {ReactElement[]} The timeline entries
+     */
+    const renderExperiences = (): ReactElement[] => {
+        return props.experiences.map((experience: Experience, idx: number) => {
+            return (
+                <li className={getExperienceClass(idx)} key={idx}>
+                    <ExperienceCard experience={experience} />
+                    <p
+                        className={styles.timeframe}
+                        data-testid="page-timeframe"
+                    >
+                        {getTimeframe(experience)}
+                    </p>
+                </li>
+            );
+        });
+    };
+
     /**
      * Gets the correct styling of the experience, based on index
      *
@@ -48,19 +71,7 @@ const ExperiencePage: React.FC<ExperiencePageProps> = (
         <div className={styles["experience-page"]}>
             <ul className={styles.timeline}>
                 <div className={styles.arrow} />
-                {props.experiences.map((exp: Experience, idx: number) => {
-                    return (
-                        <li className={getExperienceClass(idx)} key={idx}>
-                            <ExperienceCard experience={exp} />
-                            <p
-                                className={styles.timeframe}
-                                data-testid="page-timeframe"
-                            >
-                                {getTimeframe(exp)}
-                            </p>
-                        </li>
-                    );
-                })}
+                {renderExperiences()}
                 <div className={getEndpointClass()} data-testid="endpoint" />
             </ul>
         </div>
