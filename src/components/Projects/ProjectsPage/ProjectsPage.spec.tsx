@@ -4,12 +4,20 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 import { mockProjects } from "@/mocks/projects";
 import { mockTools } from "@/mocks/tools";
+import { QueriedHTMLElements } from "@/static/types";
 
 import ProjectsPage from "./ProjectsPage";
 
 describe("ProjectsPage", () => {
-    let projectDoors: HTMLDivElement[];
-    let projectButtons: HTMLButtonElement[];
+    const LEFT_DOOR_IDX = 0;
+    const RIGHT_DOOR_IDX = 1;
+    const FIRST_PROJECT_IDX = 0;
+    const SECOND_PROJECT_IDX = 1;
+    const NUM_DOORS = 2;
+    const NUM_INFO_COMPONENTS = 2;
+
+    let projectDoors: QueriedHTMLElements;
+    let projectButtons: QueriedHTMLElements;
 
     /**
      * A mock of Element.scrollTo for testing purposes
@@ -22,8 +30,8 @@ describe("ProjectsPage", () => {
     const assertProjectUnset = (): void => {
         expect(screen.queryByTestId("modal-overlay")).not.toBeInTheDocument();
         expect(screen.queryByTestId("project-info")).not.toBeInTheDocument();
-        expect(projectDoors[0]).toHaveClass("closed");
-        expect(projectDoors[1]).toHaveClass("closed");
+        expect(projectDoors[LEFT_DOOR_IDX]).toHaveClass("closed");
+        expect(projectDoors[RIGHT_DOOR_IDX]).toHaveClass("closed");
         expect(screen.queryByTestId("scroll-container")).toHaveClass(
             "disabled",
         );
@@ -36,14 +44,18 @@ describe("ProjectsPage", () => {
      */
     const assertProjectSet = (projectName: string): void => {
         expect(screen.queryByTestId("modal-overlay")).toBeInTheDocument();
-        expect(screen.queryAllByTestId("project-info").length).toBe(2);
-        expect(projectDoors[0]).not.toHaveClass("closed");
-        expect(projectDoors[1]).not.toHaveClass("closed");
+        expect(screen.queryAllByTestId("project-info").length).toBe(
+            NUM_INFO_COMPONENTS,
+        );
+        expect(projectDoors[LEFT_DOOR_IDX]).not.toHaveClass("closed");
+        expect(projectDoors[RIGHT_DOOR_IDX]).not.toHaveClass("closed");
         expect(mockScrollTo).toHaveBeenCalledWith(0, 0);
         expect(screen.queryByTestId("scroll-container")).not.toHaveClass(
             "disabled",
         );
-        expect(screen.queryAllByAltText(projectName).length).toBe(2);
+        expect(screen.queryAllByAltText(projectName).length).toBe(
+            NUM_INFO_COMPONENTS,
+        );
     };
 
     /**
@@ -58,51 +70,69 @@ describe("ProjectsPage", () => {
 
     it("Renders correctly", () => {
         renderProjectsPage();
-        expect(projectDoors.length).toBe(2);
-        expect(projectDoors[0]).toHaveClass("left");
-        expect(projectDoors[1]).toHaveClass("right");
+        expect(projectDoors.length).toBe(NUM_DOORS);
+        expect(projectDoors[LEFT_DOOR_IDX]).toHaveClass("left");
+        expect(projectDoors[RIGHT_DOOR_IDX]).toHaveClass("right");
         expect(screen.queryByTestId("projects-menu")).toBeInTheDocument();
         assertProjectUnset();
     });
 
     it("Renders components correctly when a project is selected", async () => {
         renderProjectsPage();
-        expect(projectButtons[0]).toHaveTextContent(mockProjects[0].name);
-        fireEvent.click(projectButtons[0]);
-        await waitFor(() => assertProjectSet(mockProjects[0].name));
+        expect(projectButtons[FIRST_PROJECT_IDX]).toHaveTextContent(
+            mockProjects[FIRST_PROJECT_IDX].name,
+        );
+        fireEvent.click(projectButtons[FIRST_PROJECT_IDX]);
+        await waitFor(() =>
+            assertProjectSet(mockProjects[FIRST_PROJECT_IDX].name),
+        );
     });
 
     it("Renders components correctly when a project is unselected from the menu", async () => {
         renderProjectsPage();
-        expect(projectButtons[0]).toHaveTextContent(mockProjects[0].name);
-        fireEvent.click(projectButtons[0]);
-        await waitFor(() => assertProjectSet(mockProjects[0].name));
-        fireEvent.click(projectButtons[0]);
+        expect(projectButtons[FIRST_PROJECT_IDX]).toHaveTextContent(
+            mockProjects[FIRST_PROJECT_IDX].name,
+        );
+        fireEvent.click(projectButtons[FIRST_PROJECT_IDX]);
+        await waitFor(() =>
+            assertProjectSet(mockProjects[FIRST_PROJECT_IDX].name),
+        );
+        fireEvent.click(projectButtons[FIRST_PROJECT_IDX]);
         await waitFor(assertProjectUnset);
     });
 
     it("Renders components correctly when a project is unselected from the modal", async () => {
         renderProjectsPage();
-        expect(projectButtons[0]).toHaveTextContent(mockProjects[0].name);
-        fireEvent.click(projectButtons[0]);
-        await waitFor(() => assertProjectSet(mockProjects[0].name));
+        expect(projectButtons[FIRST_PROJECT_IDX]).toHaveTextContent(
+            mockProjects[FIRST_PROJECT_IDX].name,
+        );
+        fireEvent.click(projectButtons[FIRST_PROJECT_IDX]);
+        await waitFor(() =>
+            assertProjectSet(mockProjects[FIRST_PROJECT_IDX].name),
+        );
         fireEvent.click(screen.getByTestId("modal-overlay"));
         await waitFor(assertProjectUnset);
     });
 
     it("Renders components correctly when a different project is selected", async () => {
         renderProjectsPage();
-        expect(projectButtons[0]).toHaveTextContent(mockProjects[0].name);
-        fireEvent.click(projectButtons[0]);
-        await waitFor(() => assertProjectSet(mockProjects[0].name));
-        fireEvent.click(projectButtons[1]);
+        expect(projectButtons[FIRST_PROJECT_IDX]).toHaveTextContent(
+            mockProjects[FIRST_PROJECT_IDX].name,
+        );
+        fireEvent.click(projectButtons[FIRST_PROJECT_IDX]);
+        await waitFor(() =>
+            assertProjectSet(mockProjects[FIRST_PROJECT_IDX].name),
+        );
+        fireEvent.click(projectButtons[SECOND_PROJECT_IDX]);
         await waitFor(() => {
-            expect(projectDoors[0]).toHaveClass("closed");
-            expect(projectDoors[1]).toHaveClass("closed");
+            expect(projectDoors[LEFT_DOOR_IDX]).toHaveClass("closed");
+            expect(projectDoors[RIGHT_DOOR_IDX]).toHaveClass("closed");
             expect(screen.queryByTestId("scroll-container")).toHaveClass(
                 "disabled",
             );
         });
-        await waitFor(() => assertProjectSet(mockProjects[1].name));
+        await waitFor(() =>
+            assertProjectSet(mockProjects[SECOND_PROJECT_IDX].name),
+        );
     });
 });

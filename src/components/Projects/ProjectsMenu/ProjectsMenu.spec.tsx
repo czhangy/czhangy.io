@@ -3,13 +3,17 @@ import "@testing-library/jest-dom";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 import { mockProjects } from "@/mocks/projects";
-import { Project } from "@/static/types";
+import {
+    Project,
+    QueriedHTMLElement,
+    QueriedHTMLElements,
+} from "@/static/types";
 
 import ProjectsMenu from "./ProjectsMenu";
 
 describe("ProjectsMenu", () => {
-    let menu: HTMLUListElement | null;
-    let buttons: HTMLButtonElement[];
+    let menu: QueriedHTMLElement;
+    let buttons: QueriedHTMLElements;
 
     /**
      * A select handler for testing purposes
@@ -32,7 +36,7 @@ describe("ProjectsMenu", () => {
 
     it("Renders correctly", () => {
         renderProjectsMenu();
-        const cards: HTMLLIElement[] = screen.queryAllByRole("listitem");
+        const cards: QueriedHTMLElements = screen.queryAllByRole("listitem");
         expect(menu).not.toHaveClass("disabled");
         expect(cards.length).toBe(mockProjects.length);
         expect(buttons.length).toBe(mockProjects.length);
