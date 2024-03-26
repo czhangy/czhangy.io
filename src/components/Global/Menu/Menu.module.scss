@@ -1,5 +1,21 @@
 @use "@/styles/constants";
 
+.menu-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100lvw;
+    height: 100lvh;
+}
+
+.show {
+    z-index: constants.$overlay-z;
+}
+
+.hide {
+    display: none;
+}
+
 .menu-container {
     --bar-height: 2px;
     --bar-spacing: 4px;
@@ -17,6 +33,7 @@
     --transition-time: 0.2s;
 
     position: relative;
+    z-index: constants.$menu-z;
 
     .menu-button {
         display: flex;

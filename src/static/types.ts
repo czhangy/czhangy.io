@@ -3,6 +3,9 @@ import { Project as ProjectModel } from "@prisma/client";
 /** JSX elements rendered conditionally */
 export type ConditionalJSX = JSX.Element | "";
 
+/** HTML element that has been selected by a queryBy... method */
+export type QueriedHTMLElement = HTMLElement | null;
+
 /** Left/right side */
 export type Side = "left" | "right";
 
