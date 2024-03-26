@@ -10,47 +10,63 @@
     --description-spacing: 1rem;
     --header-font-size: 1.5rem;
     --logo-size: 60px;
+    --timeframe-font-size: 1.75rem;
+    --timeframe-letter-spacing: 1px;
+    --timeframe-x-padding: var(--card-padding);
+    --timeframe-y-padding: 0.5rem;
 
     border-radius: var(--card-border-radius);
     background: var(--theme-accent);
-    padding: var(--card-padding);
+    overflow: hidden;
 
-    .card-header {
-        display: flex;
-        align-items: center;
-
-        .card-img {
-            position: relative;
-            margin-right: var(--description-spacing);
-            width: var(--logo-size);
-            height: var(--logo-size);
-        }
-
-        .header-text {
-            .company {
-                font-size: var(--header-font-size);
-                font-family: constants.$header-font;
-                letter-spacing: var(--company-letter-spacing);
-            }
-
-            .title,
-            .timeframe {
-                font-size: var(--body-font-size);
-            }
-        }
+    .timeframe {
+        background-color: var(--theme-hover);
+        padding: var(--timeframe-y-padding) var(--timeframe-x-padding);
+        color: var(--theme-main);
+        font-size: var(--timeframe-font-size);
+        font-family: constants.$header-font;
+        letter-spacing: var(--timeframe-letter-spacing);
     }
 
-    .card-description {
-        margin-top: var(--description-spacing);
-        margin-left: var(--description-offset);
-        list-style-type: circle;
+    .card {
+        padding: var(--card-padding);
 
-        .bullet {
-            margin-bottom: var(--bullet-spacing);
-            font-size: var(--body-font-size);
+        .card-header {
+            display: flex;
+            align-items: center;
 
-            &:last-child {
-                margin-bottom: 0;
+            .card-img {
+                position: relative;
+                margin-right: var(--description-spacing);
+                width: var(--logo-size);
+                height: var(--logo-size);
+            }
+
+            .header-text {
+                .company {
+                    font-size: var(--header-font-size);
+                    font-family: constants.$header-font;
+                    letter-spacing: var(--company-letter-spacing);
+                }
+
+                .title {
+                    font-size: var(--body-font-size);
+                }
+            }
+        }
+
+        .card-description {
+            margin-top: var(--description-spacing);
+            margin-left: var(--description-offset);
+            list-style-type: circle;
+
+            .bullet {
+                margin-bottom: var(--bullet-spacing);
+                font-size: var(--body-font-size);
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
             }
         }
     }
@@ -71,7 +87,11 @@
         --header-font-size: 2rem;
         --logo-size: 80px;
 
-        .card-header > .header-text > .timeframe {
+        .timeframe {
+            display: none;
+        }
+
+        .card > .card-header > .header-text > .timeframe {
             display: none;
         }
     }

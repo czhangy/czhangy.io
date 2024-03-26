@@ -7,12 +7,13 @@ import {
     mockEmptyDescriptionExperience,
     mockExperience,
 } from "@/mocks/experiences";
+import { QueriedHTMLElement } from "@/static/types";
 
 import ExperienceCard, { ExperienceCardProps } from "./ExperienceCard";
 
 describe("ExperienceCard", () => {
-    let experienceDescription: HTMLUListElement | null;
-    let experienceTimeframe: HTMLParagraphElement | null;
+    let experienceDescription: QueriedHTMLElement;
+    let experienceTimeframe: QueriedHTMLElement;
 
     /**
      * Checks that the basic card components render correctly
@@ -32,10 +33,10 @@ describe("ExperienceCard", () => {
      * @param {string[]} description The array of bullet points describing the experience
      */
     const assertDescriptionRenders = (description: string[]): void => {
-        const bullets: HTMLLIElement[] = screen.queryAllByRole("listitem");
+        const bullets: HTMLElement[] = screen.queryAllByRole("listitem");
         expect(experienceDescription).toBeInTheDocument();
         expect(bullets.length).toBe(description.length);
-        bullets.forEach((bullet: HTMLLIElement, idx: number) =>
+        bullets.forEach((bullet: HTMLElement, idx: number) =>
             expect(bullet).toHaveTextContent(description[idx]),
         );
     };
