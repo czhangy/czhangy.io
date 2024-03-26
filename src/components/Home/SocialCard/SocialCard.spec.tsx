@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 
 import { render, screen } from "@testing-library/react";
 
-import { Social } from "@/static/types";
+import { QueriedHTMLElement, Social } from "@/static/types";
 
 import SocialCard, { SocialCardProps } from "./SocialCard";
 
@@ -18,7 +18,7 @@ describe("SocialCard", () => {
      * @param {Social} social The social media the card represents
      */
     const assertCardRenders = (social: Social): void => {
-        const link: HTMLAnchorElement | null = screen.queryByRole("link");
+        const link: QueriedHTMLElement = screen.queryByRole("link");
         expect(link).toHaveAttribute("href", `https://${social}.com`);
         expect(link).toHaveClass(social);
         expect(screen.queryByAltText(social)).toBeInTheDocument();

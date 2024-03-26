@@ -3,11 +3,12 @@ import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import { mockProject } from "@/mocks/projects";
+import { QueriedHTMLElement } from "@/static/types";
 
 import ProjectCard from "./ProjectCard";
 
 describe("ProjectCard", () => {
-    let button: HTMLButtonElement | null;
+    let button: QueriedHTMLElement;
 
     /**
      * A click handler for testing purposes

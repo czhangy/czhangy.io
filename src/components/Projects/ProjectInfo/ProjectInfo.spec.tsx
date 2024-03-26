@@ -11,15 +11,16 @@ import {
     mockProject,
 } from "@/mocks/projects";
 import { mockTool1, mockTool2 } from "@/mocks/tools";
+import { QueriedHTMLElement, QueriedHTMLElements } from "@/static/types";
 
 import ProjectInfo, { ProjectInfoProps } from "./ProjectInfo";
 
 describe("ProjectInfo", () => {
-    let images: HTMLImageElement[];
-    let headings: HTMLHeadingElement[];
-    let links: HTMLAnchorElement[];
-    let toolsList: HTMLUListElement | null;
-    let tools: HTMLLIElement[];
+    let images: QueriedHTMLElements;
+    let headings: QueriedHTMLElements;
+    let links: QueriedHTMLElements;
+    let toolsList: QueriedHTMLElement;
+    let tools: QueriedHTMLElements;
 
     /**
      * Checks to see if the tools section is rendered correctly
@@ -34,8 +35,8 @@ describe("ProjectInfo", () => {
      * Checks to see if a GitHub link is rendered correctly
      */
     const assertGitHubLinkRenders = (
-        link: HTMLAnchorElement,
-        image: HTMLImageElement,
+        link: HTMLElement,
+        image: HTMLElement,
         href: string,
     ): void => {
         expect(link).toHaveAttribute("href", href);
@@ -46,8 +47,8 @@ describe("ProjectInfo", () => {
      * Checks to see if a site link is rendered correctly
      */
     const assertSiteLinkRenders = (
-        link: HTMLAnchorElement,
-        image: HTMLImageElement,
+        link: HTMLElement,
+        image: HTMLElement,
         href: string,
     ): void => {
         expect(link).toHaveAttribute("href", href);

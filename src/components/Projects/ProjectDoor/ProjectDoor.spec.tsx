@@ -2,10 +2,12 @@ import "@testing-library/jest-dom";
 
 import { render, screen } from "@testing-library/react";
 
+import { QueriedHTMLElement } from "@/static/types";
+
 import ProjectDoor, { ProjectDoorProps } from "./ProjectDoor";
 
 describe("ProjectDoor", () => {
-    let door: HTMLDivElement | null;
+    let door: QueriedHTMLElement;
 
     /**
      * Checks that the left door is rendered correctly
