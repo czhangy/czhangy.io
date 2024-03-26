@@ -47,31 +47,30 @@ const ExperienceCard: React.FC<ExperienceCardProps> = (
 
     return (
         <div className={styles["experience-card"]}>
-            <div className={styles["card-header"]}>
-                <div className={styles["card-img"]}>
-                    <Image
-                        src={props.experience.logo}
-                        alt={props.experience.company}
-                        layout="fill"
-                        objectFit="contain"
-                    />
-                </div>
-                <div className={styles["header-text"]}>
-                    <h3 className={styles.company}>
-                        {props.experience.company}
-                    </h3>
-                    <strong className={styles.title}>
-                        {props.experience.title}
-                    </strong>
-                    <p
-                        className={styles.timeframe}
-                        data-testid="card-timeframe"
-                    >
-                        {getTimeframe(props.experience)}
-                    </p>
-                </div>
+            <div className={styles.timeframe} data-testid="card-timeframe">
+                {getTimeframe(props.experience)}
             </div>
-            {getCardDescription()}
+            <div className={styles.card}>
+                <div className={styles["card-header"]}>
+                    <div className={styles["card-img"]}>
+                        <Image
+                            src={props.experience.logo}
+                            alt={props.experience.company}
+                            layout="fill"
+                            objectFit="contain"
+                        />
+                    </div>
+                    <div className={styles["header-text"]}>
+                        <h3 className={styles.company}>
+                            {props.experience.company}
+                        </h3>
+                        <strong className={styles.title}>
+                            {props.experience.title}
+                        </strong>
+                    </div>
+                </div>
+                {getCardDescription()}
+            </div>
         </div>
     );
 };

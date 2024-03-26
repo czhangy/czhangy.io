@@ -6,23 +6,24 @@ import {
     mockCurrentExperience,
     mockEmptyDescriptionExperience,
 } from "@/mocks/experiences";
+import { QueriedHTMLElement, QueriedHTMLElements } from "@/static/types";
 
 import ExperiencePage, { ExperiencePageProps } from "./ExperiencePage";
 
 describe("ExperiencePage", () => {
-    let experiences: HTMLLIElement[];
-    let timeframes: HTMLParagraphElement[];
-    let endpoint: HTMLDivElement | null;
+    let experiences: QueriedHTMLElements;
+    let timeframes: QueriedHTMLElements;
+    let endpoint: QueriedHTMLElement;
 
     /**
      * Checks that the timeframe is rendered correctly
      *
-     * @param {HTMLParagraphElement} timeframe
+     * @param {HTMLElement} timeframe
      * @param {string} startDate
      * @param {string} endDate
      */
     const assertTimeframeRenders = (
-        timeframe: HTMLParagraphElement,
+        timeframe: HTMLElement,
         startDate: string,
         endDate: string,
     ): void => {
@@ -62,7 +63,7 @@ describe("ExperiencePage", () => {
         });
         expect(experiences.length).toBe(2);
         expect(timeframes.length).toBe(2);
-        timeframes.forEach((timeframe: HTMLParagraphElement) =>
+        timeframes.forEach((timeframe: HTMLElement) =>
             assertTimeframeRenders(
                 timeframe,
                 mockEmptyDescriptionExperience.startDate,
