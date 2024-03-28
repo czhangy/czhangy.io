@@ -4,11 +4,12 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 import { mockProject } from "@/mocks/projects";
 import { mockTool1 } from "@/mocks/tools";
+import { QueriedHTMLElement } from "@/static/types";
 
 import ProjectModal from "./ProjectModal";
 
 describe("ProjectModal", () => {
-    let modalOverlay: HTMLDivElement | null;
+    let modalOverlay: QueriedHTMLElement;
 
     /**
      * A close handler for testing purposes

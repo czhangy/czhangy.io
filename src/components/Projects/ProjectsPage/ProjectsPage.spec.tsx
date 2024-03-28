@@ -4,10 +4,20 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 import { mockProjects } from "@/mocks/projects";
 import { mockTools } from "@/mocks/tools";
+import { BUTTON, LEFT, RIGHT } from "@/static/constants";
 
 import ProjectsPage from "./ProjectsPage";
 
 describe("ProjectsPage", () => {
+    /** Index of the left door for a list of doors in the component */
+    const LEFT_DOOR_IDX: number = 0;
+    /** Index of the right door for a list of doors in the component */
+    const RIGHT_DOOR_IDX: number = 1;
+    /** Number of info components (modal + info) */
+    const NUM_INFO_COMPONENTS: number = 2;
+    /** Number of doors */
+    const NUM_DOORS: number = 2;
+
     let projectDoors: HTMLDivElement[];
     let projectButtons: HTMLButtonElement[];
 
@@ -22,8 +32,8 @@ describe("ProjectsPage", () => {
     const assertProjectUnset = (): void => {
         expect(screen.queryByTestId("modal-overlay")).not.toBeInTheDocument();
         expect(screen.queryByTestId("project-info")).not.toBeInTheDocument();
-        expect(projectDoors[0]).toHaveClass("closed");
-        expect(projectDoors[1]).toHaveClass("closed");
+        expect(projectDoors[LEFT_DOOR_IDX]).toHaveClass("closed");
+        expect(projectDoors[RIGHT_DOOR_IDX]).toHaveClass("closed");
         expect(screen.queryByTestId("scroll-container")).toHaveClass(
             "disabled",
         );
@@ -36,14 +46,18 @@ describe("ProjectsPage", () => {
      */
     const assertProjectSet = (projectName: string): void => {
         expect(screen.queryByTestId("modal-overlay")).toBeInTheDocument();
-        expect(screen.queryAllByTestId("project-info").length).toBe(2);
+        expect(screen.queryAllByTestId("project-info").length).toBe(
+            NUM_INFO_COMPONENTS,
+        );
         expect(projectDoors[0]).not.toHaveClass("closed");
         expect(projectDoors[1]).not.toHaveClass("closed");
         expect(mockScrollTo).toHaveBeenCalledWith(0, 0);
         expect(screen.queryByTestId("scroll-container")).not.toHaveClass(
             "disabled",
         );
-        expect(screen.queryAllByAltText(projectName).length).toBe(2);
+        expect(screen.queryAllByAltText(projectName).length).toBe(
+            NUM_INFO_COMPONENTS,
+        );
     };
 
     /**
@@ -53,14 +67,14 @@ describe("ProjectsPage", () => {
         render(<ProjectsPage projects={mockProjects} tools={mockTools} />);
         Element.prototype.scrollTo = mockScrollTo;
         projectDoors = screen.queryAllByTestId("door");
-        projectButtons = screen.queryAllByRole("button");
+        projectButtons = screen.queryAllByRole(BUTTON);
     };
 
     it("Renders correctly", () => {
         renderProjectsPage();
-        expect(projectDoors.length).toBe(2);
-        expect(projectDoors[0]).toHaveClass("left");
-        expect(projectDoors[1]).toHaveClass("right");
+        expect(projectDoors.length).toBe(NUM_DOORS);
+        expect(projectDoors[LEFT_DOOR_IDX]).toHaveClass(LEFT);
+        expect(projectDoors[RIGHT_DOOR_IDX]).toHaveClass(RIGHT);
         expect(screen.queryByTestId("projects-menu")).toBeInTheDocument();
         assertProjectUnset();
     });
@@ -97,8 +111,8 @@ describe("ProjectsPage", () => {
         await waitFor(() => assertProjectSet(mockProjects[0].name));
         fireEvent.click(projectButtons[1]);
         await waitFor(() => {
-            expect(projectDoors[0]).toHaveClass("closed");
-            expect(projectDoors[1]).toHaveClass("closed");
+            expect(projectDoors[LEFT_DOOR_IDX]).toHaveClass("closed");
+            expect(projectDoors[RIGHT_DOOR_IDX]).toHaveClass("closed");
             expect(screen.queryByTestId("scroll-container")).toHaveClass(
                 "disabled",
             );

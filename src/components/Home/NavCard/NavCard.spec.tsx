@@ -2,7 +2,8 @@ import "@testing-library/jest-dom";
 
 import { render, screen } from "@testing-library/react";
 
-import { Side } from "@/static/types";
+import { HEADING, HREF, LEFT, LINK, RIGHT } from "@/static/constants";
+import { QueriedHTMLElement, Side } from "@/static/types";
 
 import NavCard, { NavCardProps } from "./NavCard";
 
@@ -16,11 +17,11 @@ describe("NavCard", () => {
      * @param {Side} side The alignment of the card being tested
      */
     const assertCardRenders = (side: Side): void => {
-        const title: HTMLHeadingElement | null = screen.queryByRole("heading");
+        const title: QueriedHTMLElement = screen.queryByRole(HEADING);
         expect(title).toHaveTextContent(TEST_TITLE);
         expect(title).toHaveClass(`${side}-title`);
         expect(screen.queryByAltText(TEST_TITLE)).toBeInTheDocument();
-        expect(screen.queryByRole("link")).toHaveAttribute("href", TEST_PATH);
+        expect(screen.queryByRole(LINK)).toHaveAttribute(HREF, TEST_PATH);
     };
 
     /**
@@ -39,12 +40,12 @@ describe("NavCard", () => {
     };
 
     it("Renders correctly when aligned left", () => {
-        renderNavCard({ title: TEST_TITLE, path: TEST_PATH, align: "left" });
-        assertCardRenders("left");
+        renderNavCard({ title: TEST_TITLE, path: TEST_PATH, align: LEFT });
+        assertCardRenders(LEFT);
     });
 
     it("Renders correctly when aligned right", () => {
-        renderNavCard({ title: TEST_TITLE, path: TEST_PATH, align: "right" });
-        assertCardRenders("right");
+        renderNavCard({ title: TEST_TITLE, path: TEST_PATH, align: RIGHT });
+        assertCardRenders(RIGHT);
     });
 });
