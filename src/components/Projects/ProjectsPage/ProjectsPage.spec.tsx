@@ -5,6 +5,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { mockProjects } from "@/mocks/projects";
 import { mockTools } from "@/mocks/tools";
 import { BUTTON, LEFT, RIGHT } from "@/static/constants";
+import { QueriedHTMLElements } from "@/static/types";
 
 import ProjectsPage from "./ProjectsPage";
 
@@ -18,8 +19,8 @@ describe("ProjectsPage", () => {
     /** Number of doors */
     const NUM_DOORS: number = 2;
 
-    let projectDoors: HTMLDivElement[];
-    let projectButtons: HTMLButtonElement[];
+    let projectDoors: QueriedHTMLElements;
+    let projectButtons: QueriedHTMLElements;
 
     /**
      * A mock of Element.scrollTo for testing purposes
@@ -49,8 +50,8 @@ describe("ProjectsPage", () => {
         expect(screen.queryAllByTestId("project-info").length).toBe(
             NUM_INFO_COMPONENTS,
         );
-        expect(projectDoors[0]).not.toHaveClass("closed");
-        expect(projectDoors[1]).not.toHaveClass("closed");
+        expect(projectDoors[LEFT_DOOR_IDX]).not.toHaveClass("closed");
+        expect(projectDoors[RIGHT_DOOR_IDX]).not.toHaveClass("closed");
         expect(mockScrollTo).toHaveBeenCalledWith(0, 0);
         expect(screen.queryByTestId("scroll-container")).not.toHaveClass(
             "disabled",

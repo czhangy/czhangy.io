@@ -22,6 +22,7 @@ import {
     LIST_ITEM,
     SITE_LINK_ALT,
 } from "@/static/constants";
+import { QueriedHTMLElement, QueriedHTMLElements } from "@/static/types";
 
 import ProjectInfo, { ProjectInfoProps } from "./ProjectInfo";
 
@@ -41,11 +42,11 @@ describe("ProjectInfo", () => {
     /** The title of the tools section */
     const TOOLS_TITLE: string = "Tools";
 
-    let images: HTMLImageElement[];
-    let headings: HTMLHeadingElement[];
-    let links: HTMLAnchorElement[];
-    let toolsList: HTMLUListElement | null;
-    let tools: HTMLLIElement[];
+    let images: QueriedHTMLElements;
+    let headings: QueriedHTMLElements;
+    let links: QueriedHTMLElements;
+    let toolsList: QueriedHTMLElement;
+    let tools: QueriedHTMLElements;
 
     /**
      * Checks to see if the tools section is rendered correctly
@@ -60,8 +61,8 @@ describe("ProjectInfo", () => {
      * Checks to see if a GitHub link is rendered correctly
      */
     const assertGitHubLinkRenders = (
-        link: HTMLAnchorElement,
-        image: HTMLImageElement,
+        link: HTMLElement,
+        image: HTMLElement,
         href: string,
     ): void => {
         expect(link).toHaveAttribute(HREF, href);
@@ -72,8 +73,8 @@ describe("ProjectInfo", () => {
      * Checks to see if a site link is rendered correctly
      */
     const assertSiteLinkRenders = (
-        link: HTMLAnchorElement,
-        image: HTMLImageElement,
+        link: HTMLElement,
+        image: HTMLElement,
         href: string,
     ): void => {
         expect(link).toHaveAttribute(HREF, href);
