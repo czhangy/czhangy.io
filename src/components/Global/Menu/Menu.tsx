@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
+
+import Image from "@/components/Global/Image/Image";
+import { SCROLL } from "@/static/constants";
 
 import styles from "./Menu.module.scss";
 
@@ -59,10 +61,10 @@ const Menu: React.FC = () => {
     };
 
     useEffect(() => {
-        window.addEventListener("scroll", closeMenu);
+        window.addEventListener(SCROLL, closeMenu);
 
         return () => {
-            window.removeEventListener("scroll", closeMenu);
+            window.removeEventListener(SCROLL, closeMenu);
         };
     }, []);
 
@@ -91,8 +93,6 @@ const Menu: React.FC = () => {
                                     <Image
                                         src="/assets/icons/about.svg"
                                         alt="About Me"
-                                        layout="fill"
-                                        objectFit="contain"
                                     />
                                 </div>
                                 About
@@ -106,8 +106,6 @@ const Menu: React.FC = () => {
                                     <Image
                                         src="/assets/icons/projects.svg"
                                         alt="My Projects"
-                                        layout="fill"
-                                        objectFit="contain"
                                     />
                                 </div>
                                 Projects
@@ -121,8 +119,6 @@ const Menu: React.FC = () => {
                                     <Image
                                         src="/assets/icons/experience.svg"
                                         alt="My Experience"
-                                        layout="fill"
-                                        objectFit="contain"
                                     />
                                 </div>
                                 Experience

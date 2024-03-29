@@ -2,6 +2,7 @@ import { Tool } from "@prisma/client";
 
 import Image from "@/components/Global/Image/Image";
 import ToolTag from "@/components/Projects/ToolTag/ToolTag";
+import { COVER, GIT_LINK_ALT, SITE_LINK_ALT } from "@/static/constants";
 import { ConditionalJSX, Project } from "@/static/types";
 
 import styles from "./ProjectInfo.module.scss";
@@ -66,7 +67,7 @@ const ProjectInfo: React.FC<ProjectInfoProps> = (props: ProjectInfoProps) => {
                     <Image
                         src={props.project.thumbnail}
                         alt={props.project.name}
-                        objectFit="cover"
+                        objectFit={COVER}
                     />
                 </div>
             </section>
@@ -77,8 +78,8 @@ const ProjectInfo: React.FC<ProjectInfoProps> = (props: ProjectInfoProps) => {
                     {props.project.category}
                 </h5>
                 <div className={styles["project-links"]}>
-                    {renderExternalLink("git", "Git Repo")}
-                    {renderExternalLink("site", "Site Link")}
+                    {renderExternalLink("git", GIT_LINK_ALT)}
+                    {renderExternalLink("site", SITE_LINK_ALT)}
                 </div>
             </section>
             <section className={styles["project-section"]}>

@@ -1,5 +1,13 @@
 import NavCard from "@/components/Home/NavCard/NavCard";
 import SocialCard from "@/components/Home/SocialCard/SocialCard";
+import {
+    GITHUB,
+    INSTAGRAM,
+    LEFT,
+    LINKEDIN,
+    RIGHT,
+    TWITTER,
+} from "@/static/constants";
 
 import styles from "./HomePage.module.scss";
 
@@ -10,33 +18,33 @@ const HomePage: React.FC = () => {
                 <div
                     className={`${styles["nav-card"]} ${styles["vertical-card"]}`}
                 >
-                    <NavCard title="About Me" path="/about" align="left" />
+                    <NavCard title="About Me" path="/about" align={LEFT} />
                 </div>
                 <div className={styles["nav-card"]}>
                     <NavCard
                         title="My Projects"
                         path="/projects"
-                        align="right"
+                        align={RIGHT}
                     />
                 </div>
                 <div className={styles["nav-card"]}>
                     <NavCard
                         title="My Experience"
                         path="/experience"
-                        align="right"
+                        align={RIGHT}
                     />
                 </div>
-                <SocialCard social="github" link="https://github.com/czhangy" />
+                <SocialCard social={GITHUB} link="https://github.com/czhangy" />
                 <SocialCard
-                    social="linkedin"
+                    social={LINKEDIN}
                     link="https://www.linkedin.com/in/czhangy/"
                 />
                 <SocialCard
-                    social="instagram"
+                    social={INSTAGRAM}
                     link="https://www.instagram.com/c.zhangg/"
                 />
                 <SocialCard
-                    social="twitter"
+                    social={TWITTER}
                     link="https://twitter.com/czhangy_"
                 />
             </div>
