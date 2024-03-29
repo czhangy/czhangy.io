@@ -14,7 +14,7 @@ describe("Menu", () => {
     let bar: QueriedHTMLElement;
 
     /** The names of the pages displayed in the menu */
-    const PAGES: string[] = ["About", "Projects", "Experience"];
+    const PAGES: string[] = ["About", "Projects", "Experience", "Journals"];
 
     /**
      * Checks that the menu is in a closed state

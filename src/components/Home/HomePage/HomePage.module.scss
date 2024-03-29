@@ -4,11 +4,13 @@
     --gap: 0.5rem;
     --grid-col-width: 75px;
     --grid-cols: 4;
-    --grid-rows: 7;
+    --grid-rows: 9;
     --nav-card-col-end: 5;
     --nav-card-col-start: 1;
     --nav-card-height: 2;
     --row-size: 70px;
+    --social-card-row-start: 9;
+    --social-card-row-end: 10;
 
     .home-grid {
         display: grid;
@@ -21,30 +23,10 @@
             grid-column-start: var(--nav-card-col-start);
             grid-column-end: var(--nav-card-col-end);
         }
-    }
-}
 
-@media screen and (min-width: constants.$tablet) {
-    .home-page {
-        --gap: 0.75rem;
-        --grid-col-width: 100px;
-        --grid-cols: 6;
-        --nav-card-col-end: 7;
-        --nav-card-col-start: 3;
-        --nav-card-height: 3;
-        --row-size: 50px;
-        --vertical-card-col-end: 3;
-        --vertical-card-col-start: 1;
-        --vertical-card-row-end: 8;
-        --vertical-card-row-start: 1;
-
-        .home-grid {
-            .vertical-card {
-                grid-row-start: var(--vertical-card-row-start);
-                grid-row-end: var(--vertical-card-row-end);
-                grid-column-start: var(--vertical-card-col-start);
-                grid-column-end: var(--vertical-card-col-end);
-            }
+        .social-card {
+            grid-row-start: var(--social-card-row-start);
+            grid-row-end: var(--social-card-row-end);
         }
     }
 }
@@ -53,6 +35,35 @@
     .home-page {
         --gap: 1rem;
         --grid-col-width: 140px;
+        --grid-cols: 8;
+        --left-card-col-end: 3;
+        --left-card-col-start: 1;
+        --nav-card-col-end: 7;
+        --nav-card-col-start: 3;
+        --nav-card-height: 3;
+        --right-card-col-end: 9;
+        --right-card-col-start: 7;
         --row-size: 70px;
+        --social-card-row-start: 7;
+        --social-card-row-end: 8;
+        --vertical-card-row-end: 8;
+        --vertical-card-row-start: 1;
+
+        .home-grid {
+            .vertical-card {
+                grid-row-start: var(--vertical-card-row-start);
+                grid-row-end: var(--vertical-card-row-end);
+            }
+
+            .left-card {
+                grid-column-start: var(--left-card-col-start);
+                grid-column-end: var(--left-card-col-end);
+            }
+
+            .right-card {
+                grid-column-start: var(--right-card-col-start);
+                grid-column-end: var(--right-card-col-end);
+            }
+        }
     }
 }

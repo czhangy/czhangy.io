@@ -2,19 +2,27 @@ import "@testing-library/jest-dom";
 
 import { render, screen } from "@testing-library/react";
 
-import { IMAGE, LINK } from "@/static/constants";
+import {
+    GITHUB,
+    IMAGE,
+    INSTAGRAM,
+    LINK,
+    LINKEDIN,
+    TWITTER,
+} from "@/static/constants";
 
 import HomePage from "./HomePage";
 
 describe("HomePage", () => {
-    /** The about section title */
-    const ABOUT_TITLE: string = "About Me";
-    /** The projects section title */
-    const PROJECTS_TITLE: string = "My Projects";
-    /** The experience section title */
-    const EXPERIENCE_TITLE: string = "My Experience";
-    /** The number of cards on the page */
-    const NUM_CARDS = 7;
+    /** A list of the titles of each page on the site */
+    const PAGE_TITLES: string[] = [
+        "About Me",
+        "My Projects",
+        "My Experience",
+        "Journals",
+    ];
+    /** A list of the socials being linked to on the page */
+    const SOCIALS: string[] = [GITHUB, LINKEDIN, INSTAGRAM, TWITTER];
 
     /**
      * Renders the component
@@ -25,10 +33,14 @@ describe("HomePage", () => {
 
     it("Renders expected content", () => {
         renderHomePage();
-        expect(screen.queryByText(ABOUT_TITLE)).toBeInTheDocument();
-        expect(screen.queryByText(PROJECTS_TITLE)).toBeInTheDocument();
-        expect(screen.queryByText(EXPERIENCE_TITLE)).toBeInTheDocument();
-        expect(screen.queryAllByRole(LINK).length).toBe(NUM_CARDS);
-        expect(screen.queryAllByRole(IMAGE).length).toBe(NUM_CARDS);
+        const numCards: number = PAGE_TITLES.length + SOCIALS.length;
+        PAGE_TITLES.forEach((title: string) => {
+            expect(screen.queryByText(title)).toBeInTheDocument();
+        });
+        SOCIALS.forEach((social: string) => {
+            expect(screen.queryByAltText(social)).toBeInTheDocument();
+        });
+        expect(screen.queryAllByRole(LINK).length).toBe(numCards);
+        expect(screen.queryAllByRole(IMAGE).length).toBe(numCards);
     });
 });

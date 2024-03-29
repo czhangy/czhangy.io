@@ -33,10 +33,10 @@
     }
 }
 
-@media screen and (min-width: constants.$tablet) {
+@media screen and (min-width: constants.$desktop) {
     .nav-card {
         --card-border-radius: 12px;
-        --font-size: 1.5rem;
+        --font-size: 2rem;
         --title-border-radius: 12px;
 
         .title {
@@ -52,12 +52,6 @@
             left: auto;
             border-radius: var(--title-border-radius) 0 0 0;
         }
-    }
-}
-
-@media screen and (min-width: constants.$desktop) {
-    .nav-card {
-        --font-size: 2rem;
     }
 }
 

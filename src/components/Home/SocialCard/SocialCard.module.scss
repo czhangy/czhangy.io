@@ -12,6 +12,7 @@
         transform var(--transition-time),
         box-shadow var(--transition-time);
     border-radius: var(--card-border-rad);
+    height: 100%;
 
     .icon-container {
         position: relative;
@@ -76,12 +77,6 @@
 
 .twitter {
     background: #1da1f2;
-}
-
-@media screen and (min-width: constants.$tablet) {
-    .social-card {
-        --icon-size: 32px;
-    }
 }
 
 @media screen and (min-width: constants.$desktop) {
