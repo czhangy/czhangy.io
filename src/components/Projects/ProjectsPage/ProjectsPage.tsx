@@ -5,6 +5,7 @@ import ProjectDoor from "@/components/Projects/ProjectDoor/ProjectDoor";
 import ProjectInfo from "@/components/Projects/ProjectInfo/ProjectInfo";
 import ProjectModal from "@/components/Projects/ProjectModal/ProjectModal";
 import ProjectsMenu from "@/components/Projects/ProjectsMenu/ProjectsMenu";
+import { LEFT, RIGHT } from "@/static/constants";
 import { ConditionalJSX, Project } from "@/static/types";
 
 import styles from "./ProjectsPage.module.scss";
@@ -126,8 +127,8 @@ const ProjectsPage: React.FC<ProjectsPageProps> = (
                 className={getContainerClass()}
                 data-testid="scroll-container"
             >
-                <ProjectDoor side="left" open={doorOpen} />
-                <ProjectDoor side="right" open={doorOpen} />
+                <ProjectDoor side={LEFT} open={doorOpen} />
+                <ProjectDoor side={RIGHT} open={doorOpen} />
                 {renderProjectInfo()}
             </div>
             <ProjectsMenu projects={props.projects} onSelect={setProject} />

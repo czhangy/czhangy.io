@@ -1,3 +1,4 @@
+import { LEFT } from "@/static/constants";
 import { Side } from "@/static/types";
 
 import styles from "./ProjectDoor.module.scss";
@@ -25,7 +26,7 @@ const ProjectDoor: React.FC<ProjectDoorProps> = (props: ProjectDoorProps) => {
      * @returns {string} The string used as the decal of the door
      */
     const getDecal = (): string => {
-        return props.side === "left" ? "</" : "/>";
+        return props.side === LEFT ? "</" : "/>";
     };
 
     return (

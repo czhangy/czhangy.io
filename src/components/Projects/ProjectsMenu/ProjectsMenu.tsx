@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 
 import ProjectCard from "@/components/Projects/ProjectCard/ProjectCard";
 import { Project } from "@/static/types";
@@ -30,6 +30,21 @@ const ProjectsMenu: React.FC<ProjectsMenuProps> = (
     };
 
     /**
+     * Get the list of project cards
+     *
+     * @returns {ReactElement[]} The list of react elements used to render the project options
+     */
+    const getProjectOptions = (): ReactElement[] => {
+        return props.projects.map((project: Project, idx: number) => {
+            return (
+                <li className={styles["projects-menu-card"]} key={idx}>
+                    <ProjectCard project={project} onClick={selectProject} />
+                </li>
+            );
+        });
+    };
+
+    /**
      * Selects a project by disabling the menu temporarily and passing the selection up
      *
      * @param {Project} project The Project object that is being selected
@@ -42,16 +57,7 @@ const ProjectsMenu: React.FC<ProjectsMenuProps> = (
 
     return (
         <ul className={getMenuClass()} data-testid="projects-menu">
-            {props.projects.map((project: Project, idx: number) => {
-                return (
-                    <li className={styles["projects-menu-card"]} key={idx}>
-                        <ProjectCard
-                            project={project}
-                            onClick={selectProject}
-                        />
-                    </li>
-                );
-            })}
+            {getProjectOptions()}
         </ul>
     );
 };

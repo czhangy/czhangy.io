@@ -72,3 +72,10 @@ export const GIT_LINK_ALT = "Git Repo";
 
 /** The alt text for site links */
 export const SITE_LINK_ALT = "Site Link";
+
+// -----------------------------------------------------------------------------
+// EVENT CONSTANTS
+// -----------------------------------------------------------------------------
+
+/** The string constant for scroll events */
+export const SCROLL: string = "scroll";
