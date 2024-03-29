@@ -39,3 +39,13 @@ export type Experience = {
     endDate: string;
     description: string[];
 };
+
+/** Entry object definition */
+export type Entry = {
+    title: string;
+    timestamp: string;
+    lifeLogs: string[];
+    careerChronicles: string[];
+    gamingGrind: string[];
+    randomRavings: string[];
+};
