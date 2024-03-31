@@ -8,7 +8,6 @@
 
     display: flex;
     justify-content: center;
-
     animation-duration: var(--animation-duration);
     animation-name: load;
     transition:
@@ -23,6 +22,7 @@
         padding: constants.$page-padding;
         width: 100%;
         max-width: constants.$max-width;
+        height: 100%;
     }
 }
 
