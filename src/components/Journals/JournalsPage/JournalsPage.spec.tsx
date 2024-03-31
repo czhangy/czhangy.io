@@ -1,18 +1,33 @@
 import "@testing-library/jest-dom";
 
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
-import JournalsPage from "./JournalsPage";
+import {
+    mockJournalEntry,
+    mockMissingSectionJournalEntry,
+} from "@/mocks/entries";
+import { Entry, QueriedHTMLElements } from "@/static/types";
+
+import JournalsPage, { JournalsPageProps } from "./JournalsPage";
 
 describe("JournalsPage", () => {
     /**
      * Renders the component
      */
-    const renderJournalsPage = (): void => {
-        render(<JournalsPage />);
+    const renderJournalsPage = (props: JournalsPageProps): void => {
+        render(<JournalsPage entries={props.entries} />);
     };
 
     it("Renders correctly", () => {
-        renderJournalsPage();
+        const entries: Entry[] = [
+            mockJournalEntry,
+            mockMissingSectionJournalEntry,
+        ];
+        renderJournalsPage({
+            entries: entries,
+        });
+        const cards: QueriedHTMLElements =
+            screen.queryAllByTestId("journal-entry");
+        expect(cards.length).toBe(entries.length);
     });
 });

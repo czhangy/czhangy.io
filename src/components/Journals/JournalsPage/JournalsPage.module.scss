@@ -1,4 +1,19 @@
 @use "@/styles/constants";
 
 .journals-page {
+    --entry-spacing: 1rem;
+
+    width: 100%;
+
+    .entry-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--entry-spacing);
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .journals-page {
+        --entry-spacing: 1.5rem;
+    }
 }

@@ -79,3 +79,15 @@ export const SITE_LINK_ALT = "Site Link";
 
 /** The string constant for scroll events */
 export const SCROLL: string = "scroll";
+
+// -----------------------------------------------------------------------------
+// COLOR CONSTANTS
+// -----------------------------------------------------------------------------
+
+/** A map of hex codes for journal entry tags */
+export const TAG_COLORS: { [tag: string]: string } = {
+    lifeLogs: "#349EEB",
+    careerChronicles: "#2EE68D",
+    gamingGrind: "#ED6868",
+    randomRavings: "#D5ED68",
+};

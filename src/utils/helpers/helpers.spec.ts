@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 
-import { convertDate, toKebabCase } from "./helpers";
+import { convertDate, toHumanReadable, toKebabCase } from "./helpers";
 
 describe("Helpers", () => {
     describe("toKebabCase", () => {
@@ -16,6 +16,24 @@ describe("Helpers", () => {
             expect(toKebabCase("123Test$%^& *().string456")).toBe(
                 "123test-string456",
             );
+        });
+    });
+
+    describe("toHumanReadable", () => {
+        it("Converts a normal string properly", () => {
+            expect(toHumanReadable("testString")).toBe("Test String");
+        });
+
+        it("Converts a string with 1 word properly", () => {
+            expect(toHumanReadable("test")).toBe("Test");
+        });
+
+        it("Converts a string with 3+ words properly", () => {
+            expect(toHumanReadable("longTestString")).toBe("Long Test String");
+        });
+
+        it("Converts a string with an acronym properly", () => {
+            expect(toHumanReadable("testSTR")).toBe("Test STR");
         });
     });
 
