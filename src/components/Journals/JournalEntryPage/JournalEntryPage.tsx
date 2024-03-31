@@ -47,14 +47,17 @@ const JournalEntryPage: React.FC<JournalEntryPageProps> = (
                         <h3 className={styles["section-title"]}>
                             {getSectionEmoji(key)} {toHumanReadable(key)}
                         </h3>
-                        {(value as string[]).map((paragraph: string) => (
-                            <p
-                                className={styles.paragraph}
-                                data-testid="paragraph"
-                            >
-                                {paragraph}
-                            </p>
-                        ))}
+                        {(value as string[]).map(
+                            (paragraph: string, idx: number) => (
+                                <p
+                                    className={styles.paragraph}
+                                    key={idx}
+                                    data-testid="paragraph"
+                                >
+                                    {paragraph}
+                                </p>
+                            ),
+                        )}
                     </section>
                 );
             });
