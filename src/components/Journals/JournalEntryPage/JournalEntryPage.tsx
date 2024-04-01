@@ -43,7 +43,7 @@ const JournalEntryPage: React.FC<JournalEntryPageProps> = (
             )
             .map(([key, value]: [string, string | string[]]) => {
                 return (
-                    <section>
+                    <section key={key}>
                         <h3 className={styles["section-title"]}>
                             {getSectionEmoji(key)} {toHumanReadable(key)}
                         </h3>
