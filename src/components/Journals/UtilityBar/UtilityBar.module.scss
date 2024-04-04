@@ -1,0 +1,13 @@
+@use "@/styles/constants";
+
+.utility-bar {
+    --bar-spacing: 1rem;
+
+    margin-bottom: var(--bar-spacing);
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .utility-bar {
+        --bar-spacing: 1.5rem;
+    }
+}

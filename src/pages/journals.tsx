@@ -4,6 +4,10 @@ import Head from "@/components/Global/Head/Head";
 import PageWrapper from "@/components/Global/PageWrapper/PageWrapper";
 import JournalsPage from "@/components/Journals/JournalsPage/JournalsPage";
 import prisma from "@/lib/prisma";
+import {
+    mockJournalEntry,
+    mockMissingSectionJournalEntry,
+} from "@/mocks/entries";
 import { Entry } from "@/static/types";
 
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
@@ -33,7 +37,9 @@ const Journals: NextPage = ({
         <div>
             <Head page="Journals" />
             <PageWrapper>
-                <JournalsPage entries={entries} />
+                <JournalsPage
+                    entries={[mockJournalEntry, mockMissingSectionJournalEntry]}
+                />
             </PageWrapper>
         </div>
     );

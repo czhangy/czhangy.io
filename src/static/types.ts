@@ -13,6 +13,9 @@ export type Social = "github" | "linkedin" | "instagram" | "twitter";
 /** Left/right side */
 export type Side = "left" | "right";
 
+/** Options for utility menus on Journals page */
+export type UtilityOptions = "asc" | "desc";
+
 // -----------------------------------------------------------------------------
 // TEST TYPES
 // -----------------------------------------------------------------------------

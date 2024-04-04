@@ -30,8 +30,11 @@ export const ALT: string = "alt";
 /** The string constant for the href attribute */
 export const HREF: string = "href";
 
+/** The string constant for scroll events */
+export const SCROLL: string = "scroll";
+
 // -----------------------------------------------------------------------------
-// SIDE CONSTANTS
+// TYPE CONSTANTS
 // -----------------------------------------------------------------------------
 
 /** The string constant for the left value of the Side type */
@@ -39,17 +42,6 @@ export const LEFT = "left";
 
 /** The string constant for the right value of the Side type */
 export const RIGHT = "right";
-
-// -----------------------------------------------------------------------------
-// OBJECT FIT CONSTANTS
-// -----------------------------------------------------------------------------
-
-/** The string constant for objectFit=cover on Images */
-export const COVER = "cover";
-
-// -----------------------------------------------------------------------------
-// OBJECT FIT CONSTANTS
-// -----------------------------------------------------------------------------
 
 /** The string constant for GitHub */
 export const GITHUB = "github";
@@ -63,6 +55,19 @@ export const INSTAGRAM = "instagram";
 /** The string constant for Twitter */
 export const TWITTER = "twitter";
 
+/** The string constant for ascending sort */
+export const ASC = "asc";
+
+/** The string constant for descending sort */
+export const DESC = "desc";
+
+// -----------------------------------------------------------------------------
+// OBJECT FIT CONSTANTS
+// -----------------------------------------------------------------------------
+
+/** The string constant for objectFit=cover on Images */
+export const COVER = "cover";
+
 // -----------------------------------------------------------------------------
 // ALT CONSTANTS
 // -----------------------------------------------------------------------------
@@ -72,13 +77,6 @@ export const GIT_LINK_ALT = "Git Repo";
 
 /** The alt text for site links */
 export const SITE_LINK_ALT = "Site Link";
-
-// -----------------------------------------------------------------------------
-// EVENT CONSTANTS
-// -----------------------------------------------------------------------------
-
-/** The string constant for scroll events */
-export const SCROLL: string = "scroll";
 
 // -----------------------------------------------------------------------------
 // COLOR CONSTANTS
