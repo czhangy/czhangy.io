@@ -2,18 +2,38 @@ import { ReactElement } from "react";
 import Link from "next/link";
 
 import { TAG_COLORS } from "@/static/constants";
-import { Entry } from "@/static/types";
+import { Entry, UtilityOptions } from "@/static/types";
 import { toHumanReadable, toKebabCase } from "@/utils/helpers/helpers";
 
 import styles from "./JournalEntry.module.scss";
 
 export type JournalEntryProps = {
+    /** The entry object to render */
     entry: Entry;
+    /** The current filter */
+    filter: UtilityOptions;
 };
 
 const JournalEntry: React.FC<JournalEntryProps> = (
     props: JournalEntryProps,
 ) => {
+    /**
+     * Styles tags to highlight them when filtered for
+     *
+     * @returns {Object} The CSS styling
+     */
+    const getTagStyle = (tag: string): Object => {
+        return tag === props.filter
+            ? {
+                  borderColor: TAG_COLORS[tag],
+                  backgroundColor: TAG_COLORS[tag],
+                  color: "var(--theme-accent)",
+              }
+            : {
+                  borderColor: TAG_COLORS[tag],
+                  color: TAG_COLORS[tag],
+              };
+    };
     /**
      * Renders the list of tags associated with the entry
      *
@@ -27,10 +47,7 @@ const JournalEntry: React.FC<JournalEntryProps> = (
                         Array.isArray(value) && value.length > 0 ? (
                             <li
                                 className={styles.tag}
-                                style={{
-                                    borderColor: TAG_COLORS[key],
-                                    color: TAG_COLORS[key],
-                                }}
+                                style={getTagStyle(key)}
                                 key={key}
                             >
                                 <strong>{toHumanReadable(key)}</strong>

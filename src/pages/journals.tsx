@@ -5,8 +5,10 @@ import PageWrapper from "@/components/Global/PageWrapper/PageWrapper";
 import JournalsPage from "@/components/Journals/JournalsPage/JournalsPage";
 import prisma from "@/lib/prisma";
 import {
-    mockJournalEntry,
-    mockMissingSectionJournalEntry,
+    mockCareerChroniclesEntry,
+    mockGamingGrindEntry,
+    mockLifeLogsEntry,
+    mockRandomRavingsEntry,
 } from "@/mocks/entries";
 import { Entry } from "@/static/types";
 
@@ -38,7 +40,12 @@ const Journals: NextPage = ({
             <Head page="Journals" />
             <PageWrapper>
                 <JournalsPage
-                    entries={[mockJournalEntry, mockMissingSectionJournalEntry]}
+                    entries={[
+                        mockLifeLogsEntry,
+                        mockCareerChroniclesEntry,
+                        mockGamingGrindEntry,
+                        mockRandomRavingsEntry,
+                    ]}
                 />
             </PageWrapper>
         </div>

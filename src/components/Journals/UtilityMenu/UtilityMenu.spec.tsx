@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
-import { ALT, IMAGE, LIST, LIST_ITEM } from "@/static/constants";
+import { ALT, IMAGE, LIST, LIST_ITEM, SORT } from "@/static/constants";
 import { QueriedHTMLElement, QueriedHTMLElements } from "@/static/types";
 
 import UtilityMenu from "./UtilityMenu";
@@ -10,7 +10,7 @@ import UtilityMenu from "./UtilityMenu";
 describe("UtilityMenu", () => {
     let overlay: QueriedHTMLElement;
     let menuButton: QueriedHTMLElement;
-    let menu: QueriedHTMLElement;
+    let menuContainer: QueriedHTMLElement;
     let optionButtons: QueriedHTMLElements;
 
     /** Mock options for testing purposes */
@@ -31,7 +31,7 @@ describe("UtilityMenu", () => {
      */
     const assertMenuClosed = (): void => {
         expect(overlay).toHaveClass("hide");
-        expect(menu).toHaveClass("closed");
+        expect(menuContainer).toHaveClass("closed");
     };
 
     /**
@@ -39,7 +39,7 @@ describe("UtilityMenu", () => {
      */
     const assertMenuOpen = (): void => {
         expect(overlay).toHaveClass("show");
-        expect(menu).toHaveClass("open");
+        expect(menuContainer).toHaveClass("open");
     };
 
     /**
@@ -52,7 +52,6 @@ describe("UtilityMenu", () => {
         option: { [value: string]: string },
         current: string,
     ): void => {
-        expect(screen.queryByRole(IMAGE)).toHaveAttribute(ALT, option[current]);
         expect(screen.queryByTestId("display")).toHaveTextContent(
             option[current],
         );
@@ -64,6 +63,7 @@ describe("UtilityMenu", () => {
     const renderUtilityMenu = (): void => {
         render(
             <UtilityMenu
+                menuType={SORT}
                 current="test1"
                 options={MOCK_OPTIONS}
                 onSelect={mockSelectHandler}
@@ -71,7 +71,7 @@ describe("UtilityMenu", () => {
         );
         overlay = screen.queryByTestId("overlay");
         menuButton = screen.queryByTestId("menu-button");
-        menu = screen.queryByRole(LIST);
+        menuContainer = screen.queryByTestId("sort-menu");
         optionButtons = screen.queryAllByTestId("option");
     };
 
@@ -79,7 +79,8 @@ describe("UtilityMenu", () => {
         renderUtilityMenu();
         expect(overlay).toBeInTheDocument();
         expect(menuButton).toBeInTheDocument();
-        expect(menu).toBeInTheDocument();
+        expect(screen.queryByRole(IMAGE)).toHaveAttribute(ALT, SORT);
+        expect(screen.queryByRole(LIST)).toBeInTheDocument();
         expect(screen.queryAllByRole(LIST_ITEM).length).toBe(
             Object.keys(MOCK_OPTIONS).length,
         );
@@ -114,7 +115,6 @@ describe("UtilityMenu", () => {
         renderUtilityMenu();
         fireEvent.click(menuButton!);
         fireEvent.click(optionButtons[OTHER_OPTION_IDX]);
-        console.log(optionButtons[OTHER_OPTION_IDX]);
         assertMenuClosed();
         waitFor(() => assertDisplayCorrect(MOCK_OPTIONS, "test2"));
     });

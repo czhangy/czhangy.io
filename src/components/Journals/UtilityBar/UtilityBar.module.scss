@@ -1,13 +1,24 @@
 @use "@/styles/constants";
 
 .utility-bar {
+    --bar-inner-spacing: 1rem;
     --bar-spacing: 1rem;
 
     margin-bottom: var(--bar-spacing);
+
+    .menus {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--bar-inner-spacing);
+    }
 }
 
 @media screen and (min-width: constants.$tablet) {
     .utility-bar {
         --bar-spacing: 1.5rem;
+
+        .menus {
+            justify-content: flex-start;
+        }
     }
 }

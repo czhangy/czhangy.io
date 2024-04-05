@@ -7,6 +7,7 @@ import { UtilityOptions } from "@/static/types";
 import styles from "./UtilityMenu.module.scss";
 
 export type UtilityMenuProps = {
+    menuType: string;
     current: string;
     options: { [value: string]: string };
     onSelect: (selection: UtilityOptions) => void;
@@ -44,7 +45,7 @@ const UtilityMenu: React.FC<UtilityMenuProps> = (props: UtilityMenuProps) => {
      * @returns {string} The classes needed to style the menu in the correct state
      */
     const getMenuClass = (): string => {
-        return `${styles.menu} ${open ? styles.open : styles.closed}`;
+        return `${styles["menu-container"]} ${open ? styles.open : styles.closed}`;
     };
 
     /**
@@ -64,7 +65,7 @@ const UtilityMenu: React.FC<UtilityMenuProps> = (props: UtilityMenuProps) => {
      */
     const renderMenu = (): ReactElement => {
         return (
-            <ul className={getMenuClass()} data-testid="utility-menu">
+            <ul className={styles.menu} data-testid="utility-menu">
                 {Object.entries(props.options).map(
                     ([value, display]: [string, string]) => {
                         return (
@@ -101,7 +102,10 @@ const UtilityMenu: React.FC<UtilityMenuProps> = (props: UtilityMenuProps) => {
                 onClick={closeMenu}
                 data-testid="overlay"
             />
-            <div className={styles["menu-container"]}>
+            <div
+                className={getMenuClass()}
+                data-testid={`${props.menuType}-menu`}
+            >
                 <button
                     className={styles["menu-button"]}
                     onClick={toggleMenu}
@@ -109,8 +113,8 @@ const UtilityMenu: React.FC<UtilityMenuProps> = (props: UtilityMenuProps) => {
                 >
                     <div className={styles.icon}>
                         <Image
-                            src={`/assets/icons/${props.current}.svg`}
-                            alt={props.options[props.current]}
+                            src={`/assets/icons/${props.menuType}.svg`}
+                            alt={props.menuType}
                         />
                     </div>
                     <strong className={styles.display} data-testid="display">

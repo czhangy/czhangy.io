@@ -22,7 +22,7 @@
     --button-inner-spacing: 0.25rem;
     --button-x-padding: 0.75rem;
     --button-y-padding: 0.5rem;
-    --icon-size: 20px;
+    --icon-size: 16px;
     --menu-border-rad: 4px;
     --menu-border-size: 2px;
     --menu-font-size: 1rem;
@@ -34,7 +34,7 @@
 
     display: inline-block;
     position: relative;
-    z-index: constants.$menu-z;
+    width: 50%;
 
     .menu-button {
         display: flex;
@@ -43,6 +43,7 @@
         border: var(--button-border-size) solid var(--theme-text);
         border-radius: var(--button-border-rad);
         padding: var(--button-y-padding) var(--button-x-padding);
+        width: 100%;
 
         .icon {
             position: relative;
@@ -52,7 +53,9 @@
         }
 
         .display {
+            width: 100%;
             font-size: var(--menu-font-size);
+            text-align: center;
         }
     }
 
@@ -71,18 +74,33 @@
                 padding: var(--menu-option-y-padding)
                     var(--menu-option-x-padding);
                 width: 100%;
+                text-align: left;
             }
         }
     }
+}
 
-    .open {
+.open {
+    z-index: constants.$menu-z;
+
+    .menu {
         opacity: 1;
     }
+}
 
-    .closed {
+.closed {
+    z-index: 1;
+
+    .menu {
         transform: translateY(var(--menu-offset));
         opacity: 0;
         pointer-events: none;
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .menu-container {
+        width: auto;
     }
 }
 

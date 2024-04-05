@@ -14,7 +14,17 @@ export type Social = "github" | "linkedin" | "instagram" | "twitter";
 export type Side = "left" | "right";
 
 /** Options for utility menus on Journals page */
-export type UtilityOptions = "asc" | "desc";
+export type UtilityOptions =
+    | "asc"
+    | "desc"
+    | ""
+    | "lifeLogs"
+    | "careerChronicles"
+    | "gamingGrind"
+    | "randomRavings";
+
+/** The types of utility menus that can exist */
+export type MenuType = "sort" | "filter";
 
 // -----------------------------------------------------------------------------
 // TEST TYPES

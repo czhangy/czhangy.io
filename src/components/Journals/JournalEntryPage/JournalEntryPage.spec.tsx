@@ -2,10 +2,7 @@ import "@testing-library/jest-dom";
 
 import { render, screen } from "@testing-library/react";
 
-import {
-    mockJournalEntry,
-    mockMissingSectionJournalEntry,
-} from "@/mocks/entries";
+import { mockJournalEntry, mockLifeLogsEntry } from "@/mocks/entries";
 import { HEADING } from "@/static/constants";
 import { Entry, QueriedHTMLElements } from "@/static/types";
 
@@ -50,8 +47,8 @@ describe("JournalEntryPage", () => {
         assertTextRenders(mockJournalEntry);
     });
 
-    it("Renders correctly with a missing section", () => {
-        renderJournalEntryPage({ entry: mockMissingSectionJournalEntry });
-        assertTextRenders(mockMissingSectionJournalEntry);
+    it("Renders correctly with a single section", () => {
+        renderJournalEntryPage({ entry: mockLifeLogsEntry });
+        assertTextRenders(mockLifeLogsEntry);
     });
 });

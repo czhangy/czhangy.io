@@ -55,11 +55,32 @@ export const INSTAGRAM = "instagram";
 /** The string constant for Twitter */
 export const TWITTER = "twitter";
 
+/** The string constant for sort menu types */
+export const SORT = "sort";
+
+/** The string constant for filter menu types */
+export const FILTER = "filter";
+
 /** The string constant for ascending sort */
 export const ASC = "asc";
 
 /** The string constant for descending sort */
 export const DESC = "desc";
+
+/** The string constant for no filter */
+export const NO_FILTER = "";
+
+/** The string constant for Life Logs filter */
+export const LIFE_LOGS = "lifeLogs";
+
+/** The string constant for Career Chronicles filter */
+export const CAREER_CHRONICLES = "careerChronicles";
+
+/** The string constant for Gaming Grind filter */
+export const GAMING_GRIND = "gamingGrind";
+
+/** The string constant for Random Ravings filter */
+export const RANDOM_RAVINGS = "randomRavings";
 
 // -----------------------------------------------------------------------------
 // OBJECT FIT CONSTANTS
