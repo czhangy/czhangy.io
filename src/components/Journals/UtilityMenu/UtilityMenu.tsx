@@ -2,14 +2,18 @@ import { ReactElement, useEffect, useState } from "react";
 
 import Image from "@/components/Global/Image/Image";
 import { SCROLL } from "@/static/constants";
-import { UtilityOptions } from "@/static/types";
+import { MenuType, UtilityOptions } from "@/static/types";
 
 import styles from "./UtilityMenu.module.scss";
 
 export type UtilityMenuProps = {
-    menuType: string;
+    /** The type of menu to render */
+    menuType: MenuType;
+    /** The currently selected value */
     current: string;
+    /** A map of values mapped to their display strings */
     options: { [value: string]: string };
+    /** The function to call when a menu option is selected */
     onSelect: (selection: UtilityOptions) => void;
 };
 

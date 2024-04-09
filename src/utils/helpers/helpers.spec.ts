@@ -1,6 +1,11 @@
 import "@testing-library/jest-dom";
 
-import { convertDate, toHumanReadable, toKebabCase } from "./helpers";
+import {
+    capitalizeWord,
+    convertDate,
+    toHumanReadable,
+    toKebabCase,
+} from "./helpers";
 
 describe("Helpers", () => {
     describe("toKebabCase", () => {
@@ -44,6 +49,12 @@ describe("Helpers", () => {
 
         it("Returns the date in the correct format", () => {
             expect(convertDate(new Date("January 1, 2000"))).toBe("Jan 2000");
+        });
+    });
+
+    describe("capitalizeWord", () => {
+        it("Handles the happy case", () => {
+            expect(capitalizeWord("test")).toBe("Test");
         });
     });
 });

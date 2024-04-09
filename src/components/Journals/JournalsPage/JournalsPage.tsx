@@ -17,6 +17,7 @@ const JournalsPage: React.FC<JournalsPageProps> = (
 ) => {
     const [sortBy, setSortBy] = useState<UtilityOptions>(DESC);
     const [filterBy, setFilterBy] = useState<UtilityOptions>("");
+    const [searchQuery, setSearchQuery] = useState<string>("");
 
     /**
      * Filters and sorts the list of entries according to the current settings
@@ -27,6 +28,9 @@ const JournalsPage: React.FC<JournalsPageProps> = (
         let entries: Entry[] = props.entries.filter(
             (entry: Entry) =>
                 filterBy === "" || entry[filterBy as keyof Entry].length > 0,
+        );
+        entries = entries.filter((entry: Entry) =>
+            entry.title.toLowerCase().includes(searchQuery.toLowerCase()),
         );
         if (sortBy === ASC) {
             return entries.sort(
@@ -49,16 +53,23 @@ const JournalsPage: React.FC<JournalsPageProps> = (
      * @returns {ReactElement} A <ul> of JournalEntry components
      */
     const renderJournalEntries = (): ReactElement => {
-        return (
+        const visibleEntries: Entry[] = getVisibleEntries();
+        return visibleEntries.length > 0 ? (
             <ul className={styles["entry-list"]}>
-                {getVisibleEntries().map((entry: Entry) => {
+                {visibleEntries.map((entry: Entry) => {
                     return (
                         <li className={styles.entry} key={entry.title}>
-                            <JournalEntry entry={entry} filter={filterBy} />
+                            <JournalEntry
+                                entry={entry}
+                                filter={filterBy}
+                                query={searchQuery}
+                            />
                         </li>
                     );
                 })}
             </ul>
+        ) : (
+            <p className={styles["no-matches"]}>No matches!</p>
         );
     };
 
@@ -69,6 +80,7 @@ const JournalsPage: React.FC<JournalsPageProps> = (
                 filter={filterBy}
                 onSort={(order: UtilityOptions) => setSortBy(order)}
                 onFilter={(filter: UtilityOptions) => setFilterBy(filter)}
+                onSearch={(query: string) => setSearchQuery(query)}
             />
             {renderJournalEntries()}
         </div>

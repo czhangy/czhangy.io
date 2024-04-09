@@ -1,3 +1,4 @@
+import SearchBar from "@/components/Journals/SearchBar/SearchBar";
 import UtilityMenu from "@/components/Journals/UtilityMenu/UtilityMenu";
 import {
     ASC,
@@ -15,10 +16,16 @@ import { UtilityOptions } from "@/static/types";
 import styles from "./UtilityBar.module.scss";
 
 export type UtilityBarProps = {
+    /** The current sort order */
     order: UtilityOptions;
+    /** The current selected filter */
     filter: UtilityOptions;
+    /** The function called when a sort option is selected */
     onSort: (order: UtilityOptions) => void;
+    /** The function called when a filter option is selected */
     onFilter: (filter: UtilityOptions) => void;
+    /** The function called as the the user types a query into the search bar */
+    onSearch: (query: string) => void;
 };
 
 const UtilityBar: React.FC<UtilityBarProps> = (props: UtilityBarProps) => {
@@ -54,6 +61,7 @@ const UtilityBar: React.FC<UtilityBarProps> = (props: UtilityBarProps) => {
                     }
                 />
             </div>
+            <SearchBar onChange={(query: string) => props.onSearch(query)} />
         </div>
     );
 };

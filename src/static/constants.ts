@@ -20,6 +20,9 @@ export const LIST: string = "list";
 /** The string constant for the listitem role */
 export const LIST_ITEM: string = "listitem";
 
+/** The string constant for the textbox role */
+export const INPUT: string = "textbox";
+
 // -----------------------------------------------------------------------------
 // ATTRIBUTE CONSTANTS
 // -----------------------------------------------------------------------------
@@ -29,6 +32,9 @@ export const ALT: string = "alt";
 
 /** The string constant for the href attribute */
 export const HREF: string = "href";
+
+/** The string constant for the placeholder attribute */
+export const PLACEHOLDER: string = "placeholder";
 
 /** The string constant for scroll events */
 export const SCROLL: string = "scroll";

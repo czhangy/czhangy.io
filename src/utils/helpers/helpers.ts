@@ -36,3 +36,7 @@ export const convertDate = (date: Date | null): string => {
     }
     return `${date.toLocaleString("en-us", { month: "short" })} ${date.getFullYear()}`;
 };
+
+export const capitalizeWord = (word: string): string => {
+    return word.substring(0, 1).toUpperCase() + word.substring(1);
+};

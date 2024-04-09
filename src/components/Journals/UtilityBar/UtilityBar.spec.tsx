@@ -7,6 +7,7 @@ import {
     CAREER_CHRONICLES,
     DESC,
     GAMING_GRIND,
+    INPUT,
     LIFE_LOGS,
     NO_FILTER,
     RANDOM_RAVINGS,
@@ -50,6 +51,11 @@ describe("UtilityBar", () => {
     const mockFilterHandler = jest.fn().mockImplementation();
 
     /**
+     * A search handler for testing purposes
+     */
+    const mockSearchHandler = jest.fn().mockImplementation();
+
+    /**
      * Renders the component and assigns local variables
      */
     const renderUtilityBar = (): void => {
@@ -59,6 +65,7 @@ describe("UtilityBar", () => {
                 filter={NO_FILTER}
                 onSort={mockSortHandler}
                 onFilter={mockFilterHandler}
+                onSearch={mockSearchHandler}
             />,
         );
         options = screen.queryAllByTestId("option");
@@ -73,6 +80,7 @@ describe("UtilityBar", () => {
         expect(screen.queryByTestId("filter-menu")).toBeInTheDocument();
         expect(menuButtons[FILTER_IDX]).toHaveTextContent("No Filter");
         expect(options.length).toBe(NUM_OPTIONS);
+        expect(screen.queryByTestId("search-bar")).toBeInTheDocument();
     });
 
     it("Calls the correct sort handler on select", () => {
@@ -95,5 +103,12 @@ describe("UtilityBar", () => {
         expect(mockFilterHandler).toHaveBeenCalledWith(GAMING_GRIND);
         fireEvent.click(options[RANDOM_RAVINGS_IDX]);
         expect(mockFilterHandler).toHaveBeenCalledWith(RANDOM_RAVINGS);
+    });
+
+    it("Calls the correct search handler on search", () => {
+        renderUtilityBar();
+        const query: string = "Test";
+        fireEvent.change(screen.getByRole(INPUT), { target: { value: query } });
+        expect(mockSearchHandler).toHaveBeenCalledWith(query);
     });
 });

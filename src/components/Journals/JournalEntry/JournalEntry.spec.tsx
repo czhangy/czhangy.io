@@ -14,7 +14,7 @@ import {
     TAG_COLORS,
 } from "@/static/constants";
 import { QueriedHTMLElements } from "@/static/types";
-import { toKebabCase } from "@/utils/helpers/helpers";
+import { capitalizeWord, toKebabCase } from "@/utils/helpers/helpers";
 
 import JournalEntry, { JournalEntryProps } from "./JournalEntry";
 
@@ -23,6 +23,8 @@ describe("JournalEntry", () => {
     const MIN_TAGS: number = 1;
     /** The maximum number of tags an entry can have */
     const MAX_TAGS: number = 4;
+    /** The class name of the span used to highlight the title */
+    const HIGHLIGHT_CLASS: string = "highlight";
 
     let tags: QueriedHTMLElements;
 
@@ -32,12 +34,22 @@ describe("JournalEntry", () => {
      * @param {JournalEntryProps} props Props to pass to the component
      */
     const renderJournalEntry = (props: JournalEntryProps): void => {
-        render(<JournalEntry entry={props.entry} filter={props.filter} />);
+        render(
+            <JournalEntry
+                entry={props.entry}
+                filter={props.filter}
+                query={props.query}
+            />,
+        );
         tags = screen.queryAllByRole(LIST_ITEM);
     };
 
     it("Renders correctly", () => {
-        renderJournalEntry({ entry: mockJournalEntry, filter: NO_FILTER });
+        renderJournalEntry({
+            entry: mockJournalEntry,
+            filter: NO_FILTER,
+            query: "",
+        });
         expect(screen.queryByRole(HEADING)).toHaveTextContent(
             mockJournalEntry.title,
         );
@@ -56,12 +68,20 @@ describe("JournalEntry", () => {
     });
 
     it("Renders correctly with missing tags", () => {
-        renderJournalEntry({ entry: mockLifeLogsEntry, filter: NO_FILTER });
+        renderJournalEntry({
+            entry: mockLifeLogsEntry,
+            filter: NO_FILTER,
+            query: "",
+        });
         expect(tags.length).toBe(MIN_TAGS);
     });
 
     it("Correctly highlights tags that are filtered for", () => {
-        renderJournalEntry({ entry: mockJournalEntry, filter: LIFE_LOGS });
+        renderJournalEntry({
+            entry: mockJournalEntry,
+            filter: LIFE_LOGS,
+            query: "",
+        });
         const highlightedTag: HTMLElement = tags[0];
         const unhighlightedTag: HTMLElement = tags[1];
         expect(highlightedTag).toHaveTextContent("Life Logs");
@@ -72,5 +92,47 @@ describe("JournalEntry", () => {
         expect(unhighlightedTag).not.toHaveStyle({
             backgroundColor: TAG_COLORS[LIFE_LOGS],
         });
+    });
+
+    it("Correctly highlights substrings at the start of the title that are searched for", () => {
+        const query: string = "Test";
+        renderJournalEntry({
+            entry: mockJournalEntry,
+            filter: NO_FILTER,
+            query: query,
+        });
+        expect(screen.getByText(query)).toHaveClass(HIGHLIGHT_CLASS);
+    });
+
+    it("Correctly highlights substrings in the middle of the title that are searched for", () => {
+        const query: string = "est En";
+        renderJournalEntry({
+            entry: mockJournalEntry,
+            filter: NO_FILTER,
+            query: query,
+        });
+        expect(screen.getByText(query)).toHaveClass(HIGHLIGHT_CLASS);
+    });
+
+    it("Correctly highlights substrings at the end of the title that are searched for", () => {
+        const query: string = "Entry";
+        renderJournalEntry({
+            entry: mockJournalEntry,
+            filter: NO_FILTER,
+            query: query,
+        });
+        expect(screen.getByText(query)).toHaveClass(HIGHLIGHT_CLASS);
+    });
+
+    it("Correctly highlights substrings with a case mismatch that are searched for", () => {
+        const query: string = "test";
+        renderJournalEntry({
+            entry: mockJournalEntry,
+            filter: NO_FILTER,
+            query: query,
+        });
+        expect(screen.getByText(capitalizeWord(query))).toHaveClass(
+            HIGHLIGHT_CLASS,
+        );
     });
 });

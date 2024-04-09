@@ -3,7 +3,17 @@
 .utility-bar {
     --bar-inner-spacing: 1rem;
     --bar-spacing: 1rem;
+    --utility-border-rad: 4px;
+    --utility-border-size: 2px;
+    --utility-font-size: 1rem;
+    --utility-icon-size: 16px;
+    --utility-x-padding: 0.75rem;
+    --utility-y-padding: 0.5rem;
+    --sections-spacing: 1rem;
 
+    display: flex;
+    flex-direction: column;
+    gap: var(--sections-spacing);
     margin-bottom: var(--bar-spacing);
 
     .menus {
@@ -16,6 +26,8 @@
 @media screen and (min-width: constants.$tablet) {
     .utility-bar {
         --bar-spacing: 1.5rem;
+
+        flex-direction: row;
 
         .menus {
             justify-content: flex-start;

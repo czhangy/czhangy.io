@@ -43,6 +43,10 @@
             font-size: var(--title-font-size);
             font-family: constants.$header-font;
             letter-spacing: var(--title-letter-spacing);
+
+            .highlight {
+                color: var(--theme-hover);
+            }
         }
 
         .timestamp {
