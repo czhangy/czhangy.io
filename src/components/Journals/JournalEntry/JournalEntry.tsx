@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
 import Link from "next/link";
 
-import { TAG_COLORS } from "@/static/constants";
-import { Entry, UtilityOptions } from "@/static/types";
-import { toHumanReadable, toKebabCase } from "@/utils/helpers/helpers";
+import { SECTION_LIST } from "@/static/constants";
+import { Entry, EntrySection } from "@/static/types";
+import { toKebabCase } from "@/utils/helpers/helpers";
 
 import styles from "./JournalEntry.module.scss";
 
@@ -11,7 +11,7 @@ export type JournalEntryProps = {
     /** The entry object to render */
     entry: Entry;
     /** The current filter */
-    filter: UtilityOptions;
+    filter: string;
     /** The current search query */
     query: string;
 };
@@ -38,20 +38,24 @@ const JournalEntry: React.FC<JournalEntryProps> = (
     /**
      * Styles tags to highlight them when filtered for
      *
+     * @param {string} slug The slug of the tag being styled
+     * @param {string} color The color identifying the tag
+     *
      * @returns {Object} The CSS styling
      */
-    const getTagStyle = (tag: string): Object => {
-        return tag === props.filter
+    const getTagStyle = (slug: string, color: string): Object => {
+        return slug === props.filter
             ? {
-                  borderColor: TAG_COLORS[tag],
-                  backgroundColor: TAG_COLORS[tag],
+                  borderColor: color,
+                  backgroundColor: color,
                   color: "var(--theme-accent)",
               }
             : {
-                  borderColor: TAG_COLORS[tag],
-                  color: TAG_COLORS[tag],
+                  borderColor: color,
+                  color: color,
               };
     };
+
     /**
      * Renders the list of tags associated with the entry
      *
@@ -60,20 +64,20 @@ const JournalEntry: React.FC<JournalEntryProps> = (
     const renderEntryTags = (): ReactElement => {
         return (
             <ul className={styles.tags}>
-                {Object.entries(props.entry).map(
-                    ([key, value]: [string, string | string[]]) =>
-                        Array.isArray(value) && value.length > 0 ? (
-                            <li
-                                className={styles.tag}
-                                style={getTagStyle(key)}
-                                key={key}
-                                data-testid="entry-tag"
-                            >
-                                <strong>{toHumanReadable(key)}</strong>
-                            </li>
-                        ) : (
-                            ""
-                        ),
+                {SECTION_LIST.map((section: EntrySection) =>
+                    props.entry[section.slug as keyof typeof props.entry]
+                        .length > 0 ? (
+                        <li
+                            className={styles.tag}
+                            style={getTagStyle(section.slug, section.color)}
+                            key={section.slug}
+                            data-testid="entry-tag"
+                        >
+                            <strong>{section.displayName}</strong>
+                        </li>
+                    ) : (
+                        ""
+                    ),
                 )}
             </ul>
         );

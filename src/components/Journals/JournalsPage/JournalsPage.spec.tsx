@@ -13,9 +13,14 @@ import {
     INPUT,
     LIFE_LOGS,
     NO_FILTER,
-    TAG_COLORS,
+    SECTION_LIST,
 } from "@/static/constants";
-import { Entry, QueriedHTMLElement, QueriedHTMLElements } from "@/static/types";
+import {
+    Entry,
+    EntrySection,
+    QueriedHTMLElement,
+    QueriedHTMLElements,
+} from "@/static/types";
 import { capitalizeWord } from "@/utils/helpers/helpers";
 
 import JournalsPage from "./JournalsPage";
@@ -40,12 +45,6 @@ describe("JournalsPage", () => {
     const NO_FILTER_IDX: number = 2;
     /** The option index of Life Logs */
     const LIFE_LOGS_IDX: number = 3;
-    /** The option index of Career Chronicles */
-    const CAREER_CHRONICLES_IDX: number = 4;
-    /** The option index of Gaming Grind */
-    const GAMING_GRIND_IDX: number = 5;
-    /** The option index of Random Ravings */
-    const RANDOM_RAVINGS_IDX: number = 6;
 
     let options: QueriedHTMLElements;
     let searchBar: QueriedHTMLElement;
@@ -68,26 +67,25 @@ describe("JournalsPage", () => {
      * @param {number} numEntries The number of entries that should be expected
      * @param {string} filter The current filter setting to test
      */
-    const assertEntriesFilter = (numEntries: number, filter: string): void => {
+    const assertEntriesFilter = (
+        numEntries: number,
+        filter: string,
+        displayName?: string,
+    ): void => {
         expect(screen.queryAllByTestId("journal-entry").length).toBe(
             numEntries,
         );
-        if (filter === "") {
+        if (!displayName) {
             return;
         }
-        expect(screen.queryAllByText(filter).length).toBe(FILTERED_COUNT);
-        if (filter !== "Life Logs") {
-            expect(screen.queryAllByText("Life Logs").length).toBe(1);
-        }
-        if (filter !== "Career Chronicles") {
-            expect(screen.queryAllByText("Career Chronicles").length).toBe(1);
-        }
-        if (filter !== "Gaming Grind") {
-            expect(screen.queryAllByText("Gaming Grind").length).toBe(1);
-        }
-        if (filter !== "Random Ravings") {
-            expect(screen.queryAllByText("Random Ravings").length).toBe(1);
-        }
+        expect(screen.queryAllByText(displayName).length).toBe(FILTERED_COUNT);
+        SECTION_LIST.forEach((section: EntrySection) => {
+            if (filter !== section.slug) {
+                expect(screen.queryAllByText(section.displayName).length).toBe(
+                    1,
+                );
+            }
+        });
     };
 
     /**
@@ -132,37 +130,25 @@ describe("JournalsPage", () => {
         assertEntriesFilter(MOCK_ENTRIES.length, NO_FILTER);
     });
 
-    it("Filters with Life Logs correctly", () => {
-        renderJournalsPage();
-        fireEvent.click(options[LIFE_LOGS_IDX]);
-        assertEntriesFilter(1, "Life Logs");
-    });
-
-    it("Filters with Career Chronicles correctly", () => {
-        renderJournalsPage();
-        fireEvent.click(options[CAREER_CHRONICLES_IDX]);
-        assertEntriesFilter(1, "Career Chronicles");
-    });
-
-    it("Filters with Gaming Grind correctly", () => {
-        renderJournalsPage();
-        fireEvent.click(options[GAMING_GRIND_IDX]);
-        assertEntriesFilter(1, "Gaming Grind");
-    });
-
-    it("Filters with Random Ravings correctly", () => {
-        renderJournalsPage();
-        fireEvent.click(options[RANDOM_RAVINGS_IDX]);
-        assertEntriesFilter(1, "Random Ravings");
+    SECTION_LIST.forEach((section: EntrySection, idx: number) => {
+        it(`Filters with ${section.displayName} correctly`, () => {
+            renderJournalsPage();
+            // Account for offset of other options
+            fireEvent.click(options[idx + LIFE_LOGS_IDX]);
+            assertEntriesFilter(1, section.slug, section.displayName);
+        });
     });
 
     it("Filters highlight matching tags", () => {
+        const lifeLogsSection: EntrySection = SECTION_LIST.find(
+            (section: EntrySection) => section.slug === LIFE_LOGS,
+        )!;
         renderJournalsPage();
         fireEvent.click(options[LIFE_LOGS_IDX]);
         const tag: QueriedHTMLElement = screen.queryByTestId("entry-tag");
-        expect(tag).toHaveTextContent("Life Logs");
+        expect(tag).toHaveTextContent(lifeLogsSection.displayName);
         expect(tag).toHaveStyle({
-            backgroundColor: TAG_COLORS[LIFE_LOGS],
+            backgroundColor: lifeLogsSection.color,
         });
     });
 

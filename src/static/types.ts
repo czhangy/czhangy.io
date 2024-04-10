@@ -13,18 +13,20 @@ export type Social = "github" | "linkedin" | "instagram" | "twitter";
 /** Left/right side */
 export type Side = "left" | "right";
 
-/** Options for utility menus on Journals page */
-export type UtilityOptions =
-    | "asc"
-    | "desc"
-    | ""
-    | "lifeLogs"
-    | "careerChronicles"
-    | "gamingGrind"
-    | "randomRavings";
-
 /** The types of utility menus that can exist */
 export type MenuType = "sort" | "filter";
+
+/** The object representing identifying attributes of an entry section */
+export type EntrySection = {
+    /** The human-readable name of the section */
+    displayName: string;
+    /** The slug identifying the section in the model */
+    slug: string;
+    /** The hex color used to identify the section */
+    color: string;
+    /** The emoji that annotates the section on the entry's page */
+    emoji: string;
+};
 
 // -----------------------------------------------------------------------------
 // TEST TYPES

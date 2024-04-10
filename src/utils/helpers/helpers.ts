@@ -12,19 +12,6 @@ export const toKebabCase = (str: string): string => {
         .toLowerCase();
 };
 
-/**
- * Converts a camel-case string into a human-readable string
- *
- * @param {string} str The camel-case string to convert
- * @returns {string} The human-readable string
- */
-export const toHumanReadable = (str: string): string => {
-    return str
-        .split(/(?<![A-Z])(?=[A-Z])/)
-        .map((word: string) => word[0].toUpperCase() + word.substring(1))
-        .join(" ");
-};
-
 /** Converts a date object into a Mon YYYY format
  *
  * @param {Date|null} date The date object to convert

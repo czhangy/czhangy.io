@@ -3,7 +3,7 @@ import { ReactElement, useState } from "react";
 import JournalEntry from "@/components/Journals/JournalEntry/JournalEntry";
 import UtilityBar from "@/components/Journals/UtilityBar/UtilityBar";
 import { ASC, DESC } from "@/static/constants";
-import { Entry, UtilityOptions } from "@/static/types";
+import { Entry } from "@/static/types";
 
 import styles from "./JournalsPage.module.scss";
 
@@ -15,8 +15,8 @@ export type JournalsPageProps = {
 const JournalsPage: React.FC<JournalsPageProps> = (
     props: JournalsPageProps,
 ) => {
-    const [sortBy, setSortBy] = useState<UtilityOptions>(DESC);
-    const [filterBy, setFilterBy] = useState<UtilityOptions>("");
+    const [sortBy, setSortBy] = useState<string>(DESC);
+    const [filterBy, setFilterBy] = useState<string>("");
     const [searchQuery, setSearchQuery] = useState<string>("");
 
     /**
@@ -78,8 +78,8 @@ const JournalsPage: React.FC<JournalsPageProps> = (
             <UtilityBar
                 order={sortBy}
                 filter={filterBy}
-                onSort={(order: UtilityOptions) => setSortBy(order)}
-                onFilter={(filter: UtilityOptions) => setFilterBy(filter)}
+                onSort={(order: string) => setSortBy(order)}
+                onFilter={(filter: string) => setFilterBy(filter)}
                 onSearch={(query: string) => setSearchQuery(query)}
             />
             {renderJournalEntries()}

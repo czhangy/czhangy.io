@@ -2,6 +2,8 @@
 // ROLE CONSTANTS
 // -----------------------------------------------------------------------------
 
+import { EntrySection } from "./types";
+
 /** The string constant for the button role */
 export const BUTTON: string = "button";
 
@@ -76,16 +78,16 @@ export const DESC = "desc";
 /** The string constant for no filter */
 export const NO_FILTER = "";
 
-/** The string constant for Life Logs filter */
+/** The string constant for the Life Logs section slug */
 export const LIFE_LOGS = "lifeLogs";
 
-/** The string constant for Career Chronicles filter */
+/** The string constant for the Career Chronicles section slug */
 export const CAREER_CHRONICLES = "careerChronicles";
 
-/** The string constant for Gaming Grind filter */
+/** The string constant for the Gaming Grind section slug */
 export const GAMING_GRIND = "gamingGrind";
 
-/** The string constant for Random Ravings filter */
+/** The string constant for the Random Ravings section slug */
 export const RANDOM_RAVINGS = "randomRavings";
 
 // -----------------------------------------------------------------------------
@@ -106,13 +108,33 @@ export const GIT_LINK_ALT = "Git Repo";
 export const SITE_LINK_ALT = "Site Link";
 
 // -----------------------------------------------------------------------------
-// COLOR CONSTANTS
+// ENTRY SECTION CONSTANTS
 // -----------------------------------------------------------------------------
 
-/** A map of hex codes for journal entry tags */
-export const TAG_COLORS: { [tag: string]: string } = {
-    lifeLogs: "#349EEB",
-    careerChronicles: "#2EE68D",
-    gamingGrind: "#ED6868",
-    randomRavings: "#D5ED68",
-};
+/** A list of allowed section names and their corresponding attributes */
+export const SECTION_LIST: EntrySection[] = [
+    {
+        displayName: "Life Logs",
+        slug: LIFE_LOGS,
+        color: "#349EEB",
+        emoji: "🌱",
+    },
+    {
+        displayName: "Career Chronicles",
+        slug: CAREER_CHRONICLES,
+        color: "#2EE68D",
+        emoji: "🏢",
+    },
+    {
+        displayName: "Gaming Grind",
+        slug: GAMING_GRIND,
+        color: "#ED6868",
+        emoji: "🕹️",
+    },
+    {
+        displayName: "Random Ravings",
+        slug: RANDOM_RAVINGS,
+        color: "#D5ED68",
+        emoji: "✍️",
+    },
+];

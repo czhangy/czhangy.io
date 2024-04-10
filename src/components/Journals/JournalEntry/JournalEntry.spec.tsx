@@ -11,9 +11,9 @@ import {
     LIST,
     LIST_ITEM,
     NO_FILTER,
-    TAG_COLORS,
+    SECTION_LIST,
 } from "@/static/constants";
-import { QueriedHTMLElements } from "@/static/types";
+import { Entry, EntrySection, QueriedHTMLElements } from "@/static/types";
 import { capitalizeWord, toKebabCase } from "@/utils/helpers/helpers";
 
 import JournalEntry, { JournalEntryProps } from "./JournalEntry";
@@ -59,7 +59,13 @@ describe("JournalEntry", () => {
         expect(screen.queryByRole(LIST)).toBeInTheDocument();
         expect(tags.length).toBe(MAX_TAGS);
         expect(screen.queryByTestId("preview")).toHaveTextContent(
-            mockJournalEntry.lifeLogs[0],
+            mockJournalEntry[
+                SECTION_LIST.find(
+                    (section: EntrySection) =>
+                        mockJournalEntry[section.slug as keyof Entry].length >
+                        0,
+                )!.slug as keyof Entry
+            ][0],
         );
         expect(screen.queryByRole(LINK)).toHaveAttribute(
             HREF,
@@ -77,20 +83,25 @@ describe("JournalEntry", () => {
     });
 
     it("Correctly highlights tags that are filtered for", () => {
+        const lifeLogsSection: EntrySection = SECTION_LIST.find(
+            (section: EntrySection) => section.slug === LIFE_LOGS,
+        )!;
         renderJournalEntry({
             entry: mockJournalEntry,
-            filter: LIFE_LOGS,
+            filter: lifeLogsSection.slug,
             query: "",
         });
         const highlightedTag: HTMLElement = tags[0];
         const unhighlightedTag: HTMLElement = tags[1];
-        expect(highlightedTag).toHaveTextContent("Life Logs");
+        expect(highlightedTag).toHaveTextContent(lifeLogsSection.displayName);
         expect(highlightedTag).toHaveStyle({
-            backgroundColor: TAG_COLORS[LIFE_LOGS],
+            backgroundColor: lifeLogsSection.color,
         });
-        expect(unhighlightedTag).not.toHaveTextContent("Life Logs");
+        expect(unhighlightedTag).not.toHaveTextContent(
+            lifeLogsSection.displayName,
+        );
         expect(unhighlightedTag).not.toHaveStyle({
-            backgroundColor: TAG_COLORS[LIFE_LOGS],
+            backgroundColor: lifeLogsSection.color,
         });
     });
 

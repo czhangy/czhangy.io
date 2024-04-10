@@ -2,7 +2,7 @@ import { ReactElement, useEffect, useState } from "react";
 
 import Image from "@/components/Global/Image/Image";
 import { SCROLL } from "@/static/constants";
-import { MenuType, UtilityOptions } from "@/static/types";
+import { MenuType } from "@/static/types";
 
 import styles from "./UtilityMenu.module.scss";
 
@@ -14,7 +14,7 @@ export type UtilityMenuProps = {
     /** A map of values mapped to their display strings */
     options: { [value: string]: string };
     /** The function to call when a menu option is selected */
-    onSelect: (selection: UtilityOptions) => void;
+    onSelect: (selection: string) => void;
 };
 
 const UtilityMenu: React.FC<UtilityMenuProps> = (props: UtilityMenuProps) => {
@@ -55,9 +55,9 @@ const UtilityMenu: React.FC<UtilityMenuProps> = (props: UtilityMenuProps) => {
     /**
      * Closes the menu and propagates the value to the page
      *
-     * @param {UtilityOptions} value The value that has been selected and should be passed up
+     * @param {string} value The value that has been selected and should be passed up
      */
-    const handleSelect = (value: UtilityOptions): void => {
+    const handleSelect = (value: string): void => {
         closeMenu();
         props.onSelect(value);
     };
@@ -76,9 +76,7 @@ const UtilityMenu: React.FC<UtilityMenuProps> = (props: UtilityMenuProps) => {
                             <li className={styles.option} key={value}>
                                 <button
                                     className={styles.button}
-                                    onClick={() =>
-                                        handleSelect(value as UtilityOptions)
-                                    }
+                                    onClick={() => handleSelect(value)}
                                     data-testid="option"
                                 >
                                     {display}
