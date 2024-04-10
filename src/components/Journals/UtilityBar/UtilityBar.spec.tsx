@@ -2,23 +2,14 @@ import "@testing-library/jest-dom";
 
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import {
-    ASC,
-    CAREER_CHRONICLES,
-    DESC,
-    GAMING_GRIND,
-    INPUT,
-    LIFE_LOGS,
-    NO_FILTER,
-    RANDOM_RAVINGS,
-} from "@/static/constants";
-import { QueriedHTMLElements } from "@/static/types";
+import { ASC, DESC, INPUT, NO_FILTER, SECTION_LIST } from "@/static/constants";
+import { EntrySection, QueriedHTMLElements } from "@/static/types";
 
 import UtilityBar from "./UtilityBar";
 
 describe("UtilityBar", () => {
     /** The number of options being rendered in the menus */
-    const NUM_OPTIONS: number = 7;
+    const NUM_OPTIONS: number = SECTION_LIST.length + 3;
     /** The menu button index of the sort menu */
     const SORT_IDX: number = 0;
     /** The menu button index of the filter menu */
@@ -31,12 +22,6 @@ describe("UtilityBar", () => {
     const NO_FILTER_IDX: number = 2;
     /** The option index of Life Logs */
     const LIFE_LOGS_IDX: number = 3;
-    /** The option index of Career Chronicles */
-    const CAREER_CHRONICLES_IDX: number = 4;
-    /** The option index of Gaming Grind */
-    const GAMING_GRIND_IDX: number = 5;
-    /** The option index of Random Ravings */
-    const RANDOM_RAVINGS_IDX: number = 6;
 
     let options: QueriedHTMLElements;
 
@@ -95,14 +80,10 @@ describe("UtilityBar", () => {
         renderUtilityBar();
         fireEvent.click(options[NO_FILTER_IDX]);
         expect(mockFilterHandler).toHaveBeenCalledWith(NO_FILTER);
-        fireEvent.click(options[LIFE_LOGS_IDX]);
-        expect(mockFilterHandler).toHaveBeenCalledWith(LIFE_LOGS);
-        fireEvent.click(options[CAREER_CHRONICLES_IDX]);
-        expect(mockFilterHandler).toHaveBeenCalledWith(CAREER_CHRONICLES);
-        fireEvent.click(options[GAMING_GRIND_IDX]);
-        expect(mockFilterHandler).toHaveBeenCalledWith(GAMING_GRIND);
-        fireEvent.click(options[RANDOM_RAVINGS_IDX]);
-        expect(mockFilterHandler).toHaveBeenCalledWith(RANDOM_RAVINGS);
+        SECTION_LIST.forEach((section: EntrySection, idx: number) => {
+            fireEvent.click(options[idx + LIFE_LOGS_IDX]);
+            expect(mockFilterHandler).toHaveBeenCalledWith(section.slug);
+        });
     });
 
     it("Calls the correct search handler on search", () => {

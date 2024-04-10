@@ -61,6 +61,7 @@ export type Entry = {
     timestamp: string;
     lifeLogs: string[];
     careerChronicles: string[];
+    warriorsWatch: string[];
     gamingGrind: string[];
     randomRavings: string[];
 };

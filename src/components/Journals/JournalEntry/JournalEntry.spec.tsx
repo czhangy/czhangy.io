@@ -21,8 +21,6 @@ import JournalEntry, { JournalEntryProps } from "./JournalEntry";
 describe("JournalEntry", () => {
     /** The minimum number of tags an entry can have */
     const MIN_TAGS: number = 1;
-    /** The maximum number of tags an entry can have */
-    const MAX_TAGS: number = 4;
     /** The class name of the span used to highlight the title */
     const HIGHLIGHT_CLASS: string = "highlight";
 
@@ -57,7 +55,7 @@ describe("JournalEntry", () => {
             mockJournalEntry.timestamp,
         );
         expect(screen.queryByRole(LIST)).toBeInTheDocument();
-        expect(tags.length).toBe(MAX_TAGS);
+        expect(tags.length).toBe(SECTION_LIST.length);
         expect(screen.queryByTestId("preview")).toHaveTextContent(
             mockJournalEntry[
                 SECTION_LIST.find(

@@ -7,6 +7,7 @@ import {
     mockGamingGrindEntry,
     mockLifeLogsEntry,
     mockRandomRavingsEntry,
+    mockWarriorsWatchEntry,
 } from "@/mocks/entries";
 import {
     HEADING,
@@ -30,6 +31,7 @@ describe("JournalsPage", () => {
     const MOCK_ENTRIES: Entry[] = [
         mockLifeLogsEntry,
         mockCareerChroniclesEntry,
+        mockWarriorsWatchEntry,
         mockGamingGrindEntry,
         mockRandomRavingsEntry,
     ];

@@ -9,6 +9,7 @@ import {
     mockGamingGrindEntry,
     mockLifeLogsEntry,
     mockRandomRavingsEntry,
+    mockWarriorsWatchEntry,
 } from "@/mocks/entries";
 import { Entry } from "@/static/types";
 
@@ -43,6 +44,7 @@ const Journals: NextPage = ({
                     entries={[
                         mockLifeLogsEntry,
                         mockCareerChroniclesEntry,
+                        mockWarriorsWatchEntry,
                         mockGamingGrindEntry,
                         mockRandomRavingsEntry,
                     ]}

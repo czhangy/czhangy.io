@@ -85,6 +85,9 @@ export const LIFE_LOGS = "lifeLogs";
 export const CAREER_CHRONICLES = "careerChronicles";
 
 /** The string constant for the Gaming Grind section slug */
+export const WARRIORS_WATCH = "warriorsWatch";
+
+/** The string constant for the Gaming Grind section slug */
 export const GAMING_GRIND = "gamingGrind";
 
 /** The string constant for the Random Ravings section slug */
@@ -126,6 +129,12 @@ export const SECTION_LIST: EntrySection[] = [
         emoji: "🏢",
     },
     {
+        displayName: "Warriors Watch",
+        slug: WARRIORS_WATCH,
+        color: "#FFC72C",
+        emoji: "🏀",
+    },
+    {
         displayName: "Gaming Grind",
         slug: GAMING_GRIND,
         color: "#ED6868",
@@ -134,7 +143,7 @@ export const SECTION_LIST: EntrySection[] = [
     {
         displayName: "Random Ravings",
         slug: RANDOM_RAVINGS,
-        color: "#D5ED68",
+        color: "#AD7DFF",
         emoji: "✍️",
     },
 ];

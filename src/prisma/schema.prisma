@@ -20,6 +20,7 @@ model Entry {
     timestamp        DateTime
     lifeLogs         String[]
     careerChronicles String[]
+    warriorsWatch    String[]
     gamingGrind      String[]
     randomRavings    String[]
 }
