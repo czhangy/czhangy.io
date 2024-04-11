@@ -2,7 +2,7 @@
 // ROLE CONSTANTS
 // -----------------------------------------------------------------------------
 
-import { EntrySection } from "./types";
+import { EntrySectionType } from "@/static/types";
 
 /** The string constant for the button role */
 export const BUTTON: string = "button";
@@ -37,6 +37,9 @@ export const HREF: string = "href";
 
 /** The string constant for the placeholder attribute */
 export const PLACEHOLDER: string = "placeholder";
+
+/** The string constant for the key attribute */
+export const KEY: string = "key";
 
 /** The string constant for scroll events */
 export const SCROLL: string = "scroll";
@@ -114,36 +117,31 @@ export const SITE_LINK_ALT = "Site Link";
 // ENTRY SECTION CONSTANTS
 // -----------------------------------------------------------------------------
 
-/** A list of allowed section names and their corresponding attributes */
-export const SECTION_LIST: EntrySection[] = [
-    {
+/** A map of section types to their attributes */
+export const SECTION_TYPES: { [slug: string]: EntrySectionType } = {
+    [LIFE_LOGS]: {
         displayName: "Life Logs",
-        slug: LIFE_LOGS,
         color: "#349EEB",
         emoji: "🌱",
     },
-    {
+    [CAREER_CHRONICLES]: {
         displayName: "Career Chronicles",
-        slug: CAREER_CHRONICLES,
         color: "#2EE68D",
         emoji: "🏢",
     },
-    {
+    [WARRIORS_WATCH]: {
         displayName: "Warriors Watch",
-        slug: WARRIORS_WATCH,
         color: "#FFC72C",
         emoji: "🏀",
     },
-    {
+    [GAMING_GRIND]: {
         displayName: "Gaming Grind",
-        slug: GAMING_GRIND,
         color: "#ED6868",
         emoji: "🕹️",
     },
-    {
+    [RANDOM_RAVINGS]: {
         displayName: "Random Ravings",
-        slug: RANDOM_RAVINGS,
         color: "#AD7DFF",
         emoji: "✍️",
     },
-];
+};

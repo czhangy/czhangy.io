@@ -1,7 +1,8 @@
 import { ReactElement } from "react";
+import { EntrySection } from "@prisma/client";
 
-import { SECTION_LIST } from "@/static/constants";
-import { Entry, EntrySection } from "@/static/types";
+import { SECTION_TYPES } from "@/static/constants";
+import { Entry } from "@/static/types";
 
 import styles from "./JournalEntryPage.module.scss";
 
@@ -17,32 +18,30 @@ const JournalEntryPage: React.FC<JournalEntryPageProps> = (
      * @returns {ReactElement[]} A list of <section> elements that render content for each section
      */
     const renderEntrySections = (): ReactElement[] => {
-        return SECTION_LIST.filter(
-            (section: EntrySection) =>
-                props.entry[section.slug as keyof typeof props.entry].length >
-                0,
-        ).map((section: EntrySection) => {
-            return (
-                <section key={section.slug}>
-                    <h3 className={styles["section-title"]}>
-                        {section.emoji} {section.displayName}
-                    </h3>
-                    {(
-                        props.entry[
-                            section.slug as keyof typeof props.entry
-                        ] as string[]
-                    ).map((paragraph: string, idx: number) => (
-                        <p
-                            className={styles.paragraph}
-                            key={idx}
-                            data-testid="paragraph"
-                        >
-                            {paragraph}
-                        </p>
-                    ))}
-                </section>
-            );
-        });
+        return props.entry.sections.map(
+            (section: EntrySection, idx: number) => {
+                return (
+                    <section key={idx}>
+                        <h3 className={styles["section-title"]}>
+                            {SECTION_TYPES[section.type].emoji}{" "}
+                            {SECTION_TYPES[section.type].displayName}:{" "}
+                            {section.title}
+                        </h3>
+                        {section.paragraphs.map(
+                            (paragraph: string, idx: number) => (
+                                <p
+                                    className={styles.paragraph}
+                                    key={idx}
+                                    data-testid="paragraph"
+                                >
+                                    {paragraph}
+                                </p>
+                            ),
+                        )}
+                    </section>
+                );
+            },
+        );
     };
 
     return (

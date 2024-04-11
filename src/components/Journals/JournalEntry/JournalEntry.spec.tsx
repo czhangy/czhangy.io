@@ -11,19 +11,18 @@ import {
     LIST,
     LIST_ITEM,
     NO_FILTER,
-    SECTION_LIST,
+    SECTION_TYPES,
 } from "@/static/constants";
-import { Entry, EntrySection, QueriedHTMLElements } from "@/static/types";
+import {
+    EntrySectionType,
+    QueriedHTMLElement,
+    QueriedHTMLElements,
+} from "@/static/types";
 import { capitalizeWord, toKebabCase } from "@/utils/helpers/helpers";
 
 import JournalEntry, { JournalEntryProps } from "./JournalEntry";
 
 describe("JournalEntry", () => {
-    /** The minimum number of tags an entry can have */
-    const MIN_TAGS: number = 1;
-    /** The class name of the span used to highlight the title */
-    const HIGHLIGHT_CLASS: string = "highlight";
-
     let tags: QueriedHTMLElements;
 
     /**
@@ -42,106 +41,137 @@ describe("JournalEntry", () => {
         tags = screen.queryAllByRole(LIST_ITEM);
     };
 
-    it("Renders correctly", () => {
-        renderJournalEntry({
-            entry: mockJournalEntry,
-            filter: NO_FILTER,
-            query: "",
-        });
-        expect(screen.queryByRole(HEADING)).toHaveTextContent(
-            mockJournalEntry.title,
-        );
-        expect(screen.queryByTestId("timestamp")).toHaveTextContent(
-            mockJournalEntry.timestamp,
-        );
-        expect(screen.queryByRole(LIST)).toBeInTheDocument();
-        expect(tags.length).toBe(SECTION_LIST.length);
-        expect(screen.queryByTestId("preview")).toHaveTextContent(
-            mockJournalEntry[
-                SECTION_LIST.find(
-                    (section: EntrySection) =>
-                        mockJournalEntry[section.slug as keyof Entry].length >
-                        0,
-                )!.slug as keyof Entry
-            ][0],
-        );
-        expect(screen.queryByRole(LINK)).toHaveAttribute(
-            HREF,
-            `/journals/${toKebabCase(mockJournalEntry.title)}`,
-        );
-    });
+    describe("Rendering", () => {
+        it("Renders correctly", () => {
+            renderJournalEntry({
+                entry: mockJournalEntry,
+                filter: NO_FILTER,
+                query: "",
+            });
 
-    it("Renders correctly with missing tags", () => {
-        renderJournalEntry({
-            entry: mockLifeLogsEntry,
-            filter: NO_FILTER,
-            query: "",
-        });
-        expect(tags.length).toBe(MIN_TAGS);
-    });
+            // Check the heading
+            const title: QueriedHTMLElement = screen.queryByRole(HEADING);
+            const timestamp: QueriedHTMLElement =
+                screen.queryByTestId("timestamp");
+            expect(title).toHaveTextContent(mockJournalEntry.title);
+            expect(timestamp).toHaveTextContent(mockJournalEntry.timestamp);
 
-    it("Correctly highlights tags that are filtered for", () => {
-        const lifeLogsSection: EntrySection = SECTION_LIST.find(
-            (section: EntrySection) => section.slug === LIFE_LOGS,
-        )!;
-        renderJournalEntry({
-            entry: mockJournalEntry,
-            filter: lifeLogsSection.slug,
-            query: "",
+            // Check the tags list
+            const tagList: QueriedHTMLElement = screen.queryByRole(LIST);
+            expect(tagList).toBeInTheDocument();
+            expect(tags).toHaveLength(mockJournalEntry.sections.length);
+
+            // Check the preview
+            const preview: QueriedHTMLElement = screen.queryByTestId("preview");
+            expect(preview).toHaveTextContent(
+                mockJournalEntry.sections[0].paragraphs[0],
+            );
+
+            // Check the body link
+            const link: QueriedHTMLElement = screen.queryByRole(LINK);
+            expect(link).toHaveAttribute(
+                HREF,
+                `/journals/${toKebabCase(mockJournalEntry.title)}`,
+            );
         });
-        const highlightedTag: HTMLElement = tags[0];
-        const unhighlightedTag: HTMLElement = tags[1];
-        expect(highlightedTag).toHaveTextContent(lifeLogsSection.displayName);
-        expect(highlightedTag).toHaveStyle({
-            backgroundColor: lifeLogsSection.color,
-        });
-        expect(unhighlightedTag).not.toHaveTextContent(
-            lifeLogsSection.displayName,
-        );
-        expect(unhighlightedTag).not.toHaveStyle({
-            backgroundColor: lifeLogsSection.color,
+
+        it("Renders correctly with less tags", () => {
+            renderJournalEntry({
+                entry: mockLifeLogsEntry,
+                filter: NO_FILTER,
+                query: "",
+            });
+            expect(tags).toHaveLength(mockLifeLogsEntry.sections.length);
         });
     });
 
-    it("Correctly highlights substrings at the start of the title that are searched for", () => {
-        const query: string = "Test";
-        renderJournalEntry({
-            entry: mockJournalEntry,
-            filter: NO_FILTER,
-            query: query,
+    describe("Filtering", () => {
+        it("Correctly highlights tags that are filtered for", () => {
+            renderJournalEntry({
+                entry: mockJournalEntry,
+                filter: LIFE_LOGS,
+                query: "",
+            });
+
+            // Check matching tags highlight
+            const lifeLogsTag: HTMLElement | undefined = screen
+                .getAllByRole(LIST_ITEM)
+                .find(
+                    (tag: HTMLElement) =>
+                        tag.textContent ===
+                        SECTION_TYPES[LIFE_LOGS].displayName,
+                );
+            expect(lifeLogsTag).toHaveStyle({
+                backgroundColor: SECTION_TYPES[LIFE_LOGS].color,
+            });
+
+            // Check non-matching tags do not highlight
+            tags.forEach((tag: HTMLElement) => {
+                // Ignore the highlighted tag
+                if (tag.textContent !== SECTION_TYPES[LIFE_LOGS].displayName) {
+                    const slug: string = Object.entries(SECTION_TYPES).find(
+                        ([_, entrySectionType]: [string, EntrySectionType]) => {
+                            return (
+                                entrySectionType.displayName === tag.textContent
+                            );
+                        },
+                    )![0];
+                    expect(tag).not.toHaveStyle({
+                        backgroundColor: SECTION_TYPES[slug].color,
+                    });
+                }
+            });
         });
-        expect(screen.getByText(query)).toHaveClass(HIGHLIGHT_CLASS);
     });
 
-    it("Correctly highlights substrings in the middle of the title that are searched for", () => {
-        const query: string = "est En";
-        renderJournalEntry({
-            entry: mockJournalEntry,
-            filter: NO_FILTER,
-            query: query,
-        });
-        expect(screen.getByText(query)).toHaveClass(HIGHLIGHT_CLASS);
-    });
+    describe("Searches", () => {
+        const assertTextHighlighted = (query: string) => {
+            const matchingText: QueriedHTMLElement = screen.getByText(query);
+            expect(matchingText).toHaveClass("highlight");
+        };
 
-    it("Correctly highlights substrings at the end of the title that are searched for", () => {
-        const query: string = "Entry";
-        renderJournalEntry({
-            entry: mockJournalEntry,
-            filter: NO_FILTER,
-            query: query,
-        });
-        expect(screen.getByText(query)).toHaveClass(HIGHLIGHT_CLASS);
-    });
+        it("Correctly highlights substrings at the start of the title that are searched for", () => {
+            const query: string = "Test";
+            renderJournalEntry({
+                entry: mockJournalEntry,
+                filter: NO_FILTER,
+                query: query,
+            });
 
-    it("Correctly highlights substrings with a case mismatch that are searched for", () => {
-        const query: string = "test";
-        renderJournalEntry({
-            entry: mockJournalEntry,
-            filter: NO_FILTER,
-            query: query,
+            assertTextHighlighted(query);
         });
-        expect(screen.getByText(capitalizeWord(query))).toHaveClass(
-            HIGHLIGHT_CLASS,
-        );
+
+        it("Correctly highlights substrings in the middle of the title that are searched for", () => {
+            const query: string = "est En";
+            renderJournalEntry({
+                entry: mockJournalEntry,
+                filter: NO_FILTER,
+                query: query,
+            });
+
+            assertTextHighlighted(query);
+        });
+
+        it("Correctly highlights substrings at the end of the title that are searched for", () => {
+            const query: string = "Entry";
+            renderJournalEntry({
+                entry: mockJournalEntry,
+                filter: NO_FILTER,
+                query: query,
+            });
+
+            assertTextHighlighted(query);
+        });
+
+        it("Correctly highlights substrings with a case mismatch that are searched for", () => {
+            const query: string = "test";
+            renderJournalEntry({
+                entry: mockJournalEntry,
+                filter: NO_FILTER,
+                query: query,
+            });
+
+            assertTextHighlighted(capitalizeWord(query));
+        });
     });
 });

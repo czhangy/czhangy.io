@@ -5,10 +5,10 @@ import {
     DESC,
     FILTER,
     NO_FILTER,
-    SECTION_LIST,
+    SECTION_TYPES,
     SORT,
 } from "@/static/constants";
-import { EntrySection } from "@/static/types";
+import { EntrySectionType } from "@/static/types";
 
 import styles from "./UtilityBar.module.scss";
 
@@ -41,9 +41,14 @@ const UtilityBar: React.FC<UtilityBarProps> = (props: UtilityBarProps) => {
         const options: { [value: string]: string } = {
             [NO_FILTER]: "No Filter",
         };
-        SECTION_LIST.forEach((section: EntrySection) => {
-            options[section.slug] = section.displayName;
-        });
+
+        // Dynamically map sections to thier menu options
+        Object.entries(SECTION_TYPES).forEach(
+            ([slug, entrySection]: [string, EntrySectionType]) => {
+                options[slug] = entrySection.displayName;
+            },
+        );
+
         return options;
     };
 

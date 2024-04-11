@@ -51,7 +51,7 @@ describe("Menu", () => {
     it("Navigates to other pages correctly", () => {
         renderMenu();
         const links: HTMLElement[] = screen.queryAllByRole(LINK);
-        expect(links.length).toBe(PAGES.length);
+        expect(links).toHaveLength(PAGES.length);
         PAGES.forEach((page: string, idx: number) => {
             expect(links[idx]).toHaveTextContent(page);
             expect(links[idx]).toHaveProperty(

@@ -47,7 +47,7 @@ describe("ProjectsPage", () => {
      */
     const assertProjectSet = (projectName: string): void => {
         expect(screen.queryByTestId("modal-overlay")).toBeInTheDocument();
-        expect(screen.queryAllByTestId("project-info").length).toBe(
+        expect(screen.queryAllByTestId("project-info")).toHaveLength(
             NUM_INFO_COMPONENTS,
         );
         expect(projectDoors[LEFT_DOOR_IDX]).not.toHaveClass("closed");
@@ -56,7 +56,7 @@ describe("ProjectsPage", () => {
         expect(screen.queryByTestId("scroll-container")).not.toHaveClass(
             "disabled",
         );
-        expect(screen.queryAllByAltText(projectName).length).toBe(
+        expect(screen.queryAllByAltText(projectName)).toHaveLength(
             NUM_INFO_COMPONENTS,
         );
     };
@@ -73,7 +73,7 @@ describe("ProjectsPage", () => {
 
     it("Renders correctly", () => {
         renderProjectsPage();
-        expect(projectDoors.length).toBe(NUM_DOORS);
+        expect(projectDoors).toHaveLength(NUM_DOORS);
         expect(projectDoors[LEFT_DOOR_IDX]).toHaveClass(LEFT);
         expect(projectDoors[RIGHT_DOOR_IDX]).toHaveClass(RIGHT);
         expect(screen.queryByTestId("projects-menu")).toBeInTheDocument();

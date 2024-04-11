@@ -40,7 +40,7 @@ describe("HomePage", () => {
         SOCIALS.forEach((social: string) => {
             expect(screen.queryByAltText(social)).toBeInTheDocument();
         });
-        expect(screen.queryAllByRole(LINK).length).toBe(numCards);
-        expect(screen.queryAllByRole(IMAGE).length).toBe(numCards);
+        expect(screen.queryAllByRole(LINK)).toHaveLength(numCards);
+        expect(screen.queryAllByRole(IMAGE)).toHaveLength(numCards);
     });
 });

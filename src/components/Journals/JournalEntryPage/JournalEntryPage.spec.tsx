@@ -1,10 +1,11 @@
 import "@testing-library/jest-dom";
 
 import { render, screen } from "@testing-library/react";
+import { EntrySection } from "@prisma/client";
 
 import { mockJournalEntry, mockLifeLogsEntry } from "@/mocks/entries";
-import { HEADING } from "@/static/constants";
-import { Entry, QueriedHTMLElements } from "@/static/types";
+import { HEADING, SECTION_TYPES } from "@/static/constants";
+import { Entry, QueriedHTMLElement, QueriedHTMLElements } from "@/static/types";
 
 import JournalEntryPage, { JournalEntryPageProps } from "./JournalEntryPage";
 
@@ -15,22 +16,31 @@ describe("JournalEntryPage", () => {
      * @param {Entry} entry The entry object being checked
      */
     const assertTextRenders = (entry: Entry): void => {
+        // Check title line
         const headings: QueriedHTMLElements = screen.queryAllByRole(HEADING);
-        expect(screen.queryByTestId("timestamp")).toHaveTextContent(
-            entry.timestamp,
-        );
-        expect(headings[0]).toHaveTextContent(entry.title);
-        expect(headings.length).toBe(
-            Object.values(entry).filter(
-                (value: string | string[]) =>
-                    Array.isArray(value) && value.length > 0,
-            ).length + 1,
-        );
-        expect(screen.queryAllByTestId("paragraph").length).toBe(
-            Object.values(entry)
-                .filter((value: string | string[]) => Array.isArray(value))
-                .flat().length,
-        );
+        const title: HTMLElement = headings[0];
+        const timestamp: QueriedHTMLElement = screen.queryByTestId("timestamp");
+        expect(title).toHaveTextContent(entry.title);
+        expect(timestamp).toHaveTextContent(entry.timestamp);
+
+        // Check section titles
+        expect(headings).toHaveLength(entry.sections.length + 1);
+        entry.sections.forEach((section: EntrySection, idx: number) => {
+            expect(headings[idx + 1]).toHaveTextContent(
+                `${SECTION_TYPES[section.type].emoji} ${SECTION_TYPES[section.type].displayName}: ${section.title}`,
+            );
+        });
+
+        // Check paragraph contents
+        const paragraphs: QueriedHTMLElements =
+            screen.queryAllByTestId("paragraph");
+        const paragraphContents: string[] = entry.sections
+            .map((section: EntrySection) => section.paragraphs)
+            .flat();
+        expect(paragraphs).toHaveLength(paragraphContents.length);
+        paragraphs.forEach((paragraph: HTMLElement, idx: number) => {
+            expect(paragraph).toHaveTextContent(paragraphContents[idx]);
+        });
     };
 
     /**

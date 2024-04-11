@@ -1,4 +1,4 @@
-import { Project as ProjectModel } from "@prisma/client";
+import { EntrySection, Project as ProjectModel } from "@prisma/client";
 
 // -----------------------------------------------------------------------------
 // MARKUP TYPES
@@ -17,11 +17,9 @@ export type Side = "left" | "right";
 export type MenuType = "sort" | "filter";
 
 /** The object representing identifying attributes of an entry section */
-export type EntrySection = {
+export type EntrySectionType = {
     /** The human-readable name of the section */
     displayName: string;
-    /** The slug identifying the section in the model */
-    slug: string;
     /** The hex color used to identify the section */
     color: string;
     /** The emoji that annotates the section on the entry's page */
@@ -59,9 +57,5 @@ export type Experience = {
 export type Entry = {
     title: string;
     timestamp: string;
-    lifeLogs: string[];
-    careerChronicles: string[];
-    warriorsWatch: string[];
-    gamingGrind: string[];
-    randomRavings: string[];
+    sections: EntrySection[];
 };

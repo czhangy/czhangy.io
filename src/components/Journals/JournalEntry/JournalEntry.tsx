@@ -1,8 +1,9 @@
 import { ReactElement } from "react";
 import Link from "next/link";
+import { EntrySection } from "@prisma/client";
 
-import { SECTION_LIST } from "@/static/constants";
-import { Entry, EntrySection } from "@/static/types";
+import { SECTION_TYPES } from "@/static/constants";
+import { Entry } from "@/static/types";
 import { toKebabCase } from "@/utils/helpers/helpers";
 
 import styles from "./JournalEntry.module.scss";
@@ -39,11 +40,11 @@ const JournalEntry: React.FC<JournalEntryProps> = (
      * Styles tags to highlight them when filtered for
      *
      * @param {string} slug The slug of the tag being styled
-     * @param {string} color The color identifying the tag
      *
      * @returns {Object} The CSS styling
      */
-    const getTagStyle = (slug: string, color: string): Object => {
+    const getTagStyle = (slug: string): Object => {
+        const color: string = SECTION_TYPES[slug].color;
         return slug === props.filter
             ? {
                   borderColor: color,
@@ -64,21 +65,18 @@ const JournalEntry: React.FC<JournalEntryProps> = (
     const renderEntryTags = (): ReactElement => {
         return (
             <ul className={styles.tags}>
-                {SECTION_LIST.map((section: EntrySection) =>
-                    props.entry[section.slug as keyof typeof props.entry]
-                        .length > 0 ? (
-                        <li
-                            className={styles.tag}
-                            style={getTagStyle(section.slug, section.color)}
-                            key={section.slug}
-                            data-testid="entry-tag"
-                        >
-                            <strong>{section.displayName}</strong>
-                        </li>
-                    ) : (
-                        ""
-                    ),
-                )}
+                {props.entry.sections.map((section: EntrySection) => (
+                    <li
+                        className={styles.tag}
+                        style={getTagStyle(section.type)}
+                        key={section.type}
+                        data-testid="entry-tag"
+                    >
+                        <strong>
+                            {SECTION_TYPES[section.type].displayName}
+                        </strong>
+                    </li>
+                ))}
             </ul>
         );
     };
@@ -91,12 +89,7 @@ const JournalEntry: React.FC<JournalEntryProps> = (
     const renderPreview = (): ReactElement => {
         return (
             <p className={styles.preview} data-testid="preview">
-                {
-                    Object.values(props.entry).find(
-                        (value: string | string[]) =>
-                            Array.isArray(value) && value.length > 0,
-                    )![0]
-                }
+                {props.entry.sections[0].paragraphs[0]}
             </p>
         );
     };

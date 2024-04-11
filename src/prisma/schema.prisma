@@ -14,15 +14,17 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+type EntrySection {
+    type       String
+    title      String
+    paragraphs String[]
+}
+
 model Entry {
-    id               String   @id @default(auto()) @map("_id") @db.ObjectId
-    title            String   @unique
-    timestamp        DateTime
-    lifeLogs         String[]
-    careerChronicles String[]
-    warriorsWatch    String[]
-    gamingGrind      String[]
-    randomRavings    String[]
+    id        String         @id @default(auto()) @map("_id") @db.ObjectId
+    title     String         @unique
+    timestamp DateTime
+    sections  EntrySection[]
 }
 
 model Experience {

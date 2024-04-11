@@ -1,4 +1,5 @@
 import { ReactElement, useState } from "react";
+import { EntrySection } from "@prisma/client";
 
 import JournalEntry from "@/components/Journals/JournalEntry/JournalEntry";
 import UtilityBar from "@/components/Journals/UtilityBar/UtilityBar";
@@ -25,13 +26,21 @@ const JournalsPage: React.FC<JournalsPageProps> = (
      * @returns {Entry[]} The list of entries, sorted by date and filtered by tag
      */
     const getVisibleEntries = (): Entry[] => {
+        // Apply filters
         let entries: Entry[] = props.entries.filter(
             (entry: Entry) =>
-                filterBy === "" || entry[filterBy as keyof Entry].length > 0,
+                filterBy === "" ||
+                entry.sections.find(
+                    (section: EntrySection) => section.type === filterBy,
+                ),
         );
+
+        // Apply search query
         entries = entries.filter((entry: Entry) =>
             entry.title.toLowerCase().includes(searchQuery.toLowerCase()),
         );
+
+        // Sort and return
         if (sortBy === ASC) {
             return entries.sort(
                 (a: Entry, b: Entry) =>

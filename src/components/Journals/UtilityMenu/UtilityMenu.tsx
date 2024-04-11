@@ -77,7 +77,7 @@ const UtilityMenu: React.FC<UtilityMenuProps> = (props: UtilityMenuProps) => {
                                 <button
                                     className={styles.button}
                                     onClick={() => handleSelect(value)}
-                                    data-testid="option"
+                                    data-testid={`${props.menuType}-option`}
                                 >
                                     {display}
                                 </button>
