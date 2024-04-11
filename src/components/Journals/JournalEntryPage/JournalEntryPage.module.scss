@@ -1,0 +1,68 @@
+@use "@/styles/constants";
+
+.journal-entry-page {
+    --border-size: 1px;
+    --header-inner-spacing: 1rem;
+    --header-spacing: 0.75rem;
+    --paragraph-font-size: 1rem;
+    --paragraph-spacing: 1rem;
+    --section-spacing: 2rem;
+    --section-title-font-size: 1.25rem;
+    --section-title-spacing: 1rem;
+    --timestamp-font-size: 1rem;
+    --timestamp-letter-spacing: 1px;
+    --title-font-size: 1.5rem;
+    --title-letter-spacing: 1px;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--section-spacing);
+    width: 100%;
+    min-height: 100%;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--header-inner-spacing);
+        border-bottom: var(--border-size) solid var(--theme-text);
+        padding-bottom: var(--header-spacing);
+        font-family: constants.$header-font;
+
+        .title {
+            font-size: var(--title-font-size);
+            letter-spacing: var(--title-letter-spacing);
+        }
+
+        .timestamp {
+            font-size: var(--timestamp-font-size);
+            letter-spacing: var(--timestamp-letter-spacing);
+        }
+    }
+
+    .section-title {
+        margin-bottom: var(--section-title-spacing);
+        border-bottom: var(--border-size) solid var(--theme-text);
+        padding-bottom: var(--header-spacing);
+        font-size: var(--section-title-font-size);
+    }
+
+    .paragraph {
+        margin-bottom: var(--paragraph-spacing);
+        font-size: var(--paragraph-font-size);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .journal-entry-page {
+        --paragraph-font-size: 1.25rem;
+        --section-title-font-size: 1.75rem;
+        --section-title-spacing: 1.5rem;
+        --timestamp-font-size: 1.25rem;
+        --title-font-size: 2rem;
+    }
+}

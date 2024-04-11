@@ -39,8 +39,8 @@ describe("ProjectsMenu", () => {
         renderProjectsMenu();
         const cards: QueriedHTMLElements = screen.queryAllByRole(LIST_ITEM);
         expect(menu).not.toHaveClass("disabled");
-        expect(cards.length).toBe(mockProjects.length);
-        expect(buttons.length).toBe(mockProjects.length);
+        expect(cards).toHaveLength(mockProjects.length);
+        expect(buttons).toHaveLength(mockProjects.length);
         mockProjects.forEach((project: Project, idx: number) =>
             expect(cards[idx]).toHaveTextContent(project.name),
         );

@@ -1,0 +1,33 @@
+@use "@/styles/constants";
+
+.journals-page {
+    --entry-spacing: 1rem;
+    --no-matches-font-size: 2rem;
+    --no-matches-letter-spacing: 1px;
+    --no-matches-spacing: 2rem;
+
+    width: 100%;
+    min-height: calc(
+        100lvh - constants.$navbar-height - 2 * constants.$page-padding
+    );
+
+    .entry-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--entry-spacing);
+    }
+
+    .no-matches {
+        margin-top: var(--no-matches-spacing);
+        font-size: var(--no-matches-font-size);
+        font-family: constants.$header-font;
+        letter-spacing: var(--no-matches-letter-spacing);
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .journals-page {
+        --entry-spacing: 1.5rem;
+    }
+}

@@ -36,7 +36,7 @@ describe("ExperienceCard", () => {
     const assertDescriptionRenders = (description: string[]): void => {
         const bullets: QueriedHTMLElements = screen.queryAllByRole(LIST_ITEM);
         expect(experienceDescription).toBeInTheDocument();
-        expect(bullets.length).toBe(description.length);
+        expect(bullets).toHaveLength(description.length);
         bullets.forEach((bullet: HTMLElement, idx: number) =>
             expect(bullet).toHaveTextContent(description[idx]),
         );

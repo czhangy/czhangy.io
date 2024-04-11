@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/Global/Image/Image";
 
 import styles from "./AboutPage.module.scss";
 
@@ -25,12 +25,7 @@ const AboutPage: React.FC = () => {
                         very funny person, my girlfriend does not.
                     </p>
                     <div className={styles["section-img"]}>
-                        <Image
-                            src="/assets/images/about/story.webp"
-                            alt=""
-                            layout="fill"
-                            objectFit="contain"
-                        />
+                        <Image src="/assets/images/about/story.webp" alt="" />
                     </div>
                 </div>
             </section>
@@ -40,12 +35,7 @@ const AboutPage: React.FC = () => {
                 <h2 className={styles["section-header"]}>My Work</h2>
                 <div className={styles["section-content"]}>
                     <div className={styles["section-img"]}>
-                        <Image
-                            src="/assets/images/about/work.webp"
-                            alt=""
-                            layout="fill"
-                            objectFit="contain"
-                        />
+                        <Image src="/assets/images/about/work.webp" alt="" />
                     </div>
                     <p className={styles["section-text"]}>
                         A lot of my early experience has come from working on
@@ -85,8 +75,6 @@ const AboutPage: React.FC = () => {
                         <Image
                             src="/assets/images/about/interests.webp"
                             alt=""
-                            layout="fill"
-                            objectFit="contain"
                         />
                     </div>
                 </div>

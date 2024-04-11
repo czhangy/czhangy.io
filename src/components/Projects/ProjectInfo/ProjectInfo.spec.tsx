@@ -52,7 +52,7 @@ describe("ProjectInfo", () => {
      * Checks to see if the tools section is rendered correctly
      */
     const assertToolsSectionRenders = (): void => {
-        expect(headings.length).toBe(MAX_SECTIONS);
+        expect(headings).toHaveLength(MAX_SECTIONS);
         expect(headings[TOOLS_SECTION_IDX]).toHaveTextContent(TOOLS_TITLE);
         expect(toolsList).toBeInTheDocument();
     };
@@ -109,14 +109,14 @@ describe("ProjectInfo", () => {
 
     it("Renders the links section correctly when no links are present", () => {
         renderProjectInfo({ project: mockNoLinksProject, tools: [mockTool1] });
-        expect(links.length).toBe(0);
-        expect(images.length).toBe(1);
+        expect(links).toHaveLength(0);
+        expect(images).toHaveLength(1);
     });
 
     it("Renders the links section correctly when the GitHub link isn't present", () => {
         renderProjectInfo({ project: mockNoGitHubProject, tools: [mockTool1] });
-        expect(links.length).toBe(1);
-        expect(images.length).toBe(2);
+        expect(links).toHaveLength(1);
+        expect(images).toHaveLength(2);
         assertSiteLinkRenders(
             links[0],
             images[1],
@@ -126,8 +126,8 @@ describe("ProjectInfo", () => {
 
     it("Renders the links section correctly when the site link isn't present", () => {
         renderProjectInfo({ project: mockNoLinkProject, tools: [mockTool1] });
-        expect(links.length).toBe(1);
-        expect(images.length).toBe(2);
+        expect(links).toHaveLength(1);
+        expect(images).toHaveLength(2);
         assertGitHubLinkRenders(
             links[0],
             images[1],
@@ -137,23 +137,23 @@ describe("ProjectInfo", () => {
 
     it("Renders the links section correctly when both links are present", () => {
         renderProjectInfo({ project: mockProject, tools: [mockTool1] });
-        expect(links.length).toBe(2);
-        expect(images.length).toBe(3);
+        expect(links).toHaveLength(2);
+        expect(images).toHaveLength(3);
         assertGitHubLinkRenders(links[0], images[1], mockProject.gitLink!);
         assertSiteLinkRenders(links[1], images[2], mockProject.siteLink!);
     });
 
     it("Renders the tool section correctly when no tools are present", () => {
         renderProjectInfo({ project: mockNoToolsProject, tools: [] });
-        expect(headings.length).toBe(MIN_SECTIONS);
+        expect(headings).toHaveLength(MIN_SECTIONS);
         expect(toolsList).not.toBeInTheDocument();
-        expect(tools.length).toBe(0);
+        expect(tools).toHaveLength(0);
     });
 
     it("Renders the tool section correctly when 1 tool is present", () => {
         renderProjectInfo({ project: mockProject, tools: [mockTool1] });
         assertToolsSectionRenders();
-        expect(tools.length).toBe(1);
+        expect(tools).toHaveLength(1);
     });
 
     it("Renders the tool section correctly when multiple tool is present", () => {
@@ -162,6 +162,6 @@ describe("ProjectInfo", () => {
             tools: [mockTool1, mockTool2],
         });
         assertToolsSectionRenders();
-        expect(tools.length).toBe(2);
+        expect(tools).toHaveLength(2);
     });
 });

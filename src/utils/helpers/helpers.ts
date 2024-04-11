@@ -1,11 +1,11 @@
 /**
  * Converts a human-readable string into a kebab-case string
  *
- * @param {string} name The human-readable string to convert
+ * @param {string} str The human-readable string to convert
  * @returns {string} The string in kebab-case
  */
-export const toKebabCase = (name: string): string => {
-    return name
+export const toKebabCase = (str: string): string => {
+    return str
         .trim()
         .replace(/[^a-zA-Z0-9\s+]+/g, "")
         .replace(/\s+/g, "-")
@@ -22,4 +22,8 @@ export const convertDate = (date: Date | null): string => {
         return "";
     }
     return `${date.toLocaleString("en-us", { month: "short" })} ${date.getFullYear()}`;
+};
+
+export const capitalizeWord = (word: string): string => {
+    return word.substring(0, 1).toUpperCase() + word.substring(1);
 };

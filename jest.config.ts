@@ -104,6 +104,7 @@ const config: Config = {
         "@/components/(.*)": "<rootDir>/src/components/$1",
         "@/mocks/(.*)": "<rootDir>/src/mocks/$1",
         "@/static/(.*)": "<rootDir>/src/static/$1",
+        "@/utils/(.*)": "<rootDir>/src/utils/$1",
         "\\.(css|scss)$": "identity-obj-proxy",
     },
 

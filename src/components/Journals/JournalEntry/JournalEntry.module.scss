@@ -1,0 +1,104 @@
+@use "@/styles/constants";
+
+.journal-entry {
+    --border-radius: 10px;
+    --entry-height: 300px;
+    --entry-inner-spacing: 0.75rem;
+    --entry-padding: 1rem;
+    --header-inner-spacing: 1rem;
+    --low-brightness: 0.85;
+    --preview-font-size: 1rem;
+    --preview-max-lines: 4;
+    --scale-factor: 1.005;
+    --tag-border-size: 1px;
+    --tag-border-rad: 100px;
+    --tag-font-size: 0.75rem;
+    --tag-letter-spacing: 0;
+    --tag-x-padding: 0.5rem;
+    --tag-y-padding: 0.25rem;
+    --tag-spacing: 0.5rem;
+    --timestamp-font-size: 1rem;
+    --timestamp-letter-spacing: 1px;
+    --title-font-size: 1.5rem;
+    --title-letter-spacing: 1px;
+    --transition-time: 0.2s;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--entry-inner-spacing);
+    filter: brightness(var(--low-brightness));
+    transition: transform var(--transition-time);
+    border-radius: var(--border-radius);
+    background-color: var(--theme-accent);
+    padding: var(--entry-padding);
+    text-overflow: ellipsis;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--header-spacing);
+
+        .title {
+            font-size: var(--title-font-size);
+            font-family: constants.$header-font;
+            letter-spacing: var(--title-letter-spacing);
+
+            .highlight {
+                color: var(--theme-hover);
+            }
+        }
+
+        .timestamp {
+            font-size: var(--timestamp-font-size);
+            font-family: constants.$header-font;
+            letter-spacing: var(--timestamp-letter-spacing);
+        }
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--tag-spacing);
+
+        .tag {
+            border: var(--tag-border-size) solid var(--theme-text);
+            border-radius: var(--tag-border-rad);
+            padding: var(--tag-y-padding) var(--tag-x-padding);
+            font-size: var(--tag-font-size);
+            letter-spacing: var(--tag-letter-spacing);
+        }
+    }
+
+    .preview {
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        -webkit-line-clamp: var(--preview-max-lines);
+        overflow: hidden;
+        font-size: var(--preview-font-size);
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .journal-entry {
+        --entry-height: 300px;
+        --entry-inner-spacing: 1rem;
+        --entry-padding: 1.5rem;
+        --preview-font-size: 1.25rem;
+        --tag-border-size: 2px;
+        --tag-font-size: 1rem;
+        --tag-letter-spacing: 1px;
+        --tag-x-padding: 0.75rem;
+        --tag-y-padding: 0.5rem;
+        --timestamp-font-size: 1.25rem;
+        --title-font-size: 2rem;
+    }
+}
+
+@media (hover: hover) {
+    .journal-entry:hover {
+        transform: scale(var(--scale-factor));
+        filter: none;
+    }
+}

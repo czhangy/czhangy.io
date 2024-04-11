@@ -3,6 +3,7 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 
 import { HEADING, IMAGE } from "@/static/constants";
+import { QueriedHTMLElements } from "@/static/types";
 
 import AboutPage from "./AboutPage";
 
@@ -19,7 +20,16 @@ describe("AboutPage", () => {
 
     it("Renders correctly", () => {
         renderAboutPage();
-        expect(screen.getAllByRole(HEADING).length).toBe(NUM_SECTIONS);
-        expect(screen.getAllByRole(IMAGE).length).toBe(NUM_SECTIONS);
+
+        // Check headings
+        const headings: QueriedHTMLElements = screen.queryAllByRole(HEADING);
+        expect(headings).toHaveLength(NUM_SECTIONS);
+        expect(headings[0]).toHaveTextContent("My Story");
+        expect(headings[1]).toHaveTextContent("My Work");
+        expect(headings[2]).toHaveTextContent("My Interests");
+
+        // Check images
+        const images: QueriedHTMLElements = screen.queryAllByRole(IMAGE);
+        expect(images).toHaveLength(NUM_SECTIONS);
     });
 });

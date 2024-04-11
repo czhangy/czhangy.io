@@ -1,0 +1,41 @@
+@use "@/styles/constants";
+
+.search-bar {
+    display: flex;
+    flex: 1;
+    border: var(--utility-border-size) solid var(--theme-accent);
+    border-radius: var(--utility-border-rad);
+    overflow: hidden;
+
+    .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--theme-accent);
+        padding-left: var(--utility-x-padding);
+
+        .icon {
+            position: relative;
+            filter: var(--theme-svg);
+            padding: var(--utility-y-padding) var(--utility-x-padding);
+            width: var(--utility-icon-size);
+        }
+    }
+
+    .query {
+        outline: none;
+        border: none;
+        background-color: var(--theme-accent);
+        padding: var(--utility-y-padding) var(--utility-x-padding);
+        width: 100%;
+        color: var(--theme-text);
+        font-size: var(--utility-font-size);
+        font-family: constants.$main-font;
+    }
+}
+
+@media (hover: hover) {
+    .search-bar > .button:hover > .icon {
+        filter: var(--theme-svg-hover);
+    }
+}

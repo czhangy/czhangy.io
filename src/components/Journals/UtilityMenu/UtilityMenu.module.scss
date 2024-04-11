@@ -1,0 +1,118 @@
+@use "@/styles/constants";
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100lvw;
+    height: 100lvh;
+}
+
+.show {
+    z-index: constants.$overlay-z;
+}
+
+.hide {
+    display: none;
+}
+
+.menu-container {
+    --button-inner-spacing: 0.25rem;
+    --menu-offset: -8px;
+    --menu-option-x-padding: 1rem;
+    --menu-option-y-padding: 0.75rem;
+    --menu-spacing: 0.5rem;
+    --transition-time: 0.2s;
+
+    display: inline-block;
+    position: relative;
+    width: 50%;
+
+    .menu-button {
+        display: flex;
+        align-items: center;
+        gap: var(--button-inner-spacing);
+        border: var(--utility-border-size) solid var(--theme-text);
+        border-radius: var(--utility-border-rad);
+        padding: var(--utility-y-padding) var(--utility-x-padding);
+        width: 100%;
+        font-size: var(--utility-font-size);
+
+        .icon {
+            position: relative;
+            filter: var(--theme-svg);
+            width: var(--utility-icon-size);
+            height: var(--utility-icon-size);
+        }
+
+        .display {
+            width: 100%;
+            font-size: var(--menu-font-size);
+            text-align: center;
+        }
+    }
+
+    .menu {
+        position: absolute;
+        top: calc(var(--menu-spacing) + 100%);
+        transition: all var(--transition-time);
+        border: var(--utility-border-size) solid var(--theme-text);
+        border-radius: var(--utility-border-rad);
+        background: var(--theme-accent);
+
+        .option {
+            font-size: var(--utility-font-size);
+
+            .button {
+                padding: var(--menu-option-y-padding)
+                    var(--menu-option-x-padding);
+                width: 100%;
+                text-align: left;
+            }
+        }
+    }
+}
+
+.open {
+    z-index: constants.$menu-z;
+
+    .menu {
+        opacity: 1;
+    }
+}
+
+.closed {
+    z-index: 1;
+
+    .menu {
+        transform: translateY(var(--menu-offset));
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .menu-container {
+        width: auto;
+    }
+}
+
+@media (hover: hover) {
+    .menu-container {
+        .menu-button:hover {
+            border-color: var(--theme-hover);
+
+            .icon {
+                filter: var(--theme-svg-hover);
+            }
+
+            .display {
+                color: var(--theme-hover);
+            }
+        }
+
+        .menu > .option > .button:hover {
+            background: var(--theme-hover);
+        }
+    }
+}
