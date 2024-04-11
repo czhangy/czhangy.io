@@ -1,7 +1,7 @@
 import Head from "@/components/Global/Head/Head";
 import PageWrapper from "@/components/Global/PageWrapper/PageWrapper";
 import JournalEntryPage from "@/components/Journals/JournalEntryPage/JournalEntryPage";
-import { mockJournalEntry } from "@/mocks/entries";
+import { journalEntry_04_10 } from "@/static/journal_entries";
 
 import type {
     GetServerSideProps,
@@ -10,7 +10,7 @@ import type {
 } from "next";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    return { props: { entry: mockJournalEntry } };
+    return { props: { entry: journalEntry_04_10 } };
 };
 
 const Projects: NextPage = ({

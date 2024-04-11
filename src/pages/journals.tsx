@@ -4,13 +4,7 @@ import Head from "@/components/Global/Head/Head";
 import PageWrapper from "@/components/Global/PageWrapper/PageWrapper";
 import JournalsPage from "@/components/Journals/JournalsPage/JournalsPage";
 import prisma from "@/lib/prisma";
-import {
-    mockCareerChroniclesEntry,
-    mockGamingGrindEntry,
-    mockLifeLogsEntry,
-    mockRandomRavingsEntry,
-    mockWarriorsWatchEntry,
-} from "@/mocks/entries";
+import { journalEntry_04_10 } from "@/static/journal_entries";
 import { Entry } from "@/static/types";
 
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
@@ -40,15 +34,7 @@ const Journals: NextPage = ({
         <div>
             <Head page="Journals" />
             <PageWrapper>
-                <JournalsPage
-                    entries={[
-                        mockLifeLogsEntry,
-                        mockCareerChroniclesEntry,
-                        mockWarriorsWatchEntry,
-                        mockGamingGrindEntry,
-                        mockRandomRavingsEntry,
-                    ]}
-                />
+                <JournalsPage entries={[journalEntry_04_10]} />
             </PageWrapper>
         </div>
     );

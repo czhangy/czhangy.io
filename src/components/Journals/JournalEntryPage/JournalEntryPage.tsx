@@ -24,7 +24,9 @@ const JournalEntryPage: React.FC<JournalEntryPageProps> = (
                     <section key={idx}>
                         <h3 className={styles["section-title"]}>
                             {SECTION_TYPES[section.type].emoji}{" "}
-                            {SECTION_TYPES[section.type].displayName}:{" "}
+                            <strong>
+                                {SECTION_TYPES[section.type].displayName}:{" "}
+                            </strong>
                             {section.title}
                         </h3>
                         {section.paragraphs.map(
