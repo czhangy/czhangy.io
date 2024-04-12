@@ -5,7 +5,6 @@
 import {
     CAREER_CHRONICLES,
     LIFE_LOGS,
-    RANDOM_RAVINGS,
     WARRIORS_WATCH,
 } from "@/static/constants";
 import { Entry } from "@/static/types";
