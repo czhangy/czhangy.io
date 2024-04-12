@@ -1,0 +1,90 @@
+@use "@/styles/constants";
+
+.admin-page {
+    --field-inner-spacing: 0.5rem;
+    --form-border-rad: 20px;
+    --form-inner-spacing: 2rem;
+    --form-padding: 2rem;
+    --input-border-rad: 5px;
+    --input-font-size: 1.25rem;
+    --input-padding-x: 0.75rem;
+    --input-padding-y: 0.5rem;
+    --input-width: 300px;
+    --label-font-size: 1.25rem;
+    --login-border-rad: 5px;
+    --login-font-size: 1.5rem;
+    --login-letter-spacing: 1px;
+    --login-padding-x: 1rem;
+    --login-padding-y: 0.5rem;
+    --warning-font-size: 1.25rem;
+    --warning-icon-size: 20px;
+    --warning-inner-spacing: 0.5rem;
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--form-inner-spacing);
+        border-radius: var(--form-border-rad);
+        background-color: var(--theme-accent);
+        padding: var(--form-padding);
+
+        .warning {
+            display: flex;
+            align-items: center;
+            gap: var(--warning-inner-spacing);
+
+            .icon {
+                position: relative;
+                filter: var(--theme-svg);
+                width: var(--warning-icon-size);
+                height: var(--warning-icon-size);
+            }
+
+            .text {
+                font-size: var(--warning-font-size);
+            }
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: var(--field-inner-spacing);
+
+            .label {
+                font-size: var(--label-font-size);
+            }
+
+            .input {
+                border: none;
+                border-radius: var(--input-border-rad);
+                background-color: var(--theme-main);
+                padding: var(--input-padding-y) var(--input-padding-x);
+                width: var(--input-width);
+                color: var(--theme-text);
+                font-size: var(--input-font-size);
+            }
+        }
+
+        .error {
+            color: red;
+        }
+
+        .login {
+            border-radius: var(--login-border-rad);
+            background-color: var(--theme-text);
+            padding: var(--login-padding-y) var(--login-padding-x);
+            color: var(--theme-accent);
+            font-size: var(--login-font-size);
+            font-family: constants.$header-font;
+            letter-spacing: var(--login-letter-spacing);
+        }
+    }
+}
+
+@media (hover: hover) {
+    .admin-page > .form > .login:hover {
+        background-color: var(--theme-hover);
+        color: var(--theme-text);
+    }
+}

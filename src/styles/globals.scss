@@ -84,6 +84,10 @@ ul {
     list-style: none;
 }
 
+input {
+    outline: none;
+}
+
 ::-webkit-scrollbar {
     background: transparent;
     width: var(--scrollbar-width);

@@ -41,6 +41,12 @@ export const PLACEHOLDER: string = "placeholder";
 /** The string constant for the key attribute */
 export const KEY: string = "key";
 
+/** The string constant for the id attribute */
+export const ID: string = "id";
+
+/** The string constant for the for attribute */
+export const FOR: string = "for";
+
 /** The string constant for scroll events */
 export const SCROLL: string = "scroll";
 

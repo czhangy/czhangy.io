@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react";
+
 import Image from "@/components/Global/Image/Image";
 
 import styles from "./SearchBar.module.scss";
@@ -18,9 +20,9 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
     /**
      * Passes the search query from the <input> to the parent component
      *
-     * @param {React.ChangeEvent<HTMLInputElement>} evt The event object captured by onChange
+     * @param {ChangeEvent<HTMLInputElement>} evt The event object captured by onChange
      */
-    const handleChange = (evt: React.ChangeEvent<HTMLInputElement>): void => {
+    const handleChange = (evt: ChangeEvent<HTMLInputElement>): void => {
         props.onChange(evt.target.value);
     };
 
@@ -35,7 +37,7 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
                 id="query"
                 className={styles.query}
                 placeholder="Search..."
-                onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+                onChange={(evt: ChangeEvent<HTMLInputElement>) =>
                     handleChange(evt)
                 }
             />
