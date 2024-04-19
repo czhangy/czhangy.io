@@ -1,10 +1,15 @@
 import { ChangeEvent, useState } from "react";
 
 import Image from "@/components/Global/Image/Image";
+import { ConditionalJSX } from "@/static/types";
 
 import styles from "./AdminPage.module.scss";
 
-const AdminPage: React.FC = () => {
+export type AdminPageProps = {
+    registerEnabled: boolean;
+};
+
+const AdminPage: React.FC<AdminPageProps> = (props: AdminPageProps) => {
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [error, setError] = useState<boolean>(false);
@@ -33,9 +38,30 @@ const AdminPage: React.FC = () => {
      * @returns {string} The classes needed to style the error message
      */
     const getErrorMessage = (): string => {
-        console.log(error);
         return error ? "That username or password is incorrect." : "";
     };
+
+    /**
+     * Renders the register button if the sign up feature is enabled
+     */
+    const maybeRenderRegisterButton = (): ConditionalJSX => {
+        return props.registerEnabled ? (
+            <button
+                className={styles.button}
+                type="button"
+                onClick={handleRegister}
+            >
+                Register!
+            </button>
+        ) : (
+            ""
+        );
+    };
+
+    /**
+     * Tries to register a new account
+     */
+    const handleRegister = (): void => {};
 
     /**
      * Checks if the username/password are correct when the login button is clicked, setting error state when needed
@@ -96,13 +122,16 @@ const AdminPage: React.FC = () => {
                     />
                 </div>
                 <p className={styles.error}>{getErrorMessage()}</p>
-                <button
-                    className={styles.login}
-                    type="button"
-                    onClick={handleSubmit}
-                >
-                    Login!
-                </button>
+                <div className={styles.buttons}>
+                    {maybeRenderRegisterButton()}
+                    <button
+                        className={styles.button}
+                        type="button"
+                        onClick={handleSubmit}
+                    >
+                        Login!
+                    </button>
+                </div>
             </form>
         </div>
     );

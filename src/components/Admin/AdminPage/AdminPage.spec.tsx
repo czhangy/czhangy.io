@@ -5,7 +5,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { ALT, BUTTON, FOR, ID, IMAGE, INPUT } from "@/static/constants";
 import { QueriedHTMLElement, QueriedHTMLElements } from "@/static/types";
 
-import AdminPage from "./AdminPage";
+import AdminPage, { AdminPageProps } from "./AdminPage";
 
 describe("AdminPage", () => {
     /** The error message shown for an incorrect username/password */
@@ -14,13 +14,13 @@ describe("AdminPage", () => {
     /**
      * Renders the component
      */
-    const renderAdminPage = (): void => {
-        render(<AdminPage />);
+    const renderAdminPage = (props: AdminPageProps): void => {
+        render(<AdminPage registerEnabled={props.registerEnabled} />);
     };
 
     describe("Rendering", () => {
         it("Renders correctly", () => {
-            renderAdminPage();
+            renderAdminPage({ registerEnabled: false });
 
             // Check for the warning
             const warning: QueriedHTMLElement = screen.queryByTestId("warning");
@@ -56,7 +56,7 @@ describe("AdminPage", () => {
 
     describe("Validation", () => {
         it("Errors correctly on wrong username", () => {
-            renderAdminPage();
+            renderAdminPage({ registerEnabled: false });
 
             // Enter incorrect username
             const usernameInput: HTMLElement = screen.getByRole(INPUT);
@@ -74,7 +74,7 @@ describe("AdminPage", () => {
         });
 
         it("Errors correctly on wrong password", () => {
-            renderAdminPage();
+            renderAdminPage({ registerEnabled: false });
 
             // Enter correct username
             const usernameInput: HTMLElement = screen.getByRole(INPUT);
@@ -98,9 +98,29 @@ describe("AdminPage", () => {
         });
     });
 
-    describe("Submission", () => {
-        it("Submits form correctly", () => {
-            renderAdminPage();
+    describe("Registration", () => {
+        it("Renders the register button when enabled", () => {
+            renderAdminPage({ registerEnabled: true });
+
+            // Check for the buttons
+            const buttons: QueriedHTMLElements = screen.queryAllByRole(BUTTON);
+            expect(buttons).toHaveLength(2);
+            expect(buttons[0]).toHaveTextContent("Register!");
+            expect(buttons[1]).toHaveTextContent("Login!");
+        });
+
+        it("Registers correctly when the button is clicked", () => {
+            renderAdminPage({ registerEnabled: true });
+
+            // Click the register button
+            const registerButton: HTMLElement = screen.getByText("Register!");
+            fireEvent.click(registerButton);
+        });
+    });
+
+    describe("Login", () => {
+        it("Logs in correctly", () => {
+            renderAdminPage({ registerEnabled: false });
 
             // Click the submit button
             const submitButton: HTMLElement = screen.getByRole(BUTTON);
