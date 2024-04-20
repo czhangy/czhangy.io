@@ -15,7 +15,7 @@ const Image: React.FC<ImageProps> = (props: ImageProps) => {
             style={{ objectFit: props.objectFit || "contain" }}
             src={props.src}
             alt={props.alt}
-            layout="fill"
+            fill
         />
     );
 };
