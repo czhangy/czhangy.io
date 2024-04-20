@@ -189,6 +189,9 @@ export const CONFLICT: number = 409;
 /** The HTTP error code for Internal Server Error */
 export const INTERNAL_SERVER_ERROR: number = 500;
 
+/** The HTTP error code for Unimplemented */
+export const UNIMPLEMENTED: number = 501;
+
 // -----------------------------------------------------------------------------
 // ERROR CONSTANTS
 // -----------------------------------------------------------------------------
@@ -207,15 +210,16 @@ export const USER_NOT_FOUND_MSG: string = "That username does not exist.";
 /** The error message for an incorrect password */
 export const INCORRECT_PASSWORD_MSG: string = "That password is incorrect.";
 
-/** The error message for an unknown failed login */
-export const FAILED_LOGIN_MSG: string = "Failed to login.";
-
 /** The error message for an unknown failed register */
 export const FAILED_REGISTER_MSG: string = "Failed to register.";
 
 /** The error message for an invalid HTTP method */
 export const INVALID_HTTP_METHOD_MSG: string =
     "That HTTP method is not allowed at this route.";
+
+/** The error message for an unimplemented request */
+export const UNIMPLEMENTED_MSG: string =
+    "That feature has not been implemented yet.";
 
 /** The error message for a generic unknown error */
 export const GENERIC_FAILED_MSG: string = "Something went wrong.";
