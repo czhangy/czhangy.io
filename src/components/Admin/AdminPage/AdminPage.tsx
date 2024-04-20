@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
+import axios from "axios";
 
-import Image from "@/components/Global/Image/Image";
 import { ConditionalJSX } from "@/static/types";
 
 import styles from "./AdminPage.module.scss";
@@ -12,7 +12,8 @@ export type AdminPageProps = {
 const AdminPage: React.FC<AdminPageProps> = (props: AdminPageProps) => {
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [error, setError] = useState<boolean>(false);
+    const [error, setError] = useState<string>("");
+    const [loading, setLoading] = useState<string>("");
 
     /**
      * Saves the username to the component state on input
@@ -33,16 +34,24 @@ const AdminPage: React.FC<AdminPageProps> = (props: AdminPageProps) => {
     };
 
     /**
-     * Returns the message to display depending on error state
+     * Renders a response to indicate activity when the user makes an input
      *
-     * @returns {string} The classes needed to style the error message
+     * @returns {ConditionalJSX} The response to show the user
      */
-    const getErrorMessage = (): string => {
-        return error ? "That username or password is incorrect." : "";
+    const maybeRenderStatus = (): ConditionalJSX => {
+        if (error !== "") {
+            return <p className={styles.error}>{error}</p>;
+        } else if (loading !== "") {
+            return <p className={styles.loading}>{loading}</p>;
+        } else {
+            return "";
+        }
     };
 
     /**
      * Renders the register button if the sign up feature is enabled
+     *
+     * @returns {ConditionalJSX} The JSX needed to render the register button if enabled
      */
     const maybeRenderRegisterButton = (): ConditionalJSX => {
         return props.registerEnabled ? (
@@ -61,18 +70,44 @@ const AdminPage: React.FC<AdminPageProps> = (props: AdminPageProps) => {
     /**
      * Tries to register a new account
      */
-    const handleRegister = (): void => {};
+    const handleRegister = async (): Promise<void> => {
+        // Reset state
+        setError("");
+        setLoading("Creating account...");
+
+        // API request to register
+        try {
+            await axios.post("/api/users", {
+                username: username,
+                password: password,
+            });
+        } catch (err: any) {
+            setError(err.response.data.error);
+        } finally {
+            setLoading("");
+        }
+    };
 
     /**
      * Checks if the username/password are correct when the login button is clicked, setting error state when needed
      */
-    const handleSubmit = (): void => {
-        // Reset error state
-        setError(false);
+    const handleLogin = async (): Promise<void> => {
+        // Reset state
+        setError("");
+        setLoading("Logging in...");
 
-        // Set error if incorrect
-        if (username !== "charles" || password !== "hi") {
-            setError(true);
+        // API request to login
+        try {
+            await axios.get("/api/users", {
+                params: {
+                    username: username,
+                    password: password,
+                },
+            });
+        } catch (err: any) {
+            setError(err.response.data.error);
+        } finally {
+            setLoading("");
         }
     };
 
@@ -80,11 +115,8 @@ const AdminPage: React.FC<AdminPageProps> = (props: AdminPageProps) => {
         <div className={styles["admin-page"]}>
             <form className={styles.form}>
                 <div className={styles.warning} data-testid="warning">
-                    <div className={styles.icon}>
-                        <Image src="/assets/icons/warning.svg" alt="Warning" />
-                    </div>
                     <strong className={styles.text}>
-                        Stop snooping &gt;:(
+                        😡 Stop snooping! 😡
                     </strong>
                 </div>
                 <div className={styles.field}>
@@ -121,13 +153,15 @@ const AdminPage: React.FC<AdminPageProps> = (props: AdminPageProps) => {
                         data-testid="password"
                     />
                 </div>
-                <p className={styles.error}>{getErrorMessage()}</p>
+                <p className={styles.status} data-testid="status">
+                    {maybeRenderStatus()}
+                </p>
                 <div className={styles.buttons}>
                     {maybeRenderRegisterButton()}
                     <button
                         className={styles.button}
                         type="button"
-                        onClick={handleSubmit}
+                        onClick={handleLogin}
                     >
                         Login!
                     </button>

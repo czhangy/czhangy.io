@@ -17,6 +17,8 @@
     --login-letter-spacing: 1px;
     --login-padding-x: 1rem;
     --login-padding-y: 0.5rem;
+    --response-font-size: 1rem;
+    --response-height: 1rem;
     --warning-font-size: 1.25rem;
     --warning-icon-size: 20px;
     --warning-inner-spacing: 0.5rem;
@@ -67,8 +69,17 @@
             }
         }
 
-        .error {
-            color: red;
+        .status {
+            height: var(--response-height);
+            font-size: var(--response-font-size);
+
+            .error {
+                color: red;
+            }
+
+            .loading {
+                color: yellow;
+            }
         }
 
         .buttons {

@@ -1,4 +1,8 @@
-import { EntrySection, Project as ProjectModel } from "@prisma/client";
+import {
+    AdminUser,
+    EntrySection,
+    Project as ProjectModel,
+} from "@prisma/client";
 
 // -----------------------------------------------------------------------------
 // MARKUP TYPES
@@ -59,3 +63,12 @@ export type Entry = {
     timestamp: string;
     sections: EntrySection[];
 };
+
+/** User object definition */
+export type User = Omit<AdminUser, "id">;
+
+// -----------------------------------------------------------------------------
+// API TYPES
+// -----------------------------------------------------------------------------
+
+export type APIQueryParam = string | string[] | undefined;

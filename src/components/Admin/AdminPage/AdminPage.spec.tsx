@@ -1,16 +1,29 @@
 import "@testing-library/jest-dom";
 
-import { fireEvent, render, screen } from "@testing-library/react";
+import axios from "axios";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
-import { ALT, BUTTON, FOR, ID, IMAGE, INPUT } from "@/static/constants";
+import { mockUser } from "@/mocks/users";
+import {
+    BUTTON,
+    CREATED,
+    FOR,
+    GENERIC_FAILED_MSG,
+    ID,
+    INPUT,
+    INTERNAL_SERVER_ERROR,
+    OK,
+} from "@/static/constants";
 import { QueriedHTMLElement, QueriedHTMLElements } from "@/static/types";
 
 import AdminPage, { AdminPageProps } from "./AdminPage";
 
-describe("AdminPage", () => {
-    /** The error message shown for an incorrect username/password */
-    const ERROR_MSG: string = "That username or password is incorrect.";
+jest.mock("axios");
+const mockedAxios: jest.Mocked<typeof axios> = axios as jest.Mocked<
+    typeof axios
+>;
 
+describe("AdminPage", () => {
     /**
      * Renders the component
      */
@@ -24,9 +37,7 @@ describe("AdminPage", () => {
 
             // Check for the warning
             const warning: QueriedHTMLElement = screen.queryByTestId("warning");
-            const warningIcon: QueriedHTMLElement = screen.queryByRole(IMAGE);
-            expect(warning).toHaveTextContent("Stop snooping >:(");
-            expect(warningIcon).toHaveAttribute(ALT, "Warning");
+            expect(warning).toHaveTextContent("😡 Stop snooping! 😡");
 
             // Check for labels
             const labels: QueriedHTMLElements =
@@ -44,61 +55,15 @@ describe("AdminPage", () => {
             expect(usernameInput).toHaveAttribute(ID, "username");
             expect(passwordInput).toHaveAttribute(ID, "password");
 
-            // Check that error message is hidden
-            const error: QueriedHTMLElement = screen.queryByText(ERROR_MSG);
-            expect(error).not.toBeInTheDocument();
+            // Check that response message is hidden
+            const status: QueriedHTMLElement = screen.queryByTestId("status");
+            expect(status).toHaveTextContent("");
 
             // Check for the submit button
             const submitButton: QueriedHTMLElement = screen.queryByRole(BUTTON);
             expect(submitButton).toHaveTextContent("Login!");
         });
-    });
 
-    describe("Validation", () => {
-        it("Errors correctly on wrong username", () => {
-            renderAdminPage({ registerEnabled: false });
-
-            // Enter incorrect username
-            const usernameInput: HTMLElement = screen.getByRole(INPUT);
-            fireEvent.change(usernameInput, {
-                target: { value: "Wrong Username" },
-            });
-
-            // Submit
-            const submitButton: HTMLElement = screen.getByRole(BUTTON);
-            fireEvent.click(submitButton);
-
-            // Check for error message
-            const error: QueriedHTMLElement = screen.queryByText(ERROR_MSG);
-            expect(error).toBeInTheDocument();
-        });
-
-        it("Errors correctly on wrong password", () => {
-            renderAdminPage({ registerEnabled: false });
-
-            // Enter correct username
-            const usernameInput: HTMLElement = screen.getByRole(INPUT);
-            fireEvent.change(usernameInput, {
-                target: { value: "charles" },
-            });
-
-            // Enter incorrect username
-            const passwordInput: HTMLElement = screen.getByTestId("password");
-            fireEvent.change(passwordInput, {
-                target: { value: "Wrong Password" },
-            });
-
-            // Submit
-            const submitButton: HTMLElement = screen.getByRole(BUTTON);
-            fireEvent.click(submitButton);
-
-            // Check for error message
-            const error: QueriedHTMLElement = screen.queryByText(ERROR_MSG);
-            expect(error).toBeInTheDocument();
-        });
-    });
-
-    describe("Registration", () => {
         it("Renders the register button when enabled", () => {
             renderAdminPage({ registerEnabled: true });
 
@@ -108,23 +73,118 @@ describe("AdminPage", () => {
             expect(buttons[0]).toHaveTextContent("Register!");
             expect(buttons[1]).toHaveTextContent("Login!");
         });
+    });
 
-        it("Registers correctly when the button is clicked", () => {
+    describe("Registration", () => {
+        const username: string = "Test User";
+        const password: string = "Test Password";
+
+        it("Registers correctly when the button is clicked", async () => {
             renderAdminPage({ registerEnabled: true });
+            mockedAxios.post.mockResolvedValue({
+                status: OK,
+                data: mockUser,
+            });
 
             // Click the register button
             const registerButton: HTMLElement = screen.getByText("Register!");
             fireEvent.click(registerButton);
+
+            // Check for status message
+            const status: HTMLElement = screen.getByTestId("status");
+            expect(status).toHaveTextContent("Creating account...");
+
+            // TODO: Check for success
+
+            // Check that status clears
+            await waitFor(() => expect(status).toHaveTextContent(""));
+        });
+
+        it("Sets the status correctly on error", async () => {
+            renderAdminPage({ registerEnabled: true });
+            mockedAxios.post.mockRejectedValue({
+                status: INTERNAL_SERVER_ERROR,
+                response: { data: { error: GENERIC_FAILED_MSG } },
+            });
+
+            // Set inputs
+            const usernameInput: HTMLElement = screen.getByRole(INPUT);
+            const passwordInput: HTMLElement = screen.getByTestId("password");
+            fireEvent.change(usernameInput, { target: { value: username } });
+            fireEvent.change(passwordInput, {
+                target: { value: password },
+            });
+
+            // Click the register button
+            const registerButton: HTMLElement = screen.getByText("Register!");
+            fireEvent.click(registerButton);
+            expect(mockedAxios.post).toHaveBeenCalledWith("/api/users", {
+                username: username,
+                password: password,
+            });
+
+            // Check for error
+            await waitFor(() => {
+                const error: QueriedHTMLElement =
+                    screen.queryByText(GENERIC_FAILED_MSG);
+                expect(error).toHaveClass("error");
+            });
         });
     });
 
     describe("Login", () => {
-        it("Logs in correctly", () => {
-            renderAdminPage({ registerEnabled: false });
+        const username: string = "Test User";
+        const password: string = "Test Password";
 
-            // Click the submit button
-            const submitButton: HTMLElement = screen.getByRole(BUTTON);
-            fireEvent.click(submitButton);
+        it("Logs in correctly when the button is clicked", async () => {
+            renderAdminPage({ registerEnabled: false });
+            mockedAxios.get.mockResolvedValue({ status: CREATED });
+
+            // Click the login button
+            const loginButton: HTMLElement = screen.getByText("Login!");
+            fireEvent.click(loginButton);
+
+            // Check for loading
+            const status: HTMLElement = screen.getByTestId("status");
+            expect(status).toHaveTextContent("Logging in...");
+
+            // TODO: Check for success
+
+            // Check that status clears
+            await waitFor(() => expect(status).toHaveTextContent(""));
+        });
+
+        it("Sets the status correctly on error", async () => {
+            renderAdminPage({ registerEnabled: false });
+            mockedAxios.get.mockRejectedValue({
+                status: INTERNAL_SERVER_ERROR,
+                response: { data: { error: GENERIC_FAILED_MSG } },
+            });
+
+            // Set inputs
+            const usernameInput: HTMLElement = screen.getByRole(INPUT);
+            const passwordInput: HTMLElement = screen.getByTestId("password");
+            fireEvent.change(usernameInput, { target: { value: username } });
+            fireEvent.change(passwordInput, {
+                target: { value: password },
+            });
+
+            // Click the login button
+            const loginButton: HTMLElement = screen.getByText("Login!");
+            fireEvent.click(loginButton);
+            expect(mockedAxios.get).toHaveBeenCalledWith("/api/users", {
+                params: {
+                    username: username,
+                    password: password,
+                },
+            });
+
+            // Check for error
+            await waitFor(() => {
+                const error: QueriedHTMLElement =
+                    screen.queryByText(GENERIC_FAILED_MSG);
+                expect(error).toHaveClass("error");
+            });
         });
     });
 });

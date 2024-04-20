@@ -102,6 +102,9 @@ export const GAMING_GRIND = "gamingGrind";
 /** The string constant for the Random Ravings section slug */
 export const RANDOM_RAVINGS = "randomRavings";
 
+/** The string constant for the string type */
+export const STRING = "string";
+
 // -----------------------------------------------------------------------------
 // OBJECT FIT CONSTANTS
 // -----------------------------------------------------------------------------
@@ -151,3 +154,68 @@ export const SECTION_TYPES: { [slug: string]: EntrySectionType } = {
         emoji: "✍️",
     },
 };
+
+// -----------------------------------------------------------------------------
+// API CONSTANTS
+// -----------------------------------------------------------------------------
+
+/** The string constant for HTTP GET requests */
+export const GET: string = "GET";
+
+/** The string constant for HTTP POST requests */
+export const POST: string = "POST";
+
+/** The HTTP error code for OK */
+export const OK: number = 200;
+
+/** The HTTP error code for Created */
+export const CREATED: number = 201;
+
+/** The HTTP error code for Bad Request */
+export const BAD_REQUEST: number = 400;
+
+/** The HTTP error code for Unauthorized */
+export const UNAUTHORIZED: number = 401;
+
+/** The HTTP error code for Not Found */
+export const NOT_FOUND: number = 404;
+
+/** The HTTP error code for Method Not Allowed */
+export const METHOD_NOT_ALLOWED: number = 405;
+
+/** The HTTP error code for Conflict */
+export const CONFLICT: number = 409;
+
+/** The HTTP error code for Internal Server Error */
+export const INTERNAL_SERVER_ERROR: number = 500;
+
+// -----------------------------------------------------------------------------
+// ERROR CONSTANTS
+// -----------------------------------------------------------------------------
+
+/** The error message for badly-typed inputs */
+export const VALIDATION_ERROR_MSG: string =
+    "Username or password is of invalid type.";
+
+/** The error message for an existing username */
+export const USERNAME_ALREADY_EXISTS_MSG: string =
+    "That username already exists.";
+
+/** The error message for a username that doesn't exist */
+export const USER_NOT_FOUND_MSG: string = "That username does not exist.";
+
+/** The error message for an incorrect password */
+export const INCORRECT_PASSWORD_MSG: string = "That password is incorrect.";
+
+/** The error message for an unknown failed login */
+export const FAILED_LOGIN_MSG: string = "Failed to login.";
+
+/** The error message for an unknown failed register */
+export const FAILED_REGISTER_MSG: string = "Failed to register.";
+
+/** The error message for an invalid HTTP method */
+export const INVALID_HTTP_METHOD_MSG: string =
+    "That HTTP method is not allowed at this route.";
+
+/** The error message for a generic unknown error */
+export const GENERIC_FAILED_MSG: string = "Something went wrong.";
