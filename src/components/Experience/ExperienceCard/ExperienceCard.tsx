@@ -1,5 +1,4 @@
-import Image from "next/image";
-
+import Image from "@/components/Global/Image/Image";
 import { ConditionalJSX, Experience } from "@/static/types";
 
 import styles from "./ExperienceCard.module.scss";
@@ -56,8 +55,6 @@ const ExperienceCard: React.FC<ExperienceCardProps> = (
                         <Image
                             src={props.experience.logo}
                             alt={props.experience.company}
-                            layout="fill"
-                            objectFit="contain"
                         />
                     </div>
                     <div className={styles["header-text"]}>

@@ -7,7 +7,13 @@ const nextConfig = {
         includePaths: [path.join(__dirname, "styles")],
     },
     images: {
-        domains: ["czhangyio.s3.us-east-2.amazonaws.com"],
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "czhangyio.s3.us-east-2.amazonaws.com",
+                pathname: "**",
+            },
+        ],
     },
 };
 

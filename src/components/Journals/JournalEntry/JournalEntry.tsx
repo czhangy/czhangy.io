@@ -95,17 +95,19 @@ const JournalEntry: React.FC<JournalEntryProps> = (
     };
 
     return (
-        <Link href={`/journals/${toKebabCase(props.entry.title)}`}>
-            <a className={styles["journal-entry"]} data-testid="journal-entry">
-                <section className={styles.header}>
-                    {renderEntryTitle()}
-                    <p className={styles.timestamp} data-testid="timestamp">
-                        {props.entry.timestamp}
-                    </p>
-                </section>
-                <section>{renderEntryTags()}</section>
-                <section>{renderPreview()}</section>
-            </a>
+        <Link
+            className={styles["journal-entry"]}
+            href={`/journals/${toKebabCase(props.entry.title)}`}
+            data-testid="journal-entry"
+        >
+            <section className={styles.header}>
+                {renderEntryTitle()}
+                <p className={styles.timestamp} data-testid="timestamp">
+                    {props.entry.timestamp}
+                </p>
+            </section>
+            <section>{renderEntryTags()}</section>
+            <section>{renderPreview()}</section>
         </Link>
     );
 };

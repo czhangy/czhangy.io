@@ -1,11 +1,11 @@
 ### To-Do
 
--   [ ] List to-do items here
+-   [ ] _List to-do items here_
 
 ### Other Changes
 
--   List any changes not directly related to the issue
+-   _List any changes not directly related to the issue_
 
 ### Motivation
 
-Closes `ISSUE_NUM`
+Closes #[ISSUE_NUM]
