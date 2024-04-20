@@ -12,10 +12,10 @@ export type ImageProps = {
 const Image: React.FC<ImageProps> = (props: ImageProps) => {
     return (
         <NextImage
+            style={{ objectFit: props.objectFit || "contain" }}
             src={props.src}
             alt={props.alt}
             layout="fill"
-            objectFit={props.objectFit || "contain"}
         />
     );
 };
