@@ -98,16 +98,17 @@ const Menu: React.FC = () => {
                     const slug: string = page.name.toLowerCase();
                     return (
                         <li className={styles["menu-option"]} key={slug}>
-                            <Link href={`/${slug}`}>
-                                <a className={styles["menu-link"]}>
-                                    <div className={styles["menu-icon"]}>
-                                        <Image
-                                            src={`/assets/icons/${slug}.svg`}
-                                            alt={page.alt}
-                                        />
-                                    </div>
-                                    {page.name}
-                                </a>
+                            <Link
+                                href={`/${slug}`}
+                                className={styles["menu-link"]}
+                            >
+                                <div className={styles["menu-icon"]}>
+                                    <Image
+                                        src={`/assets/icons/${slug}.svg`}
+                                        alt={page.alt}
+                                    />
+                                </div>
+                                {page.name}
                             </Link>
                         </li>
                     );

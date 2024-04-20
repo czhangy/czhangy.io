@@ -35,15 +35,13 @@ const NavCard: React.FC<NavCardProps> = (props: NavCardProps) => {
     };
 
     return (
-        <Link href={props.path}>
-            <a className={styles["nav-card"]}>
-                <Image
-                    src={getBackgroundSrc()}
-                    alt={props.title}
-                    objectFit={COVER}
-                />
-                <h2 className={getTitleClass()}>{props.title}</h2>
-            </a>
+        <Link className={styles["nav-card"]} href={props.path}>
+            <Image
+                src={getBackgroundSrc()}
+                alt={props.title}
+                objectFit={COVER}
+            />
+            <h2 className={getTitleClass()}>{props.title}</h2>
         </Link>
     );
 };

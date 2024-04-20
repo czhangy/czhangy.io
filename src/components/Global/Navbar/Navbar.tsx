@@ -10,9 +10,7 @@ const Navbar: React.FC = () => {
             <div className={styles.navbar}>
                 <div className={styles.title}>
                     <Link href="/">
-                        <a>
-                            <h1 className={styles.name}>CZhang</h1>
-                        </a>
+                        <h1 className={styles.name}>CZhang</h1>
                     </Link>
                 </div>
                 <Menu />
