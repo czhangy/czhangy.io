@@ -153,9 +153,9 @@ const AdminPage: React.FC<AdminPageProps> = (props: AdminPageProps) => {
                         data-testid="password"
                     />
                 </div>
-                <p className={styles.status} data-testid="status">
+                <div className={styles.status} data-testid="status">
                     {maybeRenderStatus()}
-                </p>
+                </div>
                 <div className={styles.buttons}>
                     {maybeRenderRegisterButton()}
                     <button
