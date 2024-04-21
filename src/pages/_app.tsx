@@ -1,12 +1,13 @@
 import "@/styles/globals.scss";
 
 import { useEffect } from "react";
+import { SessionProvider } from "next-auth/react";
 
 import Navbar from "@/components/Global/Navbar/Navbar";
 
 import type { AppProps } from "next/app";
 
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     /** The string constant denoting a change event */
     const CHANGE_EVENT: string = "change";
     /** The string constant denoting a dark theme */
@@ -46,10 +47,12 @@ function App({ Component, pageProps }: AppProps) {
     }, []);
 
     return (
-        <div id="app">
-            <Navbar />
-            <Component {...pageProps} />
-        </div>
+        <SessionProvider session={session}>
+            <div id="app">
+                <Navbar />
+                <Component {...pageProps} />
+            </div>
+        </SessionProvider>
     );
 }
 

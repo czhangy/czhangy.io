@@ -1,18 +1,18 @@
 import { NextPage } from "next";
 
-import AdminPage from "@/components/Admin/AdminPage/AdminPage";
 import Head from "@/components/Global/Head/Head";
 import PageWrapper from "@/components/Global/PageWrapper/PageWrapper";
+import RegisterPage from "@/components/Register/RegisterPage/RegisterPage";
 
 const Admin: NextPage = () => {
     /** Boolean that can be toggled to enable registration */
-    const REGISTER_ENABLED: boolean = true;
+    const REGISTER_ENABLED: boolean = false;
 
     return (
         <div>
             <Head page="Admin" />
             <PageWrapper>
-                <AdminPage registerEnabled={REGISTER_ENABLED} />
+                <RegisterPage registerEnabled={REGISTER_ENABLED} />
             </PageWrapper>
         </div>
     );

@@ -3,13 +3,15 @@ import axios from "axios";
 
 import { ConditionalJSX } from "@/static/types";
 
-import styles from "./AdminPage.module.scss";
+import styles from "./RegisterPage.module.scss";
 
-export type AdminPageProps = {
+export type RegisterPageProps = {
     registerEnabled: boolean;
 };
 
-const AdminPage: React.FC<AdminPageProps> = (props: AdminPageProps) => {
+const RegisterPage: React.FC<RegisterPageProps> = (
+    props: RegisterPageProps,
+) => {
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [error, setError] = useState<string>("");
@@ -53,72 +55,9 @@ const AdminPage: React.FC<AdminPageProps> = (props: AdminPageProps) => {
      *
      * @returns {ConditionalJSX} The JSX needed to render the register button if enabled
      */
-    const maybeRenderRegisterButton = (): ConditionalJSX => {
+    const maybeRenderRegisterForm = (): ConditionalJSX => {
         return props.registerEnabled ? (
-            <button
-                className={styles.button}
-                type="button"
-                onClick={handleRegister}
-            >
-                Register!
-            </button>
-        ) : (
-            ""
-        );
-    };
-
-    /**
-     * Tries to register a new account
-     */
-    const handleRegister = async (): Promise<void> => {
-        // Reset state
-        setError("");
-        setLoading("Creating account...");
-
-        // API request to register
-        try {
-            await axios.post("/api/users", {
-                username: username,
-                password: password,
-            });
-        } catch (err: any) {
-            setError(err.response.data.error);
-        } finally {
-            setLoading("");
-        }
-    };
-
-    /**
-     * Checks if the username/password are correct when the login button is clicked, setting error state when needed
-     */
-    const handleLogin = async (): Promise<void> => {
-        // Reset state
-        setError("");
-        setLoading("Logging in...");
-
-        // API request to login
-        try {
-            await axios.get("/api/users", {
-                params: {
-                    username: username,
-                    password: password,
-                },
-            });
-        } catch (err: any) {
-            setError(err.response.data.error);
-        } finally {
-            setLoading("");
-        }
-    };
-
-    return (
-        <div className={styles["admin-page"]}>
-            <form className={styles.form}>
-                <div className={styles.warning} data-testid="warning">
-                    <strong className={styles.text}>
-                        😡 Stop snooping! 😡
-                    </strong>
-                </div>
+            <>
                 <div className={styles.field}>
                     <label
                         className={styles.label}
@@ -156,19 +95,52 @@ const AdminPage: React.FC<AdminPageProps> = (props: AdminPageProps) => {
                 <div className={styles.status} data-testid="status">
                     {maybeRenderStatus()}
                 </div>
-                <div className={styles.buttons}>
-                    {maybeRenderRegisterButton()}
-                    <button
-                        className={styles.button}
-                        type="button"
-                        onClick={handleLogin}
-                    >
-                        Login!
-                    </button>
+                <button
+                    className={styles.button}
+                    type="button"
+                    onClick={handleRegister}
+                >
+                    Register!
+                </button>
+            </>
+        ) : (
+            ""
+        );
+    };
+
+    /**
+     * Tries to register a new account
+     */
+    const handleRegister = async (): Promise<void> => {
+        // Reset state
+        setError("");
+        setLoading("Creating account...");
+
+        // API request to register
+        try {
+            await axios.post("/api/users", {
+                username: username,
+                password: password,
+            });
+        } catch (err: any) {
+            setError(err.response.data.error);
+        } finally {
+            setLoading("");
+        }
+    };
+
+    return (
+        <div className={styles["register-page"]}>
+            <form className={styles.form}>
+                <div className={styles.warning} data-testid="warning">
+                    <strong className={styles.text}>
+                        😡 Stop snooping! 😡
+                    </strong>
                 </div>
+                {maybeRenderRegisterForm()}
             </form>
         </div>
     );
 };
 
-export default AdminPage;
+export default RegisterPage;
