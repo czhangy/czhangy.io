@@ -45,6 +45,14 @@
     <a href="https://sass-lang.com/">
         <img src="https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white" alt="SASS" />
     </a>
+    <summary>Server</summary>
+    <br />
+    <a href="https://www.mongodb.com/">
+        <img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+    </a>
+    <a href="https://www.prisma.io/">
+        <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" alt="Prisma" />
+    </a>
 </details>
 
 ## Dev Environment

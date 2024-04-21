@@ -1,7 +1,6 @@
 @use "@/styles/constants";
 
-.admin-page {
-    --buttons-inner-spacing: 1rem;
+.register-page {
     --field-inner-spacing: 0.5rem;
     --form-border-rad: 20px;
     --form-inner-spacing: 2rem;
@@ -82,25 +81,20 @@
             }
         }
 
-        .buttons {
-            display: flex;
-            gap: var(--buttons-inner-spacing);
-
-            .button {
-                border-radius: var(--login-border-rad);
-                background-color: var(--theme-text);
-                padding: var(--login-padding-y) var(--login-padding-x);
-                color: var(--theme-accent);
-                font-size: var(--login-font-size);
-                font-family: constants.$header-font;
-                letter-spacing: var(--login-letter-spacing);
-            }
+        .button {
+            border-radius: var(--login-border-rad);
+            background-color: var(--theme-text);
+            padding: var(--login-padding-y) var(--login-padding-x);
+            color: var(--theme-accent);
+            font-size: var(--login-font-size);
+            font-family: constants.$header-font;
+            letter-spacing: var(--login-letter-spacing);
         }
     }
 }
 
 @media (hover: hover) {
-    .admin-page > .form > .buttons > .button:hover {
+    .register-page > .form > .button:hover {
         background-color: var(--theme-hover);
         color: var(--theme-text);
     }
