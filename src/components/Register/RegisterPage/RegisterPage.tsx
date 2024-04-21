@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from "react";
+import { signIn } from "next-auth/react";
 import axios from "axios";
 
 import { ConditionalJSX } from "@/static/types";
@@ -122,6 +123,7 @@ const RegisterPage: React.FC<RegisterPageProps> = (
                 username: username,
                 password: password,
             });
+            signIn(undefined, { callbackUrl: "/" });
         } catch (err: any) {
             setError(err.response.data.error);
         } finally {

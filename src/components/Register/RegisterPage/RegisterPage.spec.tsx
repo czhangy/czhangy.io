@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom";
 
+import { signIn } from "next-auth/react";
 import axios from "axios";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
@@ -18,6 +19,7 @@ import { QueriedHTMLElement, QueriedHTMLElements } from "@/static/types";
 import RegisterPage, { RegisterPageProps } from "./RegisterPage";
 
 jest.mock("axios");
+jest.mock("next-auth/react");
 
 describe("RegisterPage", () => {
     /**
@@ -75,6 +77,7 @@ describe("RegisterPage", () => {
                 status: OK,
                 data: mockUser,
             });
+            (signIn as jest.Mock).mockReturnValueOnce({});
 
             // Click the register button
             const registerButton: HTMLElement = screen.getByText("Register!");
@@ -84,10 +87,13 @@ describe("RegisterPage", () => {
             const status: HTMLElement = screen.getByTestId("status");
             expect(status).toHaveTextContent("Creating account...");
 
-            // TODO: Check for success
-
-            // Check that status clears
-            await waitFor(() => expect(status).toHaveTextContent(""));
+            // Check that redirect happens and status clears
+            await waitFor(() => {
+                expect(status).toHaveTextContent("");
+                expect(signIn as jest.Mock).toHaveBeenCalledWith(undefined, {
+                    callbackUrl: "/",
+                });
+            });
         });
 
         it("Sets the status correctly on error", async () => {
