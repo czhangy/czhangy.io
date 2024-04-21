@@ -18,9 +18,6 @@ import { QueriedHTMLElement, QueriedHTMLElements } from "@/static/types";
 import RegisterPage, { RegisterPageProps } from "./RegisterPage";
 
 jest.mock("axios");
-const mockedAxios: jest.Mocked<typeof axios> = axios as jest.Mocked<
-    typeof axios
->;
 
 describe("RegisterPage", () => {
     /**
@@ -74,7 +71,7 @@ describe("RegisterPage", () => {
 
         it("Registers correctly when the button is clicked", async () => {
             renderRegisterPage({ registerEnabled: true });
-            mockedAxios.post.mockResolvedValue({
+            (axios.post as jest.Mock).mockResolvedValue({
                 status: OK,
                 data: mockUser,
             });
@@ -95,7 +92,7 @@ describe("RegisterPage", () => {
 
         it("Sets the status correctly on error", async () => {
             renderRegisterPage({ registerEnabled: true });
-            mockedAxios.post.mockRejectedValue({
+            (axios.post as jest.Mock).mockRejectedValue({
                 status: INTERNAL_SERVER_ERROR,
                 response: { data: { error: GENERIC_FAILED_MSG } },
             });
@@ -111,7 +108,7 @@ describe("RegisterPage", () => {
             // Click the register button
             const registerButton: HTMLElement = screen.getByText("Register!");
             fireEvent.click(registerButton);
-            expect(mockedAxios.post).toHaveBeenCalledWith("/api/users", {
+            expect(axios.post as jest.Mock).toHaveBeenCalledWith("/api/users", {
                 username: username,
                 password: password,
             });

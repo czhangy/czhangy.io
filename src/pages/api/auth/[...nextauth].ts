@@ -20,7 +20,6 @@ async function getUser(username: string): Promise<AdminUser | null> {
 }
 
 export const authOptions: AuthOptions = {
-    // Configure one or more authentication providers
     providers: [
         Credentials({
             credentials: {
@@ -52,6 +51,10 @@ export const authOptions: AuthOptions = {
             },
         }),
     ],
+    session: {
+        strategy: "jwt",
+        maxAge: 365 * 24 * 60 * 60, // 1 year
+    },
 };
 
 export default NextAuth(authOptions);
