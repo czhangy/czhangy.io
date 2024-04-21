@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import { useSession } from "next-auth/react";
 import { render, screen } from "@testing-library/react";
 
-import { HREF, LINK } from "@/static/constants";
+import { AUTHENTICATED, HREF, LINK, UNAUTHENTICATED } from "@/static/constants";
 import { QueriedHTMLElement } from "@/static/types";
 
 import Navbar from "./Navbar";
@@ -15,10 +15,17 @@ describe("Navbar", () => {
      * Renders the component
      */
     const renderNavbar = (authenticated: boolean): void => {
-        (useSession as jest.Mock).mockReturnValueOnce({
-            data: authenticated ? {} : null,
-            status: "authenticated",
-        });
+        (useSession as jest.Mock).mockReturnValue(
+            authenticated
+                ? {
+                      data: {},
+                      status: AUTHENTICATED,
+                  }
+                : {
+                      data: null,
+                      status: UNAUTHENTICATED,
+                  },
+        );
 
         render(<Navbar />);
     };

@@ -2,12 +2,13 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 import Menu from "@/components/Global/Menu/Menu";
+import { AUTHENTICATED } from "@/static/constants";
 import { ConditionalJSX } from "@/static/types";
 
 import styles from "./Navbar.module.scss";
 
 const Navbar: React.FC = () => {
-    const { data: session } = useSession();
+    const { data: _, status } = useSession();
 
     /**
      * Renders an admin indicator if signed in
@@ -15,7 +16,7 @@ const Navbar: React.FC = () => {
      * @returns {ConditionalJSX} The JSX needed to render the admin tag if there's an active session
      */
     const maybeRenderAdminTag = (): ConditionalJSX => {
-        return session ? (
+        return status === AUTHENTICATED ? (
             <p className={styles.admin} data-testid="admin">
                 Admin
             </p>
