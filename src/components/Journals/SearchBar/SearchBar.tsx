@@ -11,13 +11,6 @@ export type SearchBarProps = {
 
 const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
     /**
-     * Focuses on the search bar when the icon is clicked
-     */
-    const handleClick = (): void => {
-        document.getElementById("query")!.focus();
-    };
-
-    /**
      * Passes the search query from the <input> to the parent component
      *
      * @param {ChangeEvent<HTMLInputElement>} evt The event object captured by onChange
@@ -28,11 +21,11 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
 
     return (
         <div className={styles["search-bar"]} data-testid="search-bar">
-            <button className={styles.button} onClick={handleClick}>
+            <div className={styles["icon-container"]}>
                 <div className={styles.icon}>
                     <Image src="/assets/icons/search.svg" alt="Search" />
                 </div>
-            </button>
+            </div>
             <input
                 id="query"
                 className={styles.query}

@@ -9,7 +9,7 @@
 }
 
 .show {
-    z-index: constants.$overlay-z;
+    z-index: constants.$nav-overlay-z;
 }
 
 .hide {
@@ -33,7 +33,7 @@
     --transition-time: 0.2s;
 
     position: relative;
-    z-index: constants.$menu-z;
+    z-index: constants.$nav-menu-z;
 
     .menu-button {
         display: flex;

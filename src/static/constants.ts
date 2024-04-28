@@ -50,6 +50,12 @@ export const FOR: string = "for";
 /** The string constant for scroll events */
 export const SCROLL: string = "scroll";
 
+/** The string constant for NextAuth authenticated */
+export const AUTHENTICATED = "authenticated";
+
+/** The string constant for NextAuth unauthenticated */
+export const UNAUTHENTICATED = "unauthenticated";
+
 // -----------------------------------------------------------------------------
 // TYPE CONSTANTS
 // -----------------------------------------------------------------------------

@@ -1,40 +1,38 @@
 @use "@/styles/constants";
 
 .search-bar {
+    --border-rad: 4px;
+    --font-size: 1rem;
+    --icon-size: 16px;
+    --search-x-padding: 0.75rem;
+    --search-y-padding: 0.5rem;
+
     display: flex;
     flex: 1;
-    border: var(--utility-border-size) solid var(--theme-accent);
-    border-radius: var(--utility-border-rad);
+    border-radius: var(--border-rad);
     overflow: hidden;
 
-    .button {
+    .icon-container {
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: var(--theme-accent);
-        padding-left: var(--utility-x-padding);
+        padding-left: var(--search-x-padding);
 
         .icon {
             position: relative;
             filter: var(--theme-svg);
-            padding: var(--utility-y-padding) var(--utility-x-padding);
-            width: var(--utility-icon-size);
+            padding: var(--search-y-padding) var(--search-x-padding);
+            width: var(--icon-size);
         }
     }
 
     .query {
-        border: none;
         background-color: var(--theme-accent);
-        padding: var(--utility-y-padding) var(--utility-x-padding);
+        padding: var(--search-y-padding) var(--search-x-padding);
         width: 100%;
         color: var(--theme-text);
-        font-size: var(--utility-font-size);
+        font-size: var(--font-size);
         font-family: constants.$main-font;
-    }
-}
-
-@media (hover: hover) {
-    .search-bar > .button:hover > .icon {
-        filter: var(--theme-svg-hover);
     }
 }

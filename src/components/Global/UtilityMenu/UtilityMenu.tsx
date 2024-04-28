@@ -2,19 +2,23 @@ import { ReactElement, useEffect, useState } from "react";
 
 import Image from "@/components/Global/Image/Image";
 import { SCROLL } from "@/static/constants";
-import { MenuType } from "@/static/types";
+import { ConditionalJSX, MenuType } from "@/static/types";
 
 import styles from "./UtilityMenu.module.scss";
 
 export type UtilityMenuProps = {
     /** The type of menu to render */
     menuType: MenuType;
-    /** The currently selected value */
+    /** The currently displayed value */
     current: string;
-    /** A map of values mapped to their display strings */
-    options: { [value: string]: string };
+    /** A list of [slug, display] tuples representing the menu options  */
+    options: [string, string][];
     /** The function to call when a menu option is selected */
     onSelect: (selection: string) => void;
+    /** If the menu has an icon */
+    hasIcon: boolean;
+    /** Sets a static display for the menu */
+    value?: string;
 };
 
 const UtilityMenu: React.FC<UtilityMenuProps> = (props: UtilityMenuProps) => {
@@ -63,6 +67,37 @@ const UtilityMenu: React.FC<UtilityMenuProps> = (props: UtilityMenuProps) => {
     };
 
     /**
+     * Checks the props to see if the menu button should have an icon
+     *
+     * @returns {ConditionalJSX} The JSX needed to render the icon if it is needed
+     */
+    const maybeRenderIcon = (): ConditionalJSX => {
+        return props.hasIcon ? (
+            <div className={styles.icon}>
+                <Image
+                    src={`/assets/icons/${props.menuType}.svg`}
+                    alt={props.menuType}
+                />
+            </div>
+        ) : (
+            ""
+        );
+    };
+
+    /**
+     * Gets the value to display
+     *
+     * @returns {string} The value that should be displayed
+     */
+    const getDisplayValue = (): string => {
+        return props.value
+            ? props.value
+            : props.options.find(
+                  ([slug, value]: [string, string]) => slug === props.current,
+              )![1];
+    };
+
+    /**
      * Renders the list of menu options that can be selected
      *
      * @returns {ReactElement} The <ul> element that contains the menu options
@@ -70,21 +105,19 @@ const UtilityMenu: React.FC<UtilityMenuProps> = (props: UtilityMenuProps) => {
     const renderMenu = (): ReactElement => {
         return (
             <ul className={styles.menu} data-testid="utility-menu">
-                {Object.entries(props.options).map(
-                    ([value, display]: [string, string]) => {
-                        return (
-                            <li className={styles.option} key={value}>
-                                <button
-                                    className={styles.button}
-                                    onClick={() => handleSelect(value)}
-                                    data-testid={`${props.menuType}-option`}
-                                >
-                                    {display}
-                                </button>
-                            </li>
-                        );
-                    },
-                )}
+                {props.options.map(([value, display]: [string, string]) => {
+                    return (
+                        <li className={styles.option} key={value}>
+                            <button
+                                className={styles.button}
+                                onClick={() => handleSelect(value)}
+                                data-testid={`${props.menuType}-option`}
+                            >
+                                {display}
+                            </button>
+                        </li>
+                    );
+                })}
             </ul>
         );
     };
@@ -113,14 +146,9 @@ const UtilityMenu: React.FC<UtilityMenuProps> = (props: UtilityMenuProps) => {
                     onClick={toggleMenu}
                     data-testid="menu-button"
                 >
-                    <div className={styles.icon}>
-                        <Image
-                            src={`/assets/icons/${props.menuType}.svg`}
-                            alt={props.menuType}
-                        />
-                    </div>
+                    {maybeRenderIcon()}
                     <strong className={styles.display} data-testid="display">
-                        {props.options[props.current]}
+                        {getDisplayValue()}
                     </strong>
                 </button>
                 {renderMenu()}

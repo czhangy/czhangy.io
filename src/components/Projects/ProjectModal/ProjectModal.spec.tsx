@@ -9,15 +9,13 @@ import { QueriedHTMLElement } from "@/static/types";
 import ProjectModal from "./ProjectModal";
 
 describe("ProjectModal", () => {
-    let modalOverlay: QueriedHTMLElement;
-
     /**
      * A close handler for testing purposes
      */
     const mockCloseHandler = jest.fn().mockImplementation();
 
     /**
-     * Renders the component and assigns local variables
+     * Renders the component
      */
     const renderProjectModal = (): void => {
         render(
@@ -27,18 +25,54 @@ describe("ProjectModal", () => {
                 onClose={mockCloseHandler}
             />,
         );
-        modalOverlay = screen.queryByTestId("modal-overlay");
     };
 
-    it("Renders correctly", () => {
-        renderProjectModal();
-        expect(modalOverlay).not.toHaveClass("closing");
-        expect(screen.queryByTestId("project-info")).toBeInTheDocument();
+    describe("Rendering", () => {
+        it("Renders correctly", () => {
+            renderProjectModal();
+
+            // Check overlay
+            const modalOverlay: QueriedHTMLElement =
+                screen.queryByTestId("modal-overlay");
+            expect(modalOverlay).not.toHaveClass("closing");
+
+            // Check project info component
+            const projectInfo: QueriedHTMLElement =
+                screen.queryByTestId("project-info");
+            expect(projectInfo).toBeInTheDocument();
+        });
     });
 
-    it("Calls the close handler when the overlay is clicked", async () => {
-        renderProjectModal();
-        fireEvent.click(modalOverlay!);
-        await waitFor(() => expect(mockCloseHandler).toHaveBeenCalled());
+    describe("Clicking", () => {
+        it("Calls the close handler when the overlay is clicked", async () => {
+            renderProjectModal();
+
+            // Click overlay
+            const modalOverlay: HTMLDivElement =
+                screen.getByTestId("modal-overlay");
+            fireEvent.click(modalOverlay);
+
+            // Check that close handler is called
+            await waitFor(() => expect(mockCloseHandler).toHaveBeenCalled());
+        });
+
+        it("Doesn't call the close handler when the contents are clicked", async () => {
+            renderProjectModal();
+
+            // Click overlay
+            const projectInfo: HTMLDivElement =
+                screen.getByTestId("project-info");
+            fireEvent.click(projectInfo);
+
+            // Check that close handler is called
+            await expect(
+                waitFor(
+                    () => {
+                        expect(mockCloseHandler).toHaveBeenCalled();
+                    },
+                    { timeout: 500 },
+                ),
+            ).rejects.toThrow();
+        });
     });
 });

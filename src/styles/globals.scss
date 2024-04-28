@@ -11,7 +11,8 @@
 }
 
 body,
-body[data-theme="dark"] {
+body[data-theme="dark"],
+body[data-theme="light"] {
     --theme-main: #{constants.$dark};
     --theme-accent: #{constants.$dark-accent};
     --theme-text: #{constants.$dark-text};
@@ -21,15 +22,15 @@ body[data-theme="dark"] {
     --theme-shadow: #{constants.$dark-shadow};
 }
 
-body[data-theme="light"] {
-    --theme-main: #{constants.$light};
-    --theme-accent: #{constants.$light-accent};
-    --theme-text: #{constants.$light-text};
-    --theme-hover: #{constants.$light-hover};
-    --theme-svg: #{constants.$light-svg};
-    --theme-svg-hover: #{constants.$light-svg-hover};
-    --theme-shadow: #{constants.$light-shadow};
-}
+// body[data-theme="light"] {
+//     --theme-main: #{constants.$light};
+//     --theme-accent: #{constants.$light-accent};
+//     --theme-text: #{constants.$light-text};
+//     --theme-hover: #{constants.$light-hover};
+//     --theme-svg: #{constants.$light-svg};
+//     --theme-svg-hover: #{constants.$light-svg-hover};
+//     --theme-shadow: #{constants.$light-shadow};
+// }
 
 html,
 body {
@@ -86,6 +87,7 @@ ul {
 
 input {
     outline: none;
+    border: none;
 }
 
 ::-webkit-scrollbar {

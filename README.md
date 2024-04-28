@@ -45,6 +45,8 @@
     <a href="https://sass-lang.com/">
         <img src="https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white" alt="SASS" />
     </a>
+</details>
+<details>
     <summary>Server</summary>
     <br />
     <a href="https://www.mongodb.com/">
@@ -64,6 +66,7 @@ The following values must be populated in `.env`:
 -   `S3_SECRET_KEY`
 -   `S3_REGION`
 -   `S3_BUCKET_NAME`
+-   `NEXTAUTH_SECRET`
 
 To initialize the project after cloning, run the following script in the command line:
 

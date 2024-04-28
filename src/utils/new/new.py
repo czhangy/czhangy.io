@@ -119,9 +119,11 @@ def create_spec(path, component, props):
         f'\t\trender(<{component} />);\n',
         '\t};\n',
         '\n',
-        '\tit("Renders correctly", () => {\n',
-        f'\t\trender{component}();\n',
-        '\t});\n',
+        '\tdescribe("Rendering", () => {\n'
+        '\t\tit("Renders correctly", () => {\n',
+        f'\t\t\trender{component}();\n',
+        '\t\t});\n',
+        '\t});\n'
         '});\n'
     ]
 

@@ -4,24 +4,26 @@
     --animation-time: 0.4s;
     --modal-border-rad: 20px;
     --modal-height: 85%;
+    --modal-padding: 1rem;
     --modal-width: 90%;
+    --overlay-opacity: 0.5;
 
     display: flex;
     position: fixed;
     top: 0;
     justify-content: center;
     align-items: center;
-    z-index: constants.$overlay-z;
+    z-index: constants.$modal-z;
     animation-duration: var(--animation-time);
     animation-name: fadein;
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100vw;
-    height: calc(100vh - constants.$navbar-height);
+    background-color: rgba(0, 0, 0, var(--overlay-opacity));
+    width: 100lvw;
+    height: 100lvh;
 
     .project-modal {
         border-radius: var(--modal-border-rad);
         background: var(--theme-accent);
-        padding: 1rem;
+        padding: var(--modal-padding);
         width: var(--modal-width);
         height: var(--modal-height);
         overflow-y: scroll;

@@ -1,5 +1,5 @@
+import UtilityMenu from "@/components/Global/UtilityMenu/UtilityMenu";
 import SearchBar from "@/components/Journals/SearchBar/SearchBar";
-import UtilityMenu from "@/components/Journals/UtilityMenu/UtilityMenu";
 import {
     ASC,
     DESC,
@@ -27,25 +27,23 @@ export type UtilityBarProps = {
 
 const UtilityBar: React.FC<UtilityBarProps> = (props: UtilityBarProps) => {
     /** The map of options for the sort menu */
-    const SORT_OPTIONS: { [value: string]: string } = {
-        [DESC]: "Latest First",
-        [ASC]: "Oldest First",
-    };
+    const SORT_OPTIONS: [string, string][] = [
+        [DESC, "Latest First"],
+        [ASC, "Oldest First"],
+    ];
 
     /**
      * Retrieves all valid options for the filter menu
      *
      * @returns {Object} The map of filter values to their display strings
      */
-    const getFilterOptions = (): { [value: string]: string } => {
-        const options: { [value: string]: string } = {
-            [NO_FILTER]: "No Filter",
-        };
+    const getFilterOptions = (): [string, string][] => {
+        const options: [string, string][] = [[NO_FILTER, "No Filter"]];
 
-        // Dynamically map sections to thier menu options
+        // Dynamically map sections to their menu options
         Object.entries(SECTION_TYPES).forEach(
             ([slug, entrySection]: [string, EntrySectionType]) => {
-                options[slug] = entrySection.displayName;
+                options.push([slug, entrySection.displayName]);
             },
         );
 
@@ -60,12 +58,14 @@ const UtilityBar: React.FC<UtilityBarProps> = (props: UtilityBarProps) => {
                     current={props.order}
                     options={SORT_OPTIONS}
                     onSelect={(order: string) => props.onSort(order)}
+                    hasIcon={true}
                 />
                 <UtilityMenu
                     menuType={FILTER}
                     current={props.filter}
                     options={getFilterOptions()}
                     onSelect={(filter: string) => props.onFilter(filter)}
+                    hasIcon={true}
                 />
             </div>
             <SearchBar onChange={(query: string) => props.onSearch(query)} />
