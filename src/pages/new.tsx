@@ -4,6 +4,7 @@ import { signIn, useSession } from "next-auth/react";
 
 import Head from "@/components/Global/Head/Head";
 import PageWrapper from "@/components/Global/PageWrapper/PageWrapper";
+import NewPage from "@/components/New/NewPage/NewPage";
 import { UNAUTHENTICATED } from "@/static/constants";
 
 const Login: NextPage = () => {
@@ -18,7 +19,9 @@ const Login: NextPage = () => {
     return (
         <div>
             <Head page="New Entry" />
-            <PageWrapper>New</PageWrapper>
+            <PageWrapper>
+                <NewPage />
+            </PageWrapper>
         </div>
     );
 };

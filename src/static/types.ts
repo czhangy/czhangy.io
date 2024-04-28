@@ -18,7 +18,7 @@ export type Social = "github" | "linkedin" | "instagram" | "twitter";
 export type Side = "left" | "right";
 
 /** The types of utility menus that can exist */
-export type MenuType = "sort" | "filter";
+export type MenuType = "sort" | "filter" | "section";
 
 /** The object representing identifying attributes of an entry section */
 export type EntrySectionType = {

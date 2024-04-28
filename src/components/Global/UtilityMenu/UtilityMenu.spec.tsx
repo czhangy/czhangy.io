@@ -9,10 +9,10 @@ import UtilityMenu from "./UtilityMenu";
 
 describe("UtilityMenu", () => {
     /** Mock options for testing purposes */
-    const MOCK_OPTIONS: { [value: string]: string } = {
-        test1: "Test Option 1",
-        test2: "Test Option 2",
-    };
+    const MOCK_OPTIONS: [string, string][] = [
+        ["test1", "Test Option 1"],
+        ["test2", "Test Option 2"],
+    ];
 
     /**
      * A select handler for testing purposes
@@ -51,25 +51,24 @@ describe("UtilityMenu", () => {
      * @param {Object} option The hash of options listed in the menu
      * @param {string} current The selected value
      */
-    const assertDisplayCorrect = (
-        option: { [value: string]: string },
-        current: string,
-    ): void => {
+    const assertDisplayCorrect = (expected: string): void => {
         const display: QueriedHTMLElement = screen.queryByTestId("display");
-        expect(display).toHaveTextContent(option[current]);
+        expect(display).toHaveTextContent(expected);
     };
 
     /**
      * Renders the component and sets local variables
      */
     let menuButton: QueriedHTMLElement;
-    const renderUtilityMenu = (): void => {
+    const renderUtilityMenu = (hasIcon: boolean, value: string = ""): void => {
         render(
             <UtilityMenu
                 menuType={SORT}
                 current="test1"
                 options={MOCK_OPTIONS}
                 onSelect={mockSelectHandler}
+                hasIcon={hasIcon}
+                value={value}
             />,
         );
         menuButton = screen.queryByTestId("menu-button");
@@ -77,7 +76,7 @@ describe("UtilityMenu", () => {
 
     describe("Renders", () => {
         it("Renders correctly", () => {
-            renderUtilityMenu();
+            renderUtilityMenu(false);
 
             // Check for overlay
             const overlay: QueriedHTMLElement = screen.queryByTestId("overlay");
@@ -85,8 +84,8 @@ describe("UtilityMenu", () => {
 
             // Check for menu button
             const icon: QueriedHTMLElement = screen.queryByRole(IMAGE);
-            expect(menuButton).toBeInTheDocument();
-            expect(icon).toHaveAttribute(ALT, SORT);
+            expect(menuButton).toHaveTextContent("Test Option 1");
+            expect(icon).not.toBeInTheDocument();
 
             // Check for menu
             const menu: QueriedHTMLElement = screen.queryByRole(LIST);
@@ -98,13 +97,28 @@ describe("UtilityMenu", () => {
 
             // Check for state
             assertMenuClosed();
-            assertDisplayCorrect(MOCK_OPTIONS, Object.keys(MOCK_OPTIONS)[0]);
+            assertDisplayCorrect("Test Option 1");
+        });
+
+        it("Renders correctly with an icon", () => {
+            renderUtilityMenu(true);
+
+            // Check for menu button
+            const icon: QueriedHTMLElement = screen.queryByRole(IMAGE);
+            expect(icon).toHaveAttribute(ALT, SORT);
+        });
+
+        it("Renders correctly with a static value", () => {
+            renderUtilityMenu(true, "Test");
+
+            // Check for menu button value
+            expect(menuButton).toHaveTextContent("Test");
         });
     });
 
     describe("Menu state", () => {
         it("Can be toggled open/closed by button press", () => {
-            renderUtilityMenu();
+            renderUtilityMenu(false);
 
             // Open menu
             fireEvent.click(menuButton!);
@@ -116,7 +130,7 @@ describe("UtilityMenu", () => {
         });
 
         it("Closes menu on overlay click", () => {
-            renderUtilityMenu();
+            renderUtilityMenu(false);
 
             // Open menu
             fireEvent.click(menuButton!);
@@ -128,7 +142,7 @@ describe("UtilityMenu", () => {
         });
 
         it("Closes menu on scroll", () => {
-            renderUtilityMenu();
+            renderUtilityMenu(false);
 
             // Open menu
             fireEvent.click(menuButton!);
@@ -141,7 +155,7 @@ describe("UtilityMenu", () => {
 
     describe("Selects", () => {
         it("Handles option select correctly", async () => {
-            renderUtilityMenu();
+            renderUtilityMenu(false);
 
             // Open menu
             fireEvent.click(menuButton!);
@@ -151,12 +165,7 @@ describe("UtilityMenu", () => {
                 `${SORT}-option`,
             );
             fireEvent.click(options[1]);
-            waitFor(() =>
-                assertDisplayCorrect(
-                    MOCK_OPTIONS,
-                    Object.keys(MOCK_OPTIONS)[1],
-                ),
-            );
+            waitFor(() => assertDisplayCorrect("Test Option 2"));
 
             // Check menu closes
             assertMenuClosed();
