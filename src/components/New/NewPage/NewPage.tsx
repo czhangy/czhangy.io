@@ -31,6 +31,7 @@ const NewPage: React.FC = () => {
      * Updates the section title of a section in the new entry
      *
      * @param {ChangeEvent<HTMLInputElement>} e The event object captured by onChange
+     * @param {number} idx The index of the section
      */
     const handleSectionTitleChange = (
         e: ChangeEvent<HTMLInputElement>,
@@ -40,6 +41,24 @@ const NewPage: React.FC = () => {
             JSON.stringify(sections),
         );
         newSections[idx].title = e.target.value;
+        setSections(newSections);
+    };
+
+    /**
+     * Updates the section body of a section in the new entry
+     *
+     * @param {ChangeEvent<HTMLTextAreaElement>} e The event object captured by onChange
+     * @param {number} idx The index of the section
+     */
+    const handleSectionBodyChange = (
+        e: ChangeEvent<HTMLTextAreaElement>,
+        idx: number,
+    ): void => {
+        const newSections: EntrySection[] = JSON.parse(
+            JSON.stringify(sections),
+        );
+        // TODO: remove this array indexing once paragraphs => body
+        newSections[idx].paragraphs[0] = e.target.value;
         setSections(newSections);
     };
 
@@ -87,10 +106,16 @@ const NewPage: React.FC = () => {
                             onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                 handleSectionTitleChange(e, idx)
                             }
-                            placeholder={`${SECTION_TYPES[section.type].displayName} Title`}
                             data-testid="section-title-input"
                         />
                     </h3>
+                    <textarea
+                        className={styles["section-body"]}
+                        onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                            handleSectionBodyChange(e, idx)
+                        }
+                        data-testid="section-body-input"
+                    />
                 </section>
             );
         });
@@ -104,7 +129,6 @@ const NewPage: React.FC = () => {
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         handleTitleChange(e)
                     }
-                    placeholder="Title"
                     data-testid="journal-title-input"
                 />
                 <UtilityMenu

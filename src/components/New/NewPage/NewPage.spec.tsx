@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import { PLACEHOLDER, SECTION_TYPES } from "@/static/constants";
+import { SECTION_TYPES } from "@/static/constants";
 import { QueriedHTMLElement, QueriedHTMLElements } from "@/static/types";
 
 import NewPage from "./NewPage";
@@ -52,7 +52,7 @@ describe("NewPage", () => {
             const journalTitleInput: QueriedHTMLElement = screen.queryByTestId(
                 "journal-title-input",
             );
-            expect(journalTitleInput).toHaveAttribute(PLACEHOLDER, "Title");
+            expect(journalTitleInput).toBeInTheDocument();
 
             // Check for section menu
             const sectionMenu: QueriedHTMLElement =
@@ -108,6 +108,17 @@ describe("NewPage", () => {
             });
         };
 
+        /**
+         * Sets the first section body to "Test Section Body"
+         */
+        const setSectionBody = (): void => {
+            const sectionBodyInput: HTMLTextAreaElement =
+                screen.getByTestId("section-body-input");
+            fireEvent.change(sectionBodyInput, {
+                target: { value: "Test Section Body" },
+            });
+        };
+
         it("Can change the journal title", () => {
             renderNewPage();
             setJournalTitle();
@@ -119,11 +130,22 @@ describe("NewPage", () => {
             setSectionTitle();
         });
 
+        it("Can change section bodies", () => {
+            renderNewPage();
+            addNewSection();
+            setSectionBody();
+        });
+
         it("Submits correctly", () => {
             renderNewPage();
 
-            // Populate required fields
+            // Populate title
             setJournalTitle();
+
+            // Add and populate section
+            addNewSection();
+            setSectionTitle();
+            setSectionBody();
         });
     });
 });
