@@ -1,13 +1,21 @@
 @use "@/styles/constants";
 
 .new-page {
+    --bar-inner-spacing: 0.5rem;
     --border-rad: 4px;
     --field-font-size: 1.25rem;
-    --inner-spacing: 0.5rem;
+    --page-inner-spacing: 1rem;
+    --section-title-border-size: 1px;
+    --section-title-font-size: 1.25rem;
+    --section-title-header-spacing: 0.75rem;
+    --section-title-spacing: 1rem;
     --submit-font-size: 1rem;
     --x-padding: 1rem;
     --y-padding: 0.5rem;
 
+    display: flex;
+    flex-direction: column;
+    gap: var(--page-inner-spacing);
     width: 100%;
     min-height: calc(
         100lvh - constants.$navbar-height - 2 * constants.$page-padding
@@ -15,14 +23,13 @@
 
     .top-bar {
         display: flex;
-        gap: var(--inner-spacing);
+        gap: var(--bar-inner-spacing);
 
-        .title-input {
+        .journal-title-input {
             flex: 1;
             border-radius: var(--border-rad);
             background-color: var(--theme-accent);
             padding: var(--y-padding) var(--x-padding);
-            width: 100%;
             color: var(--theme-text);
             font-size: var(--field-font-size);
             font-family: constants.$main-font;
@@ -35,6 +42,36 @@
             color: var(--theme-main);
             font-size: var(--submit-font-size);
         }
+    }
+
+    .new-section {
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: var(--bar-inner-spacing);
+            margin-bottom: var(--section-title-spacing);
+            border-bottom: var(--section-title-border-size) solid
+                var(--theme-text);
+            padding-bottom: var(--section-title-spacing);
+            font-size: var(--section-title-font-size);
+
+            .section-title-input {
+                flex: 1;
+                border-radius: var(--border-rad);
+                background-color: var(--theme-accent);
+                padding: var(--y-padding) var(--x-padding);
+                color: var(--theme-text);
+                font-size: var(--field-font-size);
+                font-family: constants.$main-font;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: constants.$tablet) {
+    .new-page {
+        --section-title-font-size: 1.75rem;
+        --section-title-spacing: 1.5rem;
     }
 }
 

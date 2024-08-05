@@ -15,14 +15,24 @@ describe("NewPage", () => {
         render(<NewPage />);
     };
 
+    /**
+     * Adds a new section to the journal
+     */
+    const addNewSection = (): void => {
+        let sectionOptions: HTMLButtonElement[] =
+            screen.getAllByTestId("section-option");
+        fireEvent.click(sectionOptions[0]);
+    };
+
     describe("Rendering", () => {
         it("Renders correctly", () => {
             renderNewPage();
 
             // Check for title input
-            const titleInput: QueriedHTMLElement =
-                screen.queryByTestId("title-input");
-            expect(titleInput).toHaveAttribute(PLACEHOLDER, "Title");
+            const journalTitleInput: QueriedHTMLElement = screen.queryByTestId(
+                "journal-title-input",
+            );
+            expect(journalTitleInput).toHaveAttribute(PLACEHOLDER, "Title");
 
             // Check for section menu
             const sectionMenu: QueriedHTMLElement =
@@ -45,10 +55,8 @@ describe("NewPage", () => {
         it("Adds new sections correctly", () => {
             renderNewPage();
 
-            // Add new section
-            let sectionOptions: HTMLButtonElement[] =
-                screen.getAllByTestId("section-option");
-            fireEvent.click(sectionOptions[0]);
+            // Add first new section
+            addNewSection();
 
             // Check for new section
             let newSections: QueriedHTMLElements =
@@ -56,7 +64,7 @@ describe("NewPage", () => {
             expect(newSections).toHaveLength(1);
 
             // Check that selected section was deleted from options
-            sectionOptions = screen.getAllByTestId("section-option");
+            let sectionOptions = screen.getAllByTestId("section-option");
             const selectedOption: QueriedHTMLElement = screen.queryByText(
                 Object.values(SECTION_TYPES)[0].displayName,
             );
@@ -65,23 +73,56 @@ describe("NewPage", () => {
             );
             expect(selectedOption).not.toBeInTheDocument();
 
-            // Add another section
-            fireEvent.click(sectionOptions[0]);
+            // Add second new section
+            addNewSection();
 
-            // Check new section is appended
+            // Check second section is appended
             newSections = screen.queryAllByTestId("new-section");
             expect(newSections).toHaveLength(2);
         });
     });
 
     describe("Submitting", () => {
+        /**
+         * Sets the journal title to "Test Title"
+         */
+        const setJournalTitle = (): void => {
+            const journalTitleInput: HTMLInputElement = screen.getByTestId(
+                "journal-title-input",
+            );
+            fireEvent.change(journalTitleInput, {
+                target: { value: "Test Title" },
+            });
+        };
+
+        /**
+         * Sets the first section title to "Test Section Title"
+         */
+        const setSectionTitle = (): void => {
+            const sectionTitleInput: HTMLInputElement = screen.getByTestId(
+                "section-title-input",
+            );
+            fireEvent.change(sectionTitleInput, {
+                target: { value: "Test Section Title" },
+            });
+        };
+
+        it("Can change the journal title", () => {
+            renderNewPage();
+            setJournalTitle();
+        });
+
+        it("Can change section titles", () => {
+            renderNewPage();
+            addNewSection();
+            setSectionTitle();
+        });
+
         it("Submits correctly", () => {
             renderNewPage();
 
-            // Enter a title
-            const titleInput: HTMLInputElement =
-                screen.getByTestId("title-input");
-            fireEvent.change(titleInput, { target: { value: "Test Title" } });
+            // Populate required fields
+            setJournalTitle();
         });
     });
 });
