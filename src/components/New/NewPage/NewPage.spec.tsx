@@ -19,9 +19,29 @@ describe("NewPage", () => {
      * Adds a new section to the journal
      */
     const addNewSection = (): void => {
+        // Get initial number of sections on page
+        const currentLength: number =
+            screen.queryAllByTestId("new-section").length;
+
+        // Click menu option
         let sectionOptions: HTMLButtonElement[] =
             screen.getAllByTestId("section-option");
         fireEvent.click(sectionOptions[0]);
+
+        // Check that new section rendered
+        let newSections: QueriedHTMLElements =
+            screen.queryAllByTestId("new-section");
+        expect(newSections).toHaveLength(currentLength + 1);
+
+        // Check that selected section was deleted from options
+        sectionOptions = screen.getAllByTestId("section-option");
+        expect(sectionOptions).toHaveLength(
+            Object.keys(SECTION_TYPES).length - newSections.length,
+        );
+        const selectedOption: QueriedHTMLElement = screen.queryByText(
+            Object.values(SECTION_TYPES)[0].displayName,
+        );
+        expect(selectedOption).not.toBeInTheDocument();
     };
 
     describe("Rendering", () => {
@@ -58,27 +78,8 @@ describe("NewPage", () => {
             // Add first new section
             addNewSection();
 
-            // Check for new section
-            let newSections: QueriedHTMLElements =
-                screen.queryAllByTestId("new-section");
-            expect(newSections).toHaveLength(1);
-
-            // Check that selected section was deleted from options
-            let sectionOptions = screen.getAllByTestId("section-option");
-            const selectedOption: QueriedHTMLElement = screen.queryByText(
-                Object.values(SECTION_TYPES)[0].displayName,
-            );
-            expect(sectionOptions).toHaveLength(
-                Object.keys(SECTION_TYPES).length - 1,
-            );
-            expect(selectedOption).not.toBeInTheDocument();
-
             // Add second new section
             addNewSection();
-
-            // Check second section is appended
-            newSections = screen.queryAllByTestId("new-section");
-            expect(newSections).toHaveLength(2);
         });
     });
 
