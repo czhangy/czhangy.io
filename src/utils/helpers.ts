@@ -24,6 +24,11 @@ export const convertDate = (date: Date | null): string => {
     return `${date.toLocaleString("en-us", { month: "short" })} ${date.getFullYear()}`;
 };
 
+/**
+ *
+ * @param {string} word An uncapitalized word
+ * @returns The word with the first letter capitalized
+ */
 export const capitalizeWord = (word: string): string => {
     return word.substring(0, 1).toUpperCase() + word.substring(1);
 };
