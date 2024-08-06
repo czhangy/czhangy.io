@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from "react";
+import { NextRouter, useRouter } from "next/router";
 import { EntrySection } from "@prisma/client";
 
 import UtilityMenu from "@/components/Global/UtilityMenu/UtilityMenu";
@@ -8,6 +9,12 @@ import { EntrySectionType } from "@/static/types";
 import styles from "./NewPage.module.scss";
 
 const NewPage: React.FC = () => {
+    const router: NextRouter = useRouter();
+
+    // ------------------------------------------------------------------------
+    // State
+    // ------------------------------------------------------------------------
+
     const [title, setTitle] = useState<string>("");
     const [sectionOptions, setSectionOptions] = useState<[string, string][]>(
         Object.entries(SECTION_TYPES).map(
@@ -17,6 +24,12 @@ const NewPage: React.FC = () => {
         ),
     );
     const [sections, setSections] = useState<EntrySection[]>([]);
+    const [isErrorState, setErrorState] = useState<boolean>(false);
+    const [isSubmittingState, setSubmittingState] = useState<boolean>(false);
+
+    // ------------------------------------------------------------------------
+    // Event handlers
+    // ------------------------------------------------------------------------
 
     /**
      * Updates the title of the new entry
@@ -84,6 +97,29 @@ const NewPage: React.FC = () => {
     };
 
     /**
+     * Submits the entry, validating it before writing it to the DB and redirecting to /journals
+     */
+    const handleSubmit = (): void => {
+        const errors = validateContent();
+
+        if (errors.length > 0) {
+            // Alert if there are errors
+            alert(errors.join("\n"));
+            setSubmittingState(false);
+            setErrorState(true);
+        } else {
+            // TODO: write to DB
+
+            // Redirect to /journals on success
+            router.push("/journals");
+        }
+    };
+
+    // ------------------------------------------------------------------------
+    // Renderers
+    // ------------------------------------------------------------------------
+
+    /**
      * Renders the sections that have been added to the journal entry
      *
      * @returns {JSX.Element[]} The <section> elements used to render the editable sections
@@ -121,6 +157,65 @@ const NewPage: React.FC = () => {
         });
     };
 
+    /**
+     * Renders the content displayed on the submit button
+     */
+    const renderSubmitButtonContent = (): JSX.Element => {
+        if (isErrorState) {
+            return <strong>Retry</strong>;
+        } else {
+            return <strong>Submit</strong>;
+        }
+    };
+
+    // ------------------------------------------------------------------------
+    // Validation logic
+    // ------------------------------------------------------------------------
+
+    /**
+     * Validates the journal submission, returning a list of errors
+     *
+     * @returns {String[]} The error strings that are present in the submitted content
+     */
+    const validateContent = (): String[] => {
+        const errors: String[] = [];
+
+        // Content must have a title
+        if (title.length === 0) {
+            errors.push("Journal entry must have a title");
+        }
+
+        // Content must have at least one section
+        if (sections.length === 0) {
+            errors.push("Journal entry must have at least one section");
+        }
+
+        sections.forEach((section: EntrySection) => {
+            // Sections must have a title
+            if (section.title.length === 0) {
+                errors.push("All sections must have a title");
+            }
+
+            // Section titles must be <45 characters
+            if (section.title.length > 45) {
+                errors.push(
+                    "All section titles must be at most 45 characters long",
+                );
+            }
+
+            // Sections must have a body
+            // TODO: replace this with body
+            if (
+                section.paragraphs.length === 0 ||
+                section.paragraphs[0].length === 0
+            ) {
+                errors.push("All sections must have a body");
+            }
+        });
+
+        return [...new Set(errors)];
+    };
+
     return (
         <div className={styles["new-page"]}>
             <section className={styles["top-bar"]}>
@@ -141,9 +236,10 @@ const NewPage: React.FC = () => {
                 />
                 <button
                     className={styles["submit-button"]}
+                    onClick={handleSubmit}
                     data-testid="submit-button"
                 >
-                    <strong>Submit</strong>
+                    <strong>{renderSubmitButtonContent()}</strong>
                 </button>
             </section>
             {renderSections()}
