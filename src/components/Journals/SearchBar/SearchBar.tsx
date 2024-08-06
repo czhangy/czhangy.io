@@ -20,7 +20,7 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
     };
 
     return (
-        <div className={styles["search-bar"]} data-testid="search-bar">
+        <div className={styles["search-bar"]}>
             <div className={styles["icon-container"]}>
                 <div className={styles.icon}>
                     <Image src="/assets/icons/search.svg" alt="Search" />

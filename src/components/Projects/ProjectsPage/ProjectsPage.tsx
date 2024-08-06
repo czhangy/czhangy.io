@@ -122,11 +122,7 @@ const ProjectsPage: React.FC<ProjectsPageProps> = (
     return (
         <div className={styles["projects-page"]}>
             {renderProjectModal()}
-            <div
-                id={SCROLL_CONTAINER_ID}
-                className={getContainerClass()}
-                data-testid="scroll-container"
-            >
+            <div id={SCROLL_CONTAINER_ID} className={getContainerClass()}>
                 <ProjectDoor side={LEFT} open={doorOpen} />
                 <ProjectDoor side={RIGHT} open={doorOpen} />
                 {renderProjectInfo()}

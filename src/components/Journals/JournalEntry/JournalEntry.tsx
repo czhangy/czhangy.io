@@ -70,7 +70,6 @@ const JournalEntry: React.FC<JournalEntryProps> = (
                         className={styles.tag}
                         style={getTagStyle(section.type)}
                         key={section.type}
-                        data-testid="entry-tag"
                     >
                         <strong>
                             {SECTION_TYPES[section.type].displayName}
@@ -88,7 +87,7 @@ const JournalEntry: React.FC<JournalEntryProps> = (
      */
     const renderPreview = (): ReactElement => {
         return (
-            <p className={styles.preview} data-testid="preview">
+            <p className={styles.preview}>
                 {props.entry.sections[0].paragraphs[0]}
             </p>
         );
@@ -98,13 +97,10 @@ const JournalEntry: React.FC<JournalEntryProps> = (
         <Link
             className={styles["journal-entry"]}
             href={`/journals/${toKebabCase(props.entry.title)}`}
-            data-testid="journal-entry"
         >
             <section className={styles.header}>
                 {renderEntryTitle()}
-                <p className={styles.timestamp} data-testid="timestamp">
-                    {props.entry.timestamp}
-                </p>
+                <p className={styles.timestamp}>{props.entry.timestamp}</p>
             </section>
             <section>{renderEntryTags()}</section>
             <section>{renderPreview()}</section>

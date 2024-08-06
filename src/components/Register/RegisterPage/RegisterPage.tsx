@@ -60,11 +60,7 @@ const RegisterPage: React.FC<RegisterPageProps> = (
         return props.registerEnabled ? (
             <>
                 <div className={styles.field}>
-                    <label
-                        className={styles.label}
-                        htmlFor="username"
-                        data-testid="label"
-                    >
+                    <label className={styles.label} htmlFor="username">
                         Username:
                     </label>
                     <input
@@ -76,11 +72,7 @@ const RegisterPage: React.FC<RegisterPageProps> = (
                     />
                 </div>
                 <div className={styles.field}>
-                    <label
-                        className={styles.label}
-                        htmlFor="password"
-                        data-testid="label"
-                    >
+                    <label className={styles.label} htmlFor="password">
                         Password:
                     </label>
                     <input
@@ -90,12 +82,9 @@ const RegisterPage: React.FC<RegisterPageProps> = (
                         onChange={(evt: ChangeEvent<HTMLInputElement>) =>
                             handlePasswordChange(evt)
                         }
-                        data-testid="password"
                     />
                 </div>
-                <div className={styles.status} data-testid="status">
-                    {maybeRenderStatus()}
-                </div>
+                <div className={styles.status}>{maybeRenderStatus()}</div>
                 <button
                     className={styles.button}
                     type="button"
@@ -134,7 +123,7 @@ const RegisterPage: React.FC<RegisterPageProps> = (
     return (
         <div className={styles["register-page"]}>
             <form className={styles.form}>
-                <div className={styles.warning} data-testid="warning">
+                <div className={styles.warning}>
                     <strong className={styles.text}>
                         😡 Stop snooping! 😡
                     </strong>

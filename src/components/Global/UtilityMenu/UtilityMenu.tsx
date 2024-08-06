@@ -104,14 +104,13 @@ const UtilityMenu: React.FC<UtilityMenuProps> = (props: UtilityMenuProps) => {
      */
     const renderMenu = (): ReactElement => {
         return (
-            <ul className={styles.menu} data-testid="utility-menu">
+            <ul className={styles.menu}>
                 {props.options.map(([value, display]: [string, string]) => {
                     return (
                         <li className={styles.option} key={value}>
                             <button
                                 className={styles.button}
                                 onClick={() => handleSelect(value)}
-                                data-testid={`${props.menuType}-option`}
                             >
                                 {display}
                             </button>
@@ -132,22 +131,11 @@ const UtilityMenu: React.FC<UtilityMenuProps> = (props: UtilityMenuProps) => {
 
     return (
         <>
-            <div
-                className={getOverlayClass()}
-                onClick={closeMenu}
-                data-testid="overlay"
-            />
-            <div
-                className={getMenuClass()}
-                data-testid={`${props.menuType}-menu`}
-            >
-                <button
-                    className={styles["menu-button"]}
-                    onClick={toggleMenu}
-                    data-testid="menu-button"
-                >
+            <div className={getOverlayClass()} onClick={closeMenu} />
+            <div className={getMenuClass()}>
+                <button className={styles["menu-button"]} onClick={toggleMenu}>
                     {maybeRenderIcon()}
-                    <strong className={styles.display} data-testid="display">
+                    <strong className={styles.display}>
                         {getDisplayValue()}
                     </strong>
                 </button>

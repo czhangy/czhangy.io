@@ -17,9 +17,7 @@ const Navbar: React.FC = () => {
      */
     const maybeRenderAdminTag = (): ConditionalJSX => {
         return status === AUTHENTICATED ? (
-            <p className={styles.admin} data-testid="admin">
-                Admin
-            </p>
+            <p className={styles.admin}>Admin</p>
         ) : (
             ""
         );

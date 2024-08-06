@@ -55,11 +55,7 @@ const ProjectsMenu: React.FC<ProjectsMenuProps> = (
         setTimeout(() => setDisabled(false), CLICK_DELAY);
     };
 
-    return (
-        <ul className={getMenuClass()} data-testid="projects-menu">
-            {getProjectOptions()}
-        </ul>
-    );
+    return <ul className={getMenuClass()}>{getProjectOptions()}</ul>;
 };
 
 export default ProjectsMenu;

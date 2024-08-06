@@ -31,11 +31,7 @@ const JournalEntryPage: React.FC<JournalEntryPageProps> = (
                         </h3>
                         {section.paragraphs.map(
                             (paragraph: string, idx: number) => (
-                                <p
-                                    className={styles.paragraph}
-                                    key={idx}
-                                    data-testid="paragraph"
-                                >
+                                <p className={styles.paragraph} key={idx}>
                                     {paragraph}
                                 </p>
                             ),
@@ -50,9 +46,7 @@ const JournalEntryPage: React.FC<JournalEntryPageProps> = (
         <div className={styles["journal-entry-page"]}>
             <section className={styles.header}>
                 <h2 className={styles.title}>{props.entry.title}</h2>
-                <p className={styles.timestamp} data-testid="timestamp">
-                    {props.entry.timestamp}
-                </p>
+                <p className={styles.timestamp}>{props.entry.timestamp}</p>
             </section>
             {renderEntrySections()}
         </div>
