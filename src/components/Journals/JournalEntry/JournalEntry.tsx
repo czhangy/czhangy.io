@@ -4,7 +4,7 @@ import { EntrySection } from "@prisma/client";
 
 import { SECTION_TYPES } from "@/static/constants";
 import { Entry } from "@/static/types";
-import { toKebabCase } from "@/utils/helpers/helpers";
+import { toKebabCase } from "@/utils/helpers";
 
 import styles from "./JournalEntry.module.scss";
 
