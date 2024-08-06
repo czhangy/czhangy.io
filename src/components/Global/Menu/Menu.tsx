@@ -1,8 +1,9 @@
 import { ReactElement, useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 import Image from "@/components/Global/Image/Image";
-import { SCROLL } from "@/static/constants";
+import { AUTHENTICATED, SCROLL } from "@/static/constants";
 
 import styles from "./Menu.module.scss";
 
@@ -13,6 +14,8 @@ const Menu: React.FC = () => {
         /** Alt text for the page icon */
         alt: string;
     };
+
+    const { data: _, status } = useSession();
 
     const [open, setOpen] = useState<boolean>(false);
 
@@ -113,6 +116,21 @@ const Menu: React.FC = () => {
                         </li>
                     );
                 })}
+                {status === AUTHENTICATED ? (
+                    <li className={styles["menu-option"]} key="new">
+                        <Link href="/new" className={styles["menu-link"]}>
+                            <div className={styles["menu-icon"]}>
+                                <Image
+                                    src={`/assets/icons/new.svg`}
+                                    alt="New Entry"
+                                />
+                            </div>
+                            New
+                        </Link>
+                    </li>
+                ) : (
+                    ""
+                )}
             </ul>
         );
     };

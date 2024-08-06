@@ -10,7 +10,7 @@
         "new": "python3 src/utils/new/new.py",
         "push": "bash src/utils/push",
         "start": "next start",
-        "test": "jest",
+        "test": "jest --no-cache",
         "tpy": "python3 src/utils/new/new_test.py",
         "watch": "jest --watch"
     },

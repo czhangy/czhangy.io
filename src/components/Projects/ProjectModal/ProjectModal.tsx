@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { Tool } from "@prisma/client";
 
 import ProjectInfo from "@/components/Projects/ProjectInfo/ProjectInfo";
@@ -20,27 +21,31 @@ const ProjectModal: React.FC<ProjectModalProps> = (
     /** The amount of time in ms that is waited before hiding the modal to allow for smoother transition */
     const MODAL_CLOSE_DELAY: number = 350;
     /** The ID of the modal component */
-    const MODAL_ID: string = "modal";
 
     /**
      * Closes the modal, initiating the animation and updating state
      */
     const closeModal = (): void => {
-        document.getElementById(MODAL_ID)!.classList.add(styles.closing);
+        document.getElementById("modal")!.classList.add(styles.closing);
         setTimeout(props.onClose, MODAL_CLOSE_DELAY);
     };
 
     return (
-        <div
-            id={MODAL_ID}
-            className={styles["project-modal-overlay"]}
-            onClick={closeModal}
-            data-testid="modal-overlay"
-        >
-            <div className={styles["project-modal"]}>
-                <ProjectInfo project={props.project} tools={props.tools} />
+        <>
+            <div
+                id={"modal"}
+                className={styles["project-modal-overlay"]}
+                onClick={closeModal}
+                data-testid="modal-overlay"
+            >
+                <div
+                    className={styles["project-modal"]}
+                    onClick={(e: MouseEvent) => e.stopPropagation()}
+                >
+                    <ProjectInfo project={props.project} tools={props.tools} />
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
