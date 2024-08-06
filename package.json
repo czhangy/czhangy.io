@@ -7,12 +7,9 @@
         "db": "npx prisma db push --schema=./src/prisma/schema.prisma && npx prisma studio --schema=./src/prisma/schema.prisma",
         "dev": "next dev",
         "init": "npm i && pip install -r requirements.txt",
-        "new": "python3 src/utils/new/new.py",
+        "new": "python3 src/utils/new.py",
         "push": "bash src/utils/push",
-        "start": "next start",
-        "test": "jest --no-cache",
-        "tpy": "python3 src/utils/new/new_test.py",
-        "watch": "jest --watch"
+        "start": "next start"
     },
     "dependencies": {
         "@prisma/client": "^5.12.1",
