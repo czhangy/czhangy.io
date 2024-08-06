@@ -86,11 +86,7 @@ const JournalEntry: React.FC<JournalEntryProps> = (
      * @returns {ReactElement} The <p> element representing the preview
      */
     const renderPreview = (): ReactElement => {
-        return (
-            <p className={styles.preview}>
-                {props.entry.sections[0].paragraphs[0]}
-            </p>
-        );
+        return <p className={styles.preview}>{props.entry.sections[0].body}</p>;
     };
 
     return (
