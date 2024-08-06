@@ -51,7 +51,7 @@ const UtilityBar: React.FC<UtilityBarProps> = (props: UtilityBarProps) => {
     };
 
     return (
-        <div className={styles["utility-bar"]} data-testid="utility-bar">
+        <div className={styles["utility-bar"]}>
             <div className={styles.menus}>
                 <UtilityMenu
                     menuType={SORT}

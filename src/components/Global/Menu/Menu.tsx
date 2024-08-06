@@ -145,18 +145,14 @@ const Menu: React.FC = () => {
 
     return (
         <>
-            <div
-                className={getOverlayClass()}
-                onClick={closeMenu}
-                data-testid="menu-overlay"
-            />
-            <div className={styles["menu-container"]} data-testid="menu">
+            <div className={getOverlayClass()} onClick={closeMenu} />
+            <div className={styles["menu-container"]}>
                 <button
                     id="menu-button"
                     className={styles["menu-button"]}
                     onClick={toggleMenu}
                 >
-                    <span className={getBarClass()} data-testid="menu-bar" />
+                    <span className={getBarClass()} />
                     <span className={getBarClass()} />
                     <span className={getBarClass()} />
                 </button>

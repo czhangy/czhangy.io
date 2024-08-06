@@ -101,41 +101,6 @@ def create_scss(path, component):
 
     write_to_file(file_path, file_contents)
 
-
-def create_spec(path, component, props):
-    file_path = f'{path}/{component}.spec.tsx'
-    file_contents = [
-        'import "@testing-library/jest-dom";\n',
-        '\n',
-        'import { render } from "@testing-library/react";\n',
-        '\n',
-        f'import {component} from "./{component}";\n',
-        '\n',
-        f'describe("{component}", () => {{\n',
-        '\t/**\n',
-        '\t * Renders the component\n',
-        '\t */\n',
-        f'\tconst render{component} = (): void => {{\n',
-        f'\t\trender(<{component} />);\n',
-        '\t};\n',
-        '\n',
-        '\tdescribe("Rendering", () => {\n'
-        '\t\tit("Renders correctly", () => {\n',
-        f'\t\t\trender{component}();\n',
-        '\t\t});\n',
-        '\t});\n'
-        '});\n'
-    ]
-
-    if props:
-        file_contents[4] = f'import {component}, {{ {component}Props }} from "./{component}";\n'
-        file_contents[10] = f'\tconst render{component} = (props: {component}Props): void => {{\n'
-        file_contents.insert(9, '\t *\n')
-        file_contents.insert(10, f'\t * @param {{{component}Props}} props Props to pass to the component\n')
-
-    write_to_file(file_path, file_contents)
-
-
 def create_component(args):
     subdir_path, component_path = get_paths(args)
 
@@ -145,7 +110,6 @@ def create_component(args):
     # Create files
     create_tsx(component_path, args.component[0], args.props)
     create_scss(component_path, args.component[0])
-    create_spec(component_path, args.component[0], args.props)
 
     print(colored(f'{args.component[0]} was created successfully!', GREEN))
 

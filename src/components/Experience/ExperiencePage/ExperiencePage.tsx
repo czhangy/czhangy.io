@@ -23,10 +23,7 @@ const ExperiencePage: React.FC<ExperiencePageProps> = (
             return (
                 <li className={getExperienceClass(idx)} key={idx}>
                     <ExperienceCard experience={experience} />
-                    <p
-                        className={styles.timeframe}
-                        data-testid="page-timeframe"
-                    >
+                    <p className={styles.timeframe}>
                         {getTimeframe(experience)}
                     </p>
                 </li>
@@ -72,7 +69,7 @@ const ExperiencePage: React.FC<ExperiencePageProps> = (
             <ul className={styles.timeline}>
                 <div className={styles.arrow} />
                 {renderExperiences()}
-                <div className={getEndpointClass()} data-testid="endpoint" />
+                <div className={getEndpointClass()} />
             </ul>
         </div>
     );

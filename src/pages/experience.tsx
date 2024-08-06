@@ -5,7 +5,7 @@ import Head from "@/components/Global/Head/Head";
 import PageWrapper from "@/components/Global/PageWrapper/PageWrapper";
 import prisma from "@/lib/prisma";
 import { Experience } from "@/static/types";
-import { convertDate } from "@/utils/helpers/helpers";
+import { convertDate } from "@/utils/helpers";
 
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 

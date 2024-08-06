@@ -18,7 +18,6 @@
         "paths": {
             "@/components/*": ["components/*"],
             "@/lib/*": ["lib/*"],
-            "@/mocks/*": ["mocks/*"],
             "@/models/*": ["models/*"],
             "@/static/*": ["static/*"],
             "@/styles/*": ["styles/*"],

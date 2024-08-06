@@ -61,7 +61,7 @@ const ProjectInfo: React.FC<ProjectInfoProps> = (props: ProjectInfoProps) => {
     };
 
     return (
-        <div className={styles["project-info"]} data-testid="project-info">
+        <div className={styles["project-info"]}>
             <section className={styles["project-section"]}>
                 <div className={styles["project-img"]}>
                     <Image
@@ -84,10 +84,7 @@ const ProjectInfo: React.FC<ProjectInfoProps> = (props: ProjectInfoProps) => {
             </section>
             <section className={styles["project-section"]}>
                 <h5 className={styles["section-header"]}>Summary</h5>
-                <p
-                    className={styles["section-body"]}
-                    data-testid="project-summary"
-                >
+                <p className={styles["section-body"]}>
                     {props.project.summary}
                 </p>
             </section>

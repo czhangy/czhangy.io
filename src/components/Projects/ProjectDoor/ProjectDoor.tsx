@@ -30,7 +30,7 @@ const ProjectDoor: React.FC<ProjectDoorProps> = (props: ProjectDoorProps) => {
     };
 
     return (
-        <div className={getDoorClass()} data-testid="door">
+        <div className={getDoorClass()}>
             <span className={styles.decal}>{getDecal()}</span>
         </div>
     );

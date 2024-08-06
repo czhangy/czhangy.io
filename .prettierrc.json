@@ -13,7 +13,6 @@
         "bcrypt",
         "zod",
         "^aws-sdk/(.*)$",
-        "^@testing-library/(.*)$",
         "@prisma/client",
         "",
         "^@/(.*)$",

@@ -127,11 +127,7 @@ const NewPage: React.FC = () => {
     const renderSections = (): JSX.Element[] => {
         return sections.map((section: EntrySection, idx: number) => {
             return (
-                <section
-                    className={styles["new-section"]}
-                    key={section.type}
-                    data-testid="new-section"
-                >
+                <section className={styles["new-section"]} key={section.type}>
                     <h3 className={styles["section-title"]}>
                         {SECTION_TYPES[section.type].emoji}{" "}
                         <strong>
@@ -142,7 +138,6 @@ const NewPage: React.FC = () => {
                             onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                 handleSectionTitleChange(e, idx)
                             }
-                            data-testid="section-title-input"
                         />
                     </h3>
                     <textarea
@@ -150,7 +145,6 @@ const NewPage: React.FC = () => {
                         onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                             handleSectionBodyChange(e, idx)
                         }
-                        data-testid="section-body-input"
                     />
                 </section>
             );
@@ -224,7 +218,6 @@ const NewPage: React.FC = () => {
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         handleTitleChange(e)
                     }
-                    data-testid="journal-title-input"
                 />
                 <UtilityMenu
                     menuType="section"
@@ -237,7 +230,6 @@ const NewPage: React.FC = () => {
                 <button
                     className={styles["submit-button"]}
                     onClick={handleSubmit}
-                    data-testid="submit-button"
                 >
                     <strong>{renderSubmitButtonContent()}</strong>
                 </button>
