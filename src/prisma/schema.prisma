@@ -15,9 +15,9 @@ datasource db {
 }
 
 type EntrySection {
-    type       String
-    title      String
-    paragraphs String[]
+    type  String
+    title String
+    body  String
 }
 
 model AdminUser {
