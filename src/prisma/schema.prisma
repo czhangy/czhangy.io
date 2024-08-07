@@ -28,6 +28,7 @@ model AdminUser {
 
 model Entry {
     id        String         @id @default(auto()) @map("_id") @db.ObjectId
+    slug      String         @unique
     title     String         @unique
     timestamp DateTime
     sections  EntrySection[]
