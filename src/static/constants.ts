@@ -1,29 +1,4 @@
-// -----------------------------------------------------------------------------
-// ROLE CONSTANTS
-// -----------------------------------------------------------------------------
-
 import { EntrySectionType } from "@/static/types";
-
-/** The string constant for the button role */
-export const BUTTON: string = "button";
-
-/** The string constant for the heading role */
-export const HEADING: string = "heading";
-
-/** The string constant for the image role */
-export const IMAGE: string = "img";
-
-/** The string constant for the link role */
-export const LINK: string = "link";
-
-/** The string constant for the list role */
-export const LIST: string = "list";
-
-/** The string constant for the listitem role */
-export const LIST_ITEM: string = "listitem";
-
-/** The string constant for the textbox role */
-export const INPUT: string = "textbox";
 
 // -----------------------------------------------------------------------------
 // ATTRIBUTE CONSTANTS
