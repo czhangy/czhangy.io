@@ -70,8 +70,7 @@ const NewPage: React.FC = () => {
         const newSections: EntrySection[] = JSON.parse(
             JSON.stringify(sections),
         );
-        // TODO: remove this array indexing once paragraphs => body
-        newSections[idx].paragraphs[0] = e.target.value;
+        newSections[idx].body = e.target.value;
         setSections(newSections);
     };
 
@@ -92,7 +91,7 @@ const NewPage: React.FC = () => {
         const newSections: EntrySection[] = JSON.parse(
             JSON.stringify(sections),
         );
-        newSections.push({ type: type, title: "", paragraphs: [] });
+        newSections.push({ type: type, title: "", body: "" });
         setSections(newSections);
     };
 
@@ -198,11 +197,7 @@ const NewPage: React.FC = () => {
             }
 
             // Sections must have a body
-            // TODO: replace this with body
-            if (
-                section.paragraphs.length === 0 ||
-                section.paragraphs[0].length === 0
-            ) {
+            if (section.body.length === 0) {
                 errors.push("All sections must have a body");
             }
         });

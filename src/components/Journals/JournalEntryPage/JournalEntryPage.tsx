@@ -29,13 +29,13 @@ const JournalEntryPage: React.FC<JournalEntryPageProps> = (
                             </strong>
                             {section.title}
                         </h3>
-                        {section.paragraphs.map(
-                            (paragraph: string, idx: number) => (
+                        {section.body
+                            .split("\n")
+                            .map((paragraph: string, idx: number) => (
                                 <p className={styles.paragraph} key={idx}>
                                     {paragraph}
                                 </p>
-                            ),
-                        )}
+                            ))}
                     </section>
                 );
             },
