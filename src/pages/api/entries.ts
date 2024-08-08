@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { EntrySection } from "@prisma/client";
 
+import prisma from "@/lib/prisma";
 import {
     CREATED,
     FAILED_REGISTER_MSG,
@@ -24,10 +26,17 @@ const handlePostJournalEntry = async (
     try {
         // Extract params
         const title: string = req.body.title;
-        const sections: string[] = req.body.sections;
+        const sections: EntrySection[] = JSON.parse(req.body.sections);
 
-        console.log(title);
-        console.log(sections);
+        // Write entry to DB
+        await prisma.entry.create({
+            data: {
+                title: title,
+                slug: encodeURIComponent(title),
+                sections: sections,
+                timestamp: new Date(),
+            },
+        });
 
         // Send back success
         return res.status(CREATED).json({});

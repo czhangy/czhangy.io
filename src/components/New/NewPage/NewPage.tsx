@@ -111,7 +111,7 @@ const NewPage: React.FC = () => {
             try {
                 await axios.post("/api/entries", {
                     title: title,
-                    sections: sections,
+                    sections: JSON.stringify(sections),
                 });
 
                 // Redirect to /journals on success
