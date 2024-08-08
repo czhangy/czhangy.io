@@ -26,7 +26,6 @@ const NewPage: React.FC = () => {
     );
     const [sections, setSections] = useState<EntrySection[]>([]);
     const [isErrorState, setErrorState] = useState<boolean>(false);
-    const [isSubmittingState, setSubmittingState] = useState<boolean>(false);
     const [typingTimeoutID, setTypingTimeoutID] = useState<
         NodeJS.Timeout | undefined
     >(undefined);
@@ -80,15 +79,6 @@ const NewPage: React.FC = () => {
     // ------------------------------------------------------------------------
 
     /**
-     * Updates the title of the new entry
-     *
-     * @param {ChangeEvent<HTMLInputElement>} e The event object captured by onChange
-     */
-    const handleTitleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-        setTitle(e.target.value);
-    };
-
-    /**
      * Updates the section title of a section in the new entry
      *
      * @param {ChangeEvent<HTMLInputElement>} e The event object captured by onChange
@@ -123,12 +113,12 @@ const NewPage: React.FC = () => {
     };
 
     /**
-     * Adds/removes the section from the entry
+     * Handles section selection, removing the section from the options and adding it to the page
      *
      * @param {string} type The slug of the section type
      */
     const handleSectionSelect = (type: string): void => {
-        // Update options state
+        // Remove from section type from options
         setSectionOptions(
             sectionOptions.filter(
                 ([slug, _]: [string, string]) => slug !== type,
@@ -153,7 +143,6 @@ const NewPage: React.FC = () => {
             // Alert if there are validation errors
             alert(errors.join("\n"));
 
-            setSubmittingState(false);
             setErrorState(true);
         } else {
             try {
@@ -309,7 +298,7 @@ const NewPage: React.FC = () => {
                     className={styles["journal-title-input"]}
                     value={title}
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        handleTitleChange(e)
+                        setTitle(e.target.value)
                     }
                 />
                 <UtilityMenu
