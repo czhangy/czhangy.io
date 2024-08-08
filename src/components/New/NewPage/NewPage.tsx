@@ -32,8 +32,23 @@ const NewPage: React.FC = () => {
     // ------------------------------------------------------------------------
     // Listeners
     // ------------------------------------------------------------------------
+
     // Try to retrieve saved state on page load
     useEffect(() => retrieveFromLocalStorage(), []);
+
+    // Save to local storage when title changes
+    useEffect(() => {
+        if (title.length > 0) {
+            saveToLocalStorage();
+        }
+    }, [title]);
+
+    // Save to local storage when sections change
+    useEffect(() => {
+        if (sections.length > 0) {
+            saveToLocalStorage();
+        }
+    }, [sections]);
 
     // ------------------------------------------------------------------------
     // Event handlers
@@ -232,6 +247,7 @@ const NewPage: React.FC = () => {
      * Saves the current state to local storage
      */
     const saveToLocalStorage = (): void => {
+        console.log("save");
         localStorage.setItem("title", title);
         localStorage.setItem("sections", JSON.stringify(sections));
     };
