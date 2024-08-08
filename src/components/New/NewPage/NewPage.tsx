@@ -44,7 +44,7 @@ const NewPage: React.FC = () => {
     // Save to local storage when title changes
     useEffect(() => {
         if (title.length > 0) {
-            // Debounce calls to saving logic
+            // Debounce calls to local storage set
             clearTimeout(typingTimeoutID);
 
             setTypingTimeoutID(
@@ -59,7 +59,7 @@ const NewPage: React.FC = () => {
     // Save to local storage when sections change
     useEffect(() => {
         if (sections.length > 0) {
-            // Debounce calls to saving logic
+            // Debounce calls to local storage set
             clearTimeout(typingTimeoutID);
 
             setTypingTimeoutID(
@@ -152,6 +152,7 @@ const NewPage: React.FC = () => {
         if (errors.length > 0) {
             // Alert if there are validation errors
             alert(errors.join("\n"));
+
             setSubmittingState(false);
             setErrorState(true);
         } else {
@@ -161,11 +162,15 @@ const NewPage: React.FC = () => {
                     sections: JSON.stringify(sections),
                 });
 
+                // Clear saved state on success
+                clearLocalStorage();
+
                 // Redirect to /journals on success
                 router.push("/journals");
             } catch (err: any) {
                 // Alert if there are API errors
                 alert(err.response.data.message);
+
                 setErrorState(true);
             }
         }
@@ -283,6 +288,14 @@ const NewPage: React.FC = () => {
         if (savedSections) {
             setSections(JSON.parse(savedSections));
         }
+    };
+
+    /**
+     * Deletes state from local storage
+     */
+    const clearLocalStorage = (): void => {
+        localStorage.removeItem("title");
+        localStorage.removeItem("sections");
     };
 
     // ------------------------------------------------------------------------
