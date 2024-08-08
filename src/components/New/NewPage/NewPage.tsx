@@ -27,6 +27,7 @@ const NewPage: React.FC = () => {
     const [sections, setSections] = useState<EntrySection[]>([]);
     const [isErrorState, setErrorState] = useState<boolean>(false);
     const [isSubmittingState, setSubmittingState] = useState<boolean>(false);
+    const [typingTimeoutID, setTypingTimeoutID] = useState<number | null>(null);
 
     // ------------------------------------------------------------------------
     // Event handlers
@@ -214,6 +215,22 @@ const NewPage: React.FC = () => {
 
         return [...new Set(errors)];
     };
+
+    // ------------------------------------------------------------------------
+    // Saving logic
+    // ------------------------------------------------------------------------
+
+    /**
+     * Saves the current state to local storage
+     */
+    const saveToLocalStorage = (): void => {
+        localStorage.setItem("title", title);
+        localStorage.setItem("sections", JSON.stringify(sections));
+    };
+
+    // ------------------------------------------------------------------------
+    // Markup
+    // ------------------------------------------------------------------------
 
     return (
         <div className={styles["new-page"]}>
