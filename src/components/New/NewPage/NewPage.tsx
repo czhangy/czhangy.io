@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { NextRouter, useRouter } from "next/router";
 import axios from "axios";
 import { EntrySection } from "@prisma/client";
@@ -28,6 +28,12 @@ const NewPage: React.FC = () => {
     const [isErrorState, setErrorState] = useState<boolean>(false);
     const [isSubmittingState, setSubmittingState] = useState<boolean>(false);
     const [typingTimeoutID, setTypingTimeoutID] = useState<number | null>(null);
+
+    // ------------------------------------------------------------------------
+    // Listeners
+    // ------------------------------------------------------------------------
+    // Try to retrieve saved state on page load
+    useEffect(() => retrieveFromLocalStorage(), []);
 
     // ------------------------------------------------------------------------
     // Event handlers
@@ -145,6 +151,7 @@ const NewPage: React.FC = () => {
                         </strong>
                         <input
                             className={styles["section-title-input"]}
+                            value={sections[idx].title}
                             onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                 handleSectionTitleChange(e, idx)
                             }
@@ -152,6 +159,7 @@ const NewPage: React.FC = () => {
                     </h3>
                     <textarea
                         className={styles["section-body"]}
+                        value={sections[idx].body}
                         onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                             handleSectionBodyChange(e, idx)
                         }
@@ -217,7 +225,7 @@ const NewPage: React.FC = () => {
     };
 
     // ------------------------------------------------------------------------
-    // Saving logic
+    // Local storage logic
     // ------------------------------------------------------------------------
 
     /**
@@ -254,6 +262,7 @@ const NewPage: React.FC = () => {
             <section className={styles["top-bar"]}>
                 <input
                     className={styles["journal-title-input"]}
+                    value={title}
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         handleTitleChange(e)
                     }
