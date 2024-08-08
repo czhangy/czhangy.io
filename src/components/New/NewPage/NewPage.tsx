@@ -35,6 +35,7 @@ const NewPage: React.FC = () => {
     // Listeners
     // ------------------------------------------------------------------------
 
+    // The number of ms to wait before saving state to local storage
     const TYPING_DEBOUNCE_MS: number = 1000;
 
     // Try to retrieve saved state on page load
@@ -47,7 +48,10 @@ const NewPage: React.FC = () => {
             clearTimeout(typingTimeoutID);
 
             setTypingTimeoutID(
-                setTimeout(() => saveToLocalStorage(), TYPING_DEBOUNCE_MS),
+                setTimeout(
+                    () => localStorage.setItem("title", title),
+                    TYPING_DEBOUNCE_MS,
+                ),
             );
         }
     }, [title]);
@@ -59,7 +63,14 @@ const NewPage: React.FC = () => {
             clearTimeout(typingTimeoutID);
 
             setTypingTimeoutID(
-                setTimeout(() => saveToLocalStorage(), TYPING_DEBOUNCE_MS),
+                setTimeout(
+                    () =>
+                        localStorage.setItem(
+                            "sections",
+                            JSON.stringify(sections),
+                        ),
+                    TYPING_DEBOUNCE_MS,
+                ),
             );
         }
     }, [sections]);
@@ -256,15 +267,6 @@ const NewPage: React.FC = () => {
     // ------------------------------------------------------------------------
     // Local storage logic
     // ------------------------------------------------------------------------
-
-    /**
-     * Saves the current state to local storage
-     */
-    const saveToLocalStorage = (): void => {
-        console.log("save");
-        localStorage.setItem("title", title);
-        localStorage.setItem("sections", JSON.stringify(sections));
-    };
 
     /**
      * Retrieves existing state from local storage
