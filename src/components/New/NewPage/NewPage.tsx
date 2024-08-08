@@ -27,11 +27,15 @@ const NewPage: React.FC = () => {
     const [sections, setSections] = useState<EntrySection[]>([]);
     const [isErrorState, setErrorState] = useState<boolean>(false);
     const [isSubmittingState, setSubmittingState] = useState<boolean>(false);
-    const [typingTimeoutID, setTypingTimeoutID] = useState<number | null>(null);
+    const [typingTimeoutID, setTypingTimeoutID] = useState<
+        NodeJS.Timeout | undefined
+    >(undefined);
 
     // ------------------------------------------------------------------------
     // Listeners
     // ------------------------------------------------------------------------
+
+    const TYPING_DEBOUNCE_MS: number = 1000;
 
     // Try to retrieve saved state on page load
     useEffect(() => retrieveFromLocalStorage(), []);
@@ -39,14 +43,24 @@ const NewPage: React.FC = () => {
     // Save to local storage when title changes
     useEffect(() => {
         if (title.length > 0) {
-            saveToLocalStorage();
+            // Debounce calls to saving logic
+            clearTimeout(typingTimeoutID);
+
+            setTypingTimeoutID(
+                setTimeout(() => saveToLocalStorage(), TYPING_DEBOUNCE_MS),
+            );
         }
     }, [title]);
 
     // Save to local storage when sections change
     useEffect(() => {
         if (sections.length > 0) {
-            saveToLocalStorage();
+            // Debounce calls to saving logic
+            clearTimeout(typingTimeoutID);
+
+            setTypingTimeoutID(
+                setTimeout(() => saveToLocalStorage(), TYPING_DEBOUNCE_MS),
+            );
         }
     }, [sections]);
 
