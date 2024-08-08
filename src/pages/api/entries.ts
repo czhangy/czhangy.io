@@ -6,7 +6,6 @@ import {
     CONFLICT,
     CREATED,
     FAILED_REGISTER_MSG,
-    GENERIC_FAILED_MSG,
     INTERNAL_SERVER_ERROR,
     INVALID_HTTP_METHOD_MSG,
     METHOD_NOT_ALLOWED,
@@ -61,17 +60,11 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse,
 ): Promise<void> {
-    try {
-        if (req.method === POST) {
-            return await handlePostJournalEntry(req, res);
-        } else {
-            return res.status(METHOD_NOT_ALLOWED).json({
-                error: INVALID_HTTP_METHOD_MSG,
-            });
-        }
-    } catch (_: any) {
-        return res
-            .status(INTERNAL_SERVER_ERROR)
-            .json({ error: GENERIC_FAILED_MSG });
+    if (req.method === POST) {
+        return await handlePostJournalEntry(req, res);
+    } else {
+        return res.status(METHOD_NOT_ALLOWED).json({
+            error: INVALID_HTTP_METHOD_MSG,
+        });
     }
 }
