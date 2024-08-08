@@ -6,7 +6,7 @@ import RegisterPage from "@/components/Register/RegisterPage/RegisterPage";
 
 const Admin: NextPage = () => {
     /** Boolean that can be toggled to enable registration */
-    const REGISTER_ENABLED: boolean = true;
+    const REGISTER_ENABLED: boolean = false;
 
     return (
         <div>
