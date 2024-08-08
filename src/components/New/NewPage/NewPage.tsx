@@ -228,6 +228,23 @@ const NewPage: React.FC = () => {
         localStorage.setItem("sections", JSON.stringify(sections));
     };
 
+    /**
+     * Retrieves existing state from local storage
+     */
+    const retrieveFromLocalStorage = (): void => {
+        // Retrieve state from local storage
+        const savedTitle: string | null = localStorage.getItem("title");
+        const savedSections: string | null = localStorage.getItem("sections");
+
+        // Set state if saved state exists
+        if (savedTitle) {
+            setTitle(savedTitle);
+        }
+        if (savedSections) {
+            setSections(JSON.parse(savedSections));
+        }
+    };
+
     // ------------------------------------------------------------------------
     // Markup
     // ------------------------------------------------------------------------
