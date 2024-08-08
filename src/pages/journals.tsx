@@ -4,22 +4,17 @@ import Head from "@/components/Global/Head/Head";
 import PageWrapper from "@/components/Global/PageWrapper/PageWrapper";
 import JournalsPage from "@/components/Journals/JournalsPage/JournalsPage";
 import prisma from "@/lib/prisma";
-import { journalEntry_04_10 } from "@/static/journal_entries";
 import { Entry } from "@/static/types";
+import { getEntryFromEntryModel } from "@/utils/helpers";
 
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 
 export const getStaticProps: GetStaticProps = async () => {
     const entries: Entry[] = (await prisma.entry.findMany({})).map(
-        (entry: EntryModel) => {
-            const { id: _, ...e } = entry;
-            const en: Entry = {
-                ...e,
-                timestamp: e.timestamp.toLocaleDateString("es-pa"),
-            };
-            return en;
-        },
+        // Convert Entry models into Entry objects before passing as prop
+        (entry: EntryModel) => getEntryFromEntryModel(entry),
     );
+
     return {
         props: {
             entries,
@@ -34,7 +29,7 @@ const Journals: NextPage = ({
         <div>
             <Head page="Journals" />
             <PageWrapper>
-                <JournalsPage entries={[journalEntry_04_10]} />
+                <JournalsPage entries={entries} />
             </PageWrapper>
         </div>
     );

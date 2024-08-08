@@ -1,51 +1,8 @@
-// -----------------------------------------------------------------------------
-// ROLE CONSTANTS
-// -----------------------------------------------------------------------------
-
 import { EntrySectionType } from "@/static/types";
-
-/** The string constant for the button role */
-export const BUTTON: string = "button";
-
-/** The string constant for the heading role */
-export const HEADING: string = "heading";
-
-/** The string constant for the image role */
-export const IMAGE: string = "img";
-
-/** The string constant for the link role */
-export const LINK: string = "link";
-
-/** The string constant for the list role */
-export const LIST: string = "list";
-
-/** The string constant for the listitem role */
-export const LIST_ITEM: string = "listitem";
-
-/** The string constant for the textbox role */
-export const INPUT: string = "textbox";
 
 // -----------------------------------------------------------------------------
 // ATTRIBUTE CONSTANTS
 // -----------------------------------------------------------------------------
-
-/** The string constant for the alt attribute */
-export const ALT: string = "alt";
-
-/** The string constant for the href attribute */
-export const HREF: string = "href";
-
-/** The string constant for the placeholder attribute */
-export const PLACEHOLDER: string = "placeholder";
-
-/** The string constant for the key attribute */
-export const KEY: string = "key";
-
-/** The string constant for the id attribute */
-export const ID: string = "id";
-
-/** The string constant for the for attribute */
-export const FOR: string = "for";
 
 /** The string constant for scroll events */
 export const SCROLL: string = "scroll";
@@ -56,9 +13,8 @@ export const AUTHENTICATED = "authenticated";
 /** The string constant for NextAuth unauthenticated */
 export const UNAUTHENTICATED = "unauthenticated";
 
-// -----------------------------------------------------------------------------
-// TYPE CONSTANTS
-// -----------------------------------------------------------------------------
+/** The string constant for objectFit=cover on Images */
+export const COVER = "cover";
 
 /** The string constant for the left value of the Side type */
 export const LEFT = "left";
@@ -93,35 +49,6 @@ export const DESC = "desc";
 /** The string constant for no filter */
 export const NO_FILTER = "";
 
-/** The string constant for the Life Logs section slug */
-export const LIFE_LOGS = "lifeLogs";
-
-/** The string constant for the Career Chronicles section slug */
-export const CAREER_CHRONICLES = "careerChronicles";
-
-/** The string constant for the Gaming Grind section slug */
-export const WARRIORS_WATCH = "warriorsWatch";
-
-/** The string constant for the Gaming Grind section slug */
-export const GAMING_GRIND = "gamingGrind";
-
-/** The string constant for the Random Ravings section slug */
-export const RANDOM_RAVINGS = "randomRavings";
-
-/** The string constant for the string type */
-export const STRING = "string";
-
-// -----------------------------------------------------------------------------
-// OBJECT FIT CONSTANTS
-// -----------------------------------------------------------------------------
-
-/** The string constant for objectFit=cover on Images */
-export const COVER = "cover";
-
-// -----------------------------------------------------------------------------
-// ALT CONSTANTS
-// -----------------------------------------------------------------------------
-
 /** The alt text for GitHub links */
 export const GIT_LINK_ALT = "Git Repo";
 
@@ -134,27 +61,27 @@ export const SITE_LINK_ALT = "Site Link";
 
 /** A map of section types to their attributes */
 export const SECTION_TYPES: { [slug: string]: EntrySectionType } = {
-    [LIFE_LOGS]: {
+    lifeLogs: {
         displayName: "Life Logs",
         color: "#349EEB",
         emoji: "🌱",
     },
-    [CAREER_CHRONICLES]: {
+    careerChronicles: {
         displayName: "Career Chronicles",
         color: "#2EE68D",
         emoji: "🏢",
     },
-    [WARRIORS_WATCH]: {
+    warriorsWatch: {
         displayName: "Warriors Watch",
         color: "#FFC72C",
         emoji: "🏀",
     },
-    [GAMING_GRIND]: {
+    gamingGrind: {
         displayName: "Gaming Grind",
         color: "#ED6868",
         emoji: "🕹️",
     },
-    [RANDOM_RAVINGS]: {
+    randomRavings: {
         displayName: "Random Ravings",
         color: "#AD7DFF",
         emoji: "✍️",
@@ -177,15 +104,6 @@ export const OK: number = 200;
 /** The HTTP error code for Created */
 export const CREATED: number = 201;
 
-/** The HTTP error code for Bad Request */
-export const BAD_REQUEST: number = 400;
-
-/** The HTTP error code for Unauthorized */
-export const UNAUTHORIZED: number = 401;
-
-/** The HTTP error code for Not Found */
-export const NOT_FOUND: number = 404;
-
 /** The HTTP error code for Method Not Allowed */
 export const METHOD_NOT_ALLOWED: number = 405;
 
@@ -202,19 +120,9 @@ export const UNIMPLEMENTED: number = 501;
 // ERROR CONSTANTS
 // -----------------------------------------------------------------------------
 
-/** The error message for badly-typed inputs */
-export const VALIDATION_ERROR_MSG: string =
-    "Username or password is of invalid type.";
-
 /** The error message for an existing username */
 export const USERNAME_ALREADY_EXISTS_MSG: string =
     "That username already exists.";
-
-/** The error message for a username that doesn't exist */
-export const USER_NOT_FOUND_MSG: string = "That username does not exist.";
-
-/** The error message for an incorrect password */
-export const INCORRECT_PASSWORD_MSG: string = "That password is incorrect.";
 
 /** The error message for an unknown failed register */
 export const FAILED_REGISTER_MSG: string = "Failed to register.";
