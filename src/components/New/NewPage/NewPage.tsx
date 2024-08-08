@@ -118,7 +118,7 @@ const NewPage: React.FC = () => {
                 router.push("/journals");
             } catch (err: any) {
                 // Alert if there are API errors
-                alert(err);
+                alert(err.response.data.message);
                 setErrorState(true);
             }
         }

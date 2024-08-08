@@ -3,6 +3,7 @@ import { EntrySection } from "@prisma/client";
 
 import prisma from "@/lib/prisma";
 import {
+    CONFLICT,
     CREATED,
     FAILED_REGISTER_MSG,
     GENERIC_FAILED_MSG,
@@ -10,6 +11,8 @@ import {
     INVALID_HTTP_METHOD_MSG,
     METHOD_NOT_ALLOWED,
     POST,
+    PRISMA_DUPLICATE,
+    TITLE_ALREADY_EXISTS_MSG,
 } from "@/static/constants";
 
 /**
@@ -40,10 +43,17 @@ const handlePostJournalEntry = async (
 
         // Send back success
         return res.status(CREATED).json({});
-    } catch (_: any) {
-        return res
-            .status(INTERNAL_SERVER_ERROR)
-            .json({ error: FAILED_REGISTER_MSG });
+    } catch (err: any) {
+        // Check for unique constraint failure on write
+        if (err.code === PRISMA_DUPLICATE) {
+            return res
+                .status(CONFLICT)
+                .json({ message: TITLE_ALREADY_EXISTS_MSG });
+        } else {
+            return res
+                .status(INTERNAL_SERVER_ERROR)
+                .json({ message: FAILED_REGISTER_MSG });
+        }
     }
 };
 

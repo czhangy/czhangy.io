@@ -116,6 +116,9 @@ export const INTERNAL_SERVER_ERROR: number = 500;
 /** The HTTP error code for Unimplemented */
 export const UNIMPLEMENTED: number = 501;
 
+/** The Prisma error code for failed unique constraint */
+export const PRISMA_DUPLICATE: string = "P2002";
+
 // -----------------------------------------------------------------------------
 // ERROR CONSTANTS
 // -----------------------------------------------------------------------------
@@ -123,6 +126,9 @@ export const UNIMPLEMENTED: number = 501;
 /** The error message for an existing username */
 export const USERNAME_ALREADY_EXISTS_MSG: string =
     "That username already exists.";
+
+/** The error message for an existing journal title */
+export const TITLE_ALREADY_EXISTS_MSG: string = "That title already exists.";
 
 /** The error message for an unknown failed register */
 export const FAILED_REGISTER_MSG: string = "Failed to register.";
