@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import bcrypt from "bcrypt";
+import { EntrySection } from "@prisma/client";
 
 import prisma from "@/lib/prisma";
 import {
@@ -14,30 +14,29 @@ import {
     TITLE_ALREADY_EXISTS_MSG,
 } from "@/static/constants";
 
-/** The number of salt rounds to use for bcrypt */
-const SALT_ROUNDS: number = 10;
-
 /**
- * Creates a user, if the username is not taken
+ * Posts a journal entry to the DB
  *
  * @param {NextApiRequest} req The request object
  * @param {NextApiResponse} res The response object
  * @returns {Promise<void>} An HTTP response
  */
-const handleRegisterRequest = async (
+const handlePostJournalEntry = async (
     req: NextApiRequest,
     res: NextApiResponse,
 ): Promise<void> => {
     try {
         // Extract params
-        const username: string = req.body.username;
-        const password: string = req.body.password;
+        const title: string = req.body.title;
+        const sections: EntrySection[] = JSON.parse(req.body.sections);
 
-        // Create user
-        await prisma.adminUser.create({
+        // Write entry to DB
+        await prisma.entry.create({
             data: {
-                username: username,
-                password: bcrypt.hashSync(password, SALT_ROUNDS),
+                title: title,
+                slug: encodeURIComponent(title),
+                sections: sections,
+                timestamp: new Date(),
             },
         });
 
@@ -62,7 +61,7 @@ export default async function handler(
     res: NextApiResponse,
 ): Promise<void> {
     if (req.method === POST) {
-        return await handleRegisterRequest(req, res);
+        return await handlePostJournalEntry(req, res);
     } else {
         return res.status(METHOD_NOT_ALLOWED).json({
             error: INVALID_HTTP_METHOD_MSG,

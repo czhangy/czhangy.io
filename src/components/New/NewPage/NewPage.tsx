@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { NextRouter, useRouter } from "next/router";
+import axios from "axios";
 import { EntrySection } from "@prisma/client";
 
 import UtilityMenu from "@/components/Global/UtilityMenu/UtilityMenu";
@@ -98,19 +99,28 @@ const NewPage: React.FC = () => {
     /**
      * Submits the entry, validating it before writing it to the DB and redirecting to /journals
      */
-    const handleSubmit = (): void => {
+    const handleSubmit = async (): Promise<void> => {
         const errors = validateContent();
 
         if (errors.length > 0) {
-            // Alert if there are errors
+            // Alert if there are validation errors
             alert(errors.join("\n"));
             setSubmittingState(false);
             setErrorState(true);
         } else {
-            // TODO: write to DB
+            try {
+                await axios.post("/api/entries", {
+                    title: title,
+                    sections: JSON.stringify(sections),
+                });
 
-            // Redirect to /journals on success
-            router.push("/journals");
+                // Redirect to /journals on success
+                router.push("/journals");
+            } catch (err: any) {
+                // Alert if there are API errors
+                alert(err.response.data.message);
+                setErrorState(true);
+            }
         }
     };
 
