@@ -5,6 +5,7 @@ import PageWrapper from "@/components/Global/PageWrapper/PageWrapper";
 import JournalEntryPage from "@/components/Journals/JournalEntryPage/JournalEntryPage";
 import prisma from "@/lib/prisma";
 import { Entry } from "@/static/types";
+import { getEntryFromEntryModel } from "@/utils/helpers";
 
 import type {
     GetServerSideProps,
@@ -18,12 +19,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     });
 
     if (entryModel) {
-        // Make the Entry model serializable before sending it as a prop
-        const entry: Entry = {
-            title: entryModel!.title,
-            timestamp: entryModel!.timestamp.toLocaleDateString("es-pa"),
-            sections: entryModel!.sections,
-        };
+        // Convert Entry model into Entry object before passing it as a prop
+        const entry: Entry = getEntryFromEntryModel(entryModel);
         return {
             props: {
                 entry,
