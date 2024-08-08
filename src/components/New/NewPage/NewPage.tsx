@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { NextRouter, useRouter } from "next/router";
 import axios from "axios";
 import { EntrySection } from "@prisma/client";
@@ -26,20 +26,57 @@ const NewPage: React.FC = () => {
     );
     const [sections, setSections] = useState<EntrySection[]>([]);
     const [isErrorState, setErrorState] = useState<boolean>(false);
-    const [isSubmittingState, setSubmittingState] = useState<boolean>(false);
+    const [typingTimeoutID, setTypingTimeoutID] = useState<
+        NodeJS.Timeout | undefined
+    >(undefined);
+
+    // ------------------------------------------------------------------------
+    // Listeners
+    // ------------------------------------------------------------------------
+
+    // The number of ms to wait before saving state to local storage
+    const TYPING_DEBOUNCE_MS: number = 1000;
+
+    // Try to retrieve saved state on page load
+    useEffect(() => retrieveFromLocalStorage(), []);
+
+    // Save to local storage when title changes
+    useEffect(() => {
+        if (title.length > 0) {
+            // Debounce calls to local storage set
+            clearTimeout(typingTimeoutID);
+
+            setTypingTimeoutID(
+                setTimeout(
+                    () => localStorage.setItem("title", title),
+                    TYPING_DEBOUNCE_MS,
+                ),
+            );
+        }
+    }, [title]);
+
+    // Save to local storage when sections change
+    useEffect(() => {
+        if (sections.length > 0) {
+            // Debounce calls to local storage set
+            clearTimeout(typingTimeoutID);
+
+            setTypingTimeoutID(
+                setTimeout(
+                    () =>
+                        localStorage.setItem(
+                            "sections",
+                            JSON.stringify(sections),
+                        ),
+                    TYPING_DEBOUNCE_MS,
+                ),
+            );
+        }
+    }, [sections]);
 
     // ------------------------------------------------------------------------
     // Event handlers
     // ------------------------------------------------------------------------
-
-    /**
-     * Updates the title of the new entry
-     *
-     * @param {ChangeEvent<HTMLInputElement>} e The event object captured by onChange
-     */
-    const handleTitleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-        setTitle(e.target.value);
-    };
 
     /**
      * Updates the section title of a section in the new entry
@@ -76,12 +113,12 @@ const NewPage: React.FC = () => {
     };
 
     /**
-     * Adds/removes the section from the entry
+     * Handles section selection, removing the section from the options and adding it to the page
      *
      * @param {string} type The slug of the section type
      */
     const handleSectionSelect = (type: string): void => {
-        // Update options state
+        // Remove from section type from options
         setSectionOptions(
             sectionOptions.filter(
                 ([slug, _]: [string, string]) => slug !== type,
@@ -105,7 +142,7 @@ const NewPage: React.FC = () => {
         if (errors.length > 0) {
             // Alert if there are validation errors
             alert(errors.join("\n"));
-            setSubmittingState(false);
+
             setErrorState(true);
         } else {
             try {
@@ -114,11 +151,15 @@ const NewPage: React.FC = () => {
                     sections: JSON.stringify(sections),
                 });
 
+                // Clear saved state on success
+                clearLocalStorage();
+
                 // Redirect to /journals on success
                 router.push("/journals");
             } catch (err: any) {
                 // Alert if there are API errors
                 alert(err.response.data.message);
+
                 setErrorState(true);
             }
         }
@@ -144,6 +185,7 @@ const NewPage: React.FC = () => {
                         </strong>
                         <input
                             className={styles["section-title-input"]}
+                            value={sections[idx].title}
                             onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                 handleSectionTitleChange(e, idx)
                             }
@@ -151,6 +193,7 @@ const NewPage: React.FC = () => {
                     </h3>
                     <textarea
                         className={styles["section-body"]}
+                        value={sections[idx].body}
                         onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                             handleSectionBodyChange(e, idx)
                         }
@@ -215,13 +258,47 @@ const NewPage: React.FC = () => {
         return [...new Set(errors)];
     };
 
+    // ------------------------------------------------------------------------
+    // Local storage logic
+    // ------------------------------------------------------------------------
+
+    /**
+     * Retrieves existing state from local storage
+     */
+    const retrieveFromLocalStorage = (): void => {
+        // Retrieve state from local storage
+        const savedTitle: string | null = localStorage.getItem("title");
+        const savedSections: string | null = localStorage.getItem("sections");
+
+        // Set state if saved state exists
+        if (savedTitle) {
+            setTitle(savedTitle);
+        }
+        if (savedSections) {
+            setSections(JSON.parse(savedSections));
+        }
+    };
+
+    /**
+     * Deletes state from local storage
+     */
+    const clearLocalStorage = (): void => {
+        localStorage.removeItem("title");
+        localStorage.removeItem("sections");
+    };
+
+    // ------------------------------------------------------------------------
+    // Markup
+    // ------------------------------------------------------------------------
+
     return (
         <div className={styles["new-page"]}>
             <section className={styles["top-bar"]}>
                 <input
                     className={styles["journal-title-input"]}
+                    value={title}
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        handleTitleChange(e)
+                        setTitle(e.target.value)
                     }
                 />
                 <UtilityMenu
