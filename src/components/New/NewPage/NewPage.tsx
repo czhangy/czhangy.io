@@ -310,7 +310,12 @@ const NewPage: React.FC = () => {
                     value="New Section"
                 />
                 <button
-                    className={styles["submit-button"]}
+                    className={`${styles.button} ${styles["clear-button"]}`}
+                >
+                    <strong>Clear</strong>
+                </button>
+                <button
+                    className={`${styles.button} ${styles["submit-button"]}`}
                     onClick={handleSubmit}
                 >
                     <strong>{renderSubmitButtonContent()}</strong>

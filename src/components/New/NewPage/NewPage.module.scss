@@ -32,16 +32,24 @@
             font-family: constants.$main-font;
         }
 
-        .submit-button {
+        .button {
             --font-size: 1rem;
             --x-padding: 1rem;
             --y-padding: 0.5rem;
 
             border-radius: var(--border-radius);
-            background-color: var(--theme-text);
             padding: var(--y-padding) var(--x-padding);
-            color: var(--theme-main);
             font-size: var(--font-size);
+        }
+
+        .clear-button {
+            background-color: constants.$red;
+            color: white;
+        }
+
+        .submit-button {
+            background-color: var(--theme-text);
+            color: var(--theme-main);
         }
     }
 
@@ -100,8 +108,14 @@
 }
 
 @media (hover: hover) {
-    .new-page > .top-bar > .submit-button:hover {
-        background-color: var(--theme-hover);
-        color: var(--theme-text);
+    .new-page > .top-bar {
+        .clear-button:hover {
+            background-color: constants.$red-hover;
+        }
+
+        .submit-button:hover {
+            background-color: var(--theme-hover);
+            color: var(--theme-text);
+        }
     }
 }

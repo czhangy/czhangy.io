@@ -24,6 +24,10 @@ $light-svg-hover: invert(42%) sepia(100%) saturate(1859%) hue-rotate(177deg)
     brightness(103%) contrast(104%);
 $light-shadow: 0 3px 5px 1px #777;
 
+// Theme
+$red: rgb(255, 43, 43);
+$red-hover: rgb(192, 30, 30);
+
 // Dimensions
 $max-width: 1360px;
 $navbar-height: 80px;
