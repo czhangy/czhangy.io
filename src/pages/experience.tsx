@@ -10,17 +10,20 @@ import { convertDate } from "@/utils/helpers";
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 
 export const getStaticProps: GetStaticProps = async () => {
-    const experiences: Experience[] = (
-        await prisma.experience.findMany({})
-    ).map((experience: ExperienceModel) => {
-        const { id: _, ...e } = experience;
-        const exp: Experience = {
-            ...e,
-            startDate: convertDate(e.startDate),
-            endDate: convertDate(e.endDate),
-        };
-        return exp;
-    });
+    const experiences: Experience[] = (await prisma.experience.findMany({}))
+        .sort(
+            (a: ExperienceModel, b: ExperienceModel) =>
+                b.startDate.getTime() - a.startDate.getTime(),
+        )
+        .map((experience: ExperienceModel) => {
+            const { id: _, ...e } = experience;
+            const exp: Experience = {
+                ...e,
+                startDate: convertDate(e.startDate),
+                endDate: convertDate(e.endDate),
+            };
+            return exp;
+        });
     return {
         props: {
             experiences,
