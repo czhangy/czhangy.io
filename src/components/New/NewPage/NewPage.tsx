@@ -17,6 +17,7 @@ const NewPage: React.FC = () => {
     // ------------------------------------------------------------------------
 
     const [title, setTitle] = useState<string>("");
+    const [sections, setSections] = useState<EntrySection[]>([]);
     const [sectionOptions, setSectionOptions] = useState<[string, string][]>(
         Object.entries(SECTION_TYPES).map(
             ([slug, sectionType]: [string, EntrySectionType]) => {
@@ -24,7 +25,6 @@ const NewPage: React.FC = () => {
             },
         ),
     );
-    const [sections, setSections] = useState<EntrySection[]>([]);
     const [isErrorState, setErrorState] = useState<boolean>(false);
     const [typingTimeoutID, setTypingTimeoutID] = useState<
         NodeJS.Timeout | undefined
@@ -163,6 +163,18 @@ const NewPage: React.FC = () => {
                 setErrorState(true);
             }
         }
+    };
+
+    /**
+     * Clears the entry's state and local storage
+     */
+    const handleClear = (): void => {
+        // Clear state
+        setTitle("");
+        setSections([]);
+
+        // Clear local storage
+        clearLocalStorage();
     };
 
     // ------------------------------------------------------------------------
@@ -311,6 +323,7 @@ const NewPage: React.FC = () => {
                 />
                 <button
                     className={`${styles.button} ${styles["clear-button"]}`}
+                    onClick={handleClear}
                 >
                     <strong>Clear</strong>
                 </button>
