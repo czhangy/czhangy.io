@@ -200,6 +200,7 @@ const NewPage: React.FC = () => {
                     onBodyChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                         handleSectionBodyChange(e, idx)
                     }
+                    key={section.type}
                 />
             );
         });
