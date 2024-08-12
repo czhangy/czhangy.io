@@ -2,7 +2,7 @@ import { MouseEvent, ReactNode } from "react";
 
 import styles from "./Modal.module.scss";
 
-type ModalProps = {
+type Props = {
     /** The modal contents */
     children: ReactNode;
     /** The modal height */
@@ -13,7 +13,7 @@ type ModalProps = {
     onClose: () => void;
 };
 
-const Modal: React.FC<ModalProps> = (props: ModalProps) => {
+const Modal: React.FC<Props> = (props: Props) => {
     /** The amount of time in ms that is waited before hiding the modal to allow for smoother transition */
     const MODAL_CLOSE_DELAY: number = 350;
 
@@ -28,6 +28,10 @@ const Modal: React.FC<ModalProps> = (props: ModalProps) => {
         document.getElementById("modal")!.classList.add(styles.closing);
         setTimeout(props.onClose, MODAL_CLOSE_DELAY);
     };
+
+    // ------------------------------------------------------------------------
+    // Markup
+    // ------------------------------------------------------------------------
 
     return (
         <div id="modal" className={styles.overlay} onClick={closeModal}>

@@ -34,6 +34,10 @@ const ClearModal: React.FC<Props> = (props: Props) => {
         setTimeout(props.onClose, MODAL_CLOSE_DELAY);
     };
 
+    // ------------------------------------------------------------------------
+    // Markup
+    // ------------------------------------------------------------------------
+
     return (
         <Modal onClose={props.onClose}>
             <h4 className={styles.header}>
