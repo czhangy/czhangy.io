@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 import styles from "./PageWrapper.module.scss";
 
-export type PageWrapperProps = {
+type PageWrapperProps = {
     /** The page component */
     children: ReactNode;
 };

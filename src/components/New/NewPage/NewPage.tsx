@@ -5,8 +5,10 @@ import { EntrySection } from "@prisma/client";
 
 import UtilityMenu from "@/components/Global/UtilityMenu/UtilityMenu";
 import { SECTION_TYPES } from "@/static/constants";
-import { EntrySectionType } from "@/static/types";
+import { ConditionalJSX, EntrySectionType } from "@/static/types";
 
+import ClearModal from "../ClearModal/ClearModal";
+import NewSection from "../NewSection/NewSection";
 import styles from "./NewPage.module.scss";
 
 const NewPage: React.FC = () => {
@@ -17,6 +19,7 @@ const NewPage: React.FC = () => {
     // ------------------------------------------------------------------------
 
     const [title, setTitle] = useState<string>("");
+    const [sections, setSections] = useState<EntrySection[]>([]);
     const [sectionOptions, setSectionOptions] = useState<[string, string][]>(
         Object.entries(SECTION_TYPES).map(
             ([slug, sectionType]: [string, EntrySectionType]) => {
@@ -24,18 +27,18 @@ const NewPage: React.FC = () => {
             },
         ),
     );
-    const [sections, setSections] = useState<EntrySection[]>([]);
     const [isErrorState, setErrorState] = useState<boolean>(false);
     const [typingTimeoutID, setTypingTimeoutID] = useState<
         NodeJS.Timeout | undefined
     >(undefined);
+    const [isClearModalOpen, setClearModalOpen] = useState<boolean>(false);
 
     // ------------------------------------------------------------------------
     // Listeners
     // ------------------------------------------------------------------------
 
     // The number of ms to wait before saving state to local storage
-    const TYPING_DEBOUNCE_MS: number = 1000;
+    const TYPING_DEBOUNCE_MS: number = 500;
 
     // Try to retrieve saved state on page load
     useEffect(() => retrieveFromLocalStorage(), []);
@@ -165,6 +168,18 @@ const NewPage: React.FC = () => {
         }
     };
 
+    /**
+     * Clears the entry's state and local storage
+     */
+    const handleClear = (): void => {
+        // Clear state
+        setTitle("");
+        setSections([]);
+
+        // Clear local storage
+        clearLocalStorage();
+    };
+
     // ------------------------------------------------------------------------
     // Renderers
     // ------------------------------------------------------------------------
@@ -177,34 +192,24 @@ const NewPage: React.FC = () => {
     const renderSections = (): JSX.Element[] => {
         return sections.map((section: EntrySection, idx: number) => {
             return (
-                <section className={styles["new-section"]} key={section.type}>
-                    <h3 className={styles["section-title"]}>
-                        {SECTION_TYPES[section.type].emoji}{" "}
-                        <strong>
-                            {SECTION_TYPES[section.type].displayName}:{" "}
-                        </strong>
-                        <input
-                            className={styles["section-title-input"]}
-                            value={sections[idx].title}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                handleSectionTitleChange(e, idx)
-                            }
-                        />
-                    </h3>
-                    <textarea
-                        className={styles["section-body"]}
-                        value={sections[idx].body}
-                        onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-                            handleSectionBodyChange(e, idx)
-                        }
-                    />
-                </section>
+                <NewSection
+                    section={section}
+                    onTitleChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        handleSectionTitleChange(e, idx)
+                    }
+                    onBodyChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                        handleSectionBodyChange(e, idx)
+                    }
+                    key={section.type}
+                />
             );
         });
     };
 
     /**
      * Renders the content displayed on the submit button
+     *
+     * @returns {JSX.Element} The text content within the submit button
      */
     const renderSubmitButtonContent = (): JSX.Element => {
         if (isErrorState) {
@@ -212,6 +217,22 @@ const NewPage: React.FC = () => {
         } else {
             return <strong>Submit</strong>;
         }
+    };
+
+    /**
+     * Renders the clear modal if it is opened
+     *
+     * @returns {ConditionalJSX} The JSX needed to render the clear modal
+     */
+    const renderClearModal = (): ConditionalJSX => {
+        return isClearModalOpen ? (
+            <ClearModal
+                onClose={() => setClearModalOpen(false)}
+                onConfirm={handleClear}
+            />
+        ) : (
+            ""
+        );
     };
 
     // ------------------------------------------------------------------------
@@ -293,6 +314,7 @@ const NewPage: React.FC = () => {
 
     return (
         <div className={styles["new-page"]}>
+            {renderClearModal()}
             <section className={styles["top-bar"]}>
                 <input
                     className={styles["journal-title-input"]}
@@ -310,7 +332,13 @@ const NewPage: React.FC = () => {
                     value="New Section"
                 />
                 <button
-                    className={styles["submit-button"]}
+                    className={`${styles.button} ${styles["clear-button"]}`}
+                    onClick={() => setClearModalOpen(true)}
+                >
+                    <strong>Clear</strong>
+                </button>
+                <button
+                    className={`${styles.button} ${styles["submit-button"]}`}
                     onClick={handleSubmit}
                 >
                     <strong>{renderSubmitButtonContent()}</strong>

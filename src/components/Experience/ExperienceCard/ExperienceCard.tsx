@@ -11,13 +11,17 @@ export type ExperienceCardProps = {
 const ExperienceCard: React.FC<ExperienceCardProps> = (
     props: ExperienceCardProps,
 ) => {
+    // ------------------------------------------------------------------------
+    // Renderers
+    // ------------------------------------------------------------------------
+
     /**
      * Returns the timeframe in {START_DATE} - {END_DATE} format, stripping out {END_DATE} if none exists
      *
      * @param {Experience} exp The Experience object
      * @returns {string} The formatted timeframe
      * */
-    const getTimeframe = (exp: Experience): string => {
+    const renderTimeframe = (exp: Experience): string => {
         return `${exp.startDate} ${exp.endDate.length > 0 ? `- ${exp.endDate}` : ""}`;
     };
 
@@ -26,7 +30,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = (
      *
      * @returns {ConditionalJSX} The JSX needed to render bullets if they exist
      */
-    const getCardDescription = (): ConditionalJSX => {
+    const renderCardDescription = (): ConditionalJSX => {
         return props.experience.description.length > 0 ? (
             <ul className={styles["card-description"]}>
                 {props.experience.description.map(
@@ -44,10 +48,14 @@ const ExperienceCard: React.FC<ExperienceCardProps> = (
         );
     };
 
+    // ------------------------------------------------------------------------
+    // Markup
+    // ------------------------------------------------------------------------
+
     return (
         <div className={styles["experience-card"]}>
             <div className={styles.timeframe}>
-                {getTimeframe(props.experience)}
+                {renderTimeframe(props.experience)}
             </div>
             <div className={styles.card}>
                 <div className={styles["card-header"]}>
@@ -66,7 +74,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = (
                         </strong>
                     </div>
                 </div>
-                {getCardDescription()}
+                {renderCardDescription()}
             </div>
         </div>
     );

@@ -1,0 +1,51 @@
+@use "@/styles/constants";
+
+.header {
+    --font-size: 1.25rem;
+    --margin-bottom: 1.25rem;
+
+    margin-bottom: var(--margin-bottom);
+    font-size: var(--font-size);
+    text-align: center;
+}
+
+.buttons {
+    --gap: 1.5rem;
+
+    display: flex;
+    justify-content: center;
+    gap: var(--gap);
+
+    .button {
+        --border-radius: 5px;
+        --font-size: 1rem;
+        --x-padding: 1rem;
+        --y-padding: 0.5rem;
+
+        border-radius: var(--border-radius);
+        padding: var(--y-padding) var(--x-padding);
+        font-size: var(--font-size);
+    }
+
+    .yes {
+        background-color: var(--theme-text);
+        color: var(--theme-main);
+    }
+
+    .no {
+        background-color: constants.$red;
+    }
+}
+
+@media (hover: hover) {
+    .buttons {
+        .yes:hover {
+            background-color: var(--theme-hover);
+            color: var(--theme-text);
+        }
+
+        .no:hover {
+            background-color: constants.$red-hover;
+        }
+    }
+}

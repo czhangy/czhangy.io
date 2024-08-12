@@ -32,76 +32,37 @@
             font-family: constants.$main-font;
         }
 
-        .submit-button {
+        .button {
             --font-size: 1rem;
             --x-padding: 1rem;
             --y-padding: 0.5rem;
 
             border-radius: var(--border-radius);
-            background-color: var(--theme-text);
             padding: var(--y-padding) var(--x-padding);
+            font-size: var(--font-size);
+        }
+
+        .clear-button {
+            background-color: constants.$red;
+            color: white;
+        }
+
+        .submit-button {
+            background-color: var(--theme-text);
             color: var(--theme-main);
-            font-size: var(--font-size);
         }
-    }
-
-    .new-section {
-        --input-font-size: 1rem;
-
-        .section-title {
-            --border-size: 1px;
-            --font-size: 1.25rem;
-            --inner-spacing: 0.5rem;
-            --margin-bottom: 1rem;
-            --padding-bottom: 1rem;
-
-            display: flex;
-            align-items: center;
-            gap: var(--inner-spacing);
-            margin-bottom: var(--margin-bottom);
-            border-bottom: var(--border-size) solid var(--theme-text);
-            padding-bottom: var(--padding-bottom);
-            font-size: var(--font-size);
-
-            .section-title-input {
-                flex: 1;
-                border-radius: var(--border-radius);
-                background-color: var(--theme-accent);
-                padding: var(--input-y-padding) var(--input-x-padding);
-                color: var(--theme-text);
-                font-size: var(--input-font-size);
-                font-family: constants.$main-font;
-            }
-        }
-
-        .section-body {
-            --default-height: 10rem;
-
-            display: block;
-            border-radius: var(--border-radius);
-            background-color: var(--theme-accent);
-            padding: var(--input-y-padding) var(--input-x-padding);
-            width: 100%;
-            height: var(--default-height);
-            resize: vertical;
-            color: var(--theme-text);
-            font-size: var(--input-font-size);
-            font-family: constants.$main-font;
-        }
-    }
-}
-
-@media screen and (min-width: constants.$tablet) {
-    .new-page > .new-section > .section-title {
-        --font-size: 1.5rem;
-        --margin-bottom: 1.25rem;
-        --padding-bottom: 1.25rem;
     }
 }
 
 @media (hover: hover) {
-    .new-page > .top-bar > .submit-button:hover {
-        background-color: var(--theme-hover);
-        color: var(--theme-text);
+    .new-page > .top-bar {
+        .clear-button:hover {
+            background-color: constants.$red-hover;
+        }
+
+        .submit-button:hover {
+            background-color: var(--theme-hover);
+            color: var(--theme-text);
+        }
     }
 }

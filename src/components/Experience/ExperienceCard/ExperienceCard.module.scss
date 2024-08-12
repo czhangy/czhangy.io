@@ -1,34 +1,29 @@
 @use "@/styles/constants";
 
 .experience-card {
-    --body-font-size: 1rem;
-    --bullet-spacing: 0.5rem;
-    --card-border-radius: 5px;
+    --border-radius: 5px;
     --card-padding: 1rem;
-    --company-letter-spacing: 1px;
-    --description-offset: 1rem;
-    --description-spacing: 1rem;
-    --header-font-size: 1.5rem;
-    --logo-size: 60px;
-    --timeframe-font-size: 1.75rem;
-    --timeframe-letter-spacing: 1px;
-    --timeframe-x-padding: var(--card-padding);
-    --timeframe-y-padding: 0.5rem;
 
-    border-radius: var(--card-border-radius);
+    border-radius: var(--border-radius);
     background: var(--theme-accent);
     overflow: hidden;
 
     .timeframe {
+        --font-size: 1.25rem;
+        --x-padding: var(--card-padding);
+        --y-padding: 0.25rem;
+
         background-color: var(--theme-hover);
-        padding: var(--timeframe-y-padding) var(--timeframe-x-padding);
+        padding: var(--y-padding) var(--x-padding);
         color: var(--theme-main);
-        font-size: var(--timeframe-font-size);
+        font-size: var(--font-size);
         font-family: constants.$header-font;
-        letter-spacing: var(--timeframe-letter-spacing);
     }
 
     .card {
+        --body-font-size: 1rem;
+        --inner-spacing: 1rem;
+
         padding: var(--card-padding);
 
         .card-header {
@@ -36,17 +31,22 @@
             align-items: center;
 
             .card-img {
+                --img-size: 60px;
+
                 position: relative;
-                margin-right: var(--description-spacing);
-                width: var(--logo-size);
-                height: var(--logo-size);
+                margin-right: var(--inner-spacing);
+                width: var(--img-size);
+                height: var(--img-size);
             }
 
             .header-text {
                 .company {
-                    font-size: var(--header-font-size);
+                    --font-size: 1.5rem;
+                    --letter-spacing: 1px;
+
+                    font-size: var(--font-size);
                     font-family: constants.$header-font;
-                    letter-spacing: var(--company-letter-spacing);
+                    letter-spacing: var(--letter-spacing);
                 }
 
                 .title {
@@ -56,12 +56,16 @@
         }
 
         .card-description {
-            margin-top: var(--description-spacing);
-            margin-left: var(--description-offset);
+            --margin-left: 1rem;
+
+            margin-top: var(--inner-spacing);
+            margin-left: var(--margin-left);
             list-style-type: circle;
 
             .bullet {
-                margin-bottom: var(--bullet-spacing);
+                --margin-bottom: 0.5rem;
+
+                margin-bottom: var(--margin-bottom);
                 font-size: var(--body-font-size);
 
                 &:last-child {
@@ -72,27 +76,31 @@
     }
 }
 
-@media screen and (min-width: constants.$tablet) {
-    .experience-card {
-        --header-font-size: 1.75rem;
-    }
-}
-
 @media screen and (min-width: constants.$desktop) {
     .experience-card {
-        --body-font-size: 1.25rem;
-        --bullet-spacing: 0.75rem;
         --card-padding: 2rem;
-        --description-spacing: 1.5rem;
-        --header-font-size: 2rem;
-        --logo-size: 80px;
 
         .timeframe {
             display: none;
         }
 
-        .card > .card-header > .header-text > .timeframe {
-            display: none;
+        .card {
+            --body-font-size: 1.25rem;
+            --inner-spacing: 1.5rem;
+
+            .card-header {
+                .card-img {
+                    --img-size: 80px;
+                }
+
+                .header-text > .company {
+                    --font-size: 1.75rem;
+                }
+            }
+
+            .card-description > .bullet {
+                --margin-bottom: 0.75rem;
+            }
         }
     }
 }

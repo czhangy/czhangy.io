@@ -14,7 +14,7 @@ const Login: NextPage = () => {
         if (status === UNAUTHENTICATED) {
             signIn(undefined, { callbackUrl: "/new" });
         }
-    }, []);
+    }, [status]);
 
     return (
         <div>
