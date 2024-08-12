@@ -5,8 +5,9 @@ import { EntrySection } from "@prisma/client";
 
 import UtilityMenu from "@/components/Global/UtilityMenu/UtilityMenu";
 import { SECTION_TYPES } from "@/static/constants";
-import { EntrySectionType } from "@/static/types";
+import { ConditionalJSX, EntrySectionType } from "@/static/types";
 
+import ClearModal from "../ClearModal/ClearModal";
 import styles from "./NewPage.module.scss";
 
 const NewPage: React.FC = () => {
@@ -29,6 +30,7 @@ const NewPage: React.FC = () => {
     const [typingTimeoutID, setTypingTimeoutID] = useState<
         NodeJS.Timeout | undefined
     >(undefined);
+    const [isClearModalOpen, setClearModalOpen] = useState<boolean>(false);
 
     // ------------------------------------------------------------------------
     // Listeners
@@ -217,6 +219,8 @@ const NewPage: React.FC = () => {
 
     /**
      * Renders the content displayed on the submit button
+     *
+     * @returns {JSX.Element} The text content within the submit button
      */
     const renderSubmitButtonContent = (): JSX.Element => {
         if (isErrorState) {
@@ -224,6 +228,22 @@ const NewPage: React.FC = () => {
         } else {
             return <strong>Submit</strong>;
         }
+    };
+
+    /**
+     * Renders the clear modal if it is opened
+     *
+     * @returns {ConditionalJSX} The JSX needed to render the clear modal
+     */
+    const renderClearModal = (): ConditionalJSX => {
+        return isClearModalOpen ? (
+            <ClearModal
+                onClose={() => setClearModalOpen(false)}
+                onConfirm={handleClear}
+            />
+        ) : (
+            ""
+        );
     };
 
     // ------------------------------------------------------------------------
@@ -305,6 +325,7 @@ const NewPage: React.FC = () => {
 
     return (
         <div className={styles["new-page"]}>
+            {renderClearModal()}
             <section className={styles["top-bar"]}>
                 <input
                     className={styles["journal-title-input"]}
@@ -323,7 +344,7 @@ const NewPage: React.FC = () => {
                 />
                 <button
                     className={`${styles.button} ${styles["clear-button"]}`}
-                    onClick={handleClear}
+                    onClick={() => setClearModalOpen(true)}
                 >
                     <strong>Clear</strong>
                 </button>

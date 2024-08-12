@@ -7,6 +7,7 @@
     display: flex;
     position: fixed;
     top: 0;
+    left: 0;
     justify-content: center;
     align-items: center;
     z-index: constants.$modal-z;
@@ -18,15 +19,13 @@
 
     .modal {
         --border-rad: 20px;
-        --height: 85%;
+        --max-width: 500px;
         --padding: 1rem;
-        --width: 90%;
 
         border-radius: var(--border-rad);
         background: var(--theme-accent);
         padding: var(--padding);
-        width: var(--width);
-        height: var(--height);
+        max-width: var(--max-width);
         overflow-y: scroll;
     }
 }
@@ -53,11 +52,5 @@
 
     to {
         opacity: 0;
-    }
-}
-
-@media screen and (min-width: constants.$desktop) {
-    .overlay {
-        display: none;
     }
 }

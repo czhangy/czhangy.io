@@ -79,9 +79,9 @@ def create_tsx(path, component, props):
 
     # Handle props
     if props:
-        file_contents[2] = f'const {component}: React.FC<{component}Props> = (props: {component}Props) => {{\n'
+        file_contents[2] = f'const {component}: React.FC<Props> = (props: Props) => {{\n'
         file_contents.insert(1, '\n')
-        file_contents.insert(2, f'export type {component}Props = {{\n')
+        file_contents.insert(2, f'type Props = {{\n')
         file_contents.insert(3, '\n')
         file_contents.insert(4, '}')
         file_contents.insert(5, '\n')
