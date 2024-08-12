@@ -8,6 +8,7 @@ import { SECTION_TYPES } from "@/static/constants";
 import { ConditionalJSX, EntrySectionType } from "@/static/types";
 
 import ClearModal from "../ClearModal/ClearModal";
+import NewSection from "../NewSection/NewSection";
 import styles from "./NewPage.module.scss";
 
 const NewPage: React.FC = () => {
@@ -37,7 +38,7 @@ const NewPage: React.FC = () => {
     // ------------------------------------------------------------------------
 
     // The number of ms to wait before saving state to local storage
-    const TYPING_DEBOUNCE_MS: number = 1000;
+    const TYPING_DEBOUNCE_MS: number = 500;
 
     // Try to retrieve saved state on page load
     useEffect(() => retrieveFromLocalStorage(), []);
@@ -191,28 +192,15 @@ const NewPage: React.FC = () => {
     const renderSections = (): JSX.Element[] => {
         return sections.map((section: EntrySection, idx: number) => {
             return (
-                <section className={styles["new-section"]} key={section.type}>
-                    <h3 className={styles["section-title"]}>
-                        {SECTION_TYPES[section.type].emoji}{" "}
-                        <strong>
-                            {SECTION_TYPES[section.type].displayName}:{" "}
-                        </strong>
-                        <input
-                            className={styles["section-title-input"]}
-                            value={sections[idx].title}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                handleSectionTitleChange(e, idx)
-                            }
-                        />
-                    </h3>
-                    <textarea
-                        className={styles["section-body"]}
-                        value={sections[idx].body}
-                        onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-                            handleSectionBodyChange(e, idx)
-                        }
-                    />
-                </section>
+                <NewSection
+                    section={section}
+                    onTitleChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        handleSectionTitleChange(e, idx)
+                    }
+                    onBodyChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                        handleSectionBodyChange(e, idx)
+                    }
+                />
             );
         });
     };
